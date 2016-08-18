@@ -1,0 +1,35 @@
+[HIT Configuration]
+title = Cognitive Psychology Task
+description = Make judgments about lists of words.
+amt_keywords = Cognition, Psychology
+lifetime = 120
+us_only = true
+approve_requirement = 95
+contact_email_on_error = khealey@msu.edu
+ad_group = Healey Lab
+psiturk_keywords = free recall
+organization_name = Michigan State University
+browser_exclude_rule = MSIE, mobile, tablet, bot
+
+[Database Parameters]
+database_url = sqlite:///participants.db
+table_name = FRresults
+
+[Server Parameters]
+host = localhost
+port = 22362
+cutoff_time = 60
+logfile = server.log
+loglevel = 0
+debug = true
+login_username = 
+login_pw = 
+threads = 4
+
+[Task Parameters]
+experiment_code_version = D
+num_conds = 2
+num_counters = 1
+
+[Shell Parameters]
+launch_in_sandbox_mode = true
