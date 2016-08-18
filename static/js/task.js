@@ -4,6 +4,10 @@
  *     utils.js
  */
 
+
+// todo: change logo on thankyou page
+// todo: write python script for processing database to pandas --- probably code online for this
+
 // Initalize psiturk object
 var psiTurk = new PsiTurk(uniqueId, adServerLoc, mode);
 
