@@ -7,6 +7,7 @@
 
 // todo: change logo on thankyou page
 // todo: write python script for processing database to pandas --- probably code online for this
+// todo: currently using a mysql database for debugging... setup a new one for the real experiment on this line of config.txt: database_url = mysql://khealey:Bib96?reply@127.0.0.1:3306/fr_turk_debug
 
 // Initalize psiturk object
 var psiTurk = new PsiTurk(uniqueId, adServerLoc, mode);
