@@ -8,6 +8,8 @@
 // todo: change logo on thankyou page
 // todo: write python script for processing database to pandas --- probably code online for this
 // todo: currently using a mysql database for debugging... setup a new one for the real experiment on this line of config.txt: database_url = mysql://khealey:Bib96?reply@127.0.0.1:3306/fr_turk_debug
+// todo: words currently stay on until a response is made, and are not timed!!!
+
 
 // Initalize psiturk object
 var psiTurk = new PsiTurk(uniqueId, adServerLoc, mode);
@@ -22,7 +24,7 @@ var psiTurk = new PsiTurk(uniqueId, adServerLoc, mode);
 // user determined task params
 var num_of_lists = 3;
 var list_length = 5;
-var recall_time = 3000; // number of milleseconds given to recall
+var recall_time = 10000; // number of milleseconds given to recall
 var word_pool = make_pool(); // function in utils.js
 
 

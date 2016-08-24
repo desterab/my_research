@@ -1,6 +1,7 @@
 #todo: allow cognates: e.g., for boy boys is good
 #todo: sanity check to make sure recal is never more than 1
 import numpy as np
+import pandas as pd
 from pyxdameraulevenshtein import damerau_levenshtein_distance_ndarray
 
 
@@ -20,17 +21,17 @@ def which_item(recall, presented, dictionary):
         # could be a PLI
         intrusion = presented.iloc[seen_where].list != recall.list
         if intrusion:
-            return -1 #todo: what are the standard matlab codes for ELI and PLI?
+            return -1.0 #todo: what are the standard matlab codes for ELI and PLI?
 
         # its not a PLI, so find the serial pos
         first_item = next(item for item, listnum in enumerate(presented.list) if listnum == recall.list)
-        serial_pos = seen_where - first_item + 1
+        serial_pos = seen_where - first_item + 1.0
         return serial_pos
 
     # does the recall exactly match a word in the dictionary
     in_dict, where_in_dict = self_term_search(recall.response, dictionary)
     if in_dict:
-        return -999 #todo: what are the standard matlab codes for ELI and PLI?
+        return -999.0 #todo: what are the standard matlab codes for ELI and PLI?
 
     # the closest match based on edit distance
     recall = correct_spelling(recall, presented, dictionary)
@@ -63,7 +64,8 @@ def correct_spelling(recall, presented, dictionary):
 
 
 def make_recall_matrix(data):
-    recalls = []
+
+    recalls = pd.DataFrame()
 
     # load the webesters dict
     dict_file = open("/Users/khealey/code/experiments/psiturk_exps/turk_fr/static/js/word_pool/websters_dict.txt", "r") #TODO: put this path as a param somewhere!
@@ -85,13 +87,46 @@ def make_recall_matrix(data):
         cur_recalls = data.loc[s_filter & recalls_filter, ['list', 'response']]
         cur_items = data.loc[s_filter & study_filter, ['list', 'word']]
 
-        # loop over this subjects recalls and for each find its serial position or mark as intrusion
-        for index, recall in cur_recalls.iterrows():
-            recall.response.strip().lower()
-            which_item(recall, cur_items.loc[cur_items.list <= recall.list], dictionary)
+        # loop over this subject's lists
+        lists = cur_recalls.list.unique()
+        for l in lists:
+            list_filter = cur_recalls.list == l
+            recalled_this_list = cur_recalls.loc[list_filter, :]
+
+            # loop over recalls in this list and for each find its serial position or mark as intrusion then put it all
+            # in a dataframe
+            sp = []
+            op = []
+            for index, recall in recalled_this_list.iterrows():
+                sp.append(which_item(recall, cur_items.loc[cur_items.list <= recall.list], dictionary))
+                op.append(int(np.where(recalled_this_list.index==index)[0])) # the output position
+
+            # we need to add the subject id to the beginning of the line
+            sp.insert(0, s)
+            op.insert(0, 'subject')
+            recalls = recalls.append(pd.DataFrame([sp], columns=tuple(op)))
+
+    recalls.set_index('subject')
     return recalls
 
 
+def fix_ragged_array(lst, dtype=np.int64):
+    """
+    Convert a list of arrays to a 2d array padded with zeros to the right.
+    """
+    # determine the inner max length
+    inner_max_len = max(map(len, lst))
+
+    # allocate the return array
+    result = np.zeros([len(lst), inner_max_len], dtype)
+
+    # loop over the list and fill the non-zero entries
+    for i, row in enumerate(lst):
+        # fill the row
+        result[i,:len(row)] = row
+        #for j, val in enumerate(row):
+        #    result[i][j] = val
+    return result
 
 
 
