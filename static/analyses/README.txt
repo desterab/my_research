@@ -1,3 +1,15 @@
+# to setup a new mySQL database for a new experiment
+
+-start mySQL and create a new database
+mysql -uroot -p
+CREATE DATABASE turkFR;
+
+Create a local user:
+GRANT ALL ON turkFR.* TO khealey@'localhost' IDENTIFIED BY 'Bib96?reply';
+
+Create a remote access user so you can access the database from your local computer to analyse the data:
+GRANT ALL ON turkFR.* TO khealey@'35.8.48.32' IDENTIFIED BY 'Bib96?reply';
+
 Some notes to aid in writing methods and ensure reproducabilirty:
 
 Algorythm for scoring typed realls:
@@ -18,3 +30,7 @@ assumed to be an ELI.
 
 # needed for edit distance:
  pip install pyxDamerauLevenshtein
+
+
+
+
