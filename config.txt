@@ -16,7 +16,8 @@ database_url = mysql://khealey:Bib96?reply@127.0.0.1:3306/fr_turk_debug
 table_name = FRresults
 
 [Server Parameters]
-host = localhost
+host = 0.0.0.0
+
 port = 22362
 cutoff_time = 60
 logfile = server.log
