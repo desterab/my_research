@@ -12,7 +12,7 @@ organization_name = Michigan State University
 browser_exclude_rule = MSIE, mobile, tablet, bot
 
 [Database Parameters]
-database_url = mysql://khealey:Bib96?reply@127.0.0.1:3306/fr_turk_debug
+database_url = sqlite:///participants.db
 table_name = FRresults
 
 [Server Parameters]
