@@ -6,9 +6,8 @@
 
 
 // todo: change logo on thankyou page
-// todo: write python script for processing database to pandas --- probably code online for this
-// todo: currently using a mysql database for debugging... setup a new one for the real experiment on this line of config.txt: database_url = mysql://khealey:Bib96?reply@127.0.0.1:3306/fr_turk_debug
 // todo: words currently stay on until a response is made, and are not timed!!!
+// todo: make word enter box focus automatically
 
 
 // Initalize psiturk object
