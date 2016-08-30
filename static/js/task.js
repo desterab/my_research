@@ -21,7 +21,7 @@ var psiTurk = new PsiTurk(uniqueId, adServerLoc, mode);
  ********************/
 
 // user determined task params
-var num_of_lists = 3;
+var num_of_lists = 1;
 var list_length = 5;
 var pres_rate = 3000; // number of mileseconds each word presented for
 var recall_time = 10000; // number of milleseconds given to recall
@@ -160,7 +160,6 @@ var RunFR = function() {
                         'rt': rt
                     }
                 );
-                return
             }
 
         }
@@ -240,8 +239,16 @@ var RunFR = function() {
         listening = true;
         d3.select("#task").html('<p>Would it fit in a shoebox?</p>');
         d3.select("#query").html('<p id="prompt">Type "R" for bigger, "B" for smaller.</p>');
-        setTimeout(function(){next(); }, pres_rate);
+        setTimeout(function(){wrapup_word(); }, pres_rate);
 
+
+    };
+
+    /******
+     * Function to record a time out response if no response was made to the word and move on
+     *
+     ****/
+     var wrapup_word = function() {
         if (listening) {
             var rt = new Date().getTime() - wordon;
             psiTurk.recordTrialData({
@@ -253,8 +260,8 @@ var RunFR = function() {
                 }
             );
         }
-    };
-
+        next()
+     }
 
     /******
      * Function to remove an item from the screen
