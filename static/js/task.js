@@ -6,7 +6,6 @@
 
 
 // todo: change logo on thankyou page
-// todo: words currently stay on until a response is made, and are not timed!!!
 // todo: make word enter box focus automatically
 
 
@@ -22,9 +21,9 @@ var psiTurk = new PsiTurk(uniqueId, adServerLoc, mode);
 
 // user determined task params
 var num_of_lists = 1;
-var list_length = 5;
-var pres_rate = 3000; // number of mileseconds each word presented for
-var recall_time = 10000; // number of milleseconds given to recall
+var list_length = 1;
+var pres_rate = 1000; // number of mileseconds each word presented for
+var recall_time = 5000; // number of milleseconds given to recall
 var word_pool = make_pool(); // function in utils.js
 
 
@@ -284,6 +283,7 @@ var RunFR = function() {
         // display input box
         d3.select("#recall_input").html('<span>Type a word and press ENTER to submit:</span> ' +
             '<input type="text" id="recall_field" name="recall_field"/>');
+        d3.select("#recall_field").node().focus()
 
     };
 
