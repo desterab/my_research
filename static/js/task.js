@@ -23,6 +23,7 @@ var psiTurk = new PsiTurk(uniqueId, adServerLoc, mode);
 // user determined task params
 var num_of_lists = 3;
 var list_length = 5;
+var pres_rate = 1500; // number of mileseconds each word presented for
 var recall_time = 10000; // number of milleseconds given to recall
 var word_pool = make_pool(); // function in utils.js
 
@@ -146,7 +147,7 @@ var RunFR = function() {
                     break;
             }
             if (response.length > 0) {
-                listening = false;
+
                 var rt = new Date().getTime() - wordon;
 
                 psiTurk.recordTrialData({
@@ -157,9 +158,33 @@ var RunFR = function() {
                         'rt': rt
                     }
                 );
-                remove_word();
-                next();
+//                remove_word();
+//                next();
             }
+
+
+             var elapsed = new Date().getTime() - wordon;
+                if (elapsed > pres_rate) {
+//                     if no response has been made by the end of the presentation period, record that fact
+                   listening = false;
+                if (response.length == 0) {
+
+                var rt = new Date().getTime() - wordon;
+
+                psiTurk.recordTrialData({
+                        'list': cur_list_num,
+                        'phase': "study",
+                        'word': stim[0],
+                        'response': "timed_out",
+                        'rt': rt
+                    }
+                );
+//                remove_word();
+//                next();
+            }
+                    remove_word();
+                    next();
+                }
         }
 
         // handler for the recall phase
