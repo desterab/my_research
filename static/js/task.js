@@ -23,7 +23,7 @@ var psiTurk = new PsiTurk(uniqueId, adServerLoc, mode);
 // user determined task params
 var num_of_lists = 3;
 var list_length = 5;
-var pres_rate = 1500; // number of mileseconds each word presented for
+var pres_rate = 3000; // number of mileseconds each word presented for
 var recall_time = 10000; // number of milleseconds given to recall
 var word_pool = make_pool(); // function in utils.js
 
@@ -91,6 +91,7 @@ var RunFR = function() {
 
         if (stims.length===0) { // if there are no stims left, we have entered the recall phase
             if (first_recall) {
+                remove_word()
                 cur_phase = "RECALL"
                 start_time = new Date().getTime();
                 first_recall = false
@@ -101,11 +102,10 @@ var RunFR = function() {
         else { // otherwise we still have items to present
             cur_phase = "STUDY"
             stim = stims.shift();
-            d3.select("#task").html('<p>Would it fit in a shoebox?</p>');
+            remove_word()
             present_item( stim[0] );
-            wordon = new Date().getTime();
-            listening = true;
-            d3.select("#query").html('<p id="prompt">Type "R" for bigger, "B" for smaller.</p>');
+
+            //todo: record null response if timedout
         }
     };
 
@@ -148,8 +148,6 @@ var RunFR = function() {
             }
 
 
-
-
             if (response.length > 0) {
                 listening = false;
                 var rt = new Date().getTime() - wordon;
@@ -162,33 +160,9 @@ var RunFR = function() {
                         'rt': rt
                     }
                 );
-               remove_word();
-               next();
+                return
             }
 
-
-//              var elapsed = new Date().getTime() - wordon;
-//                 if (elapsed > pres_rate) {
-// //                     if no response has been made by the end of the presentation period, record that fact
-//                    listening = false;
-//                 if (response.length == 0) {
-//
-//                 var rt = new Date().getTime() - wordon;
-//
-//                 psiTurk.recordTrialData({
-//                         'list': cur_list_num,
-//                         'phase': "study",
-//                         'word': stim[0],
-//                         'response': "timed_out",
-//                         'rt': rt
-//                     }
-//                 );
-// //                remove_word();
-// //                next();
-//             }
-//                     remove_word();
-//                     next();
-//                 }
         }
 
         // handler for the recall phase
@@ -262,6 +236,23 @@ var RunFR = function() {
             .style("font-weight","400")
             .style("margin","20px")
             .text(text);
+        wordon = new Date().getTime();
+        listening = true;
+        d3.select("#task").html('<p>Would it fit in a shoebox?</p>');
+        d3.select("#query").html('<p id="prompt">Type "R" for bigger, "B" for smaller.</p>');
+        setTimeout(function(){next(); }, pres_rate);
+
+        if (listening) {
+            var rt = new Date().getTime() - wordon;
+            psiTurk.recordTrialData({
+                    'list': cur_list_num,
+                    'phase': "study",
+                    'word': stim[0],
+                    'response': "Timed_Out",
+                    'rt': rt
+                }
+            );
+        }
     };
 
 
