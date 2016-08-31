@@ -6,6 +6,7 @@
 
 
 // todo: change logo on thankyou page
+// todo: loging proper RT for recalls
 // todo: make sure logging single presentation now that have isi!
 
 
@@ -138,7 +139,7 @@ var RunFR = function() {
                     // "Y"
                     response = "smaller";
                     break;
-                case 79:
+                case 78:
                     // "N"
                     response = "bigger";
                     break;
