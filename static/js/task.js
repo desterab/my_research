@@ -6,8 +6,7 @@
 
 
 // todo: change logo on thankyou page
-// todo: loging proper RT for recalls
-// todo: make sure logging single presentation now that have isi!
+// todo: sanity check for 1 list per participant
 
 
 // Initalize psiturk object
@@ -180,23 +179,21 @@ var RunFR = function() {
             if (recalled_item.length > 0) {
                 listening = false;
 
-                var rt = new Date().getTime() - wordon;
+                var elapsed = new Date().getTime() - start_time;
                 psiTurk.recordTrialData({
                         'list': cur_list_num,
                         'phase': "recall",
                         'response': recalled_item,
-                        'rt': rt
+                        'rt': elapsed
                     }
                 );
-
-                var elapsed = new Date().getTime() - start_time;
-                var last_list = cur_list_num+1==num_of_lists; // check if we already have presented all the lists
 
                 if (elapsed < recall_time) {
                     next()
                 }
                 else {
 
+                    var last_list = cur_list_num+1==num_of_lists; // check if we already have presented all the lists
                     if (last_list) {
                         finish()
                     }
