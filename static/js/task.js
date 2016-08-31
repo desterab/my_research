@@ -6,7 +6,7 @@
 
 
 // todo: change logo on thankyou page
-// todo: make word enter box focus automatically
+// todo: make sure logging single presentation now that have isi!
 
 
 // Initalize psiturk object
@@ -21,8 +21,9 @@ var psiTurk = new PsiTurk(uniqueId, adServerLoc, mode);
 
 // user determined task params
 var num_of_lists = 1;
-var list_length = 1;
-var pres_rate = 1000; // number of mileseconds each word presented for
+var list_length = 5;
+var pres_rate = 1500; // number of mileseconds each word presented for
+var isi = 1000; // number of ms of blank screen between word presentations
 var recall_time = 5000; // number of milleseconds given to recall
 var word_pool = make_pool(); // function in utils.js
 
@@ -133,16 +134,17 @@ var RunFR = function() {
         if (cur_phase=="STUDY") {
 
             switch (keyCode) {
-                case 66:
-                    // "B"
-                    response = "bigger";
-                    break;
-                case 83:
-                    // "G"
+                case 89:
+                    // "Y"
                     response = "smaller";
+                    break;
+                case 79:
+                    // "N"
+                    response = "bigger";
                     break;
                 default:
                     response = "";
+                    d3.select("#query").html('<p id="prompt"> <span style="color: red; ">Invalid Response. Press Y or N</span></p>');
                     break;
             }
 
@@ -225,6 +227,10 @@ var RunFR = function() {
      *
      ****/
     var present_item = function(text) {
+
+        // show the word for pres_rate ms
+        d3.select("#task").html('<p>Would it fit in a shoebox?</p>');
+        d3.select("#query").html('<p id="prompt">press "Y" for yes, "N" for no.</p>');
         d3.select("#stim")
             .append("div")
             .attr("id","word")
@@ -236,9 +242,10 @@ var RunFR = function() {
             .text(text);
         wordon = new Date().getTime();
         listening = true;
-        d3.select("#task").html('<p>Would it fit in a shoebox?</p>');
-        d3.select("#query").html('<p id="prompt">Type "R" for bigger, "B" for smaller.</p>');
+
         setTimeout(function(){wrapup_word(); }, pres_rate);
+
+
 
 
     };
@@ -248,6 +255,8 @@ var RunFR = function() {
      *
      ****/
      var wrapup_word = function() {
+
+        // record a time out if they have not responded to the word
         if (listening) {
             var rt = new Date().getTime() - wordon;
             psiTurk.recordTrialData({
@@ -259,7 +268,23 @@ var RunFR = function() {
                 }
             );
         }
-        next()
+
+        // show a fixation for isi ms
+        //remove text from encoding task
+        d3.select("#word").remove();
+        d3.select("#task").html('<p> </p>');
+        d3.select("#query").html('<p id="prompt"> </p>');
+        d3.select("#stim")
+            .append("div")
+            .attr("id","word")
+            .style("color","black")
+            .style("text-align","center")
+            .style("font-size","50px")
+            .style("font-weight","400")
+            .style("margin","20px")
+            .text("+");
+        setTimeout(function(){next(); }, isi);
+
      }
 
     /******
