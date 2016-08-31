@@ -6,8 +6,6 @@
 
 
 // todo: change logo on thankyou page
-// todo: real questionaire at end
-
 
 // Initalize psiturk object
 var psiTurk = new PsiTurk(uniqueId, adServerLoc, mode);
@@ -20,8 +18,8 @@ var psiTurk = new PsiTurk(uniqueId, adServerLoc, mode);
  ********************/
 
 // user determined task params
-var num_of_lists = 3;
-var list_length = 5;
+var num_of_lists = 1;
+var list_length = 1;
 var pres_rate = 1500; // number of mileseconds each word presented for
 var isi = 1000; // number of ms of blank screen between word presentations
 var recall_time = 15000; // number of milleseconds given to recall
