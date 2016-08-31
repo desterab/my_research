@@ -7,6 +7,7 @@
 
 // todo: change logo on thankyou page
 // todo: sanity check for 1 list per participant
+// todo: recall period expire after recall_time--perhaps count down
 
 
 // Initalize psiturk object
@@ -20,11 +21,11 @@ var psiTurk = new PsiTurk(uniqueId, adServerLoc, mode);
  ********************/
 
 // user determined task params
-var num_of_lists = 1;
+var num_of_lists = 2;
 var list_length = 5;
 var pres_rate = 1500; // number of mileseconds each word presented for
 var isi = 1000; // number of ms of blank screen between word presentations
-var recall_time = 5000; // number of milleseconds given to recall
+var recall_time = 30000; // number of milleseconds given to recall
 var word_pool = make_pool(); // function in utils.js
 
 
