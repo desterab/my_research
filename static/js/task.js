@@ -402,6 +402,12 @@ var Questionnaire = function() {
 			psiTurk.recordUnstructuredData(this.id, this.value);		
 		});
 
+		// I think someting like this:
+		$('input').each( function(i, val) {
+			psiTurk.recordUnstructuredData(this.name, this.checked);
+		});
+
+
 	};
 
 	prompt_resubmit = function() {
