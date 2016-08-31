@@ -6,8 +6,7 @@
 
 
 // todo: change logo on thankyou page
-// todo: sanity check for 1 list per participant
-// todo: recall period expire after recall_time--perhaps count down
+// todo: real questionaire at end
 
 
 // Initalize psiturk object
@@ -21,11 +20,12 @@ var psiTurk = new PsiTurk(uniqueId, adServerLoc, mode);
  ********************/
 
 // user determined task params
-var num_of_lists = 2;
+var num_of_lists = 3;
 var list_length = 5;
 var pres_rate = 1500; // number of mileseconds each word presented for
 var isi = 1000; // number of ms of blank screen between word presentations
-var recall_time = 30000; // number of milleseconds given to recall
+var recall_time = 15000; // number of milleseconds given to recall
+var delay_between_lists = 5000; // number of mileseconds to pause between lists
 var word_pool = make_pool(); // function in utils.js
 
 
@@ -71,7 +71,6 @@ psiTurk.preloadPages(pages);
  ********************/
 var RunFR = function() {
 
-
     /******
      * Setup variables for this list
      *
@@ -89,13 +88,11 @@ var RunFR = function() {
      ****/
     var next = function() {
 
-
         if (stims.length===0) { // if there are no stims left, we have entered the recall phase
             if (first_recall) {
                 remove_word()
                 cur_phase = "RECALL"
                 start_time = new Date().getTime();
-                first_recall = false
             }
             listening = true;
             recall_period()
@@ -103,10 +100,29 @@ var RunFR = function() {
         else { // otherwise we still have items to present
             cur_phase = "STUDY"
             stim = stims.shift();
-            remove_word()
-            present_item( stim[0] );
+            if (stims.length===list_length-1) {
+                if (cur_list_num==0) {
+                    ready_message = "Get ready! The list will begin shortly."
+                }
+                else {
+                    ready_message = "Get ready! A new list will begin shortly."
+                }
+                d3.select("#stim")
+                    .append("div")
+                    .attr("id","word")
+                    .style("color","black")
+                    .style("text-align","center")
+                    .style("font-size","50px")
+                    .style("font-weight","400")
+                    .style("margin","20px")
+                    .text(ready_message);
+                setTimeout(function(){present_item( stim[0] ); }, delay_between_lists);
+            }
+            else{
+                remove_word()
+                present_item( stim[0] );
+                }
 
-            //todo: record null response if timedout
         }
     };
 
@@ -188,21 +204,7 @@ var RunFR = function() {
                         'rt': elapsed
                     }
                 );
-
-                if (elapsed < recall_time) {
-                    next()
-                }
-                else {
-
-                    var last_list = cur_list_num+1==num_of_lists; // check if we already have presented all the lists
-                    if (last_list) {
-                        finish()
-                    }
-                    else {
-                        cur_list_num++
-                        RunFR()
-                    }
-                }
+                next()
 
             }
 
@@ -227,6 +229,9 @@ var RunFR = function() {
      ****/
     var present_item = function(text) {
 
+        // remove any words already on screen
+        remove_word()
+
         // show the word for pres_rate ms
         d3.select("#task").html('<p>Would it fit in a shoebox?</p>');
         d3.select("#query").html('<p id="prompt">press "Y" for yes, "N" for no.</p>');
@@ -244,10 +249,30 @@ var RunFR = function() {
 
         setTimeout(function(){wrapup_word(); }, pres_rate);
 
+    };
 
+        /******
+     * Function to present text box for recalling words
+     *
+     ****/
+    var recall_period = function() {
+        //remove text from encoding task
+        d3.select("#query").remove();
+        d3.select("#task").remove();
 
+        // display input box
+        d3.select("#recall_input").html('<span>Type a word and press ENTER to submit:</span> ' +
+            '<input type="text" id="recall_field" name="recall_field"/>');
+        d3.select("#recall_field").node().focus()
+
+        if (first_recall) {
+            setTimeout(function(){wrapup_recall(); }, recall_time);
+            first_recall = false
+        }
 
     };
+
+
 
     /******
      * Function to record a time out response if no response was made to the word and move on
@@ -286,6 +311,49 @@ var RunFR = function() {
 
      }
 
+
+         /******
+     * Function to end recall period
+     *
+     ****/
+     var wrapup_recall = function() {
+
+        var last_list = cur_list_num+1==num_of_lists; // check if we already have presented all the lists
+        if (last_list) {
+            finish()
+        }
+        else {
+            cur_list_num++
+            RunFR()
+        }
+     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     /******
      * Function to remove an item from the screen
      *
@@ -295,21 +363,7 @@ var RunFR = function() {
     };
 
 
-    /******
-     * Function to present text box for recalling words
-     *
-     ****/
-    var recall_period = function() {
-        //remove text from encoding task
-        d3.select("#query").remove();
-        d3.select("#task").remove();
 
-        // display input box
-        d3.select("#recall_input").html('<span>Type a word and press ENTER to submit:</span> ' +
-            '<input type="text" id="recall_field" name="recall_field"/>');
-        d3.select("#recall_field").node().focus()
-
-    };
 
 
 

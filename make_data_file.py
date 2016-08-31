@@ -1,3 +1,5 @@
+# todo: sanity check for 1 list per participant
+
 import sys,os,os.path
 sys.path.append("/home/khealey/code/py_modules/")
 from beh_tools import psiturk_tools
