@@ -22,11 +22,12 @@ var psiTurk = new PsiTurk(uniqueId, adServerLoc, mode);
 
 // user determined task params
 var num_of_lists = 2;
-var list_length = 4;
-var pres_rate = 1500; // number of mileseconds each word presented for
-var isi = 1000; // number of ms of blank screen between word presentations
+var list_length = 2;
+var pres_rate = 150; // number of mileseconds each word presented for
+var isi = 100; // number of ms of blank screen between word presentations
 var recall_time = 10000; // number of milleseconds given to recall
-var delay_between_lists = 500; // number of mileseconds to pause between lists
+var delay_between_lists = 500; // number of mileseconds to pause between lists (display get ready message)
+var end_distractor_delay = 16000; // number of mileseconds of distraction task before recall
 var word_pool = make_pool(); // function in utils.js
 
 
@@ -80,6 +81,7 @@ var RunFR = function() {
         wordon, // time word is presented
         listening = false,
         first_recall = true, // keep tack of whether this is the first recall for a list
+        end_distractor_done = false, // has the end of list distractor been finished yet
         stims = word_pool.splice(0,list_length); // get the items for this list: the next list_length elements of word pool
 
 
@@ -89,7 +91,14 @@ var RunFR = function() {
      ****/
     var next = function() {
 
-        if (stims.length===0) { // if there are no stims left, we have entered the recall phase
+        if (stims.length===0 && !end_distractor_done) { // if there are no stims left, we have entered the recall phase
+            if (cur_phase != "DISTRACTOR"){
+                cur_phase = "DISTRACTOR";
+                setTimeout(function(){wrapup_end_distractor(); }, end_distractor_delay); // start a timer that will end the distraction period
+            }
+            end_distractor_task()
+        }
+        else if (stims.length===0 && end_distractor_done) { // if there are no stims left, we have entered the recall phase
             if (first_recall) {
                 remove_word()
                 cur_phase = "RECALL"
@@ -274,11 +283,37 @@ var RunFR = function() {
         listening = true;
 
         if (first_recall) {
+
             setTimeout(function(){wrapup_recall(); }, recall_time);
             first_recall = false
         }
 
     };
+
+    var end_distractor_task = function() {
+
+        // setup math problem
+        A = 1;
+        B = 2;
+        C = 3;
+        correct_answer = A + B + C;
+
+        // display input box
+        disp_this = '<p>' + end_distractor_done + '+' + B + '+' + C + '=?</p>'
+        d3.select("#task").html(disp_this);
+        d3.select("#recall_input").html('<span>Add the three numbers, type your answer, and press ENTER to submit:</span> ' +
+            '<input type="text" id="recall_field" name="recall_field"/>');
+        d3.select("#recall_field").node().focus()
+
+
+
+
+    }
+
+    var wrapup_end_distractor = function() {
+        end_distractor_done = true;
+        next()
+    }
 
 
 
