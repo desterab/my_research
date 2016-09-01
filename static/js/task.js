@@ -150,11 +150,46 @@ var RunFR = function() {
      *
      ****/
     var response_handler = function(e) {
+
         if (!listening) return;
+
 
         var keyCode = e.keyCode,
             recalled_item,
+            correct_answer,
             response;
+
+
+                // handler for the distractor task
+        if (cur_phase === "DISTRACTOR") {
+
+d3.select("#query").html('<p id="prompt"> <span style="color: red; ">' + cur_phase + '</span></p>');
+
+ONE CHANGE AT A TIME TO GET IT TO LOG RESPONSES!!
+            switch (keyCode) {
+                case 13:
+                    recalled_item = document.getElementById("recall_field").value
+                    break;
+                // default:
+                //     recalled_iem = "9999";
+                //     break;
+            }
+            if (recalled_item.length > 0) {
+                listening = false;
+
+                var elapsed = new Date().getTime() - end_distractor_start_time;
+                psiTurk.recordTrialData({
+                        'list': cur_list_num,
+                        'phase': "end_distractor",
+                        'response': recalled_item,
+                        'rt': elapsed
+                    }
+                );
+                next()
+
+            }
+
+        }
 
         // handler for the study phase
         if (cur_phase === "STUDY") {
@@ -218,6 +253,9 @@ var RunFR = function() {
             }
 
         }
+
+
+
 
     };
 
@@ -291,6 +329,9 @@ var RunFR = function() {
     };
 
     var end_distractor_task = function() {
+        //remove text from encoding task
+//        d3.select("#query").remove();
+//        d3.select("#task").remove();
 
         // setup math problem
         A = 1;
@@ -299,15 +340,14 @@ var RunFR = function() {
         correct_answer = A + B + C;
 
         // display input box
-        disp_this = '<p>' + end_distractor_done + '+' + B + '+' + C + '=?</p>'
+        end_distractor_start_time = new Date().getTime();
+        listening = true;
+        disp_this = '<p>' + cur_phase + '+' + B + '+' + C + '=?</p>'
         d3.select("#task").html(disp_this);
         d3.select("#recall_input").html('<span>Add the three numbers, type your answer, and press ENTER to submit:</span> ' +
             '<input type="text" id="recall_field" name="recall_field"/>');
         d3.select("#recall_field").node().focus()
-
-
-
-
+        cur_phase = "DISTRACTOR";
     }
 
     var wrapup_end_distractor = function() {
