@@ -21,7 +21,7 @@ var psiTurk = new PsiTurk(uniqueId, adServerLoc, mode);
  ********************/
 
 // user determined task params
-var num_of_lists = 4;
+var num_of_lists = 2;
 var list_length = 4;
 var pres_rate = 1500; // number of mileseconds each word presented for
 var isi = 1000; // number of ms of blank screen between word presentations
