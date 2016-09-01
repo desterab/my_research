@@ -6,6 +6,10 @@
 
 
 // todo: change logo on thankyou page
+// todo: properly collecting survey data
+// todo: seems to be recording a button down and a time out now...
+// todo: some indication that recall will continue for x sec
+// todo: consider doing psiturk.saveData() after each list
 
 // Initalize psiturk object
 var psiTurk = new PsiTurk(uniqueId, adServerLoc, mode);
@@ -20,9 +24,9 @@ var psiTurk = new PsiTurk(uniqueId, adServerLoc, mode);
 // user determined task params
 var num_of_lists = 1;
 var list_length = 1;
-var pres_rate = 1500; // number of mileseconds each word presented for
+var pres_rate = 150; // number of mileseconds each word presented for
 var isi = 1000; // number of ms of blank screen between word presentations
-var recall_time = 15000; // number of milleseconds given to recall
+var recall_time = 1500; // number of milleseconds given to recall
 var delay_between_lists = 5000; // number of mileseconds to pause between lists
 var word_pool = make_pool(); // function in utils.js
 
@@ -381,8 +385,6 @@ var RunFR = function() {
 };
 
 
-
-
 /****************
 * Questionnaire *
 ****************/
@@ -393,20 +395,16 @@ var Questionnaire = function() {
 
 	record_responses = function() {
 
-		psiTurk.recordTrialData({'phase':'postquestionnaire', 'status':'submit'});
-
-		$('textarea').each( function(i, val) {
-			psiTurk.recordUnstructuredData(this.id, this.value);
-		});
-		$('select').each( function(i, val) {
-			psiTurk.recordUnstructuredData(this.id, this.value);		
-		});
-
-		// I think someting like this:
+        // I think someting like this:
 		$('input').each( function(i, val) {
-			psiTurk.recordUnstructuredData(this.name, this.checked);
-		});
+		    psiTurk.recordTrialData({
+                        'phase': "postquestionnaire",
+                        'strategy': this.name,
+                        'strategy_description': this.value,
+                        'used': this.checked,
+                        });
 
+		});
 
 	};
 
@@ -418,33 +416,57 @@ var Questionnaire = function() {
 	resubmit = function() {
 		document.body.innerHTML = "<h1>Trying to resubmit...</h1>";
 		reprompt = setTimeout(prompt_resubmit, 10000);
-		
+
 		psiTurk.saveData({
 			success: function() {
-			    clearInterval(reprompt); 
-                psiTurk.computeBonus('compute_bonus', function(){finish()}); 
-			}, 
+			    clearInterval(reprompt);
+                psiTurk.computeBonus('compute_bonus', function(){finish()});
+			},
 			error: prompt_resubmit
 		});
 	};
 
-	// Load the questionnaire snippet 
+	// Load the questionnaire snippet
 	psiTurk.showPage('postquestionnaire.html');
 	psiTurk.recordTrialData({'phase':'postquestionnaire', 'status':'begin'});
-	
+
 	$("#next").click(function () {
 	    record_responses();
 	    psiTurk.saveData({
             success: function(){
-                psiTurk.computeBonus('compute_bonus', function() { 
+                psiTurk.computeBonus('compute_bonus', function() {
                 	psiTurk.completeHIT(); // when finished saving compute bonus, the quit
-                }); 
-            }, 
+                });
+            },
             error: prompt_resubmit});
 	});
-    
-	
+
+
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // Task object to keep track of the current phase
 var currentview;
