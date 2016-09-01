@@ -8,7 +8,7 @@
 
 
 // todo: consider doing psiturk.saveData() after each list---with no arguments it hangs
-// todo: no radio buttons checked by default
+
 
 // Initalize psiturk object
 var psiTurk = new PsiTurk(uniqueId, adServerLoc, mode);
