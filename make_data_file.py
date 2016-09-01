@@ -1,4 +1,5 @@
 # todo: sanity check for 1 list per participant
+# todo: how to save the survey data to circ2 --- probably save both recalls and data.
 
 import sys,os,os.path
 sys.path.append("/home/khealey/code/py_modules/")
