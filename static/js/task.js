@@ -5,11 +5,10 @@
  */
 
 
-// todo: change logo on thankyou page
-// todo: properly collecting survey data
-// todo: seems to be recording a button down and a time out now...
-// todo: some indication that recall will continue for x sec
-// todo: consider doing psiturk.saveData() after each list
+
+
+// todo: consider doing psiturk.saveData() after each list---with no arguments it hangs
+// todo: no radio buttons checked by default
 
 // Initalize psiturk object
 var psiTurk = new PsiTurk(uniqueId, adServerLoc, mode);
@@ -22,12 +21,12 @@ var psiTurk = new PsiTurk(uniqueId, adServerLoc, mode);
  ********************/
 
 // user determined task params
-var num_of_lists = 1;
-var list_length = 1;
-var pres_rate = 150; // number of mileseconds each word presented for
+var num_of_lists = 4;
+var list_length = 4;
+var pres_rate = 1500; // number of mileseconds each word presented for
 var isi = 1000; // number of ms of blank screen between word presentations
-var recall_time = 1500; // number of milleseconds given to recall
-var delay_between_lists = 5000; // number of mileseconds to pause between lists
+var recall_time = 10000; // number of milleseconds given to recall
+var delay_between_lists = 500; // number of mileseconds to pause between lists
 var word_pool = make_pool(); // function in utils.js
 
 
@@ -96,7 +95,6 @@ var RunFR = function() {
                 cur_phase = "RECALL"
                 start_time = new Date().getTime();
             }
-            listening = true;
             recall_period()
         }
         else { // otherwise we still have items to present
@@ -150,7 +148,7 @@ var RunFR = function() {
             response;
 
         // handler for the study phase
-        if (cur_phase=="STUDY") {
+        if (cur_phase === "STUDY") {
 
             switch (keyCode) {
                 case 89:
@@ -246,8 +244,10 @@ var RunFR = function() {
             .style("font-weight","400")
             .style("margin","20px")
             .text(text);
-        wordon = new Date().getTime();
+
+        // start listening and record start time
         listening = true;
+        wordon = new Date().getTime();
 
         setTimeout(function(){wrapup_word(); }, pres_rate);
 
@@ -260,12 +260,18 @@ var RunFR = function() {
     var recall_period = function() {
         //remove text from encoding task
         d3.select("#query").remove();
-        d3.select("#task").remove();
+//        d3.select("#task").remove();
 
         // display input box
+        disp_this = '<p>You now have ' + recall_time/1000 +
+            ' seconds to recall as many words as you can, in any order. If you cannot remember any more words, that is okay; the task will automatically advance when the time is up.</p>'
+        d3.select("#task").html(disp_this);
         d3.select("#recall_input").html('<span>Type a word and press ENTER to submit:</span> ' +
             '<input type="text" id="recall_field" name="recall_field"/>');
         d3.select("#recall_field").node().focus()
+
+        // start listening
+        listening = true;
 
         if (first_recall) {
             setTimeout(function(){wrapup_recall(); }, recall_time);
@@ -296,7 +302,9 @@ var RunFR = function() {
         }
 
         // show a fixation for isi ms
-        //remove text from encoding task
+        // remove text from encoding task
+        // stop listening
+        listening = false;
         d3.select("#word").remove();
         d3.select("#task").html('<p> </p>');
         d3.select("#query").html('<p id="prompt"> </p>');
@@ -320,12 +328,15 @@ var RunFR = function() {
      ****/
      var wrapup_recall = function() {
 
+        listening = false;
         var last_list = cur_list_num+1==num_of_lists; // check if we already have presented all the lists
         if (last_list) {
             finish()
         }
         else {
-            cur_list_num++
+           cur_list_num++
+           cur_phase = "STUDY"
+//           psiturk.saveData()
             RunFR()
         }
      }
