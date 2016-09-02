@@ -6,8 +6,9 @@
 
 
 
-
+// todo: for implicit task an extra question saying before you started the first list, did you suspect your memory would be tested.
 // todo: consider doing psiturk.saveData() after each list---with no arguments it hangs
+// todo: review ad---do we really want them to see a full version of the consent in the ad?
 
 
 // Initalize psiturk object
@@ -22,18 +23,19 @@ var psiTurk = new PsiTurk(uniqueId, adServerLoc, mode);
 
 // user determined task params
 var num_of_lists = 2;
-var list_length = 2;
-var pres_rate = 150; // number of mileseconds each word presented for
+var list_length = 15;
+var pres_rate = 1500; // number of mileseconds each word presented for
 var isi = 100; // number of ms of blank screen between word presentations
 var recall_time = 10000; // number of milleseconds given to recall
-var delay_between_lists = 500; // number of mileseconds to pause between lists (display get ready message)
-var end_distractor_delay = 16000; // number of mileseconds of distraction task before recall
+var delay_between_lists = 5000; // number of mileseconds to pause between lists (display get ready message)
+var end_distractor_delay = 15000; // number of mileseconds of distraction task before recall
 var word_pool = make_pool(); // function in utils.js
 
 
 // fixed task params
 var mycondition = condition;  // these two variables are passed by the psiturk server process
 var mycounterbalance = counterbalance;  // they tell you which condition you have been assigned to
+var one_to_nine = [1, 2, 3, 4, 5, 6, 7, 8, 9]; // digits to use in constructing math distractor problems
 
 
 // preallocate and initialize variables
@@ -91,13 +93,19 @@ var RunFR = function() {
      ****/
     var next = function() {
 
+        //figure out which phase of the task we are in
+
+        // what to do if end of list distractor phase
         if (stims.length===0 && !end_distractor_done) { // if there are no stims left, we have entered the recall phase
             if (cur_phase != "DISTRACTOR"){
+                remove_word()
                 cur_phase = "DISTRACTOR";
                 setTimeout(function(){wrapup_end_distractor(); }, end_distractor_delay); // start a timer that will end the distraction period
             }
             end_distractor_task()
         }
+
+        // what to do if recall phase
         else if (stims.length===0 && end_distractor_done) { // if there are no stims left, we have entered the recall phase
             if (first_recall) {
                 remove_word()
@@ -106,6 +114,8 @@ var RunFR = function() {
             }
             recall_period()
         }
+
+        // what to do if study phase
         else { // otherwise we still have items to present
             cur_phase = "STUDY"
             stim = stims.shift();
@@ -133,6 +143,7 @@ var RunFR = function() {
                 }
 
         }
+
     };
 
 
@@ -155,41 +166,10 @@ var RunFR = function() {
 
 
         var keyCode = e.keyCode,
+            subjects_answer,
             recalled_item,
-            correct_answer,
             response;
 
-
-                // handler for the distractor task
-        if (cur_phase === "DISTRACTOR") {
-
-d3.select("#query").html('<p id="prompt"> <span style="color: red; ">' + cur_phase + '</span></p>');
-
-ONE CHANGE AT A TIME TO GET IT TO LOG RESPONSES!!
-            switch (keyCode) {
-                case 13:
-                    recalled_item = document.getElementById("recall_field").value
-                    break;
-                // default:
-                //     recalled_iem = "9999";
-                //     break;
-            }
-            if (recalled_item.length > 0) {
-                listening = false;
-
-                var elapsed = new Date().getTime() - end_distractor_start_time;
-                psiTurk.recordTrialData({
-                        'list': cur_list_num,
-                        'phase': "end_distractor",
-                        'response': recalled_item,
-                        'rt': elapsed
-                    }
-                );
-                next()
-
-            }
-
-        }
 
         // handler for the study phase
         if (cur_phase === "STUDY") {
@@ -226,6 +206,7 @@ ONE CHANGE AT A TIME TO GET IT TO LOG RESPONSES!!
 
         }
 
+
         // handler for the recall phase
         if (cur_phase === "RECALL") {
 
@@ -254,6 +235,34 @@ ONE CHANGE AT A TIME TO GET IT TO LOG RESPONSES!!
 
         }
 
+
+        // handler for the distractor task
+        if (cur_phase === "DISTRACTOR") {
+            switch (keyCode) {
+                case 13:
+                    subjects_answer = document.getElementById("recall_field").value
+                    break;
+                // default:
+                //     recalled_iem = "9999";
+                //     break;
+            }
+            if (subjects_answer.length > 0) {
+                listening = false;
+
+                var elapsed = new Date().getTime() - end_distractor_start_time;
+                psiTurk.recordTrialData({
+                        'list': cur_list_num,
+                        'phase': "end_distractor",
+                        'correct_answer': correct_answer,
+                        'subjects_answer': subjects_answer,
+                        'rt': elapsed
+                    }
+                );
+                next()
+
+            }
+
+        }
 
 
 
@@ -334,20 +343,28 @@ ONE CHANGE AT A TIME TO GET IT TO LOG RESPONSES!!
 //        d3.select("#task").remove();
 
         // setup math problem
-        A = 1;
-        B = 2;
-        C = 3;
+        shuffled_digits = _.shuffle(one_to_nine);
+        A = shuffled_digits[0];
+        B = shuffled_digits[1];
+        C = shuffled_digits[2];
         correct_answer = A + B + C;
+        subjects_answer = [];
 
-        // display input box
-        end_distractor_start_time = new Date().getTime();
-        listening = true;
-        disp_this = '<p>' + cur_phase + '+' + B + '+' + C + '=?</p>'
+        // display task text
+        disp_this = '<p>You will now solve math problems for ' + end_distractor_delay/1000 +
+            ' seconds. Try to solve as many problems as you can without sacrificing accuracy. The task will automatically advance when the time is up.</p>'
         d3.select("#task").html(disp_this);
+        disp_this = '<p><span style="color: black; font-size: 50px">' + A + '+' + B + '+' + C + '=?</span></p>'
+        d3.select("#query").html(disp_this);
         d3.select("#recall_input").html('<span>Add the three numbers, type your answer, and press ENTER to submit:</span> ' +
             '<input type="text" id="recall_field" name="recall_field"/>');
+
+        // display input box
         d3.select("#recall_field").node().focus()
         cur_phase = "DISTRACTOR";
+        listening = true;
+        end_distractor_start_time = new Date().getTime();
+
     }
 
     var wrapup_end_distractor = function() {
