@@ -9,7 +9,6 @@
 // todo: for implicit task an extra question saying before you started the first list, did you suspect your memory would be tested.
 // todo: consider doing psiturk.saveData() after each list---with no arguments it hangs
 // todo: review ad---do we really want them to see a full version of the consent in the ad?
-// todo: drop instructions once response made
 // clear text after distraction
 
 
