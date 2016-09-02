@@ -13,7 +13,7 @@ browser_exclude_rule = MSIE, mobile, tablet, bot
 
 [Database Parameters]
 database_url = mysql://khealey:Bib96?reply@127.0.0.1:3306/for_debuging
-table_name = finalrunthrough
+table_name = finalrunthrough6
 
 [Server Parameters]
 host = 0.0.0.0

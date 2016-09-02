@@ -7,9 +7,11 @@
 
 
 // todo: for implicit task an extra question saying before you started the first list, did you suspect your memory would be tested.
-// todo: it is easy to accidently type a number in the first recall box. Make it ignore responses unless box is focus?
 // todo: consider doing psiturk.saveData() after each list---with no arguments it hangs
 // todo: review ad---do we really want them to see a full version of the consent in the ad?
+// todo: drop instructions once response made
+// clear text after distraction
+
 
 
 // Initalize psiturk object
@@ -24,12 +26,13 @@ var psiTurk = new PsiTurk(uniqueId, adServerLoc, mode);
 
 // user determined task params
 var num_of_lists = 2;
-var list_length = 5;
-var pres_rate = 1500; // number of mileseconds each word presented for
-var isi = 100; // number of ms of blank screen between word presentations
-var recall_time = 10000; // number of milleseconds given to recall
+var list_length = 3;
+var pres_rate = 3000; // number of mileseconds each word presented for
+var isi = 1000; // number of ms of blank screen between word presentations
+var recall_time = 5000; // number of milleseconds given to recall
 var delay_between_lists = 5000; // number of mileseconds to pause between lists (display get ready message)
-var end_distractor_delay = 15000; // number of mileseconds of distraction task before recall
+var end_distractor_delay = 5000; // number of mileseconds of distraction task before recall
+var recall_box_lag = 1000; // number of ms to ignore input into the text box after recall period starts --- so people don't accidently enter responses to the math task here
 var word_pool = make_pool(); // function in utils.js
 
 
@@ -122,17 +125,17 @@ var RunFR = function() {
             stim = stims.shift();
             if (stims.length===list_length-1) {
                 if (cur_list_num==0) {
-                    ready_message = "Get ready! The list will begin shortly. Position your fingers over the 'y' and 'n' keys so you are ready to respond!"
+                    ready_message = "The list will begin shortly. Position your fingers over the 'y' and 'n' keys so you are ready to respond!"
                 }
                 else {
-                    ready_message = "Get ready! A new list will begin shortly. Position your fingers over the 'y' and 'n' keys so you are ready to respond!"
+                    ready_message = "A new list will begin shortly. Position your fingers over the 'y' and 'n' keys so you are ready to respond!"
                 }
                 d3.select("#stim")
                     .append("div")
                     .attr("id","word")
                     .style("color","black")
                     .style("text-align","center")
-                    .style("font-size","50px")
+                    .style("font-size","40px")
                     .style("font-weight","400")
                     .style("margin","20px")
                     .text(ready_message);
@@ -164,7 +167,7 @@ var RunFR = function() {
     var response_handler = function(e) {
 
         if (!listening) return;
-
+//        finish() // useful for debugging --- will automatically end the experiment unpon button press if the handler is listening
 
         var keyCode = e.keyCode,
             subjects_answer,
@@ -194,6 +197,9 @@ var RunFR = function() {
             if (response.length > 0) {
                 listening = false;
                 var rt = new Date().getTime() - wordon;
+                // remove the task prompts (turn them white) to give participant a subtle cue that the response was detected
+                d3.select("#query").html('<p id="prompt"> <span style="color: white; ">Thanks for responding!</span></p>');
+                d3.select("#task").html('<p id="prompt"> <span style="color: white; ">Thanks for responding!</span></p>');
 
                 psiTurk.recordTrialData({
                         'list': cur_list_num,
@@ -208,8 +214,18 @@ var RunFR = function() {
         }
 
 
+
+
         // handler for the recall phase
         if (cur_phase === "RECALL") {
+
+            // only accept input if the recall text box is in focus
+            box_in_focus = document.activeElement.name == "recall_field";
+            if (!box_in_focus)  {
+                d3.select("#recall_input").html('<span  style="color: red;">Click inside textbox to activate it before typing!:</span> ' +
+                    '<input type="text" id="recall_field" name="recall_field"/>');
+                    return
+            }
 
             switch (keyCode) {
                 case 13:
@@ -239,6 +255,15 @@ var RunFR = function() {
 
         // handler for the distractor task
         if (cur_phase === "DISTRACTOR") {
+
+            // only accept input if the input text box is in focus
+            box_in_focus = document.activeElement.name == "recall_field";
+            if (!box_in_focus)  {
+                d3.select("#recall_input").html('<span  style="color: red;">Click inside textbox to activate it before typing!:</span> ' +
+                    '<input type="text" id="recall_field" name="recall_field"/>');
+                    return
+            }
+
             switch (keyCode) {
                 case 13:
                     subjects_answer = document.getElementById("recall_field").value
@@ -326,16 +351,20 @@ var RunFR = function() {
         d3.select("#recall_input").html('<span>Type a word and press ENTER to submit:</span> ' +
             '<input type="text" id="recall_field" name="recall_field"/>');
 
+        // want to ensure people don't accidently try to enter their last response from the math distractor here
+        // so defocus the textbox if this is the first recall to avoid too rapid a response
         if (!first_recall) {
             d3.select("#recall_field").node().focus()
         }
+
 
         // start listening
         listening = true;
 
         if (first_recall) {
-
+            document.body.style.backgroundColor = "white";
             setTimeout(function(){wrapup_recall(); }, recall_time);
+            setTimeout(function(){d3.select("#recall_field").node().focus(); }, recall_box_lag/2);
             first_recall = false
         }
 
@@ -373,7 +402,12 @@ var RunFR = function() {
 
     var wrapup_end_distractor = function() {
         end_distractor_done = true;
-        next()
+        document.body.style.backgroundColor = "red";
+        d3.select("#recall_input").html('');
+        d3.select("#query").html('');
+        d3.select("#task").html('');
+        setTimeout(function(){next(); }, recall_box_lag/2);
+
     }
 
 
@@ -402,8 +436,9 @@ var RunFR = function() {
         // stop listening
         listening = false;
         d3.select("#word").remove();
-        d3.select("#task").html('<p> </p>');
-        d3.select("#query").html('<p id="prompt"> </p>');
+d3.select("#query").html('<p id="prompt"> <span style="color: white; ">Thanks for responding!</span></p>');
+                d3.select("#task").html('<p id="prompt"> <span style="color: white; ">Thanks for responding!</span></p>');
+
         d3.select("#stim")
             .append("div")
             .attr("id","word")
