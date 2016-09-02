@@ -7,6 +7,7 @@
 
 
 // todo: for implicit task an extra question saying before you started the first list, did you suspect your memory would be tested.
+// todo: it is easy to accidently type a number in the first recall box. Make it ignore responses unless box is focus?
 // todo: consider doing psiturk.saveData() after each list---with no arguments it hangs
 // todo: review ad---do we really want them to see a full version of the consent in the ad?
 
@@ -23,7 +24,7 @@ var psiTurk = new PsiTurk(uniqueId, adServerLoc, mode);
 
 // user determined task params
 var num_of_lists = 2;
-var list_length = 15;
+var list_length = 5;
 var pres_rate = 1500; // number of mileseconds each word presented for
 var isi = 100; // number of ms of blank screen between word presentations
 var recall_time = 10000; // number of milleseconds given to recall
@@ -121,10 +122,10 @@ var RunFR = function() {
             stim = stims.shift();
             if (stims.length===list_length-1) {
                 if (cur_list_num==0) {
-                    ready_message = "Get ready! The list will begin shortly."
+                    ready_message = "Get ready! The list will begin shortly. Position your fingers over the 'y' and 'n' keys so you are ready to respond!"
                 }
                 else {
-                    ready_message = "Get ready! A new list will begin shortly."
+                    ready_message = "Get ready! A new list will begin shortly. Position your fingers over the 'y' and 'n' keys so you are ready to respond!"
                 }
                 d3.select("#stim")
                     .append("div")
@@ -324,7 +325,10 @@ var RunFR = function() {
         d3.select("#task").html(disp_this);
         d3.select("#recall_input").html('<span>Type a word and press ENTER to submit:</span> ' +
             '<input type="text" id="recall_field" name="recall_field"/>');
-        d3.select("#recall_field").node().focus()
+
+        if (!first_recall) {
+            d3.select("#recall_field").node().focus()
+        }
 
         // start listening
         listening = true;
