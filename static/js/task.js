@@ -36,8 +36,8 @@ var word_pool = make_pool(); // function in utils.js
 
 
 // fixed task params
-var mycondition = condition;  // these two variables are passed by the psiturk server process
-var mycounterbalance = counterbalance;  // they tell you which condition you have been assigned to
+var instruction_condition = condition;  // passed by psiturk based on num_conds variable in config.txt runs from 0 to num_conds-1. for this experiment, 0 = explicit, 1 = implicit
+var task_condition = counterbalance;  // passed by psiturk based on num_counters variable in config.txt runs from 0 to num_counters-1. for this experiment, 0 = size, 1 = deep item, 2 = deep relational
 var one_to_nine = [1, 2, 3, 4, 5, 6, 7, 8, 9]; // digits to use in constructing math distractor problems
 
 
@@ -55,12 +55,37 @@ var cur_list_num = 0; //counter to keep track of current list --- uses zero inde
 *
 ********************/
 
-// List Instruction html pages
-var instructionPages = [
-    "instructions/instructions-FR-greeting.html",
-    "instructions/instructions-judgment.html",
-    "instructions/instructions-FR-final.html",
-];
+// pick greeting page (first instruction page) based on instruction_condition
+if (instruction_condition==0) {
+    greeting = ["instructions/instructions-explicit-greeting.html"]
+}
+else if (instruction_condition==1) {
+    greeting = ["instructions/instructions-incidental-greeting.html"]
+}
+
+// pick task page (second instruction page) based on task_condition
+if (task_condition==0) {
+    task = "instructions/instructions-size-task.html"
+}
+else if (task_condition==1) {
+    task = "instructions/instructions-deepitem-task.html"
+}
+else if (task_condition==2) {
+    task = "instructions/instructions-deeprelational-task.html"
+}
+
+
+// pick emphasis page (third/last instruction page) based on instruction_condition
+if (instruction_condition==0) {
+    emph = "instructions/instructions-explicit-emphasis.html"
+}
+else if (instruction_condition==1) {
+   emph = "instructions/instructions-incidental-emphasis.html"
+}
+var instructionPages = [greeting, task, emph];
+
+// todo: make sure is logging condition and counterblanace in results!!
+// todo: write the instruction pages!
 
 // List of Task html pages
 var pages = [
