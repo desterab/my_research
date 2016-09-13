@@ -1,17 +1,22 @@
 /*
  * Requires:
- *     psiturk.js
+ incorporateurk.js
  *     utils.js
  */
 
-
-
-// todo: for implicit task an extra question saying before you started the first list, did you suspect your memory would be tested.
+// for later:
 // todo: consider doing psiturk.saveData() after each list---with no arguments it hangs
-// todo: review ad---do we really want them to see a full version of the consent in the ad?
+// todo: program task manipulation - siply define a string at begining with if statment
+// todo: ensure any words used as examples are not  in the pool
+
+
+
+// debug:
+//todo: logging both strategy and awarness question properly
+// todo: Ensure debreif screen is showing on cbcc
 // todo: make sure is logging condition and counterblanace in results!!
-// todo: write the instruction pages!
-// todo: program task manipulation
+
+
 // clear text after distraction
 
 
@@ -69,12 +74,15 @@ else if (instruction_condition==1) {
 // pick task page (second instruction page) based on task_condition
 if (task_condition==0) {
     task = "instructions/instructions-size-task.html"
+    task_string = '<p>Is it easy to judge if it would it fit in a shoebox?</p>'
 }
 else if (task_condition==1) {
     task = "instructions/instructions-deepitem-task.html"
+    task_string = '<p>Is it easy to generate a mental movie about this word?</p>'
 }
 else if (task_condition==2) {
     task = "instructions/instructions-deeprelational-task.html"
+    task_string = '<p>Is it easy to incorporate this word in to your mental movie?</p>'
 }
 
 
@@ -228,6 +236,8 @@ var RunFR = function() {
                 d3.select("#task").html('<p id="prompt"> <span style="color: white; ">Thanks for responding!</span></p>');
 
                 psiTurk.recordTrialData({
+                        'instruction_condition': instruction_condition,
+                        'task_condition': task_condition,
                         'list': cur_list_num,
                         'phase': "study",
                         'word': stim[0],
@@ -266,6 +276,8 @@ var RunFR = function() {
 
                 var elapsed = new Date().getTime() - start_time;
                 psiTurk.recordTrialData({
+                        'instruction_condition': instruction_condition,
+                        'task_condition': task_condition,
                         'list': cur_list_num,
                         'phase': "recall",
                         'response': recalled_item,
@@ -303,6 +315,8 @@ var RunFR = function() {
 
                 var elapsed = new Date().getTime() - end_distractor_start_time;
                 psiTurk.recordTrialData({
+                        'instruction_condition': instruction_condition,
+                        'task_condition': task_condition,
                         'list': cur_list_num,
                         'phase': "end_distractor",
                         'correct_answer': correct_answer,
@@ -341,7 +355,7 @@ var RunFR = function() {
         remove_word()
 
         // show the word for pres_rate ms
-        d3.select("#task").html('<p>Would it fit in a shoebox?</p>');
+        d3.select("#task").html(task_string);
         d3.select("#query").html('<p id="prompt">press "Y" for yes, "N" for no.</p>');
         d3.select("#stim")
             .append("div")
@@ -372,7 +386,8 @@ var RunFR = function() {
 
         // display input box
         disp_this = '<p>You now have ' + recall_time/1000 +
-            ' seconds to recall as many words as you can, in any order. If you cannot remember any more words, that is okay; the task will automatically advance when the time is up.</p>'
+            ' seconds to to try and recall the words from the list you just saw. ' +
+            'You can recall the words in any order. Try to recall as many words as you can. If you cannot remember any more words, that is okay; the task will automatically advance when the time is up.</p>'
         d3.select("#task").html(disp_this);
         d3.select("#recall_input").html('<span>Type a word and press ENTER to submit:</span> ' +
             '<input type="text" id="recall_field" name="recall_field"/>');
@@ -448,6 +463,8 @@ var RunFR = function() {
         if (listening) {
             var rt = new Date().getTime() - wordon;
             psiTurk.recordTrialData({
+                    'instruction_condition': instruction_condition,
+                    'task_condition': task_condition,
                     'list': cur_list_num,
                     'phase': "study",
                     'word': stim[0],
@@ -563,9 +580,11 @@ var Questionnaire = function() {
 
 	record_responses = function() {
 
-        // I think someting like this:
+        // record strategy questions:
 		$('input').each( function(i, val) {
 		    psiTurk.recordTrialData({
+                        'instruction_condition': instruction_condition,
+                        'task_condition': task_condition,
                         'phase': "postquestionnaire",
                         'strategy': this.name,
                         'strategy_description': this.value,
@@ -573,6 +592,19 @@ var Questionnaire = function() {
                         });
 
 		});
+
+        // record awarness question
+        $('select').each( function(i, val) {
+		    psiTurk.recordTrialData({
+                        'instruction_condition': instruction_condition,
+                        'task_condition': task_condition,
+                        'phase': "postquestionnaire",
+                        'aware': this.value,
+                        });
+
+		});
+
+
 
 	};
 
@@ -609,7 +641,7 @@ var Questionnaire = function() {
             error: prompt_resubmit});
 	});
 
-
+    psiTurk.showPage('debriefing.html');
 };
 
 
