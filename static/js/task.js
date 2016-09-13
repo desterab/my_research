@@ -9,6 +9,9 @@
 // todo: for implicit task an extra question saying before you started the first list, did you suspect your memory would be tested.
 // todo: consider doing psiturk.saveData() after each list---with no arguments it hangs
 // todo: review ad---do we really want them to see a full version of the consent in the ad?
+// todo: make sure is logging condition and counterblanace in results!!
+// todo: write the instruction pages!
+// todo: program task manipulation
 // clear text after distraction
 
 
@@ -84,8 +87,7 @@ else if (instruction_condition==1) {
 }
 var instructionPages = [greeting, task, emph];
 
-// todo: make sure is logging condition and counterblanace in results!!
-// todo: write the instruction pages!
+
 
 // List of Task html pages
 var pages = [
