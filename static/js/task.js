@@ -13,7 +13,6 @@
 
 // debug:
 //todo: logging both strategy and awarness question properly
-// todo: Ensure debreif screen is showing on cbcc
 // todo: make sure is logging condition and counterblanace in results!!
 
 // before going live:
@@ -38,12 +37,12 @@ var psiTurk = new PsiTurk(uniqueId, adServerLoc, mode);
 
 // user determined task params
 var num_of_lists = 2;
-var list_length = 3;
-var pres_rate = 3000; // number of mileseconds each word presented for
+var list_length = 16;
+var pres_rate = 4000; // number of mileseconds each word presented for
 var isi = 1000; // number of ms of blank screen between word presentations
-var recall_time = 5000; // number of milleseconds given to recall
+var recall_time = 75000; // number of milleseconds given to recall
 var delay_between_lists = 5000; // number of mileseconds to pause between lists (display get ready message)
-var end_distractor_delay = 5000; // number of mileseconds of distraction task before recall
+var end_distractor_delay = 16000; // number of mileseconds of distraction task before recall
 var recall_box_lag = 1000; // number of ms to ignore input into the text box after recall period starts --- so people don't accidently enter responses to the math task here
 var word_pool = make_pool(); // function in utils.js
 
@@ -604,7 +603,8 @@ var Questionnaire = function() {
                         'instruction_condition': instruction_condition,
                         'task_condition': task_condition,
                         'phase': "postquestionnaire",
-                        'aware': this.value,
+                        'aware_question': this.name,
+                        'aware_ans': this.value,
                         });
 
 		});
