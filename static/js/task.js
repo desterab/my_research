@@ -16,6 +16,11 @@
 // todo: Ensure debreif screen is showing on cbcc
 // todo: make sure is logging condition and counterblanace in results!!
 
+// before going live:
+// todo: change to production database
+// todo: change version number in config.txt
+// todo: review config.txt
+
 
 // clear text after distraction
 
