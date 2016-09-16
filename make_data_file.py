@@ -12,8 +12,8 @@ import os
 db_url = "mysql://khealey:Bib96?reply@127.0.0.1/Heal16implicit"  # url for the database in which raw psiturk ouput is stored
 table_name = 'E1_item_relational'  # table of the database
 dict_path = "/home/khealey/code/experiments/Heal16implicit/static/js/word_pool/websters_dict.txt"  # dictionary to use when looking for ELIs and correcting spelling
-save_file = 'turkFR_template.data'
-exp_data_dir = "/fmri2/PI/healey/data/turkFR_template"  # path to data dir on circ2
+save_file = 'HealEtal16implicit.data'
+exp_data_dir = "/fmri2/PI/healey/data/HealEtal16implicit"  # path to data dir on circ2
 
 # load the data from the psiturk experiment database and make it into a free recall object
 data = psiturk_tools.load_psiturk_data(db_url, table_name)
