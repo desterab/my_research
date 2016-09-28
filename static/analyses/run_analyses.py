@@ -5,8 +5,6 @@ from beh_tools import recall_dynamics as rdf
 import os
 import pickle
 import pandas as pd
-import matplotlib as mpl
-import matplotlib.pyplot as plt
 import seaborn as sns
 import numpy as np
 
@@ -75,22 +73,44 @@ print pd.crosstab(all_crps.lag, [all_crps.instruction_condition, all_crps.task_c
 
 
 
+
+
+########figures###########
+import matplotlib.pyplot as plt
+from matplotlib import gridspec
+
+
+# overall figure style
+# sns.set_style("white")
+sns.set_style("whitegrid")
+# sns.set_style("ticks")
+sns.set_context("talk")
+colors = ["#000000", "#808080", "#D3D3D3"]  # black and white
+sns.set_palette(colors)
+# sns.set_palette(sns.dark_palette("grey", n_colors=3))
+
+
 ######### Figure 1
 
 #
 # # setup the grid
-# import matplotlib.gridspec as gridspec
-# import matplotlib.pyplot as pl
-# pl.figure(figsize=(6, 4))
-# G = gridspec.GridSpec(3, 7)
-#
-# prec_axis = pl.subplot(G[0, 0])
-# spc_axis = pl.subplot(G[0, 1])
-#
-#
-# data_filter = np.logical_and(all_crps.instruction_condition == 1, np.logical_and(all_crps.lag.abs() == 5, all_crps.list == 0))
-#
-# # bar plot of prec by task
-# sns.barplot(x="task_condition", y="prec", data=all_crps.loc[data_filter, :])
+fig1 = plt.figure()
+gs = gridspec.GridSpec(7, 3)
 
+prec_axis = fig1.add_subplot(gs[0, 0])
+spc_axis = fig1.add_subplot(gs[0, 1])
+pfr_axis = fig1.add_subplot(gs[0, 2])
+crp_axis = fig1.add_subplot(gs[1:4, :])
+tempf_axis = fig1.add_subplot(gs[4:, :])
+
+
+# bar plot of prec by task
+data_filter = np.logical_and(all_crps.instruction_condition == 1, np.logical_and(all_crps.lag.abs() == 5, all_crps.list == 0))
+sns.barplot(x="task_condition", y="prec", data=all_crps.loc[data_filter, :], ax=prec_axis)
+sns.despine()
+
+# plot crps
+data_filter = np.logical_and(all_crps.instruction_condition == 1, np.logical_and(all_crps.lag.abs() <= 5, all_crps.list == 0))
+sns.factorplot(x="lag", y="crp", hue="task_condition", data=all_crps.loc[data_filter, :], ax=crp_axis)
+sns.despine()
 
