@@ -6,6 +6,13 @@ import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib import gridspec
 from scipy import stats as stats
+import timeit
+import shelve
+from joblib import Parallel, delayed
+import multiprocessing
+
+
+
 
 
 
@@ -15,7 +22,7 @@ params = {"n_lists": 100,
           "p_rec": 0.5,
           'spc': [.8, .75, .7, .65, .6, .55, .55, .55, .55, .55, .6, .65, .7, .75, .85, .9],
           "model_contiguity": True,
-          "a_pos": 0.9,
+          "a_pos": 0,
           "a_neg": 0.5,
           "asym": 1.2}
 
@@ -25,13 +32,13 @@ params = {"n_lists": 100,
 # [1, .95, .9, .85, .8, .003, .003, .003, .003, .003, .003, .003, .85, .9, .95, 1]
 
 #  run a bunch of subjects
-n_ss = 10
-n_perms = 100
+n_ss = 50
+n_perms = 1
 
 # at a bunch of levels of prec
 these_precs = np.array([.75, .5, .25])
 
-conditions = [("lo_p", "hi_c"), ("med_p", "med_c"), ("hi_p", "lo_c")]
+conditions = [("lo_p", "med_c"), ("hi_p", "med_c")]
 
 cond_params = {"lo_p": .25,
                "med_p": .5,
@@ -83,7 +90,7 @@ for cond_i in conditions:
 
         # compute random ctrl crp
         crp_z = rdf.relative_to_random(listlen=16, recalls=recalls, filter_ind=None, statistic_func=rdf.crp,
-                                       data_col="crp", n_perms=n_perms)
+                                       data_col="numer", n_perms=n_perms)
         crp_z = pd.DataFrame.from_records(crp_z)
         crp_z['subject'] = pd.Series([s_i for x in range(len(crp.index))], index=crp_z.index)
         crp_z['param_prec'] = pd.Series([params['p_rec'] for x in range(len(crp_z.index))], index=crp_z.index)
@@ -95,13 +102,13 @@ for cond_i in conditions:
         tempf = pd.DataFrame([[s_i, params['p_rec'], tempf]], columns=['subject', 'param_prec', 'observed_tempf'])
         tempf_results = pd.concat([tempf_results, tempf])
 
-        # compute random temporal factor
-        tempf_z = rdf.relative_to_random(listlen=16, recalls=recalls, filter_ind=None, statistic_func=rdf.tem_fact,
-                                         data_col="tf", n_perms=n_perms)
-        tempf_z = pd.DataFrame.from_records(tempf_z)
-        tempf_z = tempf_z.tf.mean()
-        tempf_z = pd.DataFrame([[s_i, params['p_rec'], tempf_z]], columns=['subject', 'param_prec', 'observed_tempf_z'])
-        tempf_z_results  = pd.concat([tempf_z_results, tempf_z])
+        # # compute random temporal factor
+        # tempf_z = rdf.relative_to_random(listlen=16, recalls=recalls, filter_ind=None, statistic_func=rdf.tem_fact,
+        #                                  data_col="tf", n_perms=n_perms)
+        # tempf_z = pd.DataFrame.from_records(tempf_z)
+        # tempf_z = tempf_z.tf.mean()
+        # tempf_z = pd.DataFrame([[s_i, params['p_rec'], tempf_z]], columns=['subject', 'param_prec', 'observed_tempf_z'])
+        # tempf_z_results  = pd.concat([tempf_z_results, tempf_z])
 
         # true contiguity implied by model param
         pos_lag_probs = params["asym"] * (np.arange(params["n_items"] - 1) + 1) ** -params["a_pos"]
@@ -114,8 +121,34 @@ for cond_i in conditions:
         true_results = pd.concat([true_results, pd.DataFrame([[np.nan, 0, params['p_rec']]], columns=['b', 'lag', 'param_prec']),
                                   lag_probs])
 
-sns.factorplot(x='param_prec', y='observed_tempf', data=tempf_results)
-# plt.savefig('tempf' + '.pdf')
+
+
+
+# save everything
+
+# my_shelf = shelve.open(filename,'n') # 'n' for new
+# for key in dir():
+#     try:
+#         my_shelf[key] = globals()[key]
+#     except TypeError:
+#         #
+#         # __builtins__, my_shelf, and imported modules can not be shelved.
+#         #
+#         print('ERROR shelving: {0}'.format(key))
+# my_shelf.close()
+#
+#
+#
+# filename='shelve.out'
+# my_shelf = shelve.open(filename)
+# for key in my_shelf:
+#     globals()[key]=my_shelf[key]
+# my_shelf.close()
+
+# sns.factorplot(x='param_prec', y='observed_tempf', data=tempf_results)
+#
+# sns.factorplot(x='param_prec', y='observed_tempf_z', data=tempf_z_results)
+# # plt.savefig('tempf' + '.pdf')
 
 data_fiter = true_results.lag.abs() <= 5
 sns.factorplot(x="lag", y='b', hue="param_prec", data=true_results.loc[data_fiter, :])
@@ -136,9 +169,25 @@ sns.factorplot(x="serial_pos", y='prec', hue="param_prec", data=spc_results)
 x=1
 
 
+lo = crp_results.loc[crp_results.param_prec == .25].groupby('lag', as_index=False).mean()
+hi = crp_results.loc[crp_results.param_prec == .75].groupby('lag', as_index=False).mean()
+
+plt.plot(hi.crp.values[16:16+6] / hi.crp.values[17:17+6])
+plt.plot(lo.crp.values[16:16 + 6] / lo.crp.values[17:17 + 6])
 
 
 
+
+
+
+## sractch
+
+def plag(lag):
+
+    a = .8
+    b = -1.2
+
+    return a * lag**b
 
 
 
