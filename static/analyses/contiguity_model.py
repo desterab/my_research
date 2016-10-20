@@ -1,7 +1,93 @@
 import numpy as np
 
 
-def random_transition(params):
+
+
+
+
+def random_recalls(params):
+
+
+    # task parameters
+    n_lists = params['n_lists']
+    n_items = params['n_items']
+    p_rec = params['p_rec']
+    a_pos = params['a_pos']
+    a_neg = params['a_neg']
+
+
+    # preallocate some variables
+    items = np.array(range(n_items))
+    lists = range(n_lists)
+    recalls = np.empty([n_lists, n_items]) * np.nan
+
+
+
+    # prob by serial pos (a)
+    item_probs = (np.array(params['spc']))
+
+
+    # prob by lag (l^-b)
+    pos_lag_probs = params["b_pos"] * ((np.arange(n_items-1)+1) ** -a_pos)
+    neg_lag_probs = params["b_neg"] * ((np.arange(n_items-1)+1) ** -a_neg)
+    lag_probs = np.concatenate((neg_lag_probs[::-1], pos_lag_probs))
+    lags = np.concatenate((np.arange(-n_items+1, 0), np.arange(1, n_items)))
+
+    for list_i in lists:
+        # number of recalls - mean prec with some sd
+        outputs = np.arange(1, np.random.normal(n_items*p_rec, 2, 1)+1)
+        if outputs.shape[0] <= 0:
+            outputs = np.arange(1, 1+1)
+        if outputs.shape[0] > n_items:
+            outputs = np.arange(1, n_items + 1)
+
+        these_items = items
+        for output, item in enumerate(outputs):
+
+            # if this is the first output, grab a random item, otherwise grab based on prob dist across lags
+            if output == 0:
+                recalled_index = np.random.randint(0, these_items.shape[0])
+                recalled_item = these_items[recalled_index]
+            else:
+                pos_lags = these_items - recalled_item
+                pos_items = recalled_item + pos_lags
+                # indicies_to_pos_lags = np.array([np.any([lag_i == pos_i for pos_i in pos_lags]) for lag_i in lags])
+                # cur_probs = np.array([lag_probs[lags == lag_i] * item_probs[recalled_item + lag_i] for lag_i in pos_lags])
+                # cur_probs = lag_probs[indicies_to_pos_lags] * item_probs[pos_items]
+
+
+                cur_probs = np.empty(pos_lags.shape[0])
+                for lag_i, lag in enumerate(pos_lags):
+
+                    # find the probability of this lag
+                    l_p = lag_probs[lags == lag]
+
+                    # find the probability of the corresponding item
+                    i_p = item_probs[recalled_item + lag]
+
+                    cur_probs[lag_i] = l_p + i_p
+
+                cur_probs = cur_probs / cur_probs.sum()
+
+                actual_lag = np.random.choice(a=pos_lags, p=cur_probs)
+                recalled_item = recalled_item + actual_lag
+
+
+            # put the recalled item in the recalls matrix and then remove it from these_items
+
+            recalls[list_i, output] = recalled_item
+            these_items = these_items[these_items != recalled_item]
+
+    # convert from zero indexing so recalls gives serial positions starting at one
+    return recalls + 1
+
+
+
+
+
+
+
+
 
     # normalized, mean centered spc weights
     spc_weights = np.array(params['spc'])
@@ -14,7 +100,6 @@ def random_transition(params):
     p_rec = params['p_rec']
     a_pos = params['a_pos']
     a_neg = params['a_neg']
-    asym = params['asym']
     model_contiguity = params['model_contiguity']
 
     # preallocate some variables
@@ -31,8 +116,80 @@ def random_transition(params):
     these_positions = np.random.binomial(1, p=np.tile(recall_probs, (n_lists, 1)))
 
     # transition probabilities as a function of lag
-    pos_lag_probs = asym * (np.arange(n_items-1)+1) ** -a_pos
-    neg_lag_probs = (np.arange(n_items-1)+1) ** -a_neg
+    pos_lag_probs = params["b_pos"] * ((np.arange(n_items-1)+1) ** -a_pos)
+    neg_lag_probs = params["b_neg"] * ((np.arange(n_items-1)+1) ** -a_neg)
+    lag_probs = np.concatenate((neg_lag_probs[::-1], pos_lag_probs))
+    lags = np.concatenate((np.arange(-n_items+1, 0), np.arange(1, n_items)))
+
+    # loop over lists and order the recalls
+    if not model_contiguity:
+        for list_i in lists:
+            these_items = np.random.permutation(items[these_positions[list_i, :] == 1])
+            recalls[list_i, 0:these_items.shape[0]] = these_items
+    else:
+        for list_i in lists:
+            these_items = items[these_positions[list_i, :] == 1]
+            for output, item in enumerate(these_items):
+
+                # if this is the first output, grab a random item, otherwise grab based on prob dist across lags
+                if output == 0:
+                    recalled_index = np.random.randint(0, these_items.shape[0])
+                else:
+                    pos_lags = these_items - recalled_item
+                    indicies_to_pos_lags = np.array([np.any([lag_i == pos_i for pos_i in pos_lags]) for lag_i in lags])
+                    cur_probs = lag_probs[indicies_to_pos_lags]
+                    cur_probs = cur_probs / cur_probs.sum()
+                    actual_lag = np.random.choice(a=pos_lags, p=cur_probs)
+                    recalled_index = np.where(pos_lags == actual_lag)[0]
+
+                # put the recalled item in the recalls matrix and then remove it from these_items
+                recalled_item = these_items[recalled_index]
+                recalls[list_i, output] = recalled_item
+                these_items = np.delete(these_items, recalled_index)
+
+    # convert from zero indexing so recalls gives serial positions starting at one
+    return recalls + 1
+
+
+
+
+
+
+
+
+
+
+def random_transition(params):
+
+    # normalized, mean centered spc weights
+    spc_weights = np.array(params['spc'])
+    # spc_weights = spc_weights / spc_weights.sum()
+    spc_weights = spc_weights - spc_weights.mean()
+
+    # task parameters
+    n_lists = params['n_lists']
+    n_items = params['n_items']
+    p_rec = params['p_rec']
+    a_pos = params['a_pos']
+    a_neg = params['a_neg']
+    model_contiguity = params['model_contiguity']
+
+    # preallocate some variables
+    items = np.array(range(n_items))
+    lists = range(n_lists)
+    recalls = np.empty([n_lists, n_items]) * np.nan
+
+    # recall prob for each serial position, making sure between 1 and 0
+    recall_probs = p_rec + spc_weights
+    recall_probs[recall_probs > 1.] = 1.
+    recall_probs[recall_probs < 0.] = 0.
+
+    # for each item on each list, see if it is recalled by drawing for a binomial
+    these_positions = np.random.binomial(1, p=np.tile(recall_probs, (n_lists, 1)))
+
+    # transition probabilities as a function of lag
+    pos_lag_probs = params["b_pos"] * ((np.arange(n_items-1)+1) ** -a_pos)
+    neg_lag_probs = params["b_neg"] * ((np.arange(n_items-1)+1) ** -a_neg)
     lag_probs = np.concatenate((neg_lag_probs[::-1], pos_lag_probs))
     lags = np.concatenate((np.arange(-n_items+1, 0), np.arange(1, n_items)))
 
