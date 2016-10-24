@@ -9,7 +9,7 @@ from scipy import stats as stats
 
 
 
-def load_the_data():
+def load_the_data(n_perms):
 
     # scp cbcc.psy.msu.edu:/home/khealey/code/experiments/Heal16implicit/HealEtal16implicit.data.pkl /Users/khealey/code/experiments/Heal16implicit/
     recalls = pickle.load(open("/Users/khealey/code/experiments/Heal16implicit/HealEtal16implicit.data.pkl", "rb"))
@@ -49,7 +49,7 @@ def load_the_data():
 
             # compute spc
             spc = rdf.spc(listlen=16, recalls=rec_mat, filter_ind=None)
-            spc = pd.DataFrame.from_records(spc) # make all but first col 0, then spc as pfr and add as col to all_spcs
+            spc = pd.DataFrame.from_records(spc)
 
             # compute pfr
             pfr_copy = np.copy(rec_mat)
@@ -68,7 +68,7 @@ def load_the_data():
 
             # compute random temporal factor
             tempf_z = rdf.relative_to_random(listlen=16, recalls=rec_mat, filter_ind=None, statistic_func=rdf.tem_fact,
-                                       data_col="tf", n_perms=1000)
+                                       data_col="tf", n_perms=n_perms)
             tempf_z = pd.DataFrame.from_records(tempf_z)
             all_tf_z = tempf_z.tf.mean()
 
@@ -78,7 +78,7 @@ def load_the_data():
 
             # compute random ctrl crp
             crp_z = rdf.relative_to_random(listlen=16, recalls=rec_mat, filter_ind=None, statistic_func=rdf.crp,
-                                       data_col="crp", n_perms=1000)
+                                       data_col="crp", n_perms=n_perms)
             crp_z = pd.DataFrame.from_records(crp_z)
 
             # fanilize crp data: add list number, and condition ids
@@ -118,7 +118,15 @@ def load_the_data():
 
 ########figures###########
 
-def fig_compare_tasks(all_crps, all_spcs, which_cond=0, which_list=0, print_to=None):
+def fig_compare_tasks(all_crps, all_spcs, which_cond=0, which_list=0, apply_perm_correction=False, print_to=None):
+
+    if apply_perm_correction:
+        which_tf_data = "all_tf_z"
+        which_crp_data = "crp_z"
+    else:
+
+        which_tf_data = "all_tf"
+        which_crp_data = "crp"
 
     # overall figure style
     # sns.set_style("white")
@@ -166,17 +174,32 @@ def fig_compare_tasks(all_crps, all_spcs, which_cond=0, which_list=0, print_to=N
     # plot crps
     data_filter = np.logical_and(all_crps.instruction_condition == which_cond,
                                  np.logical_and(all_crps.lag.abs() <= 5, all_crps.list == which_list))
-    sns.factorplot(x="lag", y="crp_z", hue="task_condition", data=all_crps.loc[data_filter, :], ax=crp_axis)
+    sns.factorplot(x="lag", y=which_crp_data, hue="task_condition", data=all_crps.loc[data_filter, :], ax=crp_axis)
     crp_axis.set(xlabel="Lag", ylabel="Cond. Resp. Prob.")
     sns.despine()
+
+
+    # examine distributions - temporal factor scores
+    fig2 = plt.figure()#(figsize=(30, 10))
+    gs2 = gridspec.GridSpec(2, 1)
+    box_axis = fig2.add_subplot(gs[0, :])
+    hist_axis = fig2.add_subplot(gs[1, :])
+    data_filter = np.logical_and(all_crps.instruction_condition == which_cond,
+                                 np.logical_and(all_crps.lag.abs() == 5, all_crps.list == which_list))
+    sns.boxplot(x="task_condition", y=which_tf_data,  data=all_crps.loc[data_filter, :], ax=box_axis)
+    sns.FacetGrid(all_crps.loc[data_filter, :], hue="task_condition").map(sns.distplot, which_tf_data, rug=True, ax=hist_axis)
+    plt.figure(fig2.number)
+    if print_to is not None:
+        plt.savefig(print_to + "TFDIST" + '.pdf')
+
 
 
 
     # plot temp factors
     data_filter = np.logical_and(all_crps.instruction_condition == which_cond,
                                  np.logical_and(all_crps.lag.abs() == 5, all_crps.list == which_list))
-    sns.barplot(x="task_condition", y="all_tf", data=all_crps.loc[data_filter, :], ax=tempf_axis)
-    tempf_axis.set(xlabel="Processing Task", ylabel="Temporal Factor", ylim=[.4, .7])
+    sns.barplot(x="task_condition", y=which_tf_data, data=all_crps.loc[data_filter, :], ax=tempf_axis)
+    tempf_axis.set(xlabel="Processing Task", ylabel="Temporal Factor")#, ylim=[.4, .7])
     sns.despine()
 
     t01 = stats.ttest_ind(a=all_crps.loc[np.logical_and(data_filter, all_crps.task_condition == 0), :].all_tf,
