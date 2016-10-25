@@ -11,8 +11,10 @@ from scipy import stats as stats
 
 def load_the_data(n_perms):
 
-    # scp cbcc.psy.msu.edu:/home/khealey/code/experiments/Heal16implicit/HealEtal16implicit.data.pkl /Users/khealey/code/experiments/Heal16implicit/
-    recalls = pickle.load(open("~/code/experiments/Heal16implicit/HealEtal16implicit.data.pkl", "rb"))
+    #
+    recalls = pickle.load(open(
+        "/Users/khealey/Library/Mobile Documents/com~apple~CloudDocs/lab/code/experiments/Heal16implicit/HealEtal16implicit.data.pkl",
+        "rb"))
 
     # loop over subjects and lists, for each isolate their data
     subjects = recalls.subject.unique()
@@ -66,20 +68,20 @@ def load_the_data(n_perms):
             neg_tf = tempf.tf[tempf.lag < 0].mean()
             all_tf = tempf.tf.mean()
 
-            # compute random temporal factor
-            tempf_z = rdf.relative_to_random(listlen=16, recalls=rec_mat, filter_ind=None, statistic_func=rdf.tem_fact,
-                                       data_col="tf", n_perms=n_perms)
-            tempf_z = pd.DataFrame.from_records(tempf_z)
-            all_tf_z = tempf_z.tf.mean()
-
+            # # compute random temporal factor
+            # tempf_z = rdf.relative_to_random(listlen=16, recalls=rec_mat, filter_ind=None, statistic_func=rdf.tem_fact,
+            #                            data_col="tf", n_perms=n_perms)
+            # tempf_z = pd.DataFrame.from_records(tempf_z)
+            # all_tf_z = tempf_z.tf.mean()
+            #
             # compute crp
             crp = rdf.crp(listlen=16, recalls=rec_mat, filter_ind=None, allow_repeats=False, exclude_op=0)
             crp = pd.DataFrame.from_records(crp)
-
-            # compute random ctrl crp
-            crp_z = rdf.relative_to_random(listlen=16, recalls=rec_mat, filter_ind=None, statistic_func=rdf.crp,
-                                       data_col="crp", n_perms=n_perms)
-            crp_z = pd.DataFrame.from_records(crp_z)
+            #
+            # # compute random ctrl crp
+            # crp_z = rdf.relative_to_random(listlen=16, recalls=rec_mat, filter_ind=None, statistic_func=rdf.crp,
+            #                            data_col="crp", n_perms=n_perms)
+            # crp_z = pd.DataFrame.from_records(crp_z)
 
             # fanilize crp data: add list number, and condition ids
             crp['subject'] = pd.Series([s for x in range(len(crp.index))], index=crp.index)
@@ -96,9 +98,9 @@ def load_the_data(n_perms):
                                     index=crp.index)
             crp['all_tf'] = pd.Series([all_tf for x in range(len(crp.index))],
                                     index=crp.index)
-            crp['all_tf_z'] = pd.Series([all_tf_z for x in range(len(crp.index))],
-                                      index=crp.index)
-            crp['crp_z'] = crp_z.crp
+            # crp['all_tf_z'] = pd.Series([all_tf_z for x in range(len(crp.index))],
+            #                           index=crp.index)
+            # crp['crp_z'] = crp_z.crp
             all_crps = pd.concat([all_crps, crp])
 
             # fanilize spc data: add list number, and condition ids
@@ -117,6 +119,130 @@ def load_the_data(n_perms):
 
 
 ########figures###########
+
+def prec_fig(data_to_use, which_list, save_name):
+    colors = ["#000000", "#000000", "#D3D3D3"]  # black and white
+    sns.set_palette(colors)
+
+    # setup the grid
+    fig2 = plt.figure(figsize=(30, 10))
+    gs = gridspec.GridSpec(1, 3)
+    e1_axis = fig2.add_subplot(gs[0, 0])
+    e2_axis = fig2.add_subplot(gs[0, 1:3])
+
+    # plot prec for E1
+    colors = ["#000000", "w", "#D3D3D3"]  # black and white
+    sns.set_palette(colors)
+    data_filter = np.logical_and(data_to_use.list == which_list, data_to_use.task_condition == 'Scenario')
+    g = sns.barplot(x="instruction_condition", y='prec', data=data_to_use.loc[data_filter, :], order=["Explicit", "Implicit"], ax=e1_axis)
+    g.patches[1].set_hatch('/')
+    e1_axis.set(xlabel="Encoding Instructions", ylabel="Recall Prob.", ylim=[0., .5])
+
+    #
+    # g.patches[0].set_color("#000000")
+    # g.patches[1].set_color("#808080")
+    # g.patches[2].set_color("#D3D3D3")
+    #
+    # g.patches[3].set_edgecolor("#000000")
+    # g.patches[4].set_edgecolor("#808080")
+    # g.patches[5].set_edgecolor("#D3D3D3")
+    #
+    #
+    # g.patches[3].set_hatch('/')
+    # g.patches[4].set_hatch('/')
+    # g.patches[5].set_hatch('/')
+
+
+
+    # plot prec for E2
+    colors = ["#000000", "#808080", "#D3D3D3"]  # black and white
+    sns.set_palette(colors)
+    data_filter = np.logical_and(data_to_use.list == which_list, data_to_use.instruction_condition == 'Implicit')
+    g = sns.barplot(x='task_condition', y='prec', data=data_to_use.loc[data_filter, :], x_order=["Scenario", "Size", "Deep"], ax=e2_axis)
+    ax = plt.gca()
+    ax.set(xlabel="Processing Task", ylabel="Recall Prob.", ylim=[0., .5])
+    ax.legend(title='Encoding Instructions')
+
+    plt.figure(fig2.number)
+    sns.despine()
+
+
+
+    fig2.savefig(save_name + '.pdf', bbox_inches='tight')
+    plt.close(fig2)
+
+
+def encoding_instruct_fig(data_to_use, which_list, save_name):
+    colors = ["#000000", "#000000", "#D3D3D3"]  # black and white
+    sns.set_palette(colors)
+
+    # setup the grid
+    fig2 = plt.figure(figsize=(30, 10))
+    gs = gridspec.GridSpec(1, 2)
+    crp_axis = fig2.add_subplot(gs[0, 0])
+    tf_axis = fig2.add_subplot(gs[0, 1])
+
+    # plot crps
+    data_filter = data_to_use.list == which_list
+    g = sns.factorplot(x="lag", y="crp", hue="instruction_condition", data=data_to_use.loc[data_filter, :], ax=crp_axis,
+                   hue_order=["Explicit", "Implicit"])
+    crp_axis.set(xlabel="Lag", ylabel="Cond. Resp. Prob.", ylim=[0., .2])
+    crp_axis.legend().parent.get_lines()[12].set_linestyle('--')
+    # crp_axis.legend().parent.get_lines()[12].set_color("#000000")
+    crp_axis.legend(title='Processing Task')
+    plt.figure(fig2.number)
+    sns.despine()
+
+    # plot temp factors
+    colors = ["#000000", "w", "#D3D3D3"]  # black and white
+    sns.set_palette(colors)
+    data_filter = np.logical_and(data_to_use.list == which_list, data_to_use.lag == 0)
+    g = sns.barplot(x="instruction_condition", y='all_tf', data=data_to_use.loc[data_filter, :], ax=tf_axis,
+                order=["Explicit", "Implicit"])
+    tf_axis.set(xlabel="Encoding Instructions", ylabel="Temporal Factor", ylim=[.5, .6])
+    g.patches[1].set_hatch('/')
+    plt.figure(fig2.number)
+    sns.despine()
+
+    plt.suptitle("Scenario Processing Task")
+
+    fig2.savefig(save_name + '.pdf', bbox_inches='tight')
+    plt.close(fig2)
+
+
+
+def processing_task_fig(data_to_use, which_instruction_cond, which_list, save_name):
+    colors = ["#000000", "#808080", "#D3D3D3"]  # black and white
+    sns.set_palette(colors)
+
+    # setup the grid
+    fig2 = plt.figure(figsize=(30, 10))
+    gs = gridspec.GridSpec(1, 2)
+    crp_axis = fig2.add_subplot(gs[0, 0])
+    tf_axis = fig2.add_subplot(gs[0, 1])
+
+    # plot crps
+    data_filter = np.logical_and(data_to_use.instruction_condition == which_instruction_cond, data_to_use.list == which_list)
+    sns.factorplot(x="lag", y="crp", hue="task_condition", data=data_to_use.loc[data_filter, :], ax=crp_axis,
+                   hue_order=["Scenario", "Size", "Deep"])
+    crp_axis.set(xlabel="Lag", ylabel="Cond. Resp. Prob.", ylim=[0., .2])
+    crp_axis.legend(title='Processing Task')
+    plt.figure(fig2.number)
+    sns.despine()
+
+    # plot temp factors
+    data_filter = np.logical_and(np.logical_and(data_to_use.instruction_condition == which_instruction_cond, data_to_use.list == which_list), data_to_use.lag == 0)
+    sns.barplot(x="task_condition", y='all_tf', data=data_to_use.loc[data_filter, :], ax=tf_axis,
+                order=["Scenario", "Size", "Deep"])
+    tf_axis.set(xlabel="Processing Task", ylabel="Temporal Factor", ylim=[.5, .6])
+    plt.figure(fig2.number)
+    sns.despine()
+
+    plt.suptitle(which_instruction_cond + " Encoding Instructions")
+
+    fig2.savefig(save_name + '.pdf', bbox_inches='tight')
+    plt.close(fig2)
+
 
 def fig_compare_tasks(all_crps, all_spcs, which_cond=0, which_list=0, apply_perm_correction=False, print_to=None):
 
