@@ -12,7 +12,7 @@ from scipy import stats as stats
 def load_the_data(n_perms):
 
     # scp cbcc.psy.msu.edu:/home/khealey/code/experiments/Heal16implicit/HealEtal16implicit.data.pkl /Users/khealey/code/experiments/Heal16implicit/
-    recalls = pickle.load(open("/Users/khealey/code/experiments/Heal16implicit/HealEtal16implicit.data.pkl", "rb"))
+    recalls = pickle.load(open("~/code/experiments/Heal16implicit/HealEtal16implicit.data.pkl", "rb"))
 
     # loop over subjects and lists, for each isolate their data
     subjects = recalls.subject.unique()

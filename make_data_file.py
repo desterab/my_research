@@ -17,7 +17,7 @@ exp_data_dir = "/fmri2/PI/healey/data/HealEtal16implicit"  # path to data dir on
 
 # load the data from the psiturk experiment database and make it into a free recall object
 data = psiturk_tools.load_psiturk_data(db_url, table_name)
-trecalls = psiturk_tools.make_psiturk_recall_matrix(data, dict_path)
+recalls = psiturk_tools.make_psiturk_recall_matrix(data, dict_path)
 
 # save the data to a pickle file (once to a file that will become the current working data, and once to a dated
 # file that will be a backup
