@@ -48,8 +48,17 @@ var word_pool = make_pool(); // function in utils.js
 
 
 // fixed task params
-var instruction_condition = condition;  // passed by psiturk based on num_conds variable in config.txt runs from 0 to num_conds-1. for this experiment, 0 = explicit, 1 = implicit
+
+
+// temp divert everyone into implicit cond
+//var instruction_condition = condition;  // passed by psiturk based on num_conds variable in config.txt runs from 0 to num_conds-1. for this experiment, 0 = explicit, 1 = implicit
+var instruction_condition = 1
+
+// temp divert everyone into relational cond
 var task_condition = counterbalance;  // passed by psiturk based on num_counters variable in config.txt runs from 0 to num_counters-1. for this experiment, 0 = size, 1 = deep item, 2 = deep relational
+var task_condition = 3
+
+
 var one_to_nine = [1, 2, 3, 4, 5, 6, 7, 8, 9]; // digits to use in constructing math distractor problems
 
 
@@ -87,6 +96,10 @@ else if (task_condition==1) {
 else if (task_condition==2) {
     task = "instructions/instructions-deeprelational-task.html"
     task_string = '<p>Is it easy to incorporate this word in to your mental movie?</p>'
+}
+else if (task_condition==3) {
+    task = "instructions/instructions-scenario-task.html"
+    task_string = '<p>Is it easy to judge the relevance of this word to moving to a foreign land?</p>'
 }
 
 
