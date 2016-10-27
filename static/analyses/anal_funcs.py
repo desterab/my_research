@@ -41,12 +41,13 @@ def load_the_data(n_perms):
             aware = cur_recalls.aware[0].values == 'yes'
             implicit = cur_recalls.instruction_condition[0] == 1
             if aware.any() and implicit:
+                # pass
                 continue
 
             # skip lists with zero recall accuracy
             rec_mat = cur_recalls.as_matrix(range(recalls.shape[1] - 2))  # format recalls matrix for use with rdf functions
             prec = rdf.prec(listlen=16, recalls=rec_mat)
-            if prec <= 0:
+            if prec <= 0.:
                 continue
 
             # compute spc
@@ -69,11 +70,11 @@ def load_the_data(n_perms):
             all_tf = tempf.tf.mean()
 
             # # compute random temporal factor
-            # tempf_z = rdf.relative_to_random(listlen=16, recalls=rec_mat, filter_ind=None, statistic_func=rdf.tem_fact,
-            #                            data_col="tf", n_perms=n_perms)
-            # tempf_z = pd.DataFrame.from_records(tempf_z)
-            # all_tf_z = tempf_z.tf.mean()
-            #
+            tempf_z = rdf.relative_to_random(listlen=16, recalls=rec_mat, filter_ind=None, statistic_func=rdf.tem_fact,
+                                       data_col="tf", n_perms=n_perms)
+            tempf_z = pd.DataFrame.from_records(tempf_z)
+            all_tf_z = tempf_z.tf.mean()
+
             # compute crp
             crp = rdf.crp(listlen=16, recalls=rec_mat, filter_ind=None, allow_repeats=False, exclude_op=0)
             crp = pd.DataFrame.from_records(crp)
@@ -98,8 +99,8 @@ def load_the_data(n_perms):
                                     index=crp.index)
             crp['all_tf'] = pd.Series([all_tf for x in range(len(crp.index))],
                                     index=crp.index)
-            # crp['all_tf_z'] = pd.Series([all_tf_z for x in range(len(crp.index))],
-            #                           index=crp.index)
+            crp['all_tf_z'] = pd.Series([all_tf_z for x in range(len(crp.index))],
+                                      index=crp.index)
             # crp['crp_z'] = crp_z.crp
             all_crps = pd.concat([all_crps, crp])
 
@@ -133,7 +134,7 @@ def prec_fig(data_to_use, which_list, save_name):
     # plot prec for E1
     colors = ["#000000", "w", "#D3D3D3"]  # black and white
     sns.set_palette(colors)
-    data_filter = np.logical_and(data_to_use.list == which_list, data_to_use.task_condition == 'Scenario')
+    data_filter = np.logical_and(data_to_use.list == which_list, data_to_use.task_condition == 'Size')
     g = sns.barplot(x="instruction_condition", y='prec', data=data_to_use.loc[data_filter, :], order=["Explicit", "Implicit"], ax=e1_axis)
     g.patches[1].set_hatch('/')
     e1_axis.set(xlabel="Encoding Instructions", ylabel="Recall Prob.", ylim=[0., .5])
@@ -158,9 +159,9 @@ def prec_fig(data_to_use, which_list, save_name):
     colors = ["#000000", "#808080", "#D3D3D3"]  # black and white
     sns.set_palette(colors)
     data_filter = np.logical_and(data_to_use.list == which_list, data_to_use.instruction_condition == 'Implicit')
-    g = sns.barplot(x='task_condition', y='prec', data=data_to_use.loc[data_filter, :], x_order=["Scenario", "Size", "Deep"], ax=e2_axis)
+    g = sns.barplot(x='task_condition', y='prec', data=data_to_use.loc[data_filter, :], x_order=["Scenario", "Deep", "Relational"], ax=e2_axis)
     ax = plt.gca()
-    ax.set(xlabel="Processing Task", ylabel="Recall Prob.", ylim=[0., .5])
+    ax.set(xlabel="Processing Task", ylabel="Recall Prob.")#, ylim=[0., .5])
     ax.legend(title='Encoding Instructions')
 
     plt.figure(fig2.number)
@@ -197,9 +198,9 @@ def encoding_instruct_fig(data_to_use, which_list, save_name):
     colors = ["#000000", "w", "#D3D3D3"]  # black and white
     sns.set_palette(colors)
     data_filter = np.logical_and(data_to_use.list == which_list, data_to_use.lag == 0)
-    g = sns.barplot(x="instruction_condition", y='all_tf', data=data_to_use.loc[data_filter, :], ax=tf_axis,
+    g = sns.barplot(x="instruction_condition", y='all_tf_z', data=data_to_use.loc[data_filter, :], ax=tf_axis,
                 order=["Explicit", "Implicit"])
-    tf_axis.set(xlabel="Encoding Instructions", ylabel="Temporal Factor", ylim=[.5, .6])
+    tf_axis.set(xlabel="Encoding Instructions", ylabel="Temporal Factor", ylim=[-.1, .2])
     g.patches[1].set_hatch('/')
     plt.figure(fig2.number)
     sns.despine()
@@ -224,7 +225,7 @@ def processing_task_fig(data_to_use, which_instruction_cond, which_list, save_na
     # plot crps
     data_filter = np.logical_and(data_to_use.instruction_condition == which_instruction_cond, data_to_use.list == which_list)
     sns.factorplot(x="lag", y="crp", hue="task_condition", data=data_to_use.loc[data_filter, :], ax=crp_axis,
-                   hue_order=["Scenario", "Size", "Deep"])
+                   hue_order=["Scenario", "Deep", "Relational"])
     crp_axis.set(xlabel="Lag", ylabel="Cond. Resp. Prob.", ylim=[0., .2])
     crp_axis.legend(title='Processing Task')
     plt.figure(fig2.number)
@@ -232,9 +233,9 @@ def processing_task_fig(data_to_use, which_instruction_cond, which_list, save_na
 
     # plot temp factors
     data_filter = np.logical_and(np.logical_and(data_to_use.instruction_condition == which_instruction_cond, data_to_use.list == which_list), data_to_use.lag == 0)
-    sns.barplot(x="task_condition", y='all_tf', data=data_to_use.loc[data_filter, :], ax=tf_axis,
-                order=["Scenario", "Size", "Deep"])
-    tf_axis.set(xlabel="Processing Task", ylabel="Temporal Factor", ylim=[.5, .6])
+    sns.barplot(x="task_condition", y='all_tf_z', data=data_to_use.loc[data_filter, :], ax=tf_axis,
+                order=["Scenario", "Deep", "Relational"])
+    tf_axis.set(xlabel="Processing Task", ylabel="Temporal Factor", ylim=[-.1, .2])
     plt.figure(fig2.number)
     sns.despine()
 
@@ -290,12 +291,19 @@ def fig_compare_tasks(all_crps, all_spcs, which_cond=0, which_list=0, apply_perm
     pfr_axis.set(xlabel="Serial Position", ylabel="Prob. First Recall")
     sns.despine()
 
+    if which_cond == 0:
+        which_cond = "Explicit"
+    else:
+        which_cond = "Implicit"
+
+
     # bar plot of prec by task
     data_filter = np.logical_and(all_crps.instruction_condition == which_cond,
                                  np.logical_and(all_crps.lag.abs() == 5, all_crps.list == which_list))
     sns.barplot(x="task_condition", y="prec", data=all_crps.loc[data_filter, :], ax=prec_axis)
     prec_axis.set(xlabel="Processing Task", ylabel="Recall Prob.")
     sns.despine()
+
 
     # plot crps
     data_filter = np.logical_and(all_crps.instruction_condition == which_cond,
@@ -357,15 +365,15 @@ def fig_compare_tasks(all_crps, all_spcs, which_cond=0, which_list=0, apply_perm
              all_crps.loc[np.logical_and(data_filter, all_crps.task_condition == 1), :].all_tf.mean(),
              all_crps.loc[np.logical_and(data_filter, all_crps.task_condition == 2), :].all_tf.mean()]
     offset = [.025, .05, .025]
-    for i, p in enumerate(pvals):
-        if p >= 0.05:
-            displaystring = r'n.s.'
-        else:
-            displaystring = r'*'
-
-        height = offset[i] + max(means)
-        bar_centers = index[i] + np.array([0, length[i]])
-        significance_bar(bar_centers[0], bar_centers[1], height, displaystring)
+    # for i, p in enumerate(pvals):
+    #     if p >= 0.05:
+    #         displaystring = r'n.s.'
+    #     else:
+    #         displaystring = r'*'
+    #
+    #     height = offset[i] + max(means)
+    #     bar_centers = index[i] + np.array([0, length[i]])
+    #     significance_bar(bar_centers[0], bar_centers[1], height, displaystring)
 
 
     plt.tight_layout()
