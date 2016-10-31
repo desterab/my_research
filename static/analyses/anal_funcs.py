@@ -7,6 +7,21 @@ import matplotlib.pyplot as plt
 from matplotlib import gridspec
 from scipy import stats as stats
 
+palette =["#be5104",
+"#0163c2",
+"#ccdd73",
+"#b15fd3",
+"#b3003c"]
+
+
+perm = True
+if perm:
+    tf_lims = [-.025, .2]
+    tf_col ='all_tf_z'
+else:
+    tf_lims = [.5, .6]
+    tf_col ='all_tf'
+
 
 
 def load_the_data(n_perms):
@@ -69,7 +84,7 @@ def load_the_data(n_perms):
             neg_tf = tempf.tf[tempf.lag < 0].mean()
             all_tf = tempf.tf.mean()
 
-            # # compute random temporal factor
+            # compute random temporal factor
             tempf_z = rdf.relative_to_random(listlen=16, recalls=rec_mat, filter_ind=None, statistic_func=rdf.tem_fact,
                                        data_col="tf", n_perms=n_perms)
             tempf_z = pd.DataFrame.from_records(tempf_z)
@@ -122,8 +137,7 @@ def load_the_data(n_perms):
 ########figures###########
 
 def prec_fig(data_to_use, which_list, save_name):
-    colors = ["#000000", "#000000", "#D3D3D3"]  # black and white
-    sns.set_palette(colors)
+
 
     # setup the grid
     fig2 = plt.figure(figsize=(30, 10))
@@ -132,12 +146,12 @@ def prec_fig(data_to_use, which_list, save_name):
     e2_axis = fig2.add_subplot(gs[0, 1:3])
 
     # plot prec for E1
-    colors = ["#000000", "w", "#D3D3D3"]  # black and white
+    colors = ["#000000", "w"]  # black and white
     sns.set_palette(colors)
     data_filter = np.logical_and(data_to_use.list == which_list, data_to_use.task_condition == 'Size')
     g = sns.barplot(x="instruction_condition", y='prec', data=data_to_use.loc[data_filter, :], order=["Explicit", "Implicit"], ax=e1_axis)
     g.patches[1].set_hatch('/')
-    e1_axis.set(xlabel="Encoding Instructions", ylabel="Recall Prob.", ylim=[0., .5])
+    e1_axis.set(xlabel="Encoding Instructions", ylabel="Recall Prob.", ylim=[0., .5], title="Experiment 1")
 
     #
     # g.patches[0].set_color("#000000")
@@ -156,12 +170,12 @@ def prec_fig(data_to_use, which_list, save_name):
 
 
     # plot prec for E2
-    colors = ["#000000", "#808080", "#D3D3D3"]  # black and white
+    colors = palette
     sns.set_palette(colors)
     data_filter = np.logical_and(data_to_use.list == which_list, data_to_use.instruction_condition == 'Implicit')
-    g = sns.barplot(x='task_condition', y='prec', data=data_to_use.loc[data_filter, :], x_order=["Scenario", "Deep", "Relational"], ax=e2_axis)
+    g = sns.barplot(x='task_condition', y='prec', data=data_to_use.loc[data_filter, :], x_order=["Size-Door", "Animacy", "Scenario", "Deep", "Relational"], ax=e2_axis)
     ax = plt.gca()
-    ax.set(xlabel="Processing Task", ylabel="Recall Prob.")#, ylim=[0., .5])
+    ax.set(xlabel="Processing Task", ylabel="Recall Prob.", title="Experiment 2")#, ylim=[0., .5])
     ax.legend(title='Encoding Instructions')
 
     plt.figure(fig2.number)
@@ -174,8 +188,9 @@ def prec_fig(data_to_use, which_list, save_name):
 
 
 def encoding_instruct_fig(data_to_use, which_list, save_name):
-    colors = ["#000000", "#000000", "#D3D3D3"]  # black and white
+    colors = ["#000000", "#808080"]
     sns.set_palette(colors)
+
 
     # setup the grid
     fig2 = plt.figure(figsize=(30, 10))
@@ -185,27 +200,28 @@ def encoding_instruct_fig(data_to_use, which_list, save_name):
 
     # plot crps
     data_filter = data_to_use.list == which_list
-    g = sns.factorplot(x="lag", y="crp", hue="instruction_condition", data=data_to_use.loc[data_filter, :], ax=crp_axis,
-                   hue_order=["Explicit", "Implicit"])
-    crp_axis.set(xlabel="Lag", ylabel="Cond. Resp. Prob.", ylim=[0., .2])
-    crp_axis.legend().parent.get_lines()[12].set_linestyle('--')
+    g = sns.factorplot(x="lag", y="crp", hue="instruction_condition", data=data_to_use.loc[data_filter, :],
+                   hue_order=["Explicit", "Implicit"], dodge=.25, units='subject', ax=crp_axis)
+    crp_axis.set(xlabel="Lag", ylabel="Cond. Resp. Prob.", ylim=[0., .2], xticks=range(0, 11, 2),
+                 xticklabels=range(-5, 6, 2))
+    # crp_axis.legend().parent.get_lines()[12].set_linestyle('--')
     # crp_axis.legend().parent.get_lines()[12].set_color("#000000")
-    crp_axis.legend(title='Processing Task')
+    crp_axis.legend(title='Encoding Instructions', ncol=2, labelspacing=.2, handlelength=.01, loc=2)
     plt.figure(fig2.number)
     sns.despine()
 
     # plot temp factors
-    colors = ["#000000", "w", "#D3D3D3"]  # black and white
-    sns.set_palette(colors)
+    # colors = ["#000000", "w"]  # black and white
+    # sns.set_palette(colors)
     data_filter = np.logical_and(data_to_use.list == which_list, data_to_use.lag == 0)
-    g = sns.barplot(x="instruction_condition", y='all_tf_z', data=data_to_use.loc[data_filter, :], ax=tf_axis,
-                order=["Explicit", "Implicit"])
-    tf_axis.set(xlabel="Encoding Instructions", ylabel="Temporal Factor", ylim=[-.1, .2])
-    g.patches[1].set_hatch('/')
+    g = sns.barplot(x="instruction_condition", y=tf_col, data=data_to_use.loc[data_filter, :], order=["Explicit", "Implicit"], ax=tf_axis) #
+    tf_axis.set(xlabel="Encoding Instructions", ylabel="Temp. Fact. Z in Perm. Dist.", ylim=tf_lims)
+    # g.patches[1].set_hatch('/')
+    plt.axhline(linewidth=3, linestyle='--', color='k')
     plt.figure(fig2.number)
     sns.despine()
 
-    plt.suptitle("Scenario Processing Task")
+    plt.suptitle("Size Processing Task")
 
     fig2.savefig(save_name + '.pdf', bbox_inches='tight')
     plt.close(fig2)
@@ -213,7 +229,7 @@ def encoding_instruct_fig(data_to_use, which_list, save_name):
 
 
 def processing_task_fig(data_to_use, which_instruction_cond, which_list, save_name):
-    colors = ["#000000", "#808080", "#D3D3D3"]  # black and white
+    colors = palette
     sns.set_palette(colors)
 
     # setup the grid
@@ -225,17 +241,18 @@ def processing_task_fig(data_to_use, which_instruction_cond, which_list, save_na
     # plot crps
     data_filter = np.logical_and(data_to_use.instruction_condition == which_instruction_cond, data_to_use.list == which_list)
     sns.factorplot(x="lag", y="crp", hue="task_condition", data=data_to_use.loc[data_filter, :], ax=crp_axis,
-                   hue_order=["Scenario", "Deep", "Relational"])
-    crp_axis.set(xlabel="Lag", ylabel="Cond. Resp. Prob.", ylim=[0., .2])
-    crp_axis.legend(title='Processing Task')
+                   hue_order=["Weight", "Animacy", "Scenario", "Movie", "Relational"], dodge=.35, units='subject')
+    crp_axis.set(xlabel="Lag", ylabel="Cond. Resp. Prob.", ylim=[0., .2], xticks=range(0, 11, 2), xticklabels=range(-5, 6, 2))
+    crp_axis.legend(title='Processing Task', ncol=2, labelspacing=.2, handlelength=.01, loc=2)
     plt.figure(fig2.number)
     sns.despine()
 
     # plot temp factors
     data_filter = np.logical_and(np.logical_and(data_to_use.instruction_condition == which_instruction_cond, data_to_use.list == which_list), data_to_use.lag == 0)
-    sns.barplot(x="task_condition", y='all_tf_z', data=data_to_use.loc[data_filter, :], ax=tf_axis,
-                order=["Scenario", "Deep", "Relational"])
-    tf_axis.set(xlabel="Processing Task", ylabel="Temporal Factor", ylim=[-.1, .2])
+    sns.barplot(x="task_condition", y=tf_col, data=data_to_use.loc[data_filter, :], ax=tf_axis,
+                order=["Weight", "Animacy", "Scenario", "Movie", "Relational"])
+    tf_axis.set(xlabel="Processing Task", ylabel="Temporal Factor", ylim=tf_lims)
+    plt.axhline(linewidth=3, linestyle='--', color='k')
     plt.figure(fig2.number)
     sns.despine()
 
@@ -287,7 +304,7 @@ def fig_compare_tasks(all_crps, all_spcs, which_cond=0, which_list=0, apply_perm
 
     # plot spcs
     data_filter = np.logical_and(all_spcs.instruction_condition == which_cond, all_spcs.list == which_list)
-    sns.factorplot(x="serial_pos", y="pfr", hue="task_condition", data=all_spcs.loc[data_filter, :], ax=pfr_axis)
+    sns.factorplot(x="serial_pos", y="pfr", hue="task_condition", data=all_spcs.loc[data_filter, :], ax=pfr_axis, units='subject')
     pfr_axis.set(xlabel="Serial Position", ylabel="Prob. First Recall")
     sns.despine()
 
