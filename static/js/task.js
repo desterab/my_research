@@ -52,7 +52,7 @@ var word_pool = make_pool(); // function in utils.js
 
 // temp divert everyone into implicit cond
 //var instruction_condition = condition;  // passed by psiturk based on num_conds variable in config.txt runs from 0 to num_conds-1. for this experiment, 0 = explicit, 1 = implicit
-var instruction_condition = 1
+var instruction_condition = 0
 
 // temp divert everyone into relational cond
 var task_condition = counterbalance;  // passed by psiturk based on num_counters variable in config.txt runs from 0 to num_counters-1. for this experiment, 0 = size, 1 = deep item, 2 = deep relational
