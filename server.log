@@ -1,0 +1,2112 @@
+[2016-09-08 16:29:35 -0400] [871] [DEBUG] Current configuration:
+  proxy_protocol: False
+  worker_connections: 1000
+  statsd_host: None
+  max_requests_jitter: 0
+  post_fork: <function post_fork at 0x10292baa0>
+  pythonpath: None
+  enable_stdio_inheritance: False
+  worker_class: sync
+  ssl_version: 3
+  suppress_ragged_eofs: True
+  syslog: False
+  syslog_facility: user
+  when_ready: <function when_ready at 0x10292b7d0>
+  pre_fork: <function pre_fork at 0x10292b938>
+  cert_reqs: 0
+  preload_app: False
+  keepalive: 2
+  accesslog: None
+  group: 491251111
+  graceful_timeout: 30
+  do_handshake_on_connect: False
+  spew: False
+  workers: 4
+  proc_name: psiturk_experiment_server
+  sendfile: None
+  pidfile: None
+  umask: 0
+  on_reload: <function on_reload at 0x10292b668>
+  pre_exec: <function pre_exec at 0x1029330c8>
+  worker_tmp_dir: None
+  post_worker_init: <function post_worker_init at 0x10292bc08>
+  limit_request_fields: 100
+  on_exit: <function on_exit at 0x1029c5488>
+  config: None
+  secure_scheme_headers: {'X-FORWARDED-PROTOCOL': 'ssl', 'X-FORWARDED-PROTO': 'https', 'X-FORWARDED-SSL': 'on'}
+  proxy_allow_ips: ['127.0.0.1']
+  pre_request: <function pre_request at 0x102933230>
+  post_request: <function post_request at 0x102933320>
+  user: 1524888568
+  forwarded_allow_ips: ['127.0.0.1']
+  worker_int: <function worker_int at 0x10292bd70>
+  threads: 1
+  max_requests: 0
+  limit_request_line: 0
+  access_log_format: %(h)s %(l)s %(u)s %(t)s "%(r)s" %(s)s %(b)s "%(f)s" "%(a)s"
+  certfile: None
+  worker_exit: <function worker_exit at 0x102933488>
+  chdir: /Users/khealey/code/experiments/Heal16implicit
+  paste: None
+  default_proc_name: gunicorn
+  errorlog: server.log
+  loglevel: debug
+  logconfig: None
+  syslog_addr: unix:///var/run/syslog
+  syslog_prefix: None
+  daemon: False
+  ciphers: TLSv1
+  on_starting: <function on_starting at 0x10292b500>
+  worker_abort: <function worker_abort at 0x10292bed8>
+  bind: ['0.0.0.0:22362']
+  raw_env: []
+  reload: False
+  check_config: False
+  limit_request_field_size: 8190
+  nworkers_changed: <function nworkers_changed at 0x1029335f0>
+  timeout: 30
+  ca_certs: None
+  django_settings: None
+  tmp_upload_dir: None
+  keyfile: None
+  backlog: 2048
+  logger_class: gunicorn.glogging.Logger
+  statsd_prefix: 
+[2016-09-08 16:29:35 -0400] [871] [INFO] Starting gunicorn 19.4.5
+[2016-09-08 16:29:35 -0400] [871] [DEBUG] Arbiter booted
+[2016-09-08 16:29:35 -0400] [871] [INFO] Listening at: http://0.0.0.0:22362 (871)
+[2016-09-08 16:29:35 -0400] [871] [INFO] Using worker: sync
+[2016-09-08 16:29:35 -0400] [874] [INFO] Booting worker with pid: 874
+[2016-09-08 16:29:35 -0400] [875] [INFO] Booting worker with pid: 875
+[2016-09-08 16:29:35 -0400] [876] [INFO] Booting worker with pid: 876
+[2016-09-08 16:29:35 -0400] [877] [INFO] Booting worker with pid: 877
+2016-09-08 16:29:35,440 Secret key: 'this is my secret key which is hard to guess, i should change this'
+2016-09-08 16:29:35,446 /Users/khealey/anaconda/lib/python2.7/site-packages/psiturk/psiturk_js/psiturk.js
+2016-09-08 16:29:35,536 Secret key: 'this is my secret key which is hard to guess, i should change this'
+[2016-09-08 16:29:35 -0400] [871] [DEBUG] 4 workers
+2016-09-08 16:29:35,540 /Users/khealey/anaconda/lib/python2.7/site-packages/psiturk/psiturk_js/psiturk.js
+2016-09-08 16:29:35,576 Secret key: 'this is my secret key which is hard to guess, i should change this'
+2016-09-08 16:29:35,580 /Users/khealey/anaconda/lib/python2.7/site-packages/psiturk/psiturk_js/psiturk.js
+2016-09-08 16:29:35,627 Secret key: 'this is my secret key which is hard to guess, i should change this'
+2016-09-08 16:29:35,630 /Users/khealey/anaconda/lib/python2.7/site-packages/psiturk/psiturk_js/psiturk.js
+[2016-09-08 16:29:36 -0400] [874] [DEBUG] Closing connection. 
+[2016-09-08 16:29:39 -0400] [875] [DEBUG] Closing connection. 
+[2016-09-08 16:29:39 -0400] [875] [DEBUG] Closing connection. 
+[2016-09-08 16:29:39 -0400] [875] [DEBUG] Closing connection. 
+[2016-09-08 16:29:39 -0400] [874] [DEBUG] GET /ad
+[2016-09-08 16:29:39 -0400] [874] [DEBUG] GET /static/css/bootstrap.min.css
+[2016-09-08 16:29:39 -0400] [876] [DEBUG] GET /static/images/MSU-Wordmark-PMS-567.jpg
+[2016-09-08 16:29:39 -0400] [874] [DEBUG] GET /favicon.ico
+[2016-09-08 16:29:47 -0400] [874] [DEBUG] GET /consent
+[2016-09-08 16:29:47 -0400] [874] [DEBUG] GET /static/css/style.css
+[2016-09-08 16:29:47 -0400] [876] [DEBUG] GET /static/fonts/glyphicons-halflings-regular.woff
+[2016-09-08 16:29:49 -0400] [874] [DEBUG] GET /exp
+2016-09-08 16:29:49,247 Accessing /exp: debugM1FMYA debugMW61S6 debug6EUINH 
+2016-09-08 16:29:49,249 given Counter({(0, 1): 0, (1, 0): 0, (0, 0): 0, (1, 1): 0}) chose (0, 1)
+[2016-09-08 16:29:49 -0400] [874] [DEBUG] GET /static/lib/underscore-min.js
+[2016-09-08 16:29:49 -0400] [877] [DEBUG] GET /static/lib/d3.v3.min.js
+[2016-09-08 16:29:49 -0400] [876] [DEBUG] GET /static/lib/jquery-min.js
+[2016-09-08 16:29:49 -0400] [875] [DEBUG] GET /static/js/utils.js
+[2016-09-08 16:29:49 -0400] [874] [DEBUG] GET /static/lib/backbone-min.js
+[2016-09-08 16:29:49 -0400] [876] [DEBUG] GET /static/js/psiturk.js
+[2016-09-08 16:29:49 -0400] [874] [DEBUG] GET /static/js/task.js
+[2016-09-08 16:29:49 -0400] [874] [DEBUG] GET /static/css/bootstrap.min.css
+[2016-09-08 16:29:49 -0400] [877] [DEBUG] GET /sync/debug6EUINH%3AdebugMW61S6
+2016-09-08 16:29:49,300 GET /sync route with id: debug6EUINH:debugMW61S6
+[2016-09-08 16:29:49 -0400] [875] [DEBUG] GET /instructions/instructions-FR-greeting.html
+[2016-09-08 16:29:49 -0400] [875] [DEBUG] GET /instructions/instructions-judgment.html
+[2016-09-08 16:29:49 -0400] [876] [DEBUG] GET /instructions/instructions-FR-final.html
+[2016-09-08 16:29:49 -0400] [877] [DEBUG] GET /stage.html
+[2016-09-08 16:29:49 -0400] [877] [DEBUG] GET /postquestionnaire.html
+[2016-09-08 16:29:52 -0400] [874] [DEBUG] PUT /sync/debug6EUINH%3AdebugMW61S6
+[2016-09-08 16:29:52 -0400] [875] [DEBUG] POST /inexp
+2016-09-08 16:29:52,183 PUT /sync route with id: debug6EUINH:debugMW61S6
+2016-09-08 16:29:52,183 Accessing /inexp
+2016-09-08 16:29:52,190 saved data for debug6EUINH:debugMW61S6 (current trial: 4)
+[2016-09-08 16:30:18 -0400] [875] [DEBUG] Closing connection. 
+[2016-09-08 16:30:18 -0400] [875] [DEBUG] Closing connection. 
+[2016-09-08 16:30:18 -0400] [875] [DEBUG] Closing connection. 
+[2016-09-08 16:30:18 -0400] [874] [DEBUG] GET /ad
+[2016-09-08 16:30:18 -0400] [874] [DEBUG] GET /static/css/bootstrap.min.css
+[2016-09-08 16:30:18 -0400] [876] [DEBUG] GET /static/images/MSU-Wordmark-PMS-567.jpg
+[2016-09-08 16:30:19 -0400] [876] [DEBUG] GET /consent
+[2016-09-08 16:30:19 -0400] [874] [DEBUG] GET /static/css/style.css
+[2016-09-08 16:30:19 -0400] [877] [DEBUG] GET /static/css/bootstrap.min.css
+[2016-09-08 16:30:19 -0400] [874] [DEBUG] GET /static/images/MSU-Wordmark-PMS-567.jpg
+[2016-09-08 16:30:19 -0400] [875] [DEBUG] GET /static/fonts/glyphicons-halflings-regular.woff
+[2016-09-08 16:30:21 -0400] [874] [DEBUG] GET /exp
+2016-09-08 16:30:21,512 Accessing /exp: debugXSQ6LZ debugA2Y7CJ debugUGJXPR 
+2016-09-08 16:30:21,514 given Counter({(0, 1): 1, (1, 0): 0, (0, 0): 0, (1, 1): 0}) chose (1, 0)
+[2016-09-08 16:30:21 -0400] [877] [DEBUG] GET /static/css/style.css
+[2016-09-08 16:30:21 -0400] [874] [DEBUG] GET /static/js/psiturk.js
+[2016-09-08 16:30:21 -0400] [876] [DEBUG] GET /static/js/utils.js
+[2016-09-08 16:30:21 -0400] [875] [DEBUG] GET /static/lib/jquery-min.js
+[2016-09-08 16:30:21 -0400] [877] [DEBUG] GET /static/lib/backbone-min.js
+[2016-09-08 16:30:21 -0400] [876] [DEBUG] GET /static/lib/d3.v3.min.js
+[2016-09-08 16:30:21 -0400] [875] [DEBUG] GET /static/lib/underscore-min.js
+[2016-09-08 16:30:21 -0400] [877] [DEBUG] GET /static/js/task.js
+[2016-09-08 16:30:21 -0400] [876] [DEBUG] GET /sync/debugUGJXPR%3AdebugA2Y7CJ
+2016-09-08 16:30:21,559 GET /sync route with id: debugUGJXPR:debugA2Y7CJ
+[2016-09-08 16:30:21 -0400] [877] [DEBUG] GET /instructions/instructions-FR-greeting.html
+[2016-09-08 16:30:21 -0400] [874] [DEBUG] GET /instructions/instructions-judgment.html
+[2016-09-08 16:30:21 -0400] [874] [DEBUG] GET /instructions/instructions-FR-final.html
+[2016-09-08 16:30:21 -0400] [874] [DEBUG] GET /stage.html
+[2016-09-08 16:30:21 -0400] [874] [DEBUG] GET /postquestionnaire.html
+[2016-09-08 16:30:21 -0400] [877] [DEBUG] GET /static/fonts/glyphicons-halflings-regular.woff
+[2016-09-08 16:30:24 -0400] [877] [DEBUG] PUT /sync/debugUGJXPR%3AdebugA2Y7CJ
+[2016-09-08 16:30:24 -0400] [874] [DEBUG] POST /inexp
+2016-09-08 16:30:24,212 Accessing /inexp
+2016-09-08 16:30:24,212 PUT /sync route with id: debugUGJXPR:debugA2Y7CJ
+2016-09-08 16:30:24,218 saved data for debugUGJXPR:debugA2Y7CJ (current trial: 4)
+[2016-09-08 16:30:50 -0400] [874] [DEBUG] GET /exp
+2016-09-08 16:30:50,672 Accessing /exp: debugXSQ6LZ debugA2Y7CJ debugUGJXPR 
+[2016-09-08 16:30:50 -0400] [876] [DEBUG] GET /static/lib/jquery-min.js
+[2016-09-08 16:30:50 -0400] [874] [DEBUG] GET /static/lib/underscore-min.js
+[2016-09-08 16:30:50 -0400] [875] [DEBUG] GET /static/lib/backbone-min.js
+[2016-09-08 16:30:50 -0400] [877] [DEBUG] GET /static/js/psiturk.js
+[2016-09-08 16:30:50 -0400] [875] [DEBUG] GET /static/js/utils.js
+[2016-09-08 16:30:50 -0400] [876] [DEBUG] GET /static/lib/d3.v3.min.js
+[2016-09-08 16:30:50 -0400] [874] [DEBUG] GET /static/css/bootstrap.min.css
+[2016-09-08 16:30:50 -0400] [876] [DEBUG] GET /static/css/style.css
+[2016-09-08 16:30:50 -0400] [875] [DEBUG] GET /static/js/task.js
+[2016-09-08 16:30:50 -0400] [874] [DEBUG] GET /sync/debugUGJXPR%3AdebugA2Y7CJ
+2016-09-08 16:30:50,704 GET /sync route with id: debugUGJXPR:debugA2Y7CJ
+[2016-09-08 16:30:50 -0400] [875] [DEBUG] GET /instructions/instructions-FR-greeting.html
+[2016-09-08 16:30:50 -0400] [875] [DEBUG] GET /instructions/instructions-judgment.html
+[2016-09-08 16:30:50 -0400] [875] [DEBUG] GET /instructions/instructions-FR-final.html
+[2016-09-08 16:30:50 -0400] [875] [DEBUG] GET /stage.html
+[2016-09-08 16:30:50 -0400] [875] [DEBUG] GET /postquestionnaire.html
+[2016-09-08 16:30:50 -0400] [874] [DEBUG] GET /static/fonts/glyphicons-halflings-regular.woff
+[2016-09-08 16:30:54 -0400] [876] [DEBUG] POST /inexp
+[2016-09-08 16:30:54 -0400] [874] [DEBUG] PUT /sync/debugUGJXPR%3AdebugA2Y7CJ
+2016-09-08 16:30:54,407 Accessing /inexp
+2016-09-08 16:30:54,407 PUT /sync route with id: debugUGJXPR:debugA2Y7CJ
+2016-09-08 16:30:54,414 saved data for debugUGJXPR:debugA2Y7CJ (current trial: 8)
+[2016-09-08 16:38:42 -0400] [875] [DEBUG] PUT /sync/debugUGJXPR%3AdebugA2Y7CJ
+2016-09-08 16:38:42,684 PUT /sync route with id: debugUGJXPR:debugA2Y7CJ
+2016-09-08 16:38:42,689 saved data for debugUGJXPR:debugA2Y7CJ (current trial: 22)
+[2016-09-08 16:38:42 -0400] [876] [DEBUG] GET /compute_bonus
+[2016-09-08 16:38:42 -0400] [877] [DEBUG] GET /complete
+[2016-09-08 16:38:42 -0400] [877] [DEBUG] GET /static/images/MSU-Wordmark-PMS-567.jpg
+[2016-09-08 16:38:42 -0400] [875] [DEBUG] GET /static/css/style.css
+[2016-09-08 16:38:42 -0400] [876] [DEBUG] GET /static/css/bootstrap.min.css
+[2016-09-08 16:38:47 -0400] [877] [DEBUG] Closing connection. 
+[2016-09-08 16:38:47 -0400] [875] [DEBUG] Closing connection. 
+[2016-09-08 16:38:47 -0400] [876] [DEBUG] Closing connection. 
+[2016-09-08 16:38:47 -0400] [875] [DEBUG] GET /ad
+[2016-09-08 16:38:47 -0400] [876] [DEBUG] GET /static/images/MSU-Wordmark-PMS-567.jpg
+[2016-09-08 16:38:47 -0400] [877] [DEBUG] GET /static/css/bootstrap.min.css
+[2016-09-08 16:38:48 -0400] [876] [DEBUG] GET /consent
+[2016-09-08 16:38:48 -0400] [876] [DEBUG] GET /static/css/bootstrap.min.css
+[2016-09-08 16:38:48 -0400] [877] [DEBUG] GET /static/css/style.css
+[2016-09-08 16:38:48 -0400] [876] [DEBUG] GET /static/images/MSU-Wordmark-PMS-567.jpg
+[2016-09-08 16:38:48 -0400] [875] [DEBUG] GET /static/fonts/glyphicons-halflings-regular.woff
+[2016-09-08 16:38:50 -0400] [877] [DEBUG] GET /exp
+2016-09-08 16:38:50,334 Accessing /exp: debugHXMTXI debugMGDZFA debugD93Z74 
+2016-09-08 16:38:50,336 given Counter({(0, 1): 1, (1, 0): 1, (0, 0): 0, (1, 1): 0}) chose (0, 0)
+[2016-09-08 16:38:50 -0400] [875] [DEBUG] GET /static/js/psiturk.js
+[2016-09-08 16:38:50 -0400] [877] [DEBUG] GET /static/css/style.css
+[2016-09-08 16:38:50 -0400] [876] [DEBUG] GET /static/lib/backbone-min.js
+[2016-09-08 16:38:50 -0400] [874] [DEBUG] GET /static/lib/jquery-min.js
+[2016-09-08 16:38:50 -0400] [877] [DEBUG] GET /static/lib/d3.v3.min.js
+[2016-09-08 16:38:50 -0400] [874] [DEBUG] GET /static/js/utils.js
+[2016-09-08 16:38:50 -0400] [876] [DEBUG] GET /static/lib/underscore-min.js
+[2016-09-08 16:38:50 -0400] [877] [DEBUG] GET /static/js/task.js
+[2016-09-08 16:38:50 -0400] [875] [DEBUG] GET /sync/debugD93Z74%3AdebugMGDZFA
+2016-09-08 16:38:50,390 GET /sync route with id: debugD93Z74:debugMGDZFA
+[2016-09-08 16:38:50 -0400] [874] [DEBUG] GET /instructions/instructions-FR-greeting.html
+[2016-09-08 16:38:50 -0400] [874] [DEBUG] GET /instructions/instructions-judgment.html
+[2016-09-08 16:38:50 -0400] [874] [DEBUG] GET /instructions/instructions-FR-final.html
+[2016-09-08 16:38:50 -0400] [876] [DEBUG] GET /stage.html
+[2016-09-08 16:38:50 -0400] [876] [DEBUG] GET /postquestionnaire.html
+[2016-09-08 16:38:50 -0400] [874] [DEBUG] GET /static/fonts/glyphicons-halflings-regular.woff
+[2016-09-08 16:38:52 -0400] [876] [DEBUG] PUT /sync/debugD93Z74%3AdebugMGDZFA
+[2016-09-08 16:38:52 -0400] [877] [DEBUG] POST /inexp
+2016-09-08 16:38:52,742 Accessing /inexp
+2016-09-08 16:38:52,742 PUT /sync route with id: debugD93Z74:debugMGDZFA
+2016-09-08 16:38:52,750 saved data for debugD93Z74:debugMGDZFA (current trial: 4)
+[2016-09-08 16:39:08 -0400] [874] [DEBUG] Closing connection. 
+[2016-09-08 16:39:08 -0400] [876] [DEBUG] Closing connection. 
+[2016-09-08 16:39:08 -0400] [874] [DEBUG] Closing connection. 
+[2016-09-08 16:39:08 -0400] [875] [DEBUG] GET /ad
+[2016-09-08 16:39:08 -0400] [875] [DEBUG] GET /static/css/bootstrap.min.css
+[2016-09-08 16:39:08 -0400] [876] [DEBUG] GET /static/images/MSU-Wordmark-PMS-567.jpg
+[2016-09-08 16:39:11 -0400] [875] [DEBUG] GET /consent
+[2016-09-08 16:39:11 -0400] [875] [DEBUG] GET /static/css/bootstrap.min.css
+[2016-09-08 16:39:11 -0400] [876] [DEBUG] GET /static/css/style.css
+[2016-09-08 16:39:11 -0400] [876] [DEBUG] GET /static/images/MSU-Wordmark-PMS-567.jpg
+[2016-09-08 16:39:11 -0400] [875] [DEBUG] GET /static/fonts/glyphicons-halflings-regular.woff
+[2016-09-08 16:39:12 -0400] [877] [DEBUG] GET /exp
+2016-09-08 16:39:12,958 Accessing /exp: debugS0VEEA debug0XYSGF debug5DM018 
+2016-09-08 16:39:12,961 given Counter({(0, 1): 1, (1, 0): 1, (0, 0): 1, (1, 1): 0}) chose (1, 1)
+[2016-09-08 16:39:12 -0400] [877] [DEBUG] GET /static/js/psiturk.js
+[2016-09-08 16:39:12 -0400] [876] [DEBUG] GET /static/css/style.css
+[2016-09-08 16:39:12 -0400] [874] [DEBUG] GET /static/js/utils.js
+[2016-09-08 16:39:12 -0400] [875] [DEBUG] GET /static/lib/backbone-min.js
+[2016-09-08 16:39:12 -0400] [876] [DEBUG] GET /static/lib/jquery-min.js
+[2016-09-08 16:39:12 -0400] [874] [DEBUG] GET /static/lib/underscore-min.js
+[2016-09-08 16:39:12 -0400] [875] [DEBUG] GET /static/lib/d3.v3.min.js
+[2016-09-08 16:39:12 -0400] [876] [DEBUG] GET /static/js/task.js
+[2016-09-08 16:39:13 -0400] [875] [DEBUG] GET /sync/debug5DM018%3Adebug0XYSGF
+2016-09-08 16:39:13,006 GET /sync route with id: debug5DM018:debug0XYSGF
+[2016-09-08 16:39:13 -0400] [875] [DEBUG] GET /instructions/instructions-FR-greeting.html
+[2016-09-08 16:39:13 -0400] [875] [DEBUG] GET /instructions/instructions-judgment.html
+[2016-09-08 16:39:13 -0400] [875] [DEBUG] GET /instructions/instructions-FR-final.html
+[2016-09-08 16:39:13 -0400] [875] [DEBUG] GET /stage.html
+[2016-09-08 16:39:13 -0400] [875] [DEBUG] GET /postquestionnaire.html
+[2016-09-08 16:39:13 -0400] [874] [DEBUG] GET /static/fonts/glyphicons-halflings-regular.woff
+[2016-09-08 16:39:15 -0400] [877] [DEBUG] PUT /sync/debug5DM018%3Adebug0XYSGF
+[2016-09-08 16:39:15 -0400] [876] [DEBUG] POST /inexp
+2016-09-08 16:39:15,682 PUT /sync route with id: debug5DM018:debug0XYSGF
+2016-09-08 16:39:15,682 Accessing /inexp
+2016-09-08 16:39:15,687 saved data for debug5DM018:debug0XYSGF (current trial: 4)
+[2016-09-08 16:39:32 -0400] [877] [DEBUG] Closing connection. 
+[2016-09-08 16:39:32 -0400] [874] [DEBUG] Closing connection. 
+[2016-09-08 16:39:32 -0400] [875] [DEBUG] Closing connection. 
+[2016-09-08 16:39:32 -0400] [877] [DEBUG] GET /ad
+[2016-09-08 16:39:32 -0400] [876] [DEBUG] GET /static/images/MSU-Wordmark-PMS-567.jpg
+[2016-09-08 16:39:32 -0400] [875] [DEBUG] GET /static/css/bootstrap.min.css
+[2016-09-08 16:39:33 -0400] [877] [DEBUG] GET /consent
+[2016-09-08 16:39:33 -0400] [874] [DEBUG] GET /static/css/style.css
+[2016-09-08 16:39:33 -0400] [877] [DEBUG] GET /static/css/bootstrap.min.css
+[2016-09-08 16:39:33 -0400] [877] [DEBUG] GET /static/images/MSU-Wordmark-PMS-567.jpg
+[2016-09-08 16:39:33 -0400] [875] [DEBUG] GET /static/fonts/glyphicons-halflings-regular.woff
+[2016-09-08 16:39:35 -0400] [877] [DEBUG] GET /exp
+2016-09-08 16:39:35,583 Accessing /exp: debugFEMV3X debugGUTRU7 debug9XRPW6 
+2016-09-08 16:39:35,586 given Counter({(0, 1): 1, (1, 0): 1, (0, 0): 1, (1, 1): 1}) chose (1, 0)
+[2016-09-08 16:39:35 -0400] [876] [DEBUG] GET /static/js/psiturk.js
+[2016-09-08 16:39:35 -0400] [877] [DEBUG] GET /static/css/style.css
+[2016-09-08 16:39:35 -0400] [875] [DEBUG] GET /static/lib/jquery-min.js
+[2016-09-08 16:39:35 -0400] [874] [DEBUG] GET /static/lib/d3.v3.min.js
+[2016-09-08 16:39:35 -0400] [877] [DEBUG] GET /static/lib/backbone-min.js
+[2016-09-08 16:39:35 -0400] [874] [DEBUG] GET /static/js/utils.js
+[2016-09-08 16:39:35 -0400] [875] [DEBUG] GET /static/lib/underscore-min.js
+[2016-09-08 16:39:35 -0400] [877] [DEBUG] GET /static/js/task.js
+[2016-09-08 16:39:35 -0400] [877] [DEBUG] GET /sync/debug9XRPW6%3AdebugGUTRU7
+2016-09-08 16:39:35,630 GET /sync route with id: debug9XRPW6:debugGUTRU7
+[2016-09-08 16:39:35 -0400] [877] [DEBUG] GET /instructions/instructions-FR-greeting.html
+[2016-09-08 16:39:35 -0400] [877] [DEBUG] GET /instructions/instructions-judgment.html
+[2016-09-08 16:39:35 -0400] [877] [DEBUG] GET /instructions/instructions-FR-final.html
+[2016-09-08 16:39:35 -0400] [877] [DEBUG] GET /stage.html
+[2016-09-08 16:39:35 -0400] [874] [DEBUG] GET /postquestionnaire.html
+[2016-09-08 16:39:35 -0400] [875] [DEBUG] GET /static/fonts/glyphicons-halflings-regular.woff
+[2016-09-08 16:39:38 -0400] [874] [DEBUG] PUT /sync/debug9XRPW6%3AdebugGUTRU7
+[2016-09-08 16:39:38 -0400] [875] [DEBUG] POST /inexp
+2016-09-08 16:39:38,620 PUT /sync route with id: debug9XRPW6:debugGUTRU7
+2016-09-08 16:39:38,620 Accessing /inexp
+2016-09-08 16:39:38,628 saved data for debug9XRPW6:debugGUTRU7 (current trial: 4)
+[2016-09-08 16:39:51 -0400] [874] [DEBUG] Closing connection. 
+[2016-09-08 16:39:51 -0400] [877] [DEBUG] Closing connection. 
+[2016-09-08 16:39:51 -0400] [877] [DEBUG] Closing connection. 
+[2016-09-08 16:39:51 -0400] [876] [DEBUG] GET /ad
+[2016-09-08 16:39:51 -0400] [874] [DEBUG] GET /static/images/MSU-Wordmark-PMS-567.jpg
+[2016-09-08 16:39:51 -0400] [877] [DEBUG] GET /static/css/bootstrap.min.css
+[2016-09-08 16:39:52 -0400] [874] [DEBUG] GET /consent
+[2016-09-08 16:39:52 -0400] [874] [DEBUG] GET /static/css/style.css
+[2016-09-08 16:39:52 -0400] [876] [DEBUG] GET /static/css/bootstrap.min.css
+[2016-09-08 16:39:52 -0400] [877] [DEBUG] GET /static/images/MSU-Wordmark-PMS-567.jpg
+[2016-09-08 16:39:52 -0400] [877] [DEBUG] GET /static/fonts/glyphicons-halflings-regular.woff
+[2016-09-08 16:39:55 -0400] [876] [DEBUG] GET /exp
+2016-09-08 16:39:55,034 Accessing /exp: debugHG8HCN debugZGV7OO debugVBH1YF 
+2016-09-08 16:39:55,037 given Counter({(1, 0): 2, (0, 1): 1, (0, 0): 1, (1, 1): 1}) chose (1, 1)
+[2016-09-08 16:39:55 -0400] [876] [DEBUG] GET /static/css/style.css
+[2016-09-08 16:39:55 -0400] [874] [DEBUG] GET /static/js/psiturk.js
+[2016-09-08 16:39:55 -0400] [877] [DEBUG] GET /static/lib/jquery-min.js
+[2016-09-08 16:39:55 -0400] [875] [DEBUG] GET /static/js/utils.js
+[2016-09-08 16:39:55 -0400] [876] [DEBUG] GET /static/lib/d3.v3.min.js
+[2016-09-08 16:39:55 -0400] [877] [DEBUG] GET /static/lib/backbone-min.js
+[2016-09-08 16:39:55 -0400] [875] [DEBUG] GET /static/lib/underscore-min.js
+[2016-09-08 16:39:55 -0400] [876] [DEBUG] GET /static/js/task.js
+[2016-09-08 16:39:55 -0400] [876] [DEBUG] GET /sync/debugVBH1YF%3AdebugZGV7OO
+2016-09-08 16:39:55,084 GET /sync route with id: debugVBH1YF:debugZGV7OO
+[2016-09-08 16:39:55 -0400] [876] [DEBUG] GET /instructions/instructions-FR-greeting.html
+[2016-09-08 16:39:55 -0400] [876] [DEBUG] GET /instructions/instructions-judgment.html
+[2016-09-08 16:39:55 -0400] [875] [DEBUG] GET /instructions/instructions-FR-final.html
+[2016-09-08 16:39:55 -0400] [875] [DEBUG] GET /stage.html
+[2016-09-08 16:39:55 -0400] [875] [DEBUG] GET /postquestionnaire.html
+[2016-09-08 16:39:55 -0400] [877] [DEBUG] GET /static/fonts/glyphicons-halflings-regular.woff
+[2016-09-08 16:39:58 -0400] [877] [DEBUG] PUT /sync/debugVBH1YF%3AdebugZGV7OO
+[2016-09-08 16:39:58 -0400] [874] [DEBUG] POST /inexp
+2016-09-08 16:39:58,128 Accessing /inexp
+2016-09-08 16:39:58,128 PUT /sync route with id: debugVBH1YF:debugZGV7OO
+2016-09-08 16:39:58,133 saved data for debugVBH1YF:debugZGV7OO (current trial: 4)
+[2016-09-08 16:59:23 -0400] [874] [DEBUG] Closing connection. 
+[2016-09-08 16:59:23 -0400] [877] [DEBUG] Closing connection. 
+[2016-09-08 16:59:23 -0400] [876] [DEBUG] Closing connection. 
+[2016-09-08 16:59:23 -0400] [876] [DEBUG] GET /ad
+[2016-09-08 16:59:23 -0400] [874] [DEBUG] GET /static/css/bootstrap.min.css
+[2016-09-08 16:59:23 -0400] [875] [DEBUG] GET /static/images/MSU-Wordmark-PMS-567.jpg
+[2016-09-08 16:59:25 -0400] [875] [DEBUG] GET /consent
+[2016-09-08 16:59:25 -0400] [876] [DEBUG] GET /static/css/bootstrap.min.css
+[2016-09-08 16:59:25 -0400] [875] [DEBUG] GET /static/css/style.css
+[2016-09-08 16:59:25 -0400] [876] [DEBUG] GET /static/images/MSU-Wordmark-PMS-567.jpg
+[2016-09-08 16:59:25 -0400] [877] [DEBUG] GET /static/fonts/glyphicons-halflings-regular.woff
+[2016-09-08 16:59:27 -0400] [875] [DEBUG] GET /exp
+2016-09-08 16:59:27,587 Accessing /exp: debug58GHO3 debugYLQEYP debug2CZEA4 
+2016-09-08 16:59:27,590 given Counter({(1, 0): 2, (1, 1): 2, (0, 1): 1, (0, 0): 1}) chose (0, 1)
+[2016-09-08 16:59:27 -0400] [875] [DEBUG] GET /static/css/style.css
+[2016-09-08 16:59:27 -0400] [876] [DEBUG] GET /static/js/psiturk.js
+[2016-09-08 16:59:27 -0400] [874] [DEBUG] GET /static/lib/d3.v3.min.js
+[2016-09-08 16:59:27 -0400] [877] [DEBUG] GET /static/lib/jquery-min.js
+[2016-09-08 16:59:27 -0400] [875] [DEBUG] GET /static/js/utils.js
+[2016-09-08 16:59:27 -0400] [874] [DEBUG] GET /static/lib/backbone-min.js
+[2016-09-08 16:59:27 -0400] [877] [DEBUG] GET /static/lib/underscore-min.js
+[2016-09-08 16:59:27 -0400] [875] [DEBUG] GET /static/js/task.js
+[2016-09-08 16:59:27 -0400] [876] [DEBUG] GET /sync/debug2CZEA4%3AdebugYLQEYP
+2016-09-08 16:59:27,639 GET /sync route with id: debug2CZEA4:debugYLQEYP
+[2016-09-08 17:01:22 -0400] [874] [DEBUG] Closing connection. 
+[2016-09-08 17:01:22 -0400] [875] [DEBUG] Closing connection. 
+[2016-09-08 17:01:22 -0400] [876] [DEBUG] Closing connection. 
+[2016-09-08 17:01:22 -0400] [877] [DEBUG] GET /ad
+[2016-09-08 17:01:22 -0400] [877] [DEBUG] GET /static/images/MSU-Wordmark-PMS-567.jpg
+[2016-09-08 17:01:22 -0400] [876] [DEBUG] GET /static/css/bootstrap.min.css
+[2016-09-08 17:01:24 -0400] [875] [DEBUG] GET /consent
+[2016-09-08 17:01:24 -0400] [874] [DEBUG] GET /static/css/bootstrap.min.css
+[2016-09-08 17:01:24 -0400] [875] [DEBUG] GET /static/css/style.css
+[2016-09-08 17:01:24 -0400] [875] [DEBUG] GET /static/images/MSU-Wordmark-PMS-567.jpg
+[2016-09-08 17:01:24 -0400] [876] [DEBUG] GET /static/fonts/glyphicons-halflings-regular.woff
+[2016-09-08 17:01:25 -0400] [874] [DEBUG] GET /exp
+2016-09-08 17:01:25,815 Accessing /exp: debugYZ89C0 debugQHVLG3 debug7C1JBI 
+2016-09-08 17:01:25,818 given Counter({(0, 1): 2, (1, 0): 2, (1, 1): 2, (0, 0): 1}) chose (0, 0)
+[2016-09-08 17:01:25 -0400] [875] [DEBUG] GET /static/css/style.css
+[2016-09-08 17:01:25 -0400] [874] [DEBUG] GET /static/js/psiturk.js
+[2016-09-08 17:01:25 -0400] [876] [DEBUG] GET /static/lib/jquery-min.js
+[2016-09-08 17:01:25 -0400] [877] [DEBUG] GET /static/lib/backbone-min.js
+[2016-09-08 17:01:25 -0400] [875] [DEBUG] GET /static/lib/d3.v3.min.js
+[2016-09-08 17:01:25 -0400] [876] [DEBUG] GET /static/js/utils.js
+[2016-09-08 17:01:25 -0400] [877] [DEBUG] GET /static/lib/underscore-min.js
+[2016-09-08 17:01:25 -0400] [875] [DEBUG] GET /static/js/task.js
+[2016-09-08 17:01:25 -0400] [875] [DEBUG] GET /sync/debug7C1JBI%3AdebugQHVLG3
+2016-09-08 17:01:25,862 GET /sync route with id: debug7C1JBI:debugQHVLG3
+[2016-09-08 17:02:20 -0400] [875] [DEBUG] GET /consent
+[2016-09-08 17:02:20 -0400] [877] [DEBUG] GET /static/css/bootstrap.min.css
+[2016-09-08 17:02:20 -0400] [875] [DEBUG] GET /static/css/style.css
+[2016-09-08 17:02:20 -0400] [875] [DEBUG] GET /static/images/MSU-Wordmark-PMS-567.jpg
+[2016-09-08 17:02:21 -0400] [876] [DEBUG] GET /static/fonts/glyphicons-halflings-regular.woff
+[2016-09-08 17:02:22 -0400] [875] [DEBUG] GET /exp
+2016-09-08 17:02:22,561 Accessing /exp: debugYZ89C0 debugQHVLG3 debug7C1JBI 
+[2016-09-08 17:02:22 -0400] [876] [DEBUG] GET /static/js/psiturk.js
+[2016-09-08 17:02:22 -0400] [874] [DEBUG] GET /static/lib/d3.v3.min.js
+[2016-09-08 17:02:22 -0400] [877] [DEBUG] GET /static/js/utils.js
+[2016-09-08 17:02:22 -0400] [875] [DEBUG] GET /static/lib/underscore-min.js
+[2016-09-08 17:02:22 -0400] [875] [DEBUG] GET /static/lib/jquery-min.js
+[2016-09-08 17:02:22 -0400] [874] [DEBUG] GET /static/lib/backbone-min.js
+[2016-09-08 17:02:22 -0400] [877] [DEBUG] GET /static/js/task.js
+[2016-09-08 17:02:22 -0400] [874] [DEBUG] GET /sync/debug7C1JBI%3AdebugQHVLG3
+2016-09-08 17:02:22,592 GET /sync route with id: debug7C1JBI:debugQHVLG3
+[2016-09-08 17:02:29 -0400] [874] [DEBUG] Closing connection. 
+[2016-09-08 17:02:29 -0400] [875] [DEBUG] Closing connection. 
+[2016-09-08 17:02:29 -0400] [876] [DEBUG] Closing connection. 
+[2016-09-08 17:02:29 -0400] [876] [DEBUG] GET /ad
+[2016-09-08 17:02:30 -0400] [877] [DEBUG] GET /static/css/bootstrap.min.css
+[2016-09-08 17:02:30 -0400] [875] [DEBUG] GET /static/images/MSU-Wordmark-PMS-567.jpg
+[2016-09-08 17:02:31 -0400] [876] [DEBUG] GET /consent
+[2016-09-08 17:02:31 -0400] [876] [DEBUG] GET /static/css/bootstrap.min.css
+[2016-09-08 17:02:31 -0400] [875] [DEBUG] GET /static/css/style.css
+[2016-09-08 17:02:31 -0400] [874] [DEBUG] GET /static/images/MSU-Wordmark-PMS-567.jpg
+[2016-09-08 17:02:31 -0400] [874] [DEBUG] GET /static/fonts/glyphicons-halflings-regular.woff
+[2016-09-08 17:02:32 -0400] [875] [DEBUG] GET /exp
+2016-09-08 17:02:32,720 Accessing /exp: debug3RON3J debugNH6ILC debugZ6PECG 
+2016-09-08 17:02:32,723 given Counter({(0, 1): 2, (1, 0): 2, (0, 0): 2, (1, 1): 2}) chose (1, 1)
+[2016-09-08 17:02:32 -0400] [875] [DEBUG] GET /static/js/psiturk.js
+[2016-09-08 17:02:32 -0400] [876] [DEBUG] GET /static/css/style.css
+[2016-09-08 17:02:32 -0400] [874] [DEBUG] GET /static/lib/d3.v3.min.js
+[2016-09-08 17:02:32 -0400] [877] [DEBUG] GET /static/lib/backbone-min.js
+[2016-09-08 17:02:32 -0400] [876] [DEBUG] GET /static/lib/jquery-min.js
+[2016-09-08 17:02:32 -0400] [874] [DEBUG] GET /static/js/utils.js
+[2016-09-08 17:02:32 -0400] [877] [DEBUG] GET /static/lib/underscore-min.js
+[2016-09-08 17:02:32 -0400] [876] [DEBUG] GET /static/js/task.js
+[2016-09-08 17:02:32 -0400] [876] [DEBUG] GET /sync/debugZ6PECG%3AdebugNH6ILC
+2016-09-08 17:02:32,767 GET /sync route with id: debugZ6PECG:debugNH6ILC
+[2016-09-08 17:02:54 -0400] [875] [DEBUG] GET /consent
+[2016-09-08 17:02:54 -0400] [877] [DEBUG] GET /static/css/style.css
+[2016-09-08 17:02:54 -0400] [874] [DEBUG] GET /static/css/bootstrap.min.css
+[2016-09-08 17:02:54 -0400] [875] [DEBUG] GET /static/images/MSU-Wordmark-PMS-567.jpg
+[2016-09-08 17:02:54 -0400] [875] [DEBUG] GET /static/fonts/glyphicons-halflings-regular.woff
+[2016-09-08 17:02:56 -0400] [875] [DEBUG] GET /exp
+2016-09-08 17:02:56,469 Accessing /exp: debug3RON3J debugNH6ILC debugZ6PECG 
+[2016-09-08 17:02:56 -0400] [875] [DEBUG] GET /static/js/utils.js
+[2016-09-08 17:02:56 -0400] [876] [DEBUG] GET /static/lib/jquery-min.js
+[2016-09-08 17:02:56 -0400] [874] [DEBUG] GET /static/lib/d3.v3.min.js
+[2016-09-08 17:02:56 -0400] [877] [DEBUG] GET /static/lib/underscore-min.js
+[2016-09-08 17:02:56 -0400] [874] [DEBUG] GET /static/lib/backbone-min.js
+[2016-09-08 17:02:56 -0400] [877] [DEBUG] GET /static/js/psiturk.js
+[2016-09-08 17:02:56 -0400] [875] [DEBUG] GET /static/js/task.js
+[2016-09-08 17:02:56 -0400] [876] [DEBUG] GET /sync/debugZ6PECG%3AdebugNH6ILC
+2016-09-08 17:02:56,493 GET /sync route with id: debugZ6PECG:debugNH6ILC
+[2016-09-08 17:02:56 -0400] [874] [DEBUG] GET /instructions/instructions-FR-greeting.html
+[2016-09-08 17:02:56 -0400] [874] [DEBUG] GET /instructions/instructions-judgment.html
+[2016-09-08 17:02:56 -0400] [876] [DEBUG] GET /instructions/instructions-FR-final.html
+[2016-09-08 17:02:56 -0400] [876] [DEBUG] GET /stage.html
+[2016-09-08 17:02:56 -0400] [876] [DEBUG] GET /postquestionnaire.html
+[2016-09-08 17:02:59 -0400] [877] [DEBUG] PUT /sync/debugZ6PECG%3AdebugNH6ILC
+[2016-09-08 17:02:59 -0400] [874] [DEBUG] POST /inexp
+2016-09-08 17:02:59,023 PUT /sync route with id: debugZ6PECG:debugNH6ILC
+2016-09-08 17:02:59,023 Accessing /inexp
+2016-09-08 17:02:59,028 saved data for debugZ6PECG:debugNH6ILC (current trial: 4)
+[2016-09-08 17:05:40 -0400] [877] [DEBUG] Closing connection. 
+[2016-09-08 17:05:40 -0400] [874] [DEBUG] Closing connection. 
+[2016-09-08 17:05:40 -0400] [874] [DEBUG] Closing connection. 
+[2016-09-08 17:05:40 -0400] [877] [DEBUG] GET /ad
+[2016-09-08 17:05:40 -0400] [877] [DEBUG] GET /static/images/MSU-Wordmark-PMS-567.jpg
+[2016-09-08 17:05:40 -0400] [874] [DEBUG] GET /static/css/bootstrap.min.css
+[2016-09-08 17:05:41 -0400] [876] [DEBUG] GET /consent
+[2016-09-08 17:05:41 -0400] [877] [DEBUG] GET /static/css/bootstrap.min.css
+[2016-09-08 17:05:41 -0400] [875] [DEBUG] GET /static/css/style.css
+[2016-09-08 17:05:41 -0400] [874] [DEBUG] GET /static/images/MSU-Wordmark-PMS-567.jpg
+[2016-09-08 17:05:41 -0400] [877] [DEBUG] GET /static/fonts/glyphicons-halflings-regular.woff
+[2016-09-08 17:05:43 -0400] [876] [DEBUG] GET /exp
+2016-09-08 17:05:43,512 Accessing /exp: debug4XWD3I debug84BE3G debugX4IKV5 
+2016-09-08 17:05:43,514 given Counter({(1, 1): 3, (0, 1): 2, (1, 0): 2, (0, 0): 2}) chose (1, 0)
+[2016-09-08 17:05:43 -0400] [876] [DEBUG] GET /static/js/psiturk.js
+[2016-09-08 17:05:43 -0400] [874] [DEBUG] GET /static/css/style.css
+[2016-09-08 17:05:43 -0400] [877] [DEBUG] GET /static/lib/backbone-min.js
+[2016-09-08 17:05:43 -0400] [875] [DEBUG] GET /static/js/utils.js
+[2016-09-08 17:05:43 -0400] [874] [DEBUG] GET /static/lib/jquery-min.js
+[2016-09-08 17:05:43 -0400] [877] [DEBUG] GET /static/lib/d3.v3.min.js
+[2016-09-08 17:05:43 -0400] [875] [DEBUG] GET /static/lib/underscore-min.js
+[2016-09-08 17:05:43 -0400] [874] [DEBUG] GET /static/js/task.js
+[2016-09-08 17:05:43 -0400] [874] [DEBUG] GET /sync/debugX4IKV5%3Adebug84BE3G
+2016-09-08 17:05:43,561 GET /sync route with id: debugX4IKV5:debug84BE3G
+[2016-09-08 17:05:43 -0400] [876] [DEBUG] GET /instructions/instructions-incidental-greeting.html
+[2016-09-08 17:05:43 -0400] [876] [DEBUG] GET /instructions/instructions-size-task.html
+[2016-09-08 17:05:43 -0400] [876] [DEBUG] GET /instructions/instructions-incidental-emphasis.html
+[2016-09-08 17:05:43 -0400] [876] [DEBUG] GET /stage.html
+[2016-09-08 17:05:43 -0400] [874] [DEBUG] GET /postquestionnaire.html
+[2016-09-08 17:05:57 -0400] [877] [DEBUG] Closing connection. 
+[2016-09-08 17:05:57 -0400] [874] [DEBUG] Closing connection. 
+[2016-09-08 17:05:57 -0400] [874] [DEBUG] Closing connection. 
+[2016-09-08 17:05:57 -0400] [875] [DEBUG] GET /ad
+[2016-09-08 17:05:57 -0400] [875] [DEBUG] GET /static/images/MSU-Wordmark-PMS-567.jpg
+[2016-09-08 17:05:57 -0400] [876] [DEBUG] GET /static/css/bootstrap.min.css
+[2016-09-08 17:05:58 -0400] [875] [DEBUG] GET /consent
+[2016-09-08 17:05:58 -0400] [877] [DEBUG] GET /static/css/style.css
+[2016-09-08 17:05:58 -0400] [876] [DEBUG] GET /static/css/bootstrap.min.css
+[2016-09-08 17:05:58 -0400] [876] [DEBUG] GET /static/images/MSU-Wordmark-PMS-567.jpg
+[2016-09-08 17:05:58 -0400] [874] [DEBUG] GET /static/fonts/glyphicons-halflings-regular.woff
+[2016-09-08 17:06:00 -0400] [875] [DEBUG] GET /exp
+2016-09-08 17:06:00,241 Accessing /exp: debugYZ1SVE debugBO1X6W debugMHEHZB 
+2016-09-08 17:06:00,244 given Counter({(1, 0): 3, (1, 1): 3, (0, 1): 2, (0, 0): 2}) chose (0, 1)
+[2016-09-08 17:06:00 -0400] [875] [DEBUG] GET /static/css/style.css
+[2016-09-08 17:06:00 -0400] [876] [DEBUG] GET /static/js/task.js
+[2016-09-08 17:06:00 -0400] [877] [DEBUG] GET /static/lib/underscore-min.js
+[2016-09-08 17:06:00 -0400] [874] [DEBUG] GET /static/js/psiturk.js
+[2016-09-08 17:06:00 -0400] [877] [DEBUG] GET /static/lib/jquery-min.js
+[2016-09-08 17:06:00 -0400] [876] [DEBUG] GET /static/lib/backbone-min.js
+[2016-09-08 17:06:00 -0400] [875] [DEBUG] GET /static/js/utils.js
+[2016-09-08 17:06:00 -0400] [877] [DEBUG] GET /static/lib/d3.v3.min.js
+[2016-09-08 17:06:00 -0400] [875] [DEBUG] GET /sync/debugMHEHZB%3AdebugBO1X6W
+2016-09-08 17:06:00,289 GET /sync route with id: debugMHEHZB:debugBO1X6W
+[2016-09-08 17:06:00 -0400] [875] [DEBUG] GET /instructions/instructions-explicit-greeting.html
+[2016-09-08 17:06:00 -0400] [875] [DEBUG] GET /instructions/instructions-deepitem-task.html
+[2016-09-08 17:06:00 -0400] [875] [DEBUG] GET /instructions/instructions-explicit-emphasis.html
+[2016-09-08 17:06:00 -0400] [875] [DEBUG] GET /stage.html
+[2016-09-08 17:06:00 -0400] [875] [DEBUG] GET /postquestionnaire.html
+[2016-09-08 17:06:00 -0400] [877] [DEBUG] GET /static/fonts/glyphicons-halflings-regular.woff
+[2016-09-08 17:06:14 -0400] [874] [DEBUG] GET /consent
+[2016-09-08 17:06:15 -0400] [875] [DEBUG] GET /static/css/bootstrap.min.css
+[2016-09-08 17:06:15 -0400] [877] [DEBUG] GET /static/css/style.css
+[2016-09-08 17:06:15 -0400] [877] [DEBUG] GET /static/images/MSU-Wordmark-PMS-567.jpg
+[2016-09-08 17:06:15 -0400] [876] [DEBUG] GET /static/fonts/glyphicons-halflings-regular.woff
+[2016-09-08 17:06:17 -0400] [875] [DEBUG] GET /exp
+2016-09-08 17:06:17,194 Accessing /exp: debugYZ1SVE debugBO1X6W debugMHEHZB 
+[2016-09-08 17:06:17 -0400] [877] [DEBUG] GET /static/js/psiturk.js
+[2016-09-08 17:06:17 -0400] [876] [DEBUG] GET /static/lib/d3.v3.min.js
+[2016-09-08 17:06:17 -0400] [874] [DEBUG] GET /static/lib/underscore-min.js
+[2016-09-08 17:06:17 -0400] [875] [DEBUG] GET /static/lib/jquery-min.js
+[2016-09-08 17:06:17 -0400] [875] [DEBUG] GET /static/js/utils.js
+[2016-09-08 17:06:17 -0400] [876] [DEBUG] GET /static/lib/backbone-min.js
+[2016-09-08 17:06:17 -0400] [874] [DEBUG] GET /static/js/task.js
+[2016-09-08 17:06:17 -0400] [876] [DEBUG] GET /sync/debugMHEHZB%3AdebugBO1X6W
+2016-09-08 17:06:17,218 GET /sync route with id: debugMHEHZB:debugBO1X6W
+[2016-09-08 17:06:17 -0400] [875] [DEBUG] GET /instructions/instructions-explicit-greeting.html
+[2016-09-08 17:06:17 -0400] [876] [DEBUG] GET /instructions/instructions-deepitem-task.html
+[2016-09-08 17:06:17 -0400] [876] [DEBUG] GET /instructions/instructions-explicit-emphasis.html
+[2016-09-08 17:06:17 -0400] [876] [DEBUG] GET /stage.html
+[2016-09-08 17:06:17 -0400] [877] [DEBUG] GET /postquestionnaire.html
+[2016-09-08 17:06:21 -0400] [875] [DEBUG] GET /consent
+[2016-09-08 17:06:23 -0400] [876] [DEBUG] GET /exp
+2016-09-08 17:06:23,213 Accessing /exp: debugYZ1SVE debugBO1X6W debugMHEHZB 
+[2016-09-08 17:06:23 -0400] [876] [DEBUG] GET /static/js/psiturk.js
+[2016-09-08 17:06:23 -0400] [877] [DEBUG] GET /sync/debugMHEHZB%3AdebugBO1X6W
+2016-09-08 17:06:23,236 GET /sync route with id: debugMHEHZB:debugBO1X6W
+[2016-09-08 17:06:23 -0400] [874] [DEBUG] GET /instructions/instructions-explicit-greeting.html
+[2016-09-08 17:06:23 -0400] [875] [DEBUG] GET /instructions/instructions-deepitem-task.html
+[2016-09-08 17:06:23 -0400] [877] [DEBUG] GET /instructions/instructions-explicit-emphasis.html
+[2016-09-08 17:06:23 -0400] [877] [DEBUG] GET /stage.html
+[2016-09-08 17:06:23 -0400] [876] [DEBUG] GET /postquestionnaire.html
+[2016-09-08 17:06:28 -0400] [876] [DEBUG] Closing connection. 
+[2016-09-08 17:06:28 -0400] [877] [DEBUG] Closing connection. 
+[2016-09-08 17:06:28 -0400] [876] [DEBUG] Closing connection. 
+[2016-09-08 17:06:28 -0400] [875] [DEBUG] GET /ad
+[2016-09-08 17:06:28 -0400] [875] [DEBUG] GET /static/images/MSU-Wordmark-PMS-567.jpg
+[2016-09-08 17:06:28 -0400] [877] [DEBUG] GET /static/css/bootstrap.min.css
+[2016-09-08 17:06:29 -0400] [874] [DEBUG] GET /consent
+[2016-09-08 17:06:29 -0400] [875] [DEBUG] GET /static/css/bootstrap.min.css
+[2016-09-08 17:06:29 -0400] [874] [DEBUG] GET /static/css/style.css
+[2016-09-08 17:06:29 -0400] [874] [DEBUG] GET /static/images/MSU-Wordmark-PMS-567.jpg
+[2016-09-08 17:06:29 -0400] [876] [DEBUG] GET /static/fonts/glyphicons-halflings-regular.woff
+[2016-09-08 17:06:31 -0400] [876] [DEBUG] GET /exp
+2016-09-08 17:06:31,685 Accessing /exp: debugJQCYFK debugS4ISEJ debugSZG9EW 
+2016-09-08 17:06:31,688 given Counter({(0, 1): 3, (1, 0): 3, (1, 1): 3, (0, 0): 2}) chose (0, 0)
+[2016-09-08 17:06:31 -0400] [876] [DEBUG] GET /static/css/style.css
+[2016-09-08 17:06:31 -0400] [874] [DEBUG] GET /static/js/psiturk.js
+[2016-09-08 17:06:31 -0400] [875] [DEBUG] GET /static/lib/jquery-min.js
+[2016-09-08 17:06:31 -0400] [877] [DEBUG] GET /static/lib/backbone-min.js
+[2016-09-08 17:06:31 -0400] [876] [DEBUG] GET /static/lib/underscore-min.js
+[2016-09-08 17:06:31 -0400] [875] [DEBUG] GET /static/lib/d3.v3.min.js
+[2016-09-08 17:06:31 -0400] [877] [DEBUG] GET /static/js/utils.js
+[2016-09-08 17:06:31 -0400] [876] [DEBUG] GET /static/js/task.js
+[2016-09-08 17:06:31 -0400] [875] [DEBUG] GET /sync/debugSZG9EW%3AdebugS4ISEJ
+2016-09-08 17:06:31,731 GET /sync route with id: debugSZG9EW:debugS4ISEJ
+[2016-09-08 17:06:31 -0400] [877] [DEBUG] GET /instructions/instructions-explicit-greeting.html
+[2016-09-08 17:06:31 -0400] [875] [DEBUG] GET /instructions/instructions-size-task.html
+[2016-09-08 17:06:31 -0400] [875] [DEBUG] GET /instructions/instructions-explicit-emphasis.html
+[2016-09-08 17:06:31 -0400] [875] [DEBUG] GET /stage.html
+[2016-09-08 17:06:31 -0400] [876] [DEBUG] GET /postquestionnaire.html
+[2016-09-08 17:06:31 -0400] [875] [DEBUG] GET /static/fonts/glyphicons-halflings-regular.woff
+[2016-09-08 17:06:36 -0400] [875] [DEBUG] Closing connection. 
+[2016-09-08 17:06:36 -0400] [877] [DEBUG] Closing connection. 
+[2016-09-08 17:06:36 -0400] [874] [DEBUG] Closing connection. 
+[2016-09-08 17:06:36 -0400] [874] [DEBUG] GET /ad
+[2016-09-08 17:06:38 -0400] [875] [DEBUG] GET /consent
+[2016-09-08 17:06:38 -0400] [876] [DEBUG] GET /static/css/bootstrap.min.css
+[2016-09-08 17:06:38 -0400] [875] [DEBUG] GET /static/images/MSU-Wordmark-PMS-567.jpg
+[2016-09-08 17:06:40 -0400] [877] [DEBUG] GET /exp
+2016-09-08 17:06:40,103 Accessing /exp: debugYZ0GBS debugCUB217 debugV4B6VH 
+2016-09-08 17:06:40,106 given Counter({(0, 1): 3, (1, 0): 3, (0, 0): 3, (1, 1): 3}) chose (0, 0)
+[2016-09-08 17:06:40 -0400] [877] [DEBUG] GET /static/css/style.css
+[2016-09-08 17:06:40 -0400] [876] [DEBUG] GET /static/js/psiturk.js
+[2016-09-08 17:06:40 -0400] [874] [DEBUG] GET /sync/debugV4B6VH%3AdebugCUB217
+2016-09-08 17:06:40,146 GET /sync route with id: debugV4B6VH:debugCUB217
+[2016-09-08 17:06:40 -0400] [876] [DEBUG] GET /instructions/instructions-explicit-greeting.html
+[2016-09-08 17:06:40 -0400] [875] [DEBUG] GET /instructions/instructions-size-task.html
+[2016-09-08 17:06:40 -0400] [874] [DEBUG] GET /instructions/instructions-explicit-emphasis.html
+[2016-09-08 17:06:40 -0400] [874] [DEBUG] GET /stage.html
+[2016-09-08 17:06:40 -0400] [874] [DEBUG] GET /postquestionnaire.html
+[2016-09-08 17:06:40 -0400] [875] [DEBUG] GET /static/fonts/glyphicons-halflings-regular.woff
+[2016-09-08 17:06:44 -0400] [875] [DEBUG] Closing connection. 
+[2016-09-08 17:06:44 -0400] [875] [DEBUG] Closing connection. 
+[2016-09-08 17:06:44 -0400] [874] [DEBUG] Closing connection. 
+[2016-09-08 17:06:45 -0400] [875] [DEBUG] GET /ad
+[2016-09-08 17:06:45 -0400] [875] [DEBUG] GET /static/css/bootstrap.min.css
+[2016-09-08 17:06:45 -0400] [874] [DEBUG] GET /static/images/MSU-Wordmark-PMS-567.jpg
+[2016-09-08 17:06:46 -0400] [876] [DEBUG] GET /consent
+[2016-09-08 17:06:46 -0400] [875] [DEBUG] GET /static/css/bootstrap.min.css
+[2016-09-08 17:06:46 -0400] [876] [DEBUG] GET /static/css/style.css
+[2016-09-08 17:06:46 -0400] [874] [DEBUG] GET /static/images/MSU-Wordmark-PMS-567.jpg
+[2016-09-08 17:06:46 -0400] [875] [DEBUG] GET /static/fonts/glyphicons-halflings-regular.woff
+[2016-09-08 17:06:48 -0400] [875] [DEBUG] GET /exp
+2016-09-08 17:06:48,111 Accessing /exp: debugSJ4RG6 debugE9D8R3 debugN8TT29 
+2016-09-08 17:06:48,114 given Counter({(0, 0): 4, (0, 1): 3, (1, 0): 3, (1, 1): 3}) chose (1, 1)
+[2016-09-08 17:06:48 -0400] [875] [DEBUG] GET /static/css/style.css
+[2016-09-08 17:06:48 -0400] [877] [DEBUG] GET /static/js/psiturk.js
+[2016-09-08 17:06:48 -0400] [876] [DEBUG] GET /static/lib/underscore-min.js
+[2016-09-08 17:06:48 -0400] [874] [DEBUG] GET /static/lib/backbone-min.js
+[2016-09-08 17:06:48 -0400] [875] [DEBUG] GET /static/lib/jquery-min.js
+[2016-09-08 17:06:48 -0400] [876] [DEBUG] GET /static/lib/d3.v3.min.js
+[2016-09-08 17:06:48 -0400] [874] [DEBUG] GET /static/js/task.js
+[2016-09-08 17:06:48 -0400] [875] [DEBUG] GET /static/js/utils.js
+[2016-09-08 17:06:48 -0400] [874] [DEBUG] GET /sync/debugN8TT29%3AdebugE9D8R3
+2016-09-08 17:06:48,161 GET /sync route with id: debugN8TT29:debugE9D8R3
+[2016-09-08 17:06:48 -0400] [875] [DEBUG] GET /instructions/instructions-incidental-greeting.html
+[2016-09-08 17:06:48 -0400] [876] [DEBUG] GET /instructions/instructions-deepitem-task.html
+[2016-09-08 17:06:48 -0400] [876] [DEBUG] GET /instructions/instructions-incidental-emphasis.html
+[2016-09-08 17:06:48 -0400] [876] [DEBUG] GET /stage.html
+[2016-09-08 17:06:48 -0400] [877] [DEBUG] GET /postquestionnaire.html
+[2016-09-08 17:06:56 -0400] [877] [DEBUG] Closing connection. 
+[2016-09-08 17:06:56 -0400] [877] [DEBUG] Closing connection. 
+[2016-09-08 17:06:56 -0400] [875] [DEBUG] Closing connection. 
+[2016-09-08 17:06:56 -0400] [874] [DEBUG] GET /ad
+[2016-09-08 17:06:56 -0400] [874] [DEBUG] GET /static/css/bootstrap.min.css
+[2016-09-08 17:06:56 -0400] [877] [DEBUG] GET /static/images/MSU-Wordmark-PMS-567.jpg
+[2016-09-08 17:06:58 -0400] [875] [DEBUG] GET /consent
+[2016-09-08 17:06:58 -0400] [874] [DEBUG] GET /static/css/bootstrap.min.css
+[2016-09-08 17:06:58 -0400] [877] [DEBUG] GET /static/css/style.css
+[2016-09-08 17:06:58 -0400] [875] [DEBUG] GET /static/images/MSU-Wordmark-PMS-567.jpg
+[2016-09-08 17:06:58 -0400] [876] [DEBUG] GET /static/fonts/glyphicons-halflings-regular.woff
+[2016-09-08 17:07:00 -0400] [875] [DEBUG] GET /exp
+2016-09-08 17:07:00,609 Accessing /exp: debugSTF7MK debugOP7N15 debugNL4J65 
+2016-09-08 17:07:00,612 given Counter({(0, 0): 4, (1, 1): 4, (0, 1): 3, (1, 0): 3}) chose (0, 1)
+[2016-09-08 17:07:00 -0400] [876] [DEBUG] GET /static/css/style.css
+[2016-09-08 17:07:00 -0400] [875] [DEBUG] GET /static/js/psiturk.js
+[2016-09-08 17:07:00 -0400] [877] [DEBUG] GET /static/lib/d3.v3.min.js
+[2016-09-08 17:07:00 -0400] [874] [DEBUG] GET /static/lib/backbone-min.js
+[2016-09-08 17:07:00 -0400] [876] [DEBUG] GET /static/lib/jquery-min.js
+[2016-09-08 17:07:00 -0400] [874] [DEBUG] GET /static/lib/underscore-min.js
+[2016-09-08 17:07:00 -0400] [877] [DEBUG] GET /static/js/utils.js
+[2016-09-08 17:07:00 -0400] [876] [DEBUG] GET /static/js/task.js
+[2016-09-08 17:07:00 -0400] [874] [DEBUG] GET /sync/debugNL4J65%3AdebugOP7N15
+2016-09-08 17:07:00,655 GET /sync route with id: debugNL4J65:debugOP7N15
+[2016-09-08 17:07:00 -0400] [874] [DEBUG] GET /instructions/instructions-explicit-greeting.html
+[2016-09-08 17:07:00 -0400] [874] [DEBUG] GET /instructions/instructions-deepitem-task.html
+[2016-09-08 17:07:00 -0400] [876] [DEBUG] GET /instructions/instructions-explicit-emphasis.html
+[2016-09-08 17:07:00 -0400] [876] [DEBUG] GET /stage.html
+[2016-09-08 17:07:00 -0400] [876] [DEBUG] GET /postquestionnaire.html
+[2016-09-08 17:07:00 -0400] [874] [DEBUG] GET /static/fonts/glyphicons-halflings-regular.woff
+[2016-09-08 17:07:05 -0400] [877] [DEBUG] Closing connection. 
+[2016-09-08 17:07:05 -0400] [877] [DEBUG] Closing connection. 
+[2016-09-08 17:07:05 -0400] [877] [DEBUG] Closing connection. 
+[2016-09-08 17:07:05 -0400] [877] [DEBUG] GET /ad
+[2016-09-08 17:07:07 -0400] [874] [DEBUG] GET /consent
+[2016-09-08 17:07:07 -0400] [877] [DEBUG] GET /static/css/bootstrap.min.css
+[2016-09-08 17:07:07 -0400] [875] [DEBUG] GET /static/images/MSU-Wordmark-PMS-567.jpg
+[2016-09-08 17:07:09 -0400] [877] [DEBUG] GET /exp
+2016-09-08 17:07:09,429 Accessing /exp: debug8JSD0E debug94767Q debugR5RV2E 
+2016-09-08 17:07:09,433 given Counter({(0, 1): 4, (0, 0): 4, (1, 1): 4, (1, 0): 3}) chose (1, 0)
+[2016-09-08 17:07:09 -0400] [875] [DEBUG] GET /static/css/style.css
+[2016-09-08 17:07:09 -0400] [874] [DEBUG] GET /static/js/psiturk.js
+[2016-09-08 17:07:09 -0400] [877] [DEBUG] GET /sync/debugR5RV2E%3Adebug94767Q
+2016-09-08 17:07:09,473 GET /sync route with id: debugR5RV2E:debug94767Q
+[2016-09-08 17:07:09 -0400] [877] [DEBUG] GET /instructions/instructions-incidental-greeting.html
+[2016-09-08 17:07:09 -0400] [876] [DEBUG] GET /instructions/instructions-size-task.html
+[2016-09-08 17:07:09 -0400] [876] [DEBUG] GET /instructions/instructions-incidental-emphasis.html
+[2016-09-08 17:07:09 -0400] [876] [DEBUG] GET /stage.html
+[2016-09-08 17:07:09 -0400] [876] [DEBUG] GET /postquestionnaire.html
+[2016-09-08 17:08:40 -0400] [875] [DEBUG] Closing connection. 
+[2016-09-08 17:08:40 -0400] [874] [DEBUG] Closing connection. 
+[2016-09-08 17:08:40 -0400] [874] [DEBUG] Closing connection. 
+[2016-09-08 17:08:40 -0400] [877] [DEBUG] GET /ad
+[2016-09-08 17:08:40 -0400] [877] [DEBUG] GET /static/css/bootstrap.min.css
+[2016-09-08 17:08:40 -0400] [874] [DEBUG] GET /static/images/MSU-Wordmark-PMS-567.jpg
+[2016-09-08 17:08:41 -0400] [874] [DEBUG] GET /consent
+[2016-09-08 17:08:41 -0400] [877] [DEBUG] GET /static/css/bootstrap.min.css
+[2016-09-08 17:08:41 -0400] [875] [DEBUG] GET /static/css/style.css
+[2016-09-08 17:08:41 -0400] [877] [DEBUG] GET /static/images/MSU-Wordmark-PMS-567.jpg
+[2016-09-08 17:08:41 -0400] [876] [DEBUG] GET /static/fonts/glyphicons-halflings-regular.woff
+[2016-09-08 17:08:43 -0400] [877] [DEBUG] GET /exp
+2016-09-08 17:08:43,649 Accessing /exp: debug8RTLCE debugL6BN1Y debug0DDVRE 
+2016-09-08 17:08:43,652 given Counter({(0, 1): 4, (1, 0): 4, (0, 0): 4, (1, 1): 4}) chose (1, 0)
+[2016-09-08 17:08:43 -0400] [875] [DEBUG] GET /static/css/style.css
+[2016-09-08 17:08:43 -0400] [874] [DEBUG] GET /static/js/psiturk.js
+[2016-09-08 17:08:43 -0400] [877] [DEBUG] GET /static/lib/backbone-min.js
+[2016-09-08 17:08:43 -0400] [876] [DEBUG] GET /static/lib/jquery-min.js
+[2016-09-08 17:08:43 -0400] [875] [DEBUG] GET /static/lib/d3.v3.min.js
+[2016-09-08 17:08:43 -0400] [877] [DEBUG] GET /static/lib/underscore-min.js
+[2016-09-08 17:08:43 -0400] [876] [DEBUG] GET /static/js/utils.js
+[2016-09-08 17:08:43 -0400] [877] [DEBUG] GET /static/js/task.js
+[2016-09-08 17:08:43 -0400] [877] [DEBUG] GET /sync/debug0DDVRE%3AdebugL6BN1Y
+2016-09-08 17:08:43,696 GET /sync route with id: debug0DDVRE:debugL6BN1Y
+[2016-09-08 17:08:43 -0400] [874] [DEBUG] GET /instructions/instructions-incidental-greeting.html
+[2016-09-08 17:08:43 -0400] [874] [DEBUG] GET /instructions/instructions-size-task.html
+[2016-09-08 17:08:43 -0400] [874] [DEBUG] GET /instructions/instructions-incidental-emphasis.html
+[2016-09-08 17:08:43 -0400] [874] [DEBUG] GET /stage.html
+[2016-09-08 17:08:43 -0400] [874] [DEBUG] GET /postquestionnaire.html
+[2016-09-08 17:08:43 -0400] [874] [DEBUG] GET /static/fonts/glyphicons-halflings-regular.woff
+[2016-09-08 17:08:49 -0400] [874] [DEBUG] Closing connection. 
+[2016-09-08 17:08:49 -0400] [874] [DEBUG] Closing connection. 
+[2016-09-08 17:08:49 -0400] [875] [DEBUG] Closing connection. 
+[2016-09-08 17:08:49 -0400] [875] [DEBUG] GET /ad
+[2016-09-08 17:08:50 -0400] [877] [DEBUG] GET /consent
+[2016-09-08 17:08:50 -0400] [877] [DEBUG] GET /static/css/bootstrap.min.css
+[2016-09-08 17:08:50 -0400] [874] [DEBUG] GET /static/images/MSU-Wordmark-PMS-567.jpg
+[2016-09-08 17:08:51 -0400] [876] [DEBUG] GET /static/fonts/glyphicons-halflings-regular.woff
+[2016-09-08 17:08:52 -0400] [876] [DEBUG] GET /exp
+2016-09-08 17:08:52,593 Accessing /exp: debugATO1PC debugERWMJL debugD9ZET1 
+2016-09-08 17:08:52,597 given Counter({(1, 0): 5, (0, 1): 4, (0, 0): 4, (1, 1): 4}) chose (0, 1)
+[2016-09-08 17:08:52 -0400] [875] [DEBUG] GET /static/js/psiturk.js
+[2016-09-08 17:08:52 -0400] [877] [DEBUG] GET /static/css/style.css
+[2016-09-08 17:08:52 -0400] [876] [DEBUG] GET /sync/debugD9ZET1%3AdebugERWMJL
+2016-09-08 17:08:52,638 GET /sync route with id: debugD9ZET1:debugERWMJL
+[2016-09-08 17:08:52 -0400] [874] [DEBUG] GET /instructions/instructions-explicit-greeting.html
+[2016-09-08 17:08:52 -0400] [874] [DEBUG] GET /instructions/instructions-deepitem-task.html
+[2016-09-08 17:08:52 -0400] [876] [DEBUG] GET /instructions/instructions-explicit-emphasis.html
+[2016-09-08 17:08:52 -0400] [876] [DEBUG] GET /stage.html
+[2016-09-08 17:08:52 -0400] [876] [DEBUG] GET /postquestionnaire.html
+[2016-09-08 17:08:52 -0400] [875] [DEBUG] GET /static/fonts/glyphicons-halflings-regular.woff
+[2016-09-08 17:08:59 -0400] [876] [DEBUG] Closing connection. 
+[2016-09-08 17:08:59 -0400] [875] [DEBUG] Closing connection. 
+[2016-09-08 17:08:59 -0400] [875] [DEBUG] Closing connection. 
+[2016-09-08 17:08:59 -0400] [876] [DEBUG] GET /ad
+[2016-09-08 17:09:00 -0400] [875] [DEBUG] GET /static/css/bootstrap.min.css
+[2016-09-08 17:09:00 -0400] [876] [DEBUG] GET /static/images/MSU-Wordmark-PMS-567.jpg
+[2016-09-08 17:09:01 -0400] [876] [DEBUG] GET /consent
+[2016-09-08 17:09:01 -0400] [875] [DEBUG] GET /static/css/style.css
+[2016-09-08 17:09:01 -0400] [876] [DEBUG] GET /static/css/bootstrap.min.css
+[2016-09-08 17:09:01 -0400] [876] [DEBUG] GET /static/images/MSU-Wordmark-PMS-567.jpg
+[2016-09-08 17:09:01 -0400] [876] [DEBUG] GET /static/fonts/glyphicons-halflings-regular.woff
+[2016-09-08 17:09:02 -0400] [877] [DEBUG] GET /exp
+2016-09-08 17:09:02,697 Accessing /exp: debugEKCK2J debugSG0CZ6 debug7JZQW4 
+2016-09-08 17:09:02,700 given Counter({(0, 1): 5, (1, 0): 5, (0, 0): 4, (1, 1): 4}) chose (0, 0)
+[2016-09-08 17:09:02 -0400] [875] [DEBUG] GET /static/css/style.css
+[2016-09-08 17:09:02 -0400] [877] [DEBUG] GET /static/js/psiturk.js
+[2016-09-08 17:09:02 -0400] [874] [DEBUG] GET /static/lib/backbone-min.js
+[2016-09-08 17:09:02 -0400] [876] [DEBUG] GET /static/lib/jquery-min.js
+[2016-09-08 17:09:02 -0400] [875] [DEBUG] GET /static/lib/d3.v3.min.js
+[2016-09-08 17:09:02 -0400] [874] [DEBUG] GET /static/lib/underscore-min.js
+[2016-09-08 17:09:02 -0400] [876] [DEBUG] GET /static/js/utils.js
+[2016-09-08 17:09:02 -0400] [875] [DEBUG] GET /static/js/task.js
+[2016-09-08 17:09:02 -0400] [875] [DEBUG] GET /sync/debug7JZQW4%3AdebugSG0CZ6
+2016-09-08 17:09:02,744 GET /sync route with id: debug7JZQW4:debugSG0CZ6
+[2016-09-08 17:09:02 -0400] [875] [DEBUG] GET /instructions/instructions-explicit-greeting.html
+[2016-09-08 17:09:02 -0400] [875] [DEBUG] GET /instructions/instructions-size-task.html
+[2016-09-08 17:09:02 -0400] [875] [DEBUG] GET /instructions/instructions-explicit-emphasis.html
+[2016-09-08 17:09:02 -0400] [875] [DEBUG] GET /stage.html
+[2016-09-08 17:09:02 -0400] [875] [DEBUG] GET /postquestionnaire.html
+[2016-09-08 17:09:02 -0400] [874] [DEBUG] GET /static/fonts/glyphicons-halflings-regular.woff
+[2016-09-08 17:09:07 -0400] [874] [DEBUG] Closing connection. 
+[2016-09-08 17:09:07 -0400] [874] [DEBUG] Closing connection. 
+[2016-09-08 17:09:08 -0400] [874] [DEBUG] Closing connection. 
+[2016-09-08 17:09:08 -0400] [874] [DEBUG] GET /ad
+[2016-09-08 17:09:09 -0400] [874] [DEBUG] GET /consent
+[2016-09-08 17:09:11 -0400] [874] [DEBUG] GET /exp
+2016-09-08 17:09:11,010 Accessing /exp: debug1AZ25V debug3A65OY debug7R8KKJ 
+2016-09-08 17:09:11,013 given Counter({(0, 1): 5, (1, 0): 5, (0, 0): 5, (1, 1): 4}) chose (1, 1)
+[2016-09-08 17:09:11 -0400] [874] [DEBUG] GET /static/js/psiturk.js
+[2016-09-08 17:09:11 -0400] [876] [DEBUG] GET /static/css/bootstrap.min.css
+[2016-09-08 17:09:11 -0400] [875] [DEBUG] GET /static/css/style.css
+[2016-09-08 17:09:11 -0400] [875] [DEBUG] GET /sync/debug7R8KKJ%3Adebug3A65OY
+2016-09-08 17:09:11,054 GET /sync route with id: debug7R8KKJ:debug3A65OY
+[2016-09-08 17:09:11 -0400] [874] [DEBUG] GET /instructions/instructions-incidental-greeting.html
+[2016-09-08 17:09:11 -0400] [875] [DEBUG] GET /instructions/instructions-deepitem-task.html
+[2016-09-08 17:09:11 -0400] [875] [DEBUG] GET /instructions/instructions-incidental-emphasis.html
+[2016-09-08 17:09:11 -0400] [875] [DEBUG] GET /stage.html
+[2016-09-08 17:09:11 -0400] [875] [DEBUG] GET /postquestionnaire.html
+[2016-09-08 17:09:11 -0400] [876] [DEBUG] GET /static/fonts/glyphicons-halflings-regular.woff
+[2016-09-08 17:09:17 -0400] [877] [DEBUG] Closing connection. 
+[2016-09-08 17:09:17 -0400] [875] [DEBUG] Closing connection. 
+[2016-09-08 17:09:17 -0400] [874] [DEBUG] Closing connection. 
+[2016-09-08 17:09:17 -0400] [875] [DEBUG] GET /ad
+[2016-09-08 17:09:17 -0400] [877] [DEBUG] GET /static/images/MSU-Wordmark-PMS-567.jpg
+[2016-09-08 17:09:17 -0400] [876] [DEBUG] GET /static/css/bootstrap.min.css
+[2016-09-08 17:09:18 -0400] [874] [DEBUG] GET /consent
+[2016-09-08 17:09:18 -0400] [877] [DEBUG] GET /static/css/bootstrap.min.css
+[2016-09-08 17:09:18 -0400] [876] [DEBUG] GET /static/css/style.css
+[2016-09-08 17:09:18 -0400] [876] [DEBUG] GET /static/images/MSU-Wordmark-PMS-567.jpg
+[2016-09-08 17:09:18 -0400] [875] [DEBUG] GET /static/fonts/glyphicons-halflings-regular.woff
+[2016-09-08 17:09:20 -0400] [875] [DEBUG] GET /exp
+2016-09-08 17:09:20,381 Accessing /exp: debugCWWHGK debugVHCYVI debugZFK0C4 
+2016-09-08 17:09:20,385 given Counter({(0, 1): 5, (1, 0): 5, (0, 0): 5, (1, 1): 5}) chose (0, 1)
+[2016-09-08 17:09:20 -0400] [875] [DEBUG] GET /static/js/psiturk.js
+[2016-09-08 17:09:20 -0400] [877] [DEBUG] GET /static/css/style.css
+[2016-09-08 17:09:20 -0400] [874] [DEBUG] GET /static/lib/d3.v3.min.js
+[2016-09-08 17:09:20 -0400] [876] [DEBUG] GET /static/lib/backbone-min.js
+[2016-09-08 17:09:20 -0400] [877] [DEBUG] GET /static/lib/jquery-min.js
+[2016-09-08 17:09:20 -0400] [876] [DEBUG] GET /static/js/utils.js
+[2016-09-08 17:09:20 -0400] [874] [DEBUG] GET /static/lib/underscore-min.js
+[2016-09-08 17:09:20 -0400] [877] [DEBUG] GET /static/js/task.js
+[2016-09-08 17:09:20 -0400] [877] [DEBUG] GET /sync/debugZFK0C4%3AdebugVHCYVI
+2016-09-08 17:09:20,429 GET /sync route with id: debugZFK0C4:debugVHCYVI
+[2016-09-08 17:09:20 -0400] [876] [DEBUG] GET /instructions/instructions-explicit-greeting.html
+[2016-09-08 17:09:20 -0400] [876] [DEBUG] GET /instructions/instructions-deepitem-task.html
+[2016-09-08 17:09:20 -0400] [876] [DEBUG] GET /instructions/instructions-explicit-emphasis.html
+[2016-09-08 17:09:20 -0400] [876] [DEBUG] GET /stage.html
+[2016-09-08 17:09:20 -0400] [876] [DEBUG] GET /postquestionnaire.html
+[2016-09-08 17:09:20 -0400] [875] [DEBUG] GET /static/fonts/glyphicons-halflings-regular.woff
+[2016-09-08 17:09:33 -0400] [875] [DEBUG] Closing connection. 
+[2016-09-08 17:09:33 -0400] [874] [DEBUG] Closing connection. 
+[2016-09-08 17:09:33 -0400] [877] [DEBUG] Closing connection. 
+[2016-09-08 17:09:33 -0400] [874] [DEBUG] GET /ad
+[2016-09-08 17:09:33 -0400] [874] [DEBUG] GET /static/images/MSU-Wordmark-PMS-567.jpg
+[2016-09-08 17:09:33 -0400] [876] [DEBUG] GET /static/css/bootstrap.min.css
+[2016-09-08 17:09:35 -0400] [875] [DEBUG] GET /consent
+[2016-09-08 17:09:35 -0400] [874] [DEBUG] GET /static/css/style.css
+[2016-09-08 17:09:35 -0400] [876] [DEBUG] GET /static/css/bootstrap.min.css
+[2016-09-08 17:09:35 -0400] [876] [DEBUG] GET /static/images/MSU-Wordmark-PMS-567.jpg
+[2016-09-08 17:09:35 -0400] [876] [DEBUG] GET /static/fonts/glyphicons-halflings-regular.woff
+[2016-09-08 17:09:37 -0400] [876] [DEBUG] GET /exp
+2016-09-08 17:09:37,391 Accessing /exp: debug43H2XG debugMWDOXB debugTG7S17 
+2016-09-08 17:09:37,395 given Counter({(0, 1): 6, (1, 0): 5, (0, 0): 5, (1, 1): 5}) chose (0, 0)
+[2016-09-08 17:09:37 -0400] [874] [DEBUG] GET /static/css/style.css
+[2016-09-08 17:09:37 -0400] [875] [DEBUG] GET /static/lib/backbone-min.js
+[2016-09-08 17:09:37 -0400] [876] [DEBUG] GET /static/js/psiturk.js
+[2016-09-08 17:09:37 -0400] [877] [DEBUG] GET /static/lib/jquery-min.js
+[2016-09-08 17:09:37 -0400] [874] [DEBUG] GET /static/lib/d3.v3.min.js
+[2016-09-08 17:09:37 -0400] [875] [DEBUG] GET /static/lib/underscore-min.js
+[2016-09-08 17:09:37 -0400] [877] [DEBUG] GET /static/js/utils.js
+[2016-09-08 17:09:37 -0400] [874] [DEBUG] GET /static/js/task.js
+[2016-09-08 17:09:37 -0400] [874] [DEBUG] GET /sync/debugTG7S17%3AdebugMWDOXB
+2016-09-08 17:09:37,444 GET /sync route with id: debugTG7S17:debugMWDOXB
+[2016-09-08 17:09:37 -0400] [877] [DEBUG] GET /instructions/instructions-explicit-greeting.html
+[2016-09-08 17:09:37 -0400] [877] [DEBUG] GET /instructions/instructions-size-task.html
+[2016-09-08 17:09:37 -0400] [876] [DEBUG] GET /instructions/instructions-explicit-emphasis.html
+[2016-09-08 17:09:37 -0400] [874] [DEBUG] GET /stage.html
+[2016-09-08 17:09:37 -0400] [874] [DEBUG] GET /postquestionnaire.html
+[2016-09-08 17:09:37 -0400] [874] [DEBUG] GET /static/fonts/glyphicons-halflings-regular.woff
+[2016-09-08 17:09:43 -0400] [874] [DEBUG] Closing connection. 
+[2016-09-08 17:09:43 -0400] [874] [DEBUG] Closing connection. 
+[2016-09-08 17:09:43 -0400] [876] [DEBUG] Closing connection. 
+[2016-09-08 17:09:43 -0400] [877] [DEBUG] GET /ad
+[2016-09-08 17:09:43 -0400] [877] [DEBUG] GET /static/css/bootstrap.min.css
+[2016-09-08 17:09:43 -0400] [876] [DEBUG] GET /static/images/MSU-Wordmark-PMS-567.jpg
+[2016-09-08 17:09:44 -0400] [876] [DEBUG] GET /consent
+[2016-09-08 17:09:44 -0400] [877] [DEBUG] GET /static/css/bootstrap.min.css
+[2016-09-08 17:09:44 -0400] [874] [DEBUG] GET /static/images/MSU-Wordmark-PMS-567.jpg
+[2016-09-08 17:09:45 -0400] [876] [DEBUG] GET /static/fonts/glyphicons-halflings-regular.woff
+[2016-09-08 17:09:46 -0400] [875] [DEBUG] GET /exp
+2016-09-08 17:09:46,662 Accessing /exp: debugMW2K3T debugC11SSS debugM7S3VL 
+2016-09-08 17:09:46,665 given Counter({(0, 1): 6, (0, 0): 6, (1, 0): 5, (1, 1): 5}) chose (1, 1)
+[2016-09-08 17:09:46 -0400] [874] [DEBUG] GET /static/css/style.css
+[2016-09-08 17:09:46 -0400] [875] [DEBUG] GET /static/js/psiturk.js
+[2016-09-08 17:09:46 -0400] [874] [DEBUG] GET /sync/debugM7S3VL%3AdebugC11SSS
+2016-09-08 17:09:46,706 GET /sync route with id: debugM7S3VL:debugC11SSS
+[2016-09-08 17:09:46 -0400] [877] [DEBUG] GET /instructions/instructions-incidental-greeting.html
+[2016-09-08 17:09:46 -0400] [877] [DEBUG] GET /instructions/instructions-deepitem-task.html
+[2016-09-08 17:09:46 -0400] [875] [DEBUG] GET /instructions/instructions-incidental-emphasis.html
+[2016-09-08 17:09:46 -0400] [875] [DEBUG] GET /stage.html
+[2016-09-08 17:09:46 -0400] [875] [DEBUG] GET /postquestionnaire.html
+[2016-09-08 17:09:46 -0400] [874] [DEBUG] GET /static/fonts/glyphicons-halflings-regular.woff
+[2016-09-08 17:09:49 -0400] [877] [DEBUG] PUT /sync/debugM7S3VL%3AdebugC11SSS
+[2016-09-08 17:09:49 -0400] [876] [DEBUG] POST /inexp
+2016-09-08 17:09:49,317 PUT /sync route with id: debugM7S3VL:debugC11SSS
+2016-09-08 17:09:49,317 Accessing /inexp
+2016-09-08 17:09:49,322 saved data for debugM7S3VL:debugC11SSS (current trial: 4)
+[2016-09-08 17:09:55 -0400] [877] [DEBUG] Closing connection. 
+[2016-09-08 17:09:55 -0400] [876] [DEBUG] Closing connection. 
+[2016-09-08 17:09:55 -0400] [875] [DEBUG] Closing connection. 
+[2016-09-08 17:09:55 -0400] [874] [DEBUG] GET /ad
+[2016-09-08 17:09:55 -0400] [874] [DEBUG] GET /static/css/bootstrap.min.css
+[2016-09-08 17:09:55 -0400] [876] [DEBUG] GET /static/images/MSU-Wordmark-PMS-567.jpg
+[2016-09-08 17:09:57 -0400] [874] [DEBUG] GET /consent
+[2016-09-08 17:09:57 -0400] [874] [DEBUG] GET /static/css/bootstrap.min.css
+[2016-09-08 17:09:57 -0400] [877] [DEBUG] GET /static/css/style.css
+[2016-09-08 17:09:57 -0400] [877] [DEBUG] GET /static/images/MSU-Wordmark-PMS-567.jpg
+[2016-09-08 17:09:57 -0400] [874] [DEBUG] GET /static/fonts/glyphicons-halflings-regular.woff
+[2016-09-08 17:09:58 -0400] [875] [DEBUG] GET /exp
+2016-09-08 17:09:58,846 Accessing /exp: debugKQ8FY4 debugEKQWXQ debugCLGP1E 
+2016-09-08 17:09:58,849 given Counter({(0, 1): 6, (0, 0): 6, (1, 1): 6, (1, 0): 5}) chose (1, 0)
+[2016-09-08 17:09:58 -0400] [877] [DEBUG] GET /static/css/style.css
+[2016-09-08 17:09:58 -0400] [875] [DEBUG] GET /static/js/psiturk.js
+[2016-09-08 17:09:58 -0400] [874] [DEBUG] GET /static/lib/jquery-min.js
+[2016-09-08 17:09:58 -0400] [876] [DEBUG] GET /static/lib/backbone-min.js
+[2016-09-08 17:09:58 -0400] [877] [DEBUG] GET /static/lib/d3.v3.min.js
+[2016-09-08 17:09:58 -0400] [874] [DEBUG] GET /static/lib/underscore-min.js
+[2016-09-08 17:09:58 -0400] [876] [DEBUG] GET /static/js/utils.js
+[2016-09-08 17:09:58 -0400] [877] [DEBUG] GET /static/js/task.js
+[2016-09-08 17:09:58 -0400] [876] [DEBUG] GET /sync/debugCLGP1E%3AdebugEKQWXQ
+2016-09-08 17:09:58,892 GET /sync route with id: debugCLGP1E:debugEKQWXQ
+[2016-09-08 17:09:58 -0400] [874] [DEBUG] GET /instructions/instructions-incidental-greeting.html
+[2016-09-08 17:09:58 -0400] [877] [DEBUG] GET /instructions/instructions-size-task.html
+[2016-09-08 17:09:58 -0400] [877] [DEBUG] GET /instructions/instructions-incidental-emphasis.html
+[2016-09-08 17:09:58 -0400] [875] [DEBUG] GET /stage.html
+[2016-09-08 17:09:58 -0400] [875] [DEBUG] GET /postquestionnaire.html
+[2016-09-08 17:09:58 -0400] [876] [DEBUG] GET /static/fonts/glyphicons-halflings-regular.woff
+[2016-09-08 17:10:04 -0400] [876] [DEBUG] Closing connection. 
+[2016-09-08 17:10:04 -0400] [876] [DEBUG] Closing connection. 
+[2016-09-08 17:10:04 -0400] [874] [DEBUG] Closing connection. 
+[2016-09-08 17:10:04 -0400] [877] [DEBUG] GET /ad
+[2016-09-08 17:10:05 -0400] [875] [DEBUG] GET /static/css/bootstrap.min.css
+[2016-09-08 17:10:05 -0400] [876] [DEBUG] GET /static/images/MSU-Wordmark-PMS-567.jpg
+[2016-09-08 17:10:05 -0400] [875] [DEBUG] GET /consent
+[2016-09-08 17:10:05 -0400] [875] [DEBUG] GET /static/css/bootstrap.min.css
+[2016-09-08 17:10:05 -0400] [876] [DEBUG] GET /static/images/MSU-Wordmark-PMS-567.jpg
+[2016-09-08 17:10:07 -0400] [875] [DEBUG] GET /exp
+2016-09-08 17:10:07,531 Accessing /exp: debugW47FH6 debugTS5Y9H debugN3ZCWO 
+2016-09-08 17:10:07,534 given Counter({(0, 1): 6, (1, 0): 6, (0, 0): 6, (1, 1): 6}) chose (0, 1)
+[2016-09-08 17:10:07 -0400] [876] [DEBUG] GET /static/css/style.css
+[2016-09-08 17:10:07 -0400] [875] [DEBUG] GET /static/js/psiturk.js
+[2016-09-08 17:10:07 -0400] [877] [DEBUG] GET /sync/debugN3ZCWO%3AdebugTS5Y9H
+2016-09-08 17:10:07,574 GET /sync route with id: debugN3ZCWO:debugTS5Y9H
+[2016-09-08 17:10:07 -0400] [874] [DEBUG] GET /instructions/instructions-explicit-greeting.html
+[2016-09-08 17:10:07 -0400] [874] [DEBUG] GET /instructions/instructions-deepitem-task.html
+[2016-09-08 17:10:07 -0400] [876] [DEBUG] GET /instructions/instructions-explicit-emphasis.html
+[2016-09-08 17:10:07 -0400] [876] [DEBUG] GET /stage.html
+[2016-09-08 17:10:07 -0400] [876] [DEBUG] GET /postquestionnaire.html
+[2016-09-08 17:10:07 -0400] [876] [DEBUG] GET /static/fonts/glyphicons-halflings-regular.woff
+[2016-09-08 17:10:19 -0400] [874] [DEBUG] Closing connection. 
+[2016-09-08 17:10:19 -0400] [874] [DEBUG] Closing connection. 
+[2016-09-08 17:10:19 -0400] [875] [DEBUG] Closing connection. 
+[2016-09-08 17:10:19 -0400] [876] [DEBUG] GET /ad
+[2016-09-08 17:10:19 -0400] [877] [DEBUG] GET /static/images/MSU-Wordmark-PMS-567.jpg
+[2016-09-08 17:10:19 -0400] [876] [DEBUG] GET /static/css/bootstrap.min.css
+[2016-09-08 17:10:20 -0400] [875] [DEBUG] GET /consent
+[2016-09-08 17:10:20 -0400] [876] [DEBUG] GET /static/css/bootstrap.min.css
+[2016-09-08 17:10:20 -0400] [875] [DEBUG] GET /static/css/style.css
+[2016-09-08 17:10:20 -0400] [875] [DEBUG] GET /static/images/MSU-Wordmark-PMS-567.jpg
+[2016-09-08 17:10:20 -0400] [877] [DEBUG] GET /static/fonts/glyphicons-halflings-regular.woff
+[2016-09-08 17:10:21 -0400] [877] [DEBUG] GET /exp
+2016-09-08 17:10:21,909 Accessing /exp: debugF8TIHU debugYS6ISF debug3IJ45P 
+2016-09-08 17:10:21,912 given Counter({(0, 1): 7, (1, 0): 6, (0, 0): 6, (1, 1): 6}) chose (0, 0)
+[2016-09-08 17:10:21 -0400] [876] [DEBUG] GET /static/js/psiturk.js
+[2016-09-08 17:10:21 -0400] [877] [DEBUG] GET /static/css/style.css
+[2016-09-08 17:10:21 -0400] [875] [DEBUG] GET /static/js/utils.js
+[2016-09-08 17:10:21 -0400] [874] [DEBUG] GET /static/lib/jquery-min.js
+[2016-09-08 17:10:21 -0400] [877] [DEBUG] GET /static/lib/d3.v3.min.js
+[2016-09-08 17:10:21 -0400] [874] [DEBUG] GET /static/lib/backbone-min.js
+[2016-09-08 17:10:21 -0400] [875] [DEBUG] GET /static/lib/underscore-min.js
+[2016-09-08 17:10:21 -0400] [877] [DEBUG] GET /static/js/task.js
+[2016-09-08 17:10:21 -0400] [875] [DEBUG] GET /sync/debug3IJ45P%3AdebugYS6ISF
+2016-09-08 17:10:21,955 GET /sync route with id: debug3IJ45P:debugYS6ISF
+[2016-09-08 17:10:21 -0400] [874] [DEBUG] GET /instructions/instructions-explicit-greeting.html
+[2016-09-08 17:10:21 -0400] [874] [DEBUG] GET /instructions/instructions-size-task.html
+[2016-09-08 17:10:21 -0400] [874] [DEBUG] GET /instructions/instructions-explicit-emphasis.html
+[2016-09-08 17:10:21 -0400] [874] [DEBUG] GET /stage.html
+[2016-09-08 17:10:21 -0400] [874] [DEBUG] GET /postquestionnaire.html
+[2016-09-08 17:10:22 -0400] [876] [DEBUG] GET /static/fonts/glyphicons-halflings-regular.woff
+[2016-09-08 17:10:26 -0400] [876] [DEBUG] Closing connection. 
+[2016-09-08 17:10:26 -0400] [874] [DEBUG] Closing connection. 
+[2016-09-08 17:10:26 -0400] [875] [DEBUG] Closing connection. 
+[2016-09-08 17:10:27 -0400] [877] [DEBUG] GET /ad
+[2016-09-08 17:10:28 -0400] [875] [DEBUG] GET /consent
+[2016-09-08 17:10:30 -0400] [876] [DEBUG] GET /exp
+2016-09-08 17:10:30,245 Accessing /exp: debug8WBQ05 debugA916FM debugZPKU7Y 
+2016-09-08 17:10:30,248 given Counter({(0, 1): 7, (0, 0): 7, (1, 0): 6, (1, 1): 6}) chose (1, 1)
+[2016-09-08 17:10:30 -0400] [876] [DEBUG] GET /static/css/style.css
+[2016-09-08 17:10:30 -0400] [877] [DEBUG] GET /static/js/psiturk.js
+[2016-09-08 17:10:30 -0400] [874] [DEBUG] GET /static/css/bootstrap.min.css
+[2016-09-08 17:10:30 -0400] [874] [DEBUG] GET /sync/debugZPKU7Y%3AdebugA916FM
+2016-09-08 17:10:30,288 GET /sync route with id: debugZPKU7Y:debugA916FM
+[2016-09-08 17:10:30 -0400] [874] [DEBUG] GET /instructions/instructions-incidental-greeting.html
+[2016-09-08 17:10:30 -0400] [874] [DEBUG] GET /instructions/instructions-deepitem-task.html
+[2016-09-08 17:10:30 -0400] [874] [DEBUG] GET /instructions/instructions-incidental-emphasis.html
+[2016-09-08 17:10:30 -0400] [874] [DEBUG] GET /stage.html
+[2016-09-08 17:10:30 -0400] [874] [DEBUG] GET /postquestionnaire.html
+[2016-09-08 17:10:30 -0400] [877] [DEBUG] GET /static/fonts/glyphicons-halflings-regular.woff
+[2016-09-08 17:10:37 -0400] [876] [DEBUG] Closing connection. 
+[2016-09-08 17:10:37 -0400] [876] [DEBUG] Closing connection. 
+[2016-09-08 17:10:37 -0400] [876] [DEBUG] Closing connection. 
+[2016-09-08 17:10:37 -0400] [875] [DEBUG] GET /ad
+[2016-09-08 17:10:37 -0400] [875] [DEBUG] GET /static/css/bootstrap.min.css
+[2016-09-08 17:10:37 -0400] [874] [DEBUG] GET /static/images/MSU-Wordmark-PMS-567.jpg
+[2016-09-08 17:10:38 -0400] [877] [DEBUG] GET /consent
+[2016-09-08 17:10:38 -0400] [874] [DEBUG] GET /static/css/bootstrap.min.css
+[2016-09-08 17:10:38 -0400] [875] [DEBUG] GET /static/css/style.css
+[2016-09-08 17:10:38 -0400] [876] [DEBUG] GET /static/images/MSU-Wordmark-PMS-567.jpg
+[2016-09-08 17:10:38 -0400] [875] [DEBUG] GET /static/fonts/glyphicons-halflings-regular.woff
+[2016-09-08 17:10:40 -0400] [877] [DEBUG] GET /exp
+2016-09-08 17:10:40,686 Accessing /exp: debug4ST7U3 debugR5IASF debugQOT4UK 
+2016-09-08 17:10:40,689 given Counter({(0, 1): 7, (0, 0): 7, (1, 1): 7, (1, 0): 6}) chose (1, 0)
+[2016-09-08 17:10:40 -0400] [875] [DEBUG] GET /static/js/psiturk.js
+[2016-09-08 17:10:40 -0400] [876] [DEBUG] GET /static/css/style.css
+[2016-09-08 17:10:40 -0400] [874] [DEBUG] GET /static/lib/backbone-min.js
+[2016-09-08 17:10:40 -0400] [877] [DEBUG] GET /static/lib/jquery-min.js
+[2016-09-08 17:10:40 -0400] [876] [DEBUG] GET /static/lib/d3.v3.min.js
+[2016-09-08 17:10:40 -0400] [874] [DEBUG] GET /static/js/utils.js
+[2016-09-08 17:10:40 -0400] [877] [DEBUG] GET /static/lib/underscore-min.js
+[2016-09-08 17:10:40 -0400] [876] [DEBUG] GET /static/js/task.js
+[2016-09-08 17:10:40 -0400] [875] [DEBUG] GET /sync/debugQOT4UK%3AdebugR5IASF
+2016-09-08 17:10:40,733 GET /sync route with id: debugQOT4UK:debugR5IASF
+[2016-09-08 17:10:40 -0400] [875] [DEBUG] GET /instructions/instructions-incidental-greeting.html
+[2016-09-08 17:10:40 -0400] [875] [DEBUG] GET /instructions/instructions-size-task.html
+[2016-09-08 17:10:40 -0400] [875] [DEBUG] GET /instructions/instructions-incidental-emphasis.html
+[2016-09-08 17:10:40 -0400] [875] [DEBUG] GET /stage.html
+[2016-09-08 17:10:40 -0400] [875] [DEBUG] GET /postquestionnaire.html
+[2016-09-08 17:10:40 -0400] [877] [DEBUG] GET /static/fonts/glyphicons-halflings-regular.woff
+[2016-09-08 17:10:46 -0400] [874] [DEBUG] PUT /sync/debugQOT4UK%3AdebugR5IASF
+[2016-09-08 17:10:46 -0400] [875] [DEBUG] POST /inexp
+2016-09-08 17:10:46,378 Accessing /inexp
+2016-09-08 17:10:46,378 PUT /sync route with id: debugQOT4UK:debugR5IASF
+2016-09-08 17:10:46,387 saved data for debugQOT4UK:debugR5IASF (current trial: 4)
+[2016-09-08 17:10:50 -0400] [875] [DEBUG] Closing connection. 
+[2016-09-08 17:10:50 -0400] [874] [DEBUG] Closing connection. 
+[2016-09-08 17:10:50 -0400] [875] [DEBUG] Closing connection. 
+[2016-09-08 17:10:50 -0400] [874] [DEBUG] GET /ad
+[2016-09-08 17:10:50 -0400] [875] [DEBUG] GET /static/images/MSU-Wordmark-PMS-567.jpg
+[2016-09-08 17:10:50 -0400] [876] [DEBUG] GET /static/css/bootstrap.min.css
+[2016-09-08 17:10:51 -0400] [877] [DEBUG] GET /consent
+[2016-09-08 17:10:51 -0400] [877] [DEBUG] GET /static/css/style.css
+[2016-09-08 17:10:51 -0400] [875] [DEBUG] GET /static/css/bootstrap.min.css
+[2016-09-08 17:10:51 -0400] [874] [DEBUG] GET /static/images/MSU-Wordmark-PMS-567.jpg
+[2016-09-08 17:10:51 -0400] [877] [DEBUG] GET /static/fonts/glyphicons-halflings-regular.woff
+[2016-09-08 17:10:53 -0400] [874] [DEBUG] GET /exp
+2016-09-08 17:10:53,285 Accessing /exp: debug0AJ97J debugMQUF25 debugFOXF0W 
+2016-09-08 17:10:53,289 given Counter({(0, 1): 7, (1, 0): 7, (0, 0): 7, (1, 1): 7}) chose (1, 1)
+[2016-09-08 17:10:53 -0400] [874] [DEBUG] GET /static/css/style.css
+[2016-09-08 17:10:53 -0400] [877] [DEBUG] GET /static/js/psiturk.js
+[2016-09-08 17:10:53 -0400] [875] [DEBUG] GET /static/lib/jquery-min.js
+[2016-09-08 17:10:53 -0400] [876] [DEBUG] GET /static/js/utils.js
+[2016-09-08 17:10:53 -0400] [874] [DEBUG] GET /static/lib/backbone-min.js
+[2016-09-08 17:10:53 -0400] [875] [DEBUG] GET /static/lib/d3.v3.min.js
+[2016-09-08 17:10:53 -0400] [876] [DEBUG] GET /static/lib/underscore-min.js
+[2016-09-08 17:10:53 -0400] [874] [DEBUG] GET /static/js/task.js
+[2016-09-08 17:10:53 -0400] [874] [DEBUG] GET /sync/debugFOXF0W%3AdebugMQUF25
+2016-09-08 17:10:53,335 GET /sync route with id: debugFOXF0W:debugMQUF25
+[2016-09-08 17:10:53 -0400] [876] [DEBUG] GET /instructions/instructions-incidental-greeting.html
+[2016-09-08 17:10:53 -0400] [876] [DEBUG] GET /instructions/instructions-deepitem-task.html
+[2016-09-08 17:10:53 -0400] [876] [DEBUG] GET /instructions/instructions-incidental-emphasis.html
+[2016-09-08 17:10:53 -0400] [876] [DEBUG] GET /stage.html
+[2016-09-08 17:10:53 -0400] [876] [DEBUG] GET /postquestionnaire.html
+[2016-09-08 17:10:53 -0400] [877] [DEBUG] GET /static/fonts/glyphicons-halflings-regular.woff
+[2016-09-08 17:10:58 -0400] [876] [DEBUG] Closing connection. 
+[2016-09-08 17:10:58 -0400] [876] [DEBUG] Closing connection. 
+[2016-09-08 17:10:58 -0400] [874] [DEBUG] Closing connection. 
+[2016-09-08 17:10:58 -0400] [874] [DEBUG] GET /ad
+[2016-09-08 17:10:59 -0400] [877] [DEBUG] GET /consent
+[2016-09-08 17:11:01 -0400] [874] [DEBUG] GET /exp
+2016-09-08 17:11:01,520 Accessing /exp: debugROTW8Q debugYVWGBY debug0LMOTG 
+2016-09-08 17:11:01,524 given Counter({(1, 1): 8, (0, 1): 7, (1, 0): 7, (0, 0): 7}) chose (0, 0)
+[2016-09-08 17:11:01 -0400] [874] [DEBUG] GET /static/css/style.css
+[2016-09-08 17:11:01 -0400] [876] [DEBUG] GET /static/js/psiturk.js
+[2016-09-08 17:11:01 -0400] [875] [DEBUG] GET /static/css/bootstrap.min.css
+[2016-09-08 17:11:01 -0400] [875] [DEBUG] GET /sync/debug0LMOTG%3AdebugYVWGBY
+2016-09-08 17:11:01,565 GET /sync route with id: debug0LMOTG:debugYVWGBY
+[2016-09-08 17:11:01 -0400] [877] [DEBUG] GET /instructions/instructions-explicit-greeting.html
+[2016-09-08 17:11:01 -0400] [874] [DEBUG] GET /instructions/instructions-size-task.html
+[2016-09-08 17:11:01 -0400] [874] [DEBUG] GET /instructions/instructions-explicit-emphasis.html
+[2016-09-08 17:11:01 -0400] [874] [DEBUG] GET /stage.html
+[2016-09-08 17:11:01 -0400] [875] [DEBUG] GET /postquestionnaire.html
+[2016-09-08 17:11:01 -0400] [875] [DEBUG] GET /static/fonts/glyphicons-halflings-regular.woff
+[2016-09-08 17:11:06 -0400] [874] [DEBUG] Closing connection. 
+[2016-09-08 17:11:06 -0400] [874] [DEBUG] Closing connection. 
+[2016-09-08 17:11:06 -0400] [877] [DEBUG] Closing connection. 
+[2016-09-08 17:11:06 -0400] [875] [DEBUG] GET /ad
+[2016-09-08 17:11:06 -0400] [876] [DEBUG] GET /static/css/bootstrap.min.css
+[2016-09-08 17:11:06 -0400] [877] [DEBUG] GET /static/images/MSU-Wordmark-PMS-567.jpg
+[2016-09-08 17:11:07 -0400] [877] [DEBUG] GET /consent
+[2016-09-08 17:11:07 -0400] [874] [DEBUG] GET /static/css/bootstrap.min.css
+[2016-09-08 17:11:07 -0400] [875] [DEBUG] GET /static/css/style.css
+[2016-09-08 17:11:07 -0400] [875] [DEBUG] GET /static/images/MSU-Wordmark-PMS-567.jpg
+[2016-09-08 17:11:07 -0400] [874] [DEBUG] GET /static/fonts/glyphicons-halflings-regular.woff
+[2016-09-08 17:11:10 -0400] [874] [DEBUG] GET /exp
+2016-09-08 17:11:10,071 Accessing /exp: debug6DJGUK debug7U6VON debug5DDC8B 
+2016-09-08 17:11:10,075 given Counter({(0, 0): 8, (1, 1): 8, (0, 1): 7, (1, 0): 7}) chose (0, 1)
+[2016-09-08 17:11:10 -0400] [874] [DEBUG] GET /static/js/psiturk.js
+[2016-09-08 17:11:10 -0400] [876] [DEBUG] GET /static/css/style.css
+[2016-09-08 17:11:10 -0400] [877] [DEBUG] GET /static/lib/backbone-min.js
+[2016-09-08 17:11:10 -0400] [875] [DEBUG] GET /static/lib/jquery-min.js
+[2016-09-08 17:11:10 -0400] [877] [DEBUG] GET /static/lib/d3.v3.min.js
+[2016-09-08 17:11:10 -0400] [875] [DEBUG] GET /static/js/utils.js
+[2016-09-08 17:11:10 -0400] [876] [DEBUG] GET /static/js/task.js
+[2016-09-08 17:11:10 -0400] [875] [DEBUG] GET /static/lib/underscore-min.js
+[2016-09-08 17:11:10 -0400] [876] [DEBUG] GET /sync/debug5DDC8B%3Adebug7U6VON
+2016-09-08 17:11:10,119 GET /sync route with id: debug5DDC8B:debug7U6VON
+[2016-09-08 17:11:10 -0400] [876] [DEBUG] GET /instructions/instructions-explicit-greeting.html
+[2016-09-08 17:11:10 -0400] [875] [DEBUG] GET /instructions/instructions-deepitem-task.html
+[2016-09-08 17:11:10 -0400] [875] [DEBUG] GET /instructions/instructions-explicit-emphasis.html
+[2016-09-08 17:11:10 -0400] [877] [DEBUG] GET /stage.html
+[2016-09-08 17:11:10 -0400] [877] [DEBUG] GET /postquestionnaire.html
+[2016-09-08 17:11:10 -0400] [875] [DEBUG] GET /static/fonts/glyphicons-halflings-regular.woff
+[2016-09-08 17:11:19 -0400] [876] [DEBUG] Closing connection. 
+[2016-09-08 17:11:19 -0400] [876] [DEBUG] Closing connection. 
+[2016-09-08 17:11:19 -0400] [874] [DEBUG] Closing connection. 
+[2016-09-08 17:11:19 -0400] [877] [DEBUG] GET /ad
+[2016-09-08 17:11:19 -0400] [877] [DEBUG] GET /static/css/bootstrap.min.css
+[2016-09-08 17:11:19 -0400] [874] [DEBUG] GET /static/images/MSU-Wordmark-PMS-567.jpg
+[2016-09-08 17:11:20 -0400] [875] [DEBUG] GET /consent
+[2016-09-08 17:11:20 -0400] [876] [DEBUG] GET /static/css/bootstrap.min.css
+[2016-09-08 17:11:20 -0400] [877] [DEBUG] GET /static/css/style.css
+[2016-09-08 17:11:20 -0400] [877] [DEBUG] GET /static/images/MSU-Wordmark-PMS-567.jpg
+[2016-09-08 17:11:20 -0400] [875] [DEBUG] GET /static/fonts/glyphicons-halflings-regular.woff
+[2016-09-08 17:11:22 -0400] [876] [DEBUG] GET /exp
+2016-09-08 17:11:22,143 Accessing /exp: debug4HVVUY debug6XQ0N4 debugR5KFZR 
+2016-09-08 17:11:22,147 given Counter({(0, 1): 8, (0, 0): 8, (1, 1): 8, (1, 0): 7}) chose (1, 0)
+[2016-09-08 17:11:22 -0400] [876] [DEBUG] GET /static/css/style.css
+[2016-09-08 17:11:22 -0400] [874] [DEBUG] GET /static/js/psiturk.js
+[2016-09-08 17:11:22 -0400] [875] [DEBUG] GET /static/lib/backbone-min.js
+[2016-09-08 17:11:22 -0400] [877] [DEBUG] GET /static/lib/jquery-min.js
+[2016-09-08 17:11:22 -0400] [876] [DEBUG] GET /static/js/utils.js
+[2016-09-08 17:11:22 -0400] [877] [DEBUG] GET /static/lib/d3.v3.min.js
+[2016-09-08 17:11:22 -0400] [875] [DEBUG] GET /static/lib/underscore-min.js
+[2016-09-08 17:11:22 -0400] [876] [DEBUG] GET /static/js/task.js
+[2016-09-08 17:11:22 -0400] [874] [DEBUG] GET /sync/debugR5KFZR%3Adebug6XQ0N4
+2016-09-08 17:11:22,190 GET /sync route with id: debugR5KFZR:debug6XQ0N4
+[2016-09-08 17:11:22 -0400] [874] [DEBUG] GET /instructions/instructions-incidental-greeting.html
+[2016-09-08 17:11:22 -0400] [877] [DEBUG] GET /instructions/instructions-size-task.html
+[2016-09-08 17:11:22 -0400] [877] [DEBUG] GET /instructions/instructions-incidental-emphasis.html
+[2016-09-08 17:11:22 -0400] [876] [DEBUG] GET /stage.html
+[2016-09-08 17:11:22 -0400] [876] [DEBUG] GET /postquestionnaire.html
+[2016-09-08 17:11:22 -0400] [875] [DEBUG] GET /static/fonts/glyphicons-halflings-regular.woff
+[2016-09-08 17:11:30 -0400] [877] [DEBUG] Closing connection. 
+[2016-09-08 17:11:31 -0400] [876] [DEBUG] Closing connection. 
+[2016-09-08 17:11:31 -0400] [875] [DEBUG] Closing connection. 
+[2016-09-08 17:11:31 -0400] [877] [DEBUG] GET /ppid
+[2016-09-08 17:11:31 -0400] [877] [DEBUG] Closing connection. 
+[2016-09-08 17:11:31 -0400] [874] [INFO] Parent changed, shutting down: <Worker 874>
+[2016-09-08 17:11:31 -0400] [876] [INFO] Parent changed, shutting down: <Worker 876>
+[2016-09-08 17:11:31 -0400] [875] [INFO] Parent changed, shutting down: <Worker 875>
+[2016-09-08 17:11:31 -0400] [877] [INFO] Parent changed, shutting down: <Worker 877>
+[2016-09-08 17:11:31 -0400] [875] [INFO] Worker exiting (pid: 875)
+[2016-09-08 17:11:31 -0400] [876] [INFO] Worker exiting (pid: 876)
+[2016-09-08 17:11:31 -0400] [874] [INFO] Worker exiting (pid: 874)
+[2016-09-08 17:11:31 -0400] [877] [INFO] Worker exiting (pid: 877)
+[2016-09-13 10:33:18 -0400] [6912] [DEBUG] Current configuration:
+  proxy_protocol: False
+  worker_connections: 1000
+  statsd_host: None
+  max_requests_jitter: 0
+  post_fork: <function post_fork at 0x10312baa0>
+  pythonpath: None
+  enable_stdio_inheritance: False
+  worker_class: sync
+  ssl_version: 3
+  suppress_ragged_eofs: True
+  syslog: False
+  syslog_facility: user
+  when_ready: <function when_ready at 0x10312b7d0>
+  pre_fork: <function pre_fork at 0x10312b938>
+  cert_reqs: 0
+  preload_app: False
+  keepalive: 2
+  accesslog: None
+  group: 491251111
+  graceful_timeout: 30
+  do_handshake_on_connect: False
+  spew: False
+  workers: 4
+  proc_name: psiturk_experiment_server
+  sendfile: None
+  pidfile: None
+  umask: 0
+  on_reload: <function on_reload at 0x10312b668>
+  pre_exec: <function pre_exec at 0x1031330c8>
+  worker_tmp_dir: None
+  post_worker_init: <function post_worker_init at 0x10312bc08>
+  limit_request_fields: 100
+  on_exit: <function on_exit at 0x1031c5488>
+  config: None
+  secure_scheme_headers: {'X-FORWARDED-PROTOCOL': 'ssl', 'X-FORWARDED-PROTO': 'https', 'X-FORWARDED-SSL': 'on'}
+  proxy_allow_ips: ['127.0.0.1']
+  pre_request: <function pre_request at 0x103133230>
+  post_request: <function post_request at 0x103133320>
+  user: 1524888568
+  forwarded_allow_ips: ['127.0.0.1']
+  worker_int: <function worker_int at 0x10312bd70>
+  threads: 1
+  max_requests: 0
+  limit_request_line: 0
+  access_log_format: %(h)s %(l)s %(u)s %(t)s "%(r)s" %(s)s %(b)s "%(f)s" "%(a)s"
+  certfile: None
+  worker_exit: <function worker_exit at 0x103133488>
+  chdir: /Users/khealey/code/experiments/Heal16implicit
+  paste: None
+  default_proc_name: gunicorn
+  errorlog: server.log
+  loglevel: debug
+  logconfig: None
+  syslog_addr: unix:///var/run/syslog
+  syslog_prefix: None
+  daemon: False
+  ciphers: TLSv1
+  on_starting: <function on_starting at 0x10312b500>
+  worker_abort: <function worker_abort at 0x10312bed8>
+  bind: ['0.0.0.0:22362']
+  raw_env: []
+  reload: False
+  check_config: False
+  limit_request_field_size: 8190
+  nworkers_changed: <function nworkers_changed at 0x1031335f0>
+  timeout: 30
+  ca_certs: None
+  django_settings: None
+  tmp_upload_dir: None
+  keyfile: None
+  backlog: 2048
+  logger_class: gunicorn.glogging.Logger
+  statsd_prefix: 
+[2016-09-13 10:33:18 -0400] [6912] [INFO] Starting gunicorn 19.4.5
+[2016-09-13 10:33:18 -0400] [6912] [DEBUG] Arbiter booted
+[2016-09-13 10:33:18 -0400] [6912] [INFO] Listening at: http://0.0.0.0:22362 (6912)
+[2016-09-13 10:33:18 -0400] [6912] [INFO] Using worker: sync
+[2016-09-13 10:33:18 -0400] [6915] [INFO] Booting worker with pid: 6915
+[2016-09-13 10:33:19 -0400] [6916] [INFO] Booting worker with pid: 6916
+[2016-09-13 10:33:19 -0400] [6917] [INFO] Booting worker with pid: 6917
+2016-09-13 10:33:19,140 Secret key: 'this is my secret key which is hard to guess, i should change this'
+2016-09-13 10:33:19,144 /Users/khealey/anaconda/lib/python2.7/site-packages/psiturk/psiturk_js/psiturk.js
+[2016-09-13 10:33:19 -0400] [6918] [INFO] Booting worker with pid: 6918
+2016-09-13 10:33:19,214 Secret key: 'this is my secret key which is hard to guess, i should change this'
+2016-09-13 10:33:19,218 /Users/khealey/anaconda/lib/python2.7/site-packages/psiturk/psiturk_js/psiturk.js
+[2016-09-13 10:33:19 -0400] [6912] [DEBUG] 4 workers
+2016-09-13 10:33:19,294 Secret key: 'this is my secret key which is hard to guess, i should change this'
+2016-09-13 10:33:19,298 /Users/khealey/anaconda/lib/python2.7/site-packages/psiturk/psiturk_js/psiturk.js
+2016-09-13 10:33:19,391 Secret key: 'this is my secret key which is hard to guess, i should change this'
+2016-09-13 10:33:19,394 /Users/khealey/anaconda/lib/python2.7/site-packages/psiturk/psiturk_js/psiturk.js
+[2016-09-13 10:33:20 -0400] [6915] [DEBUG] Closing connection. 
+[2016-09-13 10:33:23 -0400] [6912] [INFO] Handling signal: winch
+[2016-09-13 10:33:23 -0400] [6912] [DEBUG] SIGWINCH ignored. Not daemonized
+[2016-09-13 10:33:26 -0400] [6916] [DEBUG] Closing connection. 
+[2016-09-13 10:33:26 -0400] [6916] [DEBUG] Closing connection. 
+[2016-09-13 10:33:27 -0400] [6916] [DEBUG] Closing connection. 
+[2016-09-13 10:33:27 -0400] [6916] [DEBUG] GET /ad
+[2016-09-13 10:33:27 -0400] [6917] [DEBUG] GET /static/css/bootstrap.min.css
+[2016-09-13 10:33:27 -0400] [6916] [DEBUG] GET /static/images/MSU-Wordmark-PMS-567.jpg
+[2016-09-13 10:33:27 -0400] [6917] [DEBUG] GET /favicon.ico
+[2016-09-13 10:33:28 -0400] [6915] [DEBUG] GET /consent
+[2016-09-13 10:33:28 -0400] [6915] [DEBUG] GET /static/css/style.css
+[2016-09-13 10:33:28 -0400] [6916] [DEBUG] GET /static/images/MSU-Wordmark-PMS-567.jpg
+[2016-09-13 10:33:28 -0400] [6918] [DEBUG] GET /static/fonts/glyphicons-halflings-regular.woff
+[2016-09-13 10:33:33 -0400] [6915] [DEBUG] GET /exp
+2016-09-13 10:33:33,761 Accessing /exp: debugB56441 debugA154YP debugLJN9UV 
+2016-09-13 10:33:33,765 given Counter({(1, 0): 1, (0, 1): 0, (1, 2): 0, (0, 0): 0, (1, 1): 0, (0, 2): 0}) chose (1, 1)
+[2016-09-13 10:33:33 -0400] [6915] [DEBUG] GET /static/js/psiturk.js
+[2016-09-13 10:33:33 -0400] [6918] [DEBUG] GET /static/js/task.js
+[2016-09-13 10:33:33 -0400] [6916] [DEBUG] GET /static/lib/jquery-min.js
+[2016-09-13 10:33:33 -0400] [6917] [DEBUG] GET /static/js/utils.js
+[2016-09-13 10:33:33 -0400] [6918] [DEBUG] GET /static/lib/underscore-min.js
+[2016-09-13 10:33:33 -0400] [6916] [DEBUG] GET /static/lib/d3.v3.min.js
+[2016-09-13 10:33:33 -0400] [6917] [DEBUG] GET /static/lib/backbone-min.js
+[2016-09-13 10:33:33 -0400] [6916] [DEBUG] GET /sync/debugLJN9UV%3AdebugA154YP
+2016-09-13 10:33:33,822 GET /sync route with id: debugLJN9UV:debugA154YP
+[2016-09-13 10:33:33 -0400] [6918] [DEBUG] GET /instructions/instructions-incidental-greeting.html
+[2016-09-13 10:33:33 -0400] [6915] [DEBUG] GET /instructions/instructions-deepitem-task.html
+[2016-09-13 10:33:33 -0400] [6917] [DEBUG] GET /instructions/instructions-incidental-emphasis.html
+[2016-09-13 10:33:33 -0400] [6917] [DEBUG] GET /stage.html
+[2016-09-13 10:33:33 -0400] [6918] [DEBUG] GET /postquestionnaire.html
+[2016-09-13 10:33:33 -0400] [6918] [DEBUG] GET /static/fonts/glyphicons-halflings-regular.woff
+[2016-09-13 10:34:33 -0400] [6916] [DEBUG] PUT /sync/debugLJN9UV%3AdebugA154YP
+[2016-09-13 10:34:33 -0400] [6917] [DEBUG] POST /inexp
+2016-09-13 10:34:33,444 PUT /sync route with id: debugLJN9UV:debugA154YP
+2016-09-13 10:34:33,444 Accessing /inexp
+2016-09-13 10:34:33,452 saved data for debugLJN9UV:debugA154YP (current trial: 4)
+[2016-09-13 10:35:51 -0400] [6916] [DEBUG] Closing connection. 
+[2016-09-13 10:35:51 -0400] [6917] [DEBUG] Closing connection. 
+[2016-09-13 10:36:00 -0400] [6918] [DEBUG] GET /consent
+[2016-09-13 10:36:00 -0400] [6915] [DEBUG] GET /static/css/style.css
+[2016-09-13 10:36:00 -0400] [6917] [DEBUG] GET /static/css/bootstrap.min.css
+[2016-09-13 10:36:00 -0400] [6917] [DEBUG] GET /static/fonts/glyphicons-halflings-regular.woff
+[2016-09-13 10:36:13 -0400] [6912] [INFO] Handling signal: int
+[2016-09-13 10:36:13 -0400] [6917] [INFO] Worker exiting (pid: 6917)
+[2016-09-13 10:36:13 -0400] [6916] [INFO] Worker exiting (pid: 6916)
+[2016-09-13 10:36:13 -0400] [6918] [INFO] Worker exiting (pid: 6918)
+[2016-09-13 10:36:13 -0400] [6915] [INFO] Worker exiting (pid: 6915)
+[2016-09-13 10:36:13 -0400] [6912] [INFO] Shutting down: Master
+[2016-09-13 10:36:17 -0400] [6972] [DEBUG] Current configuration:
+  proxy_protocol: False
+  worker_connections: 1000
+  statsd_host: None
+  max_requests_jitter: 0
+  post_fork: <function post_fork at 0x10312baa0>
+  pythonpath: None
+  enable_stdio_inheritance: False
+  worker_class: sync
+  ssl_version: 3
+  suppress_ragged_eofs: True
+  syslog: False
+  syslog_facility: user
+  when_ready: <function when_ready at 0x10312b7d0>
+  pre_fork: <function pre_fork at 0x10312b938>
+  cert_reqs: 0
+  preload_app: False
+  keepalive: 2
+  accesslog: None
+  group: 491251111
+  graceful_timeout: 30
+  do_handshake_on_connect: False
+  spew: False
+  workers: 4
+  proc_name: psiturk_experiment_server
+  sendfile: None
+  pidfile: None
+  umask: 0
+  on_reload: <function on_reload at 0x10312b668>
+  pre_exec: <function pre_exec at 0x1031330c8>
+  worker_tmp_dir: None
+  post_worker_init: <function post_worker_init at 0x10312bc08>
+  limit_request_fields: 100
+  on_exit: <function on_exit at 0x1031c5488>
+  config: None
+  secure_scheme_headers: {'X-FORWARDED-PROTOCOL': 'ssl', 'X-FORWARDED-PROTO': 'https', 'X-FORWARDED-SSL': 'on'}
+  proxy_allow_ips: ['127.0.0.1']
+  pre_request: <function pre_request at 0x103133230>
+  post_request: <function post_request at 0x103133320>
+  user: 1524888568
+  forwarded_allow_ips: ['127.0.0.1']
+  worker_int: <function worker_int at 0x10312bd70>
+  threads: 1
+  max_requests: 0
+  limit_request_line: 0
+  access_log_format: %(h)s %(l)s %(u)s %(t)s "%(r)s" %(s)s %(b)s "%(f)s" "%(a)s"
+  certfile: None
+  worker_exit: <function worker_exit at 0x103133488>
+  chdir: /Users/khealey/code/experiments/Heal16implicit
+  paste: None
+  default_proc_name: gunicorn
+  errorlog: server.log
+  loglevel: debug
+  logconfig: None
+  syslog_addr: unix:///var/run/syslog
+  syslog_prefix: None
+  daemon: False
+  ciphers: TLSv1
+  on_starting: <function on_starting at 0x10312b500>
+  worker_abort: <function worker_abort at 0x10312bed8>
+  bind: ['0.0.0.0:22362']
+  raw_env: []
+  reload: False
+  check_config: False
+  limit_request_field_size: 8190
+  nworkers_changed: <function nworkers_changed at 0x1031335f0>
+  timeout: 30
+  ca_certs: None
+  django_settings: None
+  tmp_upload_dir: None
+  keyfile: None
+  backlog: 2048
+  logger_class: gunicorn.glogging.Logger
+  statsd_prefix: 
+[2016-09-13 10:36:17 -0400] [6972] [INFO] Starting gunicorn 19.4.5
+[2016-09-13 10:36:17 -0400] [6972] [DEBUG] Arbiter booted
+[2016-09-13 10:36:17 -0400] [6972] [INFO] Listening at: http://0.0.0.0:22362 (6972)
+[2016-09-13 10:36:17 -0400] [6972] [INFO] Using worker: sync
+[2016-09-13 10:36:17 -0400] [6975] [INFO] Booting worker with pid: 6975
+[2016-09-13 10:36:17 -0400] [6976] [INFO] Booting worker with pid: 6976
+[2016-09-13 10:36:17 -0400] [6977] [INFO] Booting worker with pid: 6977
+2016-09-13 10:36:17,564 Secret key: 'this is my secret key which is hard to guess, i should change this'
+2016-09-13 10:36:17,567 /Users/khealey/anaconda/lib/python2.7/site-packages/psiturk/psiturk_js/psiturk.js
+[2016-09-13 10:36:17 -0400] [6978] [INFO] Booting worker with pid: 6978
+[2016-09-13 10:36:17 -0400] [6972] [DEBUG] 4 workers
+2016-09-13 10:36:17,672 Secret key: 'this is my secret key which is hard to guess, i should change this'
+2016-09-13 10:36:17,676 /Users/khealey/anaconda/lib/python2.7/site-packages/psiturk/psiturk_js/psiturk.js
+2016-09-13 10:36:17,728 Secret key: 'this is my secret key which is hard to guess, i should change this'
+2016-09-13 10:36:17,732 /Users/khealey/anaconda/lib/python2.7/site-packages/psiturk/psiturk_js/psiturk.js
+2016-09-13 10:36:17,791 Secret key: 'this is my secret key which is hard to guess, i should change this'
+2016-09-13 10:36:17,794 /Users/khealey/anaconda/lib/python2.7/site-packages/psiturk/psiturk_js/psiturk.js
+[2016-09-13 10:36:18 -0400] [6976] [DEBUG] Closing connection. 
+[2016-09-13 10:37:26 -0400] [6977] [DEBUG] GET /consent
+[2016-09-13 10:37:26 -0400] [6978] [DEBUG] GET /static/css/style.css
+[2016-09-13 10:37:26 -0400] [6976] [DEBUG] GET /static/css/bootstrap.min.css
+[2016-09-13 10:37:26 -0400] [6978] [DEBUG] GET /static/fonts/glyphicons-halflings-regular.woff
+[2016-09-13 10:37:38 -0400] [6977] [DEBUG] GET /consent
+[2016-09-13 10:37:38 -0400] [6977] [DEBUG] GET /static/css/style.css
+[2016-09-13 10:37:38 -0400] [6975] [DEBUG] GET /static/css/bootstrap.min.css
+[2016-09-13 10:37:38 -0400] [6978] [DEBUG] GET /static/fonts/glyphicons-halflings-regular.woff
+[2016-09-13 10:38:04 -0400] [6976] [DEBUG] GET /consent
+[2016-09-13 10:38:04 -0400] [6975] [DEBUG] GET /static/css/style.css
+[2016-09-13 10:38:04 -0400] [6977] [DEBUG] GET /static/css/bootstrap.min.css
+[2016-09-13 10:38:04 -0400] [6978] [DEBUG] GET /static/fonts/glyphicons-halflings-regular.woff
+[2016-09-13 10:38:23 -0400] [6976] [DEBUG] GET /consent
+[2016-09-13 10:38:23 -0400] [6978] [DEBUG] GET /static/css/style.css
+[2016-09-13 10:38:23 -0400] [6975] [DEBUG] GET /static/css/bootstrap.min.css
+[2016-09-13 10:38:23 -0400] [6976] [DEBUG] GET /static/fonts/glyphicons-halflings-regular.woff
+[2016-09-13 10:38:25 -0400] [6978] [DEBUG] GET /consent
+[2016-09-13 10:38:25 -0400] [6976] [DEBUG] GET /static/css/bootstrap.min.css
+[2016-09-13 10:38:25 -0400] [6978] [DEBUG] GET /static/css/style.css
+[2016-09-13 10:38:25 -0400] [6975] [DEBUG] GET /static/fonts/glyphicons-halflings-regular.woff
+[2016-09-13 10:38:34 -0400] [6978] [DEBUG] GET /consent
+[2016-09-13 10:38:34 -0400] [6975] [DEBUG] GET /static/css/bootstrap.min.css
+[2016-09-13 10:38:34 -0400] [6976] [DEBUG] GET /static/css/style.css
+[2016-09-13 10:38:34 -0400] [6976] [DEBUG] GET /static/fonts/glyphicons-halflings-regular.woff
+[2016-09-13 10:39:28 -0400] [6977] [DEBUG] GET /consent
+[2016-09-13 10:39:28 -0400] [6977] [DEBUG] GET /static/css/bootstrap.min.css
+[2016-09-13 10:39:28 -0400] [6976] [DEBUG] GET /static/css/style.css
+[2016-09-13 10:39:28 -0400] [6977] [DEBUG] GET /static/fonts/glyphicons-halflings-regular.woff
+[2016-09-13 10:39:30 -0400] [6978] [DEBUG] GET /consent
+[2016-09-13 10:39:30 -0400] [6978] [DEBUG] GET /static/css/style.css
+[2016-09-13 10:39:30 -0400] [6977] [DEBUG] GET /static/css/bootstrap.min.css
+[2016-09-13 10:39:30 -0400] [6975] [DEBUG] GET /static/fonts/glyphicons-halflings-regular.woff
+[2016-09-13 10:41:39 -0400] [6978] [DEBUG] GET /consent
+[2016-09-13 10:41:39 -0400] [6976] [DEBUG] GET /static/css/bootstrap.min.css
+[2016-09-13 10:41:39 -0400] [6978] [DEBUG] GET /static/css/style.css
+[2016-09-13 10:41:39 -0400] [6976] [DEBUG] GET /static/fonts/glyphicons-halflings-regular.woff
+[2016-09-13 10:42:11 -0400] [6975] [DEBUG] GET /consent
+[2016-09-13 10:42:11 -0400] [6978] [DEBUG] GET /static/css/bootstrap.min.css
+[2016-09-13 10:42:11 -0400] [6976] [DEBUG] GET /static/css/style.css
+[2016-09-13 10:42:11 -0400] [6977] [DEBUG] GET /static/fonts/glyphicons-halflings-regular.woff
+[2016-09-13 10:42:18 -0400] [6978] [DEBUG] GET /consent
+[2016-09-13 10:42:18 -0400] [6978] [DEBUG] GET /static/css/style.css
+[2016-09-13 10:42:18 -0400] [6975] [DEBUG] GET /static/css/bootstrap.min.css
+[2016-09-13 10:42:18 -0400] [6976] [DEBUG] GET /static/fonts/glyphicons-halflings-regular.woff
+[2016-09-13 10:42:25 -0400] [6977] [DEBUG] GET /consent
+[2016-09-13 10:42:25 -0400] [6975] [DEBUG] GET /static/css/style.css
+[2016-09-13 10:42:25 -0400] [6977] [DEBUG] GET /static/css/bootstrap.min.css
+[2016-09-13 10:42:25 -0400] [6975] [DEBUG] GET /static/fonts/glyphicons-halflings-regular.woff
+[2016-09-13 10:42:37 -0400] [6975] [DEBUG] GET /consent
+[2016-09-13 10:42:37 -0400] [6978] [DEBUG] GET /static/css/style.css
+[2016-09-13 10:42:37 -0400] [6976] [DEBUG] GET /static/css/bootstrap.min.css
+[2016-09-13 10:42:37 -0400] [6975] [DEBUG] GET /static/fonts/glyphicons-halflings-regular.woff
+[2016-09-13 10:42:38 -0400] [6976] [DEBUG] GET /consent
+[2016-09-13 10:42:38 -0400] [6976] [DEBUG] GET /static/css/bootstrap.min.css
+[2016-09-13 10:42:38 -0400] [6975] [DEBUG] GET /static/css/style.css
+[2016-09-13 10:42:38 -0400] [6976] [DEBUG] GET /static/fonts/glyphicons-halflings-regular.woff
+[2016-09-13 10:42:55 -0400] [6976] [DEBUG] GET /consent
+[2016-09-13 10:42:55 -0400] [6975] [DEBUG] GET /static/css/bootstrap.min.css
+[2016-09-13 10:42:55 -0400] [6977] [DEBUG] GET /static/css/style.css
+[2016-09-13 10:42:55 -0400] [6978] [DEBUG] GET /static/fonts/glyphicons-halflings-regular.woff
+[2016-09-13 10:43:55 -0400] [6976] [DEBUG] GET /consent
+[2016-09-13 10:43:55 -0400] [6976] [DEBUG] GET /static/css/bootstrap.min.css
+[2016-09-13 10:43:55 -0400] [6978] [DEBUG] GET /static/css/style.css
+[2016-09-13 10:43:55 -0400] [6977] [DEBUG] GET /static/fonts/glyphicons-halflings-regular.woff
+[2016-09-13 10:44:15 -0400] [6975] [DEBUG] GET /consent
+[2016-09-13 10:44:15 -0400] [6975] [DEBUG] GET /static/css/bootstrap.min.css
+[2016-09-13 10:44:15 -0400] [6978] [DEBUG] GET /static/css/style.css
+[2016-09-13 10:44:15 -0400] [6977] [DEBUG] GET /static/fonts/glyphicons-halflings-regular.woff
+[2016-09-13 10:45:12 -0400] [6978] [DEBUG] GET /consent
+[2016-09-13 10:45:12 -0400] [6978] [DEBUG] GET /static/css/bootstrap.min.css
+[2016-09-13 10:45:12 -0400] [6975] [DEBUG] GET /static/css/style.css
+[2016-09-13 10:45:12 -0400] [6975] [DEBUG] GET /static/fonts/glyphicons-halflings-regular.woff
+[2016-09-13 10:45:22 -0400] [6975] [DEBUG] GET /consent
+[2016-09-13 10:45:22 -0400] [6976] [DEBUG] GET /static/css/style.css
+[2016-09-13 10:45:22 -0400] [6978] [DEBUG] GET /static/css/bootstrap.min.css
+[2016-09-13 10:45:22 -0400] [6976] [DEBUG] GET /static/fonts/glyphicons-halflings-regular.woff
+[2016-09-13 10:46:01 -0400] [6978] [DEBUG] GET /consent
+[2016-09-13 10:46:01 -0400] [6978] [DEBUG] GET /static/css/style.css
+[2016-09-13 10:46:01 -0400] [6976] [DEBUG] GET /static/css/bootstrap.min.css
+[2016-09-13 10:46:01 -0400] [6976] [DEBUG] GET /static/fonts/glyphicons-halflings-regular.woff
+[2016-09-13 10:46:03 -0400] [6978] [DEBUG] GET /consent
+[2016-09-13 10:46:03 -0400] [6978] [DEBUG] GET /static/css/bootstrap.min.css
+[2016-09-13 10:46:03 -0400] [6975] [DEBUG] GET /static/css/style.css
+[2016-09-13 10:46:03 -0400] [6978] [DEBUG] GET /static/fonts/glyphicons-halflings-regular.woff
+[2016-09-13 10:48:53 -0400] [6976] [DEBUG] GET /consent
+[2016-09-13 10:48:53 -0400] [6975] [DEBUG] GET /static/css/style.css
+[2016-09-13 10:48:53 -0400] [6978] [DEBUG] GET /static/css/bootstrap.min.css
+[2016-09-13 10:48:53 -0400] [6976] [DEBUG] GET /static/fonts/glyphicons-halflings-regular.woff
+[2016-09-13 10:49:57 -0400] [6977] [DEBUG] GET /consent
+[2016-09-13 10:49:57 -0400] [6976] [DEBUG] GET /static/css/style.css
+[2016-09-13 10:49:57 -0400] [6977] [DEBUG] GET /static/css/bootstrap.min.css
+[2016-09-13 10:49:57 -0400] [6975] [DEBUG] GET /static/fonts/glyphicons-halflings-regular.woff
+[2016-09-13 10:51:03 -0400] [6978] [DEBUG] GET /consent
+[2016-09-13 10:51:03 -0400] [6976] [DEBUG] GET /static/css/style.css
+[2016-09-13 10:51:03 -0400] [6978] [DEBUG] GET /static/css/bootstrap.min.css
+[2016-09-13 10:51:03 -0400] [6975] [DEBUG] GET /static/fonts/glyphicons-halflings-regular.woff
+[2016-09-13 10:52:19 -0400] [6976] [DEBUG] GET /consent
+[2016-09-13 10:52:19 -0400] [6976] [DEBUG] GET /static/css/bootstrap.min.css
+[2016-09-13 10:52:19 -0400] [6977] [DEBUG] GET /static/css/style.css
+[2016-09-13 10:52:19 -0400] [6978] [DEBUG] GET /static/fonts/glyphicons-halflings-regular.woff
+[2016-09-13 10:52:26 -0400] [6978] [DEBUG] GET /consent
+[2016-09-13 10:52:26 -0400] [6975] [DEBUG] GET /static/css/bootstrap.min.css
+[2016-09-13 10:52:26 -0400] [6978] [DEBUG] GET /static/css/style.css
+[2016-09-13 10:52:26 -0400] [6978] [DEBUG] GET /static/fonts/glyphicons-halflings-regular.woff
+[2016-09-13 10:52:33 -0400] [6977] [DEBUG] GET /consent
+[2016-09-13 10:52:33 -0400] [6977] [DEBUG] GET /static/css/bootstrap.min.css
+[2016-09-13 10:52:33 -0400] [6975] [DEBUG] GET /static/css/style.css
+[2016-09-13 10:52:34 -0400] [6978] [DEBUG] GET /static/fonts/glyphicons-halflings-regular.woff
+[2016-09-13 10:57:54 -0400] [6975] [DEBUG] Closing connection. 
+[2016-09-13 10:57:54 -0400] [6975] [DEBUG] Closing connection. 
+[2016-09-13 10:58:07 -0400] [6972] [INFO] Handling signal: int
+[2016-09-13 10:58:07 -0400] [6975] [INFO] Worker exiting (pid: 6975)
+[2016-09-13 10:58:07 -0400] [6976] [INFO] Worker exiting (pid: 6976)
+[2016-09-13 10:58:07 -0400] [6977] [INFO] Worker exiting (pid: 6977)
+[2016-09-13 10:58:07 -0400] [6978] [INFO] Worker exiting (pid: 6978)
+[2016-09-13 10:58:07 -0400] [6972] [INFO] Shutting down: Master
+[2016-09-13 10:58:18 -0400] [7185] [DEBUG] Current configuration:
+  proxy_protocol: False
+  worker_connections: 1000
+  statsd_host: None
+  max_requests_jitter: 0
+  post_fork: <function post_fork at 0x10282baa0>
+  pythonpath: None
+  enable_stdio_inheritance: False
+  worker_class: sync
+  ssl_version: 3
+  suppress_ragged_eofs: True
+  syslog: False
+  syslog_facility: user
+  when_ready: <function when_ready at 0x10282b7d0>
+  pre_fork: <function pre_fork at 0x10282b938>
+  cert_reqs: 0
+  preload_app: False
+  keepalive: 2
+  accesslog: None
+  group: 491251111
+  graceful_timeout: 30
+  do_handshake_on_connect: False
+  spew: False
+  workers: 4
+  proc_name: psiturk_experiment_server
+  sendfile: None
+  pidfile: None
+  umask: 0
+  on_reload: <function on_reload at 0x10282b668>
+  pre_exec: <function pre_exec at 0x1028330c8>
+  worker_tmp_dir: None
+  post_worker_init: <function post_worker_init at 0x10282bc08>
+  limit_request_fields: 100
+  on_exit: <function on_exit at 0x1028c5488>
+  config: None
+  secure_scheme_headers: {'X-FORWARDED-PROTOCOL': 'ssl', 'X-FORWARDED-PROTO': 'https', 'X-FORWARDED-SSL': 'on'}
+  proxy_allow_ips: ['127.0.0.1']
+  pre_request: <function pre_request at 0x102833230>
+  post_request: <function post_request at 0x102833320>
+  user: 1524888568
+  forwarded_allow_ips: ['127.0.0.1']
+  worker_int: <function worker_int at 0x10282bd70>
+  threads: 1
+  max_requests: 0
+  limit_request_line: 0
+  access_log_format: %(h)s %(l)s %(u)s %(t)s "%(r)s" %(s)s %(b)s "%(f)s" "%(a)s"
+  certfile: None
+  worker_exit: <function worker_exit at 0x102833488>
+  chdir: /Users/khealey/code/experiments/Heal16implicit
+  paste: None
+  default_proc_name: gunicorn
+  errorlog: server.log
+  loglevel: debug
+  logconfig: None
+  syslog_addr: unix:///var/run/syslog
+  syslog_prefix: None
+  daemon: False
+  ciphers: TLSv1
+  on_starting: <function on_starting at 0x10282b500>
+  worker_abort: <function worker_abort at 0x10282bed8>
+  bind: ['0.0.0.0:22362']
+  raw_env: []
+  reload: False
+  check_config: False
+  limit_request_field_size: 8190
+  nworkers_changed: <function nworkers_changed at 0x1028335f0>
+  timeout: 30
+  ca_certs: None
+  django_settings: None
+  tmp_upload_dir: None
+  keyfile: None
+  backlog: 2048
+  logger_class: gunicorn.glogging.Logger
+  statsd_prefix: 
+[2016-09-13 10:58:18 -0400] [7185] [INFO] Starting gunicorn 19.4.5
+[2016-09-13 10:58:18 -0400] [7185] [DEBUG] Arbiter booted
+[2016-09-13 10:58:18 -0400] [7185] [INFO] Listening at: http://0.0.0.0:22362 (7185)
+[2016-09-13 10:58:18 -0400] [7185] [INFO] Using worker: sync
+[2016-09-13 10:58:18 -0400] [7188] [INFO] Booting worker with pid: 7188
+[2016-09-13 10:58:18 -0400] [7189] [INFO] Booting worker with pid: 7189
+[2016-09-13 10:58:18 -0400] [7190] [INFO] Booting worker with pid: 7190
+[2016-09-13 10:58:18 -0400] [7191] [INFO] Booting worker with pid: 7191
+2016-09-13 10:58:18,308 Secret key: 'this is my secret key which is hard to guess, i should change this'
+2016-09-13 10:58:18,312 /Users/khealey/anaconda/lib/python2.7/site-packages/psiturk/psiturk_js/psiturk.js
+[2016-09-13 10:58:18 -0400] [7185] [DEBUG] 4 workers
+2016-09-13 10:58:18,352 Secret key: 'this is my secret key which is hard to guess, i should change this'
+2016-09-13 10:58:18,356 /Users/khealey/anaconda/lib/python2.7/site-packages/psiturk/psiturk_js/psiturk.js
+2016-09-13 10:58:18,442 Secret key: 'this is my secret key which is hard to guess, i should change this'
+2016-09-13 10:58:18,446 /Users/khealey/anaconda/lib/python2.7/site-packages/psiturk/psiturk_js/psiturk.js
+2016-09-13 10:58:18,486 Secret key: 'this is my secret key which is hard to guess, i should change this'
+2016-09-13 10:58:18,490 /Users/khealey/anaconda/lib/python2.7/site-packages/psiturk/psiturk_js/psiturk.js
+[2016-09-13 10:58:19 -0400] [7191] [DEBUG] Closing connection. 
+[2016-09-13 10:58:21 -0400] [7189] [DEBUG] Closing connection. 
+[2016-09-13 10:58:21 -0400] [7189] [DEBUG] Closing connection. 
+[2016-09-13 10:58:22 -0400] [7189] [DEBUG] Closing connection. 
+[2016-09-13 10:58:22 -0400] [7188] [DEBUG] GET /ad
+[2016-09-13 10:58:22 -0400] [7188] [DEBUG] GET /static/images/MSU-Wordmark-PMS-567.jpg
+[2016-09-13 10:58:22 -0400] [7191] [DEBUG] GET /static/css/bootstrap.min.css
+[2016-09-13 10:58:29 -0400] [7189] [DEBUG] GET /consent
+[2016-09-13 10:58:29 -0400] [7190] [DEBUG] GET /static/css/bootstrap.min.css
+[2016-09-13 10:58:29 -0400] [7188] [DEBUG] GET /static/css/style.css
+[2016-09-13 10:58:29 -0400] [7190] [DEBUG] GET /static/fonts/glyphicons-halflings-regular.woff
+[2016-09-13 11:01:45 -0400] [7188] [DEBUG] Closing connection. 
+[2016-09-13 11:01:45 -0400] [7188] [DEBUG] Closing connection. 
+[2016-09-13 11:01:57 -0400] [7189] [DEBUG] Closing connection. 
+[2016-09-13 11:01:57 -0400] [7191] [DEBUG] GET /ad
+[2016-09-13 11:01:57 -0400] [7188] [DEBUG] GET /static/images/MSU-Wordmark-PMS-567.jpg
+[2016-09-13 11:01:57 -0400] [7189] [DEBUG] GET /static/css/bootstrap.min.css
+[2016-09-13 11:01:59 -0400] [7189] [DEBUG] GET /consent
+[2016-09-13 11:01:59 -0400] [7189] [DEBUG] GET /static/css/bootstrap.min.css
+[2016-09-13 11:01:59 -0400] [7191] [DEBUG] GET /static/css/style.css
+[2016-09-13 11:01:59 -0400] [7188] [DEBUG] GET /static/fonts/glyphicons-halflings-regular.woff
+[2016-09-13 11:02:01 -0400] [7188] [DEBUG] GET /exp
+2016-09-13 11:02:01,353 Accessing /exp: debugA4L05K debugJ37SSM debugINXUT9 
+2016-09-13 11:02:01,356 given Counter({(1, 1): 1, (1, 0): 1, (0, 1): 0, (1, 2): 0, (0, 0): 0, (0, 2): 0}) chose (0, 1)
+[2016-09-13 11:02:01 -0400] [7188] [DEBUG] GET /static/js/psiturk.js
+[2016-09-13 11:02:01 -0400] [7189] [DEBUG] GET /static/css/style.css
+[2016-09-13 11:02:01 -0400] [7190] [DEBUG] GET /static/lib/jquery-min.js
+[2016-09-13 11:02:01 -0400] [7191] [DEBUG] GET /static/lib/d3.v3.min.js
+[2016-09-13 11:02:01 -0400] [7189] [DEBUG] GET /static/lib/underscore-min.js
+[2016-09-13 11:02:01 -0400] [7191] [DEBUG] GET /static/lib/backbone-min.js
+[2016-09-13 11:02:01 -0400] [7190] [DEBUG] GET /static/js/utils.js
+[2016-09-13 11:02:01 -0400] [7189] [DEBUG] GET /static/js/task.js
+[2016-09-13 11:02:01 -0400] [7190] [DEBUG] GET /sync/debugINXUT9%3AdebugJ37SSM
+2016-09-13 11:02:01,407 GET /sync route with id: debugINXUT9:debugJ37SSM
+[2016-09-13 11:02:01 -0400] [7189] [DEBUG] GET /instructions/instructions-explicit-greeting.html
+[2016-09-13 11:02:01 -0400] [7188] [DEBUG] GET /instructions/instructions-deepitem-task.html
+[2016-09-13 11:02:01 -0400] [7188] [DEBUG] GET /instructions/instructions-explicit-emphasis.html
+[2016-09-13 11:02:01 -0400] [7188] [DEBUG] GET /stage.html
+[2016-09-13 11:02:01 -0400] [7188] [DEBUG] GET /postquestionnaire.html
+[2016-09-13 11:02:01 -0400] [7190] [DEBUG] GET /static/fonts/glyphicons-halflings-regular.woff
+[2016-09-13 11:02:05 -0400] [7189] [DEBUG] PUT /sync/debugINXUT9%3AdebugJ37SSM
+[2016-09-13 11:02:05 -0400] [7188] [DEBUG] POST /inexp
+2016-09-13 11:02:05,122 Accessing /inexp
+2016-09-13 11:02:05,122 PUT /sync route with id: debugINXUT9:debugJ37SSM
+2016-09-13 11:02:05,130 saved data for debugINXUT9:debugJ37SSM (current trial: 4)
+[2016-09-13 11:03:10 -0400] [7189] [DEBUG] PUT /sync/debugINXUT9%3AdebugJ37SSM
+2016-09-13 11:03:10,429 PUT /sync route with id: debugINXUT9:debugJ37SSM
+2016-09-13 11:03:10,434 saved data for debugINXUT9:debugJ37SSM (current trial: 18)
+[2016-09-13 11:03:10 -0400] [7189] [DEBUG] GET /compute_bonus
+[2016-09-13 11:03:10 -0400] [7188] [DEBUG] GET /complete
+[2016-09-13 11:03:10 -0400] [7189] [DEBUG] GET /static/images/MSU-Wordmark-PMS-567.jpg
+[2016-09-13 11:03:10 -0400] [7191] [DEBUG] GET /static/css/style.css
+[2016-09-13 11:03:10 -0400] [7188] [DEBUG] GET /static/css/bootstrap.min.css
+[2016-09-13 11:07:29 -0400] [7189] [DEBUG] Closing connection. 
+[2016-09-13 11:07:31 -0400] [7189] [DEBUG] Closing connection. 
+[2016-09-13 11:07:37 -0400] [7189] [DEBUG] Closing connection. 
+[2016-09-13 11:07:51 -0400] [7191] [DEBUG] Closing connection. 
+[2016-09-13 11:10:07 -0400] [7189] [DEBUG] GET /static/images/MSU-Wordmark-PMS-567.jpg
+[2016-09-13 11:15:18 -0400] [7191] [DEBUG] Closing connection. 
+[2016-09-13 11:15:20 -0400] [7191] [DEBUG] Closing connection. 
+[2016-09-13 11:15:20 -0400] [7188] [DEBUG] Closing connection. 
+[2016-09-13 11:15:20 -0400] [7189] [DEBUG] GET /ppid
+[2016-09-13 11:15:20 -0400] [7188] [INFO] Parent changed, shutting down: <Worker 7188>
+[2016-09-13 11:15:20 -0400] [7189] [DEBUG] Closing connection. 
+[2016-09-13 11:15:20 -0400] [7191] [INFO] Parent changed, shutting down: <Worker 7191>
+[2016-09-13 11:15:20 -0400] [7190] [INFO] Parent changed, shutting down: <Worker 7190>
+[2016-09-13 11:15:20 -0400] [7188] [INFO] Worker exiting (pid: 7188)
+[2016-09-13 11:15:20 -0400] [7190] [INFO] Worker exiting (pid: 7190)
+[2016-09-13 11:15:20 -0400] [7191] [INFO] Worker exiting (pid: 7191)
+[2016-09-13 11:15:20 -0400] [7189] [INFO] Parent changed, shutting down: <Worker 7189>
+[2016-09-13 11:15:20 -0400] [7189] [INFO] Worker exiting (pid: 7189)
+[2016-09-13 11:18:31 -0400] [7375] [DEBUG] Current configuration:
+  proxy_protocol: False
+  worker_connections: 1000
+  statsd_host: None
+  max_requests_jitter: 0
+  post_fork: <function post_fork at 0x10282baa0>
+  pythonpath: None
+  enable_stdio_inheritance: False
+  worker_class: sync
+  ssl_version: 3
+  suppress_ragged_eofs: True
+  syslog: False
+  syslog_facility: user
+  when_ready: <function when_ready at 0x10282b7d0>
+  pre_fork: <function pre_fork at 0x10282b938>
+  cert_reqs: 0
+  preload_app: False
+  keepalive: 2
+  accesslog: None
+  group: 491251111
+  graceful_timeout: 30
+  do_handshake_on_connect: False
+  spew: False
+  workers: 4
+  proc_name: psiturk_experiment_server
+  sendfile: None
+  pidfile: None
+  umask: 0
+  on_reload: <function on_reload at 0x10282b668>
+  pre_exec: <function pre_exec at 0x1028330c8>
+  worker_tmp_dir: None
+  post_worker_init: <function post_worker_init at 0x10282bc08>
+  limit_request_fields: 100
+  on_exit: <function on_exit at 0x1028c5488>
+  config: None
+  secure_scheme_headers: {'X-FORWARDED-PROTOCOL': 'ssl', 'X-FORWARDED-PROTO': 'https', 'X-FORWARDED-SSL': 'on'}
+  proxy_allow_ips: ['127.0.0.1']
+  pre_request: <function pre_request at 0x102833230>
+  post_request: <function post_request at 0x102833320>
+  user: 1524888568
+  forwarded_allow_ips: ['127.0.0.1']
+  worker_int: <function worker_int at 0x10282bd70>
+  threads: 1
+  max_requests: 0
+  limit_request_line: 0
+  access_log_format: %(h)s %(l)s %(u)s %(t)s "%(r)s" %(s)s %(b)s "%(f)s" "%(a)s"
+  certfile: None
+  worker_exit: <function worker_exit at 0x102833488>
+  chdir: /Users/khealey/code/experiments/Heal16implicit
+  paste: None
+  default_proc_name: gunicorn
+  errorlog: server.log
+  loglevel: debug
+  logconfig: None
+  syslog_addr: unix:///var/run/syslog
+  syslog_prefix: None
+  daemon: False
+  ciphers: TLSv1
+  on_starting: <function on_starting at 0x10282b500>
+  worker_abort: <function worker_abort at 0x10282bed8>
+  bind: ['0.0.0.0:22362']
+  raw_env: []
+  reload: False
+  check_config: False
+  limit_request_field_size: 8190
+  nworkers_changed: <function nworkers_changed at 0x1028335f0>
+  timeout: 30
+  ca_certs: None
+  django_settings: None
+  tmp_upload_dir: None
+  keyfile: None
+  backlog: 2048
+  logger_class: gunicorn.glogging.Logger
+  statsd_prefix: 
+[2016-09-13 11:18:31 -0400] [7375] [INFO] Starting gunicorn 19.4.5
+[2016-09-13 11:18:31 -0400] [7375] [DEBUG] Arbiter booted
+[2016-09-13 11:18:31 -0400] [7375] [INFO] Listening at: http://0.0.0.0:22362 (7375)
+[2016-09-13 11:18:31 -0400] [7375] [INFO] Using worker: sync
+[2016-09-13 11:18:31 -0400] [7378] [INFO] Booting worker with pid: 7378
+[2016-09-13 11:18:31 -0400] [7379] [INFO] Booting worker with pid: 7379
+[2016-09-13 11:18:31 -0400] [7380] [INFO] Booting worker with pid: 7380
+[2016-09-13 11:18:31 -0400] [7381] [INFO] Booting worker with pid: 7381
+[2016-09-13 11:18:31 -0400] [7375] [DEBUG] 4 workers
+2016-09-13 11:18:31,243 Secret key: 'this is my secret key which is hard to guess, i should change this'
+2016-09-13 11:18:31,247 /Users/khealey/anaconda/lib/python2.7/site-packages/psiturk/psiturk_js/psiturk.js
+2016-09-13 11:18:31,257 Secret key: 'this is my secret key which is hard to guess, i should change this'
+2016-09-13 11:18:31,261 /Users/khealey/anaconda/lib/python2.7/site-packages/psiturk/psiturk_js/psiturk.js
+2016-09-13 11:18:31,270 Secret key: 'this is my secret key which is hard to guess, i should change this'
+2016-09-13 11:18:31,274 /Users/khealey/anaconda/lib/python2.7/site-packages/psiturk/psiturk_js/psiturk.js
+2016-09-13 11:18:31,277 Secret key: 'this is my secret key which is hard to guess, i should change this'
+2016-09-13 11:18:31,281 /Users/khealey/anaconda/lib/python2.7/site-packages/psiturk/psiturk_js/psiturk.js
+[2016-09-13 11:18:32 -0400] [7380] [DEBUG] Closing connection. 
+[2016-09-13 11:18:35 -0400] [7379] [DEBUG] Closing connection. 
+[2016-09-13 11:18:35 -0400] [7381] [DEBUG] Closing connection. 
+[2016-09-13 11:18:37 -0400] [7380] [DEBUG] Closing connection. 
+[2016-09-13 11:18:37 -0400] [7378] [DEBUG] GET /ad
+[2016-09-13 11:18:37 -0400] [7379] [DEBUG] GET /static/css/bootstrap.min.css
+[2016-09-13 11:18:37 -0400] [7378] [DEBUG] GET /static/images/MSU-Wordmark-PMS-567.jpg
+[2016-09-13 11:18:40 -0400] [7381] [DEBUG] GET /consent
+[2016-09-13 11:18:40 -0400] [7379] [DEBUG] GET /static/css/bootstrap.min.css
+[2016-09-13 11:18:40 -0400] [7381] [DEBUG] GET /static/css/style.css
+[2016-09-13 11:18:40 -0400] [7378] [DEBUG] GET /static/fonts/glyphicons-halflings-regular.woff
+[2016-09-13 11:18:42 -0400] [7378] [DEBUG] GET /exp
+2016-09-13 11:18:42,717 Accessing /exp: debugVQRV50 debugRMHVSK debug6A5QPC 
+2016-09-13 11:18:42,720 given Counter({(0, 1): 1, (1, 1): 1, (1, 0): 1, (1, 2): 0, (0, 0): 0, (0, 2): 0}) chose (1, 2)
+[2016-09-13 11:18:42 -0400] [7378] [DEBUG] GET /static/js/psiturk.js
+[2016-09-13 11:18:42 -0400] [7379] [DEBUG] GET /static/lib/backbone-min.js
+[2016-09-13 11:18:42 -0400] [7380] [DEBUG] GET /static/css/style.css
+[2016-09-13 11:18:42 -0400] [7381] [DEBUG] GET /static/lib/underscore-min.js
+[2016-09-13 11:18:42 -0400] [7381] [DEBUG] GET /static/lib/jquery-min.js
+[2016-09-13 11:18:42 -0400] [7379] [DEBUG] GET /static/lib/d3.v3.min.js
+[2016-09-13 11:18:42 -0400] [7379] [DEBUG] GET /static/js/utils.js
+[2016-09-13 11:18:42 -0400] [7381] [DEBUG] GET /static/js/task.js
+[2016-09-13 11:18:42 -0400] [7381] [DEBUG] GET /sync/debug6A5QPC%3AdebugRMHVSK
+2016-09-13 11:18:42,771 GET /sync route with id: debug6A5QPC:debugRMHVSK
+[2016-09-13 11:18:42 -0400] [7381] [DEBUG] GET /instructions/instructions-incidental-greeting.html
+[2016-09-13 11:18:42 -0400] [7380] [DEBUG] GET /instructions/instructions-deeprelational-task.html
+[2016-09-13 11:18:42 -0400] [7380] [DEBUG] GET /instructions/instructions-incidental-emphasis.html
+[2016-09-13 11:18:42 -0400] [7380] [DEBUG] GET /stage.html
+[2016-09-13 11:18:42 -0400] [7380] [DEBUG] GET /postquestionnaire.html
+[2016-09-13 11:18:42 -0400] [7381] [DEBUG] GET /static/fonts/glyphicons-halflings-regular.woff
+[2016-09-13 11:18:45 -0400] [7379] [DEBUG] PUT /sync/debug6A5QPC%3AdebugRMHVSK
+[2016-09-13 11:18:45 -0400] [7381] [DEBUG] POST /inexp
+2016-09-13 11:18:45,879 PUT /sync route with id: debug6A5QPC:debugRMHVSK
+2016-09-13 11:18:45,879 Accessing /inexp
+2016-09-13 11:18:45,886 saved data for debug6A5QPC:debugRMHVSK (current trial: 4)
+[2016-09-13 11:25:51 -0400] [7380] [DEBUG] PUT /sync/debug6A5QPC%3AdebugRMHVSK
+2016-09-13 11:25:51,303 PUT /sync route with id: debug6A5QPC:debugRMHVSK
+2016-09-13 11:25:51,311 saved data for debug6A5QPC:debugRMHVSK (current trial: 18)
+[2016-09-13 11:25:51 -0400] [7378] [DEBUG] GET /compute_bonus
+[2016-09-13 11:25:51 -0400] [7379] [DEBUG] GET /complete
+[2016-09-13 11:25:51 -0400] [7380] [DEBUG] GET /static/css/bootstrap.min.css
+[2016-09-13 11:25:51 -0400] [7379] [DEBUG] GET /static/css/style.css
+[2016-09-13 11:25:51 -0400] [7381] [DEBUG] GET /static/images/MSU-Wordmark-PMS-567.jpg
+[2016-09-13 13:29:33 -0400] [7380] [DEBUG] Closing connection. 
+[2016-09-13 13:29:33 -0400] [7380] [DEBUG] Closing connection. 
+[2016-09-13 13:29:39 -0400] [7379] [DEBUG] Closing connection. 
+[2016-09-13 13:29:39 -0400] [7379] [DEBUG] GET /ad
+[2016-09-13 13:29:39 -0400] [7381] [DEBUG] GET /static/images/MSU-Wordmark-PMS-567.jpg
+[2016-09-13 13:29:39 -0400] [7380] [DEBUG] GET /static/css/bootstrap.min.css
+[2016-09-13 13:29:42 -0400] [7378] [DEBUG] GET /consent
+[2016-09-13 13:29:42 -0400] [7379] [DEBUG] GET /static/css/bootstrap.min.css
+[2016-09-13 13:29:42 -0400] [7380] [DEBUG] GET /static/css/style.css
+[2016-09-13 13:29:42 -0400] [7378] [DEBUG] GET /static/fonts/glyphicons-halflings-regular.woff
+[2016-09-13 13:29:44 -0400] [7381] [DEBUG] GET /exp
+2016-09-13 13:29:44,243 Accessing /exp: debugELPR53 debugZBR082 debug14IS5O 
+2016-09-13 13:29:44,246 given Counter({(0, 1): 1, (1, 2): 1, (1, 0): 1, (0, 0): 0, (1, 1): 0, (0, 2): 0}) chose (0, 2)
+[2016-09-13 13:29:44 -0400] [7381] [DEBUG] GET /static/js/psiturk.js
+[2016-09-13 13:29:44 -0400] [7378] [DEBUG] GET /static/css/style.css
+[2016-09-13 13:29:44 -0400] [7379] [DEBUG] GET /static/lib/jquery-min.js
+[2016-09-13 13:29:44 -0400] [7380] [DEBUG] GET /static/lib/backbone-min.js
+[2016-09-13 13:29:44 -0400] [7378] [DEBUG] GET /static/lib/underscore-min.js
+[2016-09-13 13:29:44 -0400] [7380] [DEBUG] GET /static/lib/d3.v3.min.js
+[2016-09-13 13:29:44 -0400] [7378] [DEBUG] GET /static/js/utils.js
+[2016-09-13 13:29:44 -0400] [7381] [DEBUG] GET /static/js/task.js
+[2016-09-13 13:29:44 -0400] [7378] [DEBUG] GET /sync/debug14IS5O%3AdebugZBR082
+2016-09-13 13:29:44,304 GET /sync route with id: debug14IS5O:debugZBR082
+[2016-09-13 13:29:44 -0400] [7381] [DEBUG] GET /instructions/instructions-explicit-greeting.html
+[2016-09-13 13:29:44 -0400] [7381] [DEBUG] GET /instructions/instructions-deeprelational-task.html
+[2016-09-13 13:29:44 -0400] [7381] [DEBUG] GET /instructions/instructions-explicit-emphasis.html
+[2016-09-13 13:29:44 -0400] [7381] [DEBUG] GET /stage.html
+[2016-09-13 13:29:44 -0400] [7381] [DEBUG] GET /postquestionnaire.html
+[2016-09-13 13:29:44 -0400] [7381] [DEBUG] GET /static/fonts/glyphicons-halflings-regular.woff
+[2016-09-13 13:29:52 -0400] [7381] [DEBUG] Closing connection. 
+[2016-09-13 13:29:52 -0400] [7378] [DEBUG] Closing connection. 
+[2016-09-13 13:29:53 -0400] [7378] [DEBUG] Closing connection. 
+[2016-09-13 13:29:54 -0400] [7379] [DEBUG] GET /ad
+[2016-09-13 13:29:54 -0400] [7378] [DEBUG] GET /static/images/MSU-Wordmark-PMS-567.jpg
+[2016-09-13 13:29:54 -0400] [7380] [DEBUG] GET /static/css/bootstrap.min.css
+[2016-09-13 13:29:55 -0400] [7380] [DEBUG] GET /consent
+[2016-09-13 13:29:55 -0400] [7378] [DEBUG] GET /static/css/style.css
+[2016-09-13 13:29:55 -0400] [7380] [DEBUG] GET /static/css/bootstrap.min.css
+[2016-09-13 13:29:55 -0400] [7380] [DEBUG] GET /static/fonts/glyphicons-halflings-regular.woff
+[2016-09-13 13:29:56 -0400] [7380] [DEBUG] GET /exp
+2016-09-13 13:29:56,719 Accessing /exp: debug7JBTIW debugD2VZ92 debugL02WT1 
+2016-09-13 13:29:56,722 given Counter({(0, 1): 1, (1, 2): 1, (1, 0): 1, (0, 2): 1, (0, 0): 0, (1, 1): 0}) chose (0, 0)
+[2016-09-13 13:29:56 -0400] [7380] [DEBUG] GET /static/js/psiturk.js
+[2016-09-13 13:29:56 -0400] [7378] [DEBUG] GET /static/css/style.css
+[2016-09-13 13:29:56 -0400] [7379] [DEBUG] GET /static/lib/jquery-min.js
+[2016-09-13 13:29:56 -0400] [7381] [DEBUG] GET /static/lib/d3.v3.min.js
+[2016-09-13 13:29:56 -0400] [7378] [DEBUG] GET /static/js/utils.js
+[2016-09-13 13:29:56 -0400] [7379] [DEBUG] GET /static/lib/backbone-min.js
+[2016-09-13 13:29:56 -0400] [7381] [DEBUG] GET /static/lib/underscore-min.js
+[2016-09-13 13:29:56 -0400] [7378] [DEBUG] GET /static/js/task.js
+[2016-09-13 13:29:56 -0400] [7380] [DEBUG] GET /sync/debugL02WT1%3AdebugD2VZ92
+2016-09-13 13:29:56,774 GET /sync route with id: debugL02WT1:debugD2VZ92
+[2016-09-13 13:29:56 -0400] [7379] [DEBUG] GET /instructions/instructions-explicit-greeting.html
+[2016-09-13 13:29:56 -0400] [7381] [DEBUG] GET /instructions/instructions-size-task.html
+[2016-09-13 13:29:56 -0400] [7381] [DEBUG] GET /instructions/instructions-explicit-emphasis.html
+[2016-09-13 13:29:56 -0400] [7378] [DEBUG] GET /stage.html
+[2016-09-13 13:29:56 -0400] [7378] [DEBUG] GET /postquestionnaire.html
+[2016-09-13 13:29:56 -0400] [7381] [DEBUG] GET /static/fonts/glyphicons-halflings-regular.woff
+[2016-09-13 13:34:11 -0400] [7379] [DEBUG] Closing connection. 
+[2016-09-13 13:34:11 -0400] [7379] [DEBUG] Closing connection. 
+[2016-09-13 13:34:37 -0400] [7381] [DEBUG] Closing connection. 
+[2016-09-13 13:34:37 -0400] [7379] [DEBUG] GET /ad
+[2016-09-13 13:34:37 -0400] [7380] [DEBUG] GET /static/images/MSU-Wordmark-PMS-567.jpg
+[2016-09-13 13:34:37 -0400] [7381] [DEBUG] GET /static/css/bootstrap.min.css
+[2016-09-13 13:34:42 -0400] [7378] [DEBUG] GET /consent
+[2016-09-13 13:34:42 -0400] [7381] [DEBUG] GET /static/css/style.css
+[2016-09-13 13:34:42 -0400] [7380] [DEBUG] GET /static/css/bootstrap.min.css
+[2016-09-13 13:34:42 -0400] [7381] [DEBUG] GET /static/fonts/glyphicons-halflings-regular.woff
+[2016-09-13 13:34:44 -0400] [7379] [DEBUG] GET /exp
+2016-09-13 13:34:44,825 Accessing /exp: debugJ0L77F debug16EWM2 debugCT7Q62 
+2016-09-13 13:34:44,827 given Counter({(0, 1): 1, (1, 2): 1, (0, 0): 1, (1, 0): 1, (0, 2): 1, (1, 1): 0}) chose (1, 1)
+[2016-09-13 13:34:44 -0400] [7378] [DEBUG] GET /static/css/style.css
+[2016-09-13 13:34:44 -0400] [7379] [DEBUG] GET /static/js/psiturk.js
+[2016-09-13 13:34:44 -0400] [7380] [DEBUG] GET /static/lib/backbone-min.js
+[2016-09-13 13:34:44 -0400] [7381] [DEBUG] GET /static/js/utils.js
+[2016-09-13 13:34:44 -0400] [7378] [DEBUG] GET /static/lib/d3.v3.min.js
+[2016-09-13 13:34:44 -0400] [7380] [DEBUG] GET /static/lib/underscore-min.js
+[2016-09-13 13:34:44 -0400] [7381] [DEBUG] GET /static/lib/jquery-min.js
+[2016-09-13 13:34:44 -0400] [7378] [DEBUG] GET /static/js/task.js
+[2016-09-13 13:34:44 -0400] [7379] [DEBUG] GET /sync/debugCT7Q62%3Adebug16EWM2
+2016-09-13 13:34:44,877 GET /sync route with id: debugCT7Q62:debug16EWM2
+[2016-09-13 13:34:44 -0400] [7381] [DEBUG] GET /instructions/instructions-incidental-greeting.html
+[2016-09-13 13:34:44 -0400] [7381] [DEBUG] GET /instructions/instructions-deepitem-task.html
+[2016-09-13 13:34:44 -0400] [7381] [DEBUG] GET /instructions/instructions-incidental-emphasis.html
+[2016-09-13 13:34:44 -0400] [7381] [DEBUG] GET /stage.html
+[2016-09-13 13:34:44 -0400] [7381] [DEBUG] GET /postquestionnaire.html
+[2016-09-13 13:34:44 -0400] [7381] [DEBUG] GET /static/fonts/glyphicons-halflings-regular.woff
+[2016-09-13 13:36:37 -0400] [7380] [DEBUG] POST /inexp
+[2016-09-13 13:36:37 -0400] [7379] [DEBUG] PUT /sync/debugCT7Q62%3Adebug16EWM2
+2016-09-13 13:36:37,518 PUT /sync route with id: debugCT7Q62:debug16EWM2
+2016-09-13 13:36:37,518 Accessing /inexp
+2016-09-13 13:36:37,523 saved data for debugCT7Q62:debug16EWM2 (current trial: 4)
+[2016-09-13 13:41:03 -0400] [7379] [DEBUG] Closing connection. 
+[2016-09-13 13:41:03 -0400] [7379] [DEBUG] Closing connection. 
+[2016-09-13 13:41:04 -0400] [7380] [DEBUG] Closing connection. 
+[2016-09-13 13:41:05 -0400] [7380] [DEBUG] GET /ad
+[2016-09-13 13:41:05 -0400] [7380] [DEBUG] GET /static/css/bootstrap.min.css
+[2016-09-13 13:41:05 -0400] [7378] [DEBUG] GET /static/images/MSU-Wordmark-PMS-567.jpg
+[2016-09-13 13:41:07 -0400] [7380] [DEBUG] GET /consent
+[2016-09-13 13:41:07 -0400] [7381] [DEBUG] GET /static/css/bootstrap.min.css
+[2016-09-13 13:41:07 -0400] [7378] [DEBUG] GET /static/css/style.css
+[2016-09-13 13:41:07 -0400] [7378] [DEBUG] GET /static/fonts/glyphicons-halflings-regular.woff
+[2016-09-13 13:41:09 -0400] [7379] [DEBUG] GET /exp
+2016-09-13 13:41:09,839 Accessing /exp: debugGGODF4 debugR44UKV debug2X5UQQ 
+2016-09-13 13:41:09,842 given Counter({(0, 1): 1, (1, 2): 1, (0, 0): 1, (1, 1): 1, (1, 0): 1, (0, 2): 1}) chose (0, 1)
+[2016-09-13 13:41:09 -0400] [7380] [DEBUG] GET /static/lib/jquery-min.js
+[2016-09-13 13:41:09 -0400] [7381] [DEBUG] GET /static/lib/underscore-min.js
+[2016-09-13 13:41:09 -0400] [7379] [DEBUG] GET /static/lib/backbone-min.js
+[2016-09-13 13:41:09 -0400] [7378] [DEBUG] GET /static/js/psiturk.js
+[2016-09-13 13:41:09 -0400] [7380] [DEBUG] GET /static/css/style.css
+[2016-09-13 13:41:09 -0400] [7379] [DEBUG] GET /static/lib/d3.v3.min.js
+[2016-09-13 13:41:09 -0400] [7381] [DEBUG] GET /static/js/utils.js
+[2016-09-13 13:41:09 -0400] [7380] [DEBUG] GET /static/js/task.js
+[2016-09-13 13:41:09 -0400] [7380] [DEBUG] GET /sync/debug2X5UQQ%3AdebugR44UKV
+2016-09-13 13:41:09,889 GET /sync route with id: debug2X5UQQ:debugR44UKV
+[2016-09-13 13:41:09 -0400] [7380] [DEBUG] GET /instructions/instructions-explicit-greeting.html
+[2016-09-13 13:41:09 -0400] [7380] [DEBUG] GET /instructions/instructions-deepitem-task.html
+[2016-09-13 13:41:09 -0400] [7381] [DEBUG] GET /instructions/instructions-explicit-emphasis.html
+[2016-09-13 13:41:09 -0400] [7381] [DEBUG] GET /stage.html
+[2016-09-13 13:41:09 -0400] [7381] [DEBUG] GET /postquestionnaire.html
+[2016-09-13 13:41:09 -0400] [7378] [DEBUG] GET /static/fonts/glyphicons-halflings-regular.woff
+[2016-09-13 13:41:15 -0400] [7380] [DEBUG] Closing connection. 
+[2016-09-13 13:41:15 -0400] [7379] [DEBUG] Closing connection. 
+[2016-09-13 13:41:20 -0400] [7379] [DEBUG] GET /consent
+[2016-09-13 13:41:20 -0400] [7379] [DEBUG] GET /static/css/style.css
+[2016-09-13 13:41:20 -0400] [7380] [DEBUG] GET /static/css/bootstrap.min.css
+[2016-09-13 13:41:20 -0400] [7378] [DEBUG] GET /static/fonts/glyphicons-halflings-regular.woff
+[2016-09-13 13:41:22 -0400] [7379] [DEBUG] GET /exp
+2016-09-13 13:41:22,439 Accessing /exp: debugGGODF4 debugR44UKV debug2X5UQQ 
+[2016-09-13 13:41:22 -0400] [7378] [DEBUG] GET /static/lib/underscore-min.js
+[2016-09-13 13:41:22 -0400] [7380] [DEBUG] GET /static/lib/d3.v3.min.js
+[2016-09-13 13:41:22 -0400] [7379] [DEBUG] GET /static/lib/jquery-min.js
+[2016-09-13 13:41:22 -0400] [7381] [DEBUG] GET /static/lib/backbone-min.js
+[2016-09-13 13:41:22 -0400] [7379] [DEBUG] GET /static/js/psiturk.js
+[2016-09-13 13:41:22 -0400] [7381] [DEBUG] GET /static/js/utils.js
+[2016-09-13 13:41:22 -0400] [7380] [DEBUG] GET /static/js/task.js
+[2016-09-13 13:41:22 -0400] [7378] [DEBUG] GET /sync/debug2X5UQQ%3AdebugR44UKV
+2016-09-13 13:41:22,464 GET /sync route with id: debug2X5UQQ:debugR44UKV
+[2016-09-13 13:41:22 -0400] [7380] [DEBUG] GET /instructions/instructions-explicit-greeting.html
+[2016-09-13 13:41:22 -0400] [7380] [DEBUG] GET /instructions/instructions-deepitem-task.html
+[2016-09-13 13:41:22 -0400] [7378] [DEBUG] GET /instructions/instructions-explicit-emphasis.html
+[2016-09-13 13:41:22 -0400] [7378] [DEBUG] GET /stage.html
+[2016-09-13 13:41:22 -0400] [7378] [DEBUG] GET /postquestionnaire.html
+[2016-09-13 13:41:38 -0400] [7378] [DEBUG] Closing connection. 
+[2016-09-13 13:41:38 -0400] [7379] [DEBUG] GET /ad
+[2016-09-13 13:41:38 -0400] [7378] [DEBUG] GET /static/images/MSU-Wordmark-PMS-567.jpg
+[2016-09-13 13:41:38 -0400] [7380] [DEBUG] GET /static/css/bootstrap.min.css
+[2016-09-13 13:41:39 -0400] [7380] [DEBUG] GET /consent
+[2016-09-13 13:41:39 -0400] [7378] [DEBUG] GET /static/css/bootstrap.min.css
+[2016-09-13 13:41:39 -0400] [7381] [DEBUG] GET /static/css/style.css
+[2016-09-13 13:41:39 -0400] [7378] [DEBUG] GET /static/fonts/glyphicons-halflings-regular.woff
+[2016-09-13 13:41:41 -0400] [7381] [DEBUG] GET /exp
+2016-09-13 13:41:41,463 Accessing /exp: debugTV09PI debug1OWGXH debug8CP0J4 
+2016-09-13 13:41:41,466 given Counter({(0, 1): 2, (1, 2): 1, (0, 0): 1, (1, 1): 1, (1, 0): 1, (0, 2): 1}) chose (0, 0)
+[2016-09-13 13:41:41 -0400] [7378] [DEBUG] GET /static/js/psiturk.js
+[2016-09-13 13:41:41 -0400] [7381] [DEBUG] GET /static/css/style.css
+[2016-09-13 13:41:41 -0400] [7380] [DEBUG] GET /static/lib/jquery-min.js
+[2016-09-13 13:41:41 -0400] [7379] [DEBUG] GET /static/lib/d3.v3.min.js
+[2016-09-13 13:41:41 -0400] [7381] [DEBUG] GET /static/lib/backbone-min.js
+[2016-09-13 13:41:41 -0400] [7379] [DEBUG] GET /static/js/utils.js
+[2016-09-13 13:41:41 -0400] [7380] [DEBUG] GET /static/lib/underscore-min.js
+[2016-09-13 13:41:41 -0400] [7381] [DEBUG] GET /static/js/task.js
+[2016-09-13 13:41:41 -0400] [7380] [DEBUG] GET /sync/debug8CP0J4%3Adebug1OWGXH
+2016-09-13 13:41:41,509 GET /sync route with id: debug8CP0J4:debug1OWGXH
+[2016-09-13 13:41:41 -0400] [7378] [DEBUG] GET /instructions/instructions-explicit-greeting.html
+[2016-09-13 13:41:41 -0400] [7378] [DEBUG] GET /instructions/instructions-size-task.html
+[2016-09-13 13:41:41 -0400] [7378] [DEBUG] GET /instructions/instructions-explicit-emphasis.html
+[2016-09-13 13:41:41 -0400] [7381] [DEBUG] GET /stage.html
+[2016-09-13 13:41:41 -0400] [7381] [DEBUG] GET /postquestionnaire.html
+[2016-09-13 13:41:41 -0400] [7379] [DEBUG] GET /static/fonts/glyphicons-halflings-regular.woff
+[2016-09-13 13:41:48 -0400] [7379] [DEBUG] Closing connection. 
+[2016-09-13 13:41:48 -0400] [7379] [DEBUG] Closing connection. 
+[2016-09-13 13:42:04 -0400] [7381] [DEBUG] Closing connection. 
+[2016-09-13 13:42:04 -0400] [7381] [DEBUG] GET /ad
+[2016-09-13 13:42:04 -0400] [7380] [DEBUG] GET /static/images/MSU-Wordmark-PMS-567.jpg
+[2016-09-13 13:42:04 -0400] [7381] [DEBUG] GET /static/css/bootstrap.min.css
+[2016-09-13 13:42:06 -0400] [7379] [DEBUG] GET /consent
+[2016-09-13 13:42:06 -0400] [7378] [DEBUG] GET /static/css/bootstrap.min.css
+[2016-09-13 13:42:06 -0400] [7379] [DEBUG] GET /static/css/style.css
+[2016-09-13 13:42:06 -0400] [7380] [DEBUG] GET /static/fonts/glyphicons-halflings-regular.woff
+[2016-09-13 13:42:09 -0400] [7378] [DEBUG] GET /exp
+2016-09-13 13:42:09,510 Accessing /exp: debugU5I3O3 debugHUL7AF debugBVKHA5 
+2016-09-13 13:42:09,512 given Counter({(0, 1): 2, (0, 0): 2, (1, 2): 1, (1, 1): 1, (1, 0): 1, (0, 2): 1}) chose (1, 1)
+[2016-09-13 13:42:09 -0400] [7381] [DEBUG] GET /static/js/psiturk.js
+[2016-09-13 13:42:09 -0400] [7378] [DEBUG] GET /static/css/style.css
+[2016-09-13 13:42:09 -0400] [7379] [DEBUG] GET /static/lib/backbone-min.js
+[2016-09-13 13:42:09 -0400] [7380] [DEBUG] GET /static/js/utils.js
+[2016-09-13 13:42:09 -0400] [7378] [DEBUG] GET /static/lib/d3.v3.min.js
+[2016-09-13 13:42:09 -0400] [7380] [DEBUG] GET /static/lib/jquery-min.js
+[2016-09-13 13:42:09 -0400] [7379] [DEBUG] GET /static/lib/underscore-min.js
+[2016-09-13 13:42:09 -0400] [7378] [DEBUG] GET /static/js/task.js
+[2016-09-13 13:42:09 -0400] [7378] [DEBUG] GET /sync/debugBVKHA5%3AdebugHUL7AF
+2016-09-13 13:42:09,557 GET /sync route with id: debugBVKHA5:debugHUL7AF
+[2016-09-13 13:42:09 -0400] [7378] [DEBUG] GET /instructions/instructions-incidental-greeting.html
+[2016-09-13 13:42:09 -0400] [7378] [DEBUG] GET /instructions/instructions-deepitem-task.html
+[2016-09-13 13:42:09 -0400] [7378] [DEBUG] GET /instructions/instructions-incidental-emphasis.html
+[2016-09-13 13:42:09 -0400] [7378] [DEBUG] GET /stage.html
+[2016-09-13 13:42:09 -0400] [7378] [DEBUG] GET /postquestionnaire.html
+[2016-09-13 13:42:09 -0400] [7378] [DEBUG] GET /static/fonts/glyphicons-halflings-regular.woff
+[2016-09-13 13:42:16 -0400] [7378] [DEBUG] Closing connection. 
+[2016-09-13 13:42:16 -0400] [7378] [DEBUG] Closing connection. 
+[2016-09-13 13:42:56 -0400] [7381] [DEBUG] Closing connection. 
+[2016-09-13 13:42:56 -0400] [7379] [DEBUG] GET /ad
+[2016-09-13 13:42:56 -0400] [7380] [DEBUG] GET /static/images/MSU-Wordmark-PMS-567.jpg
+[2016-09-13 13:42:56 -0400] [7381] [DEBUG] GET /static/css/bootstrap.min.css
+[2016-09-13 13:42:58 -0400] [7378] [DEBUG] GET /consent
+[2016-09-13 13:42:58 -0400] [7379] [DEBUG] GET /static/css/bootstrap.min.css
+[2016-09-13 13:42:58 -0400] [7381] [DEBUG] GET /static/css/style.css
+[2016-09-13 13:42:58 -0400] [7381] [DEBUG] GET /static/fonts/glyphicons-halflings-regular.woff
+[2016-09-13 13:42:59 -0400] [7379] [DEBUG] GET /exp
+2016-09-13 13:42:59,922 Accessing /exp: debugIVO81L debugP7OYQT debugXBRMOP 
+2016-09-13 13:42:59,925 given Counter({(0, 1): 2, (0, 0): 2, (1, 1): 2, (1, 2): 1, (1, 0): 1, (0, 2): 1}) chose (0, 2)
+[2016-09-13 13:42:59 -0400] [7379] [DEBUG] GET /static/js/psiturk.js
+[2016-09-13 13:42:59 -0400] [7381] [DEBUG] GET /static/css/style.css
+[2016-09-13 13:42:59 -0400] [7380] [DEBUG] GET /static/lib/jquery-min.js
+[2016-09-13 13:42:59 -0400] [7378] [DEBUG] GET /static/lib/underscore-min.js
+[2016-09-13 13:42:59 -0400] [7380] [DEBUG] GET /static/lib/backbone-min.js
+[2016-09-13 13:42:59 -0400] [7378] [DEBUG] GET /static/lib/d3.v3.min.js
+[2016-09-13 13:42:59 -0400] [7381] [DEBUG] GET /static/js/utils.js
+[2016-09-13 13:42:59 -0400] [7380] [DEBUG] GET /static/js/task.js
+[2016-09-13 13:42:59 -0400] [7381] [DEBUG] GET /sync/debugXBRMOP%3AdebugP7OYQT
+2016-09-13 13:42:59,977 GET /sync route with id: debugXBRMOP:debugP7OYQT
+[2016-09-13 13:42:59 -0400] [7379] [DEBUG] GET /instructions/instructions-explicit-greeting.html
+[2016-09-13 13:42:59 -0400] [7379] [DEBUG] GET /instructions/instructions-deeprelational-task.html
+[2016-09-13 13:42:59 -0400] [7379] [DEBUG] GET /instructions/instructions-explicit-emphasis.html
+[2016-09-13 13:43:00 -0400] [7381] [DEBUG] GET /stage.html
+[2016-09-13 13:43:00 -0400] [7379] [DEBUG] GET /postquestionnaire.html
+[2016-09-13 13:43:00 -0400] [7378] [DEBUG] GET /static/fonts/glyphicons-halflings-regular.woff
+[2016-09-13 13:44:09 -0400] [7379] [DEBUG] PUT /sync/debugXBRMOP%3AdebugP7OYQT
+[2016-09-13 13:44:09 -0400] [7381] [DEBUG] POST /inexp
+2016-09-13 13:44:09,820 Accessing /inexp
+2016-09-13 13:44:09,820 PUT /sync route with id: debugXBRMOP:debugP7OYQT
+2016-09-13 13:44:09,828 saved data for debugXBRMOP:debugP7OYQT (current trial: 4)
+[2016-09-13 13:47:05 -0400] [7381] [DEBUG] GET /consent
+[2016-09-13 13:47:05 -0400] [7378] [DEBUG] GET /static/css/style.css
+[2016-09-13 13:47:05 -0400] [7380] [DEBUG] GET /static/css/bootstrap.min.css
+[2016-09-13 13:47:05 -0400] [7379] [DEBUG] GET /static/fonts/glyphicons-halflings-regular.woff
+[2016-09-13 13:47:07 -0400] [7380] [DEBUG] GET /exp
+2016-09-13 13:47:07,661 Accessing /exp: debugIVO81L debugP7OYQT debugXBRMOP 
+[2016-09-13 13:47:07 -0400] [7380] [DEBUG] GET /static/lib/jquery-min.js
+[2016-09-13 13:47:07 -0400] [7379] [DEBUG] GET /static/lib/d3.v3.min.js
+[2016-09-13 13:47:07 -0400] [7378] [DEBUG] GET /static/js/psiturk.js
+[2016-09-13 13:47:07 -0400] [7381] [DEBUG] GET /static/js/utils.js
+[2016-09-13 13:47:07 -0400] [7380] [DEBUG] GET /static/lib/backbone-min.js
+[2016-09-13 13:47:07 -0400] [7379] [DEBUG] GET /static/lib/underscore-min.js
+[2016-09-13 13:47:07 -0400] [7381] [DEBUG] GET /static/js/task.js
+[2016-09-13 13:47:07 -0400] [7381] [DEBUG] GET /sync/debugXBRMOP%3AdebugP7OYQT
+2016-09-13 13:47:07,685 GET /sync route with id: debugXBRMOP:debugP7OYQT
+[2016-09-13 13:47:07 -0400] [7380] [DEBUG] GET /instructions/instructions-explicit-greeting.html
+[2016-09-13 13:47:07 -0400] [7380] [DEBUG] GET /instructions/instructions-deeprelational-task.html
+[2016-09-13 13:47:07 -0400] [7380] [DEBUG] GET /instructions/instructions-explicit-emphasis.html
+[2016-09-13 13:47:07 -0400] [7379] [DEBUG] GET /stage.html
+[2016-09-13 13:47:07 -0400] [7379] [DEBUG] GET /postquestionnaire.html
+[2016-09-13 13:47:11 -0400] [7379] [DEBUG] PUT /sync/debugXBRMOP%3AdebugP7OYQT
+[2016-09-13 13:47:11 -0400] [7378] [DEBUG] POST /inexp
+2016-09-13 13:47:11,351 Accessing /inexp
+2016-09-13 13:47:11,351 PUT /sync route with id: debugXBRMOP:debugP7OYQT
+2016-09-13 13:47:11,356 saved data for debugXBRMOP:debugP7OYQT (current trial: 8)
+[2016-09-13 13:49:29 -0400] [7378] [DEBUG] PUT /sync/debugXBRMOP%3AdebugP7OYQT
+2016-09-13 13:49:29,290 PUT /sync route with id: debugXBRMOP:debugP7OYQT
+2016-09-13 13:49:29,295 saved data for debugXBRMOP:debugP7OYQT (current trial: 23)
+[2016-09-13 13:49:29 -0400] [7380] [DEBUG] GET /compute_bonus
+[2016-09-13 13:49:29 -0400] [7379] [DEBUG] GET /complete
+[2016-09-13 13:49:29 -0400] [7381] [DEBUG] GET /static/css/bootstrap.min.css
+[2016-09-13 13:49:29 -0400] [7379] [DEBUG] GET /static/css/style.css
+[2016-09-13 13:49:29 -0400] [7380] [DEBUG] GET /static/images/MSU-Wordmark-PMS-567.jpg
+[2016-09-13 13:49:33 -0400] [7378] [DEBUG] Closing connection. 
+[2016-09-13 13:49:33 -0400] [7378] [DEBUG] Closing connection. 
+[2016-09-13 13:50:02 -0400] [7378] [DEBUG] Closing connection. 
+[2016-09-13 13:50:02 -0400] [7380] [DEBUG] GET /ad
+[2016-09-13 13:50:02 -0400] [7378] [DEBUG] GET /static/images/MSU-Wordmark-PMS-567.jpg
+[2016-09-13 13:50:02 -0400] [7380] [DEBUG] GET /static/css/bootstrap.min.css
+[2016-09-13 13:50:04 -0400] [7379] [DEBUG] GET /consent
+[2016-09-13 13:50:04 -0400] [7378] [DEBUG] GET /static/css/bootstrap.min.css
+[2016-09-13 13:50:04 -0400] [7379] [DEBUG] GET /static/css/style.css
+[2016-09-13 13:50:04 -0400] [7378] [DEBUG] GET /static/fonts/glyphicons-halflings-regular.woff
+[2016-09-13 13:50:06 -0400] [7381] [DEBUG] GET /exp
+2016-09-13 13:50:06,528 Accessing /exp: debug7DJX4Z debug3UFBLE debugL7B3B1 
+2016-09-13 13:50:06,531 given Counter({(0, 1): 2, (0, 0): 2, (1, 1): 2, (0, 2): 2, (1, 2): 1, (1, 0): 1}) chose (1, 2)
+[2016-09-13 13:50:06 -0400] [7381] [DEBUG] GET /static/css/style.css
+[2016-09-13 13:50:06 -0400] [7380] [DEBUG] GET /static/js/psiturk.js
+[2016-09-13 13:50:06 -0400] [7379] [DEBUG] GET /static/lib/jquery-min.js
+[2016-09-13 13:50:06 -0400] [7378] [DEBUG] GET /static/lib/d3.v3.min.js
+[2016-09-13 13:50:06 -0400] [7381] [DEBUG] GET /static/lib/underscore-min.js
+[2016-09-13 13:50:06 -0400] [7378] [DEBUG] GET /static/lib/backbone-min.js
+[2016-09-13 13:50:06 -0400] [7379] [DEBUG] GET /static/js/utils.js
+[2016-09-13 13:50:06 -0400] [7381] [DEBUG] GET /static/js/task.js
+[2016-09-13 13:50:06 -0400] [7381] [DEBUG] GET /sync/debugL7B3B1%3Adebug3UFBLE
+2016-09-13 13:50:06,575 GET /sync route with id: debugL7B3B1:debug3UFBLE
+[2016-09-13 13:50:06 -0400] [7379] [DEBUG] GET /instructions/instructions-incidental-greeting.html
+[2016-09-13 13:50:06 -0400] [7379] [DEBUG] GET /instructions/instructions-deeprelational-task.html
+[2016-09-13 13:50:06 -0400] [7379] [DEBUG] GET /instructions/instructions-incidental-emphasis.html
+[2016-09-13 13:50:06 -0400] [7379] [DEBUG] GET /stage.html
+[2016-09-13 13:50:06 -0400] [7379] [DEBUG] GET /postquestionnaire.html
+[2016-09-13 13:50:06 -0400] [7379] [DEBUG] GET /static/fonts/glyphicons-halflings-regular.woff
+[2016-09-13 13:50:18 -0400] [7378] [DEBUG] PUT /sync/debugL7B3B1%3Adebug3UFBLE
+[2016-09-13 13:50:18 -0400] [7381] [DEBUG] POST /inexp
+2016-09-13 13:50:18,543 Accessing /inexp
+2016-09-13 13:50:18,543 PUT /sync route with id: debugL7B3B1:debug3UFBLE
+2016-09-13 13:50:18,552 saved data for debugL7B3B1:debug3UFBLE (current trial: 4)
+[2016-09-13 13:53:55 -0400] [7381] [DEBUG] PUT /sync/debugL7B3B1%3Adebug3UFBLE
+2016-09-13 13:53:55,761 PUT /sync route with id: debugL7B3B1:debug3UFBLE
+2016-09-13 13:53:55,766 saved data for debugL7B3B1:debug3UFBLE (current trial: 19)
+[2016-09-13 13:53:55 -0400] [7381] [DEBUG] GET /compute_bonus
+[2016-09-13 13:53:55 -0400] [7381] [DEBUG] GET /complete
+[2016-09-13 13:53:55 -0400] [7380] [DEBUG] GET /static/images/MSU-Wordmark-PMS-567.jpg
+[2016-09-13 13:53:55 -0400] [7381] [DEBUG] GET /static/css/style.css
+[2016-09-13 13:53:55 -0400] [7378] [DEBUG] GET /static/css/bootstrap.min.css
+[2016-09-13 13:54:01 -0400] [7379] [DEBUG] Closing connection. 
+[2016-09-13 13:54:01 -0400] [7378] [DEBUG] Closing connection. 
+[2016-09-13 13:54:36 -0400] [7378] [DEBUG] Closing connection. 
+[2016-09-13 13:54:36 -0400] [7379] [DEBUG] GET /ad
+[2016-09-13 13:54:36 -0400] [7379] [DEBUG] GET /static/images/MSU-Wordmark-PMS-567.jpg
+[2016-09-13 13:54:36 -0400] [7378] [DEBUG] GET /static/css/bootstrap.min.css
+[2016-09-13 13:54:39 -0400] [7381] [DEBUG] GET /consent
+[2016-09-13 13:54:39 -0400] [7381] [DEBUG] GET /static/css/bootstrap.min.css
+[2016-09-13 13:54:39 -0400] [7379] [DEBUG] GET /static/css/style.css
+[2016-09-13 13:54:39 -0400] [7379] [DEBUG] GET /static/fonts/glyphicons-halflings-regular.woff
+[2016-09-13 13:54:40 -0400] [7378] [DEBUG] GET /exp
+2016-09-13 13:54:40,830 Accessing /exp: debug3RKRON debug8GFSOV debugZVG3JE 
+2016-09-13 13:54:40,833 given Counter({(0, 1): 2, (1, 2): 2, (0, 0): 2, (1, 1): 2, (0, 2): 2, (1, 0): 1}) chose (1, 0)
+[2016-09-13 13:54:40 -0400] [7381] [DEBUG] GET /static/js/psiturk.js
+[2016-09-13 13:54:40 -0400] [7378] [DEBUG] GET /static/css/style.css
+[2016-09-13 13:54:40 -0400] [7379] [DEBUG] GET /static/lib/jquery-min.js
+[2016-09-13 13:54:40 -0400] [7380] [DEBUG] GET /static/lib/underscore-min.js
+[2016-09-13 13:54:40 -0400] [7378] [DEBUG] GET /static/lib/backbone-min.js
+[2016-09-13 13:54:40 -0400] [7379] [DEBUG] GET /static/lib/d3.v3.min.js
+[2016-09-13 13:54:40 -0400] [7380] [DEBUG] GET /static/js/task.js
+[2016-09-13 13:54:40 -0400] [7378] [DEBUG] GET /static/js/utils.js
+[2016-09-13 13:54:40 -0400] [7378] [DEBUG] GET /sync/debugZVG3JE%3Adebug8GFSOV
+2016-09-13 13:54:40,877 GET /sync route with id: debugZVG3JE:debug8GFSOV
+[2016-09-13 13:54:40 -0400] [7378] [DEBUG] GET /instructions/instructions-incidental-greeting.html
+[2016-09-13 13:54:40 -0400] [7380] [DEBUG] GET /instructions/instructions-size-task.html
+[2016-09-13 13:54:40 -0400] [7380] [DEBUG] GET /instructions/instructions-incidental-emphasis.html
+[2016-09-13 13:54:40 -0400] [7380] [DEBUG] GET /stage.html
+[2016-09-13 13:54:40 -0400] [7381] [DEBUG] GET /postquestionnaire.html
+[2016-09-13 13:54:40 -0400] [7378] [DEBUG] GET /static/fonts/glyphicons-halflings-regular.woff
+[2016-09-13 13:54:55 -0400] [7380] [DEBUG] PUT /sync/debugZVG3JE%3Adebug8GFSOV
+[2016-09-13 13:54:55 -0400] [7378] [DEBUG] POST /inexp
+2016-09-13 13:54:55,522 Accessing /inexp
+2016-09-13 13:54:55,522 PUT /sync route with id: debugZVG3JE:debug8GFSOV
+2016-09-13 13:54:55,527 saved data for debugZVG3JE:debug8GFSOV (current trial: 4)
+[2016-09-13 13:58:50 -0400] [7381] [DEBUG] Closing connection. 
+[2016-09-13 13:59:30 -0400] [7380] [DEBUG] Closing connection. 
+[2016-09-13 14:03:23 -0400] [7381] [DEBUG] Closing connection. 
+[2016-09-13 14:03:24 -0400] [7381] [DEBUG] Closing connection. 
+[2016-09-13 14:03:24 -0400] [7380] [DEBUG] Closing connection. 
+[2016-09-13 14:03:24 -0400] [7380] [DEBUG] GET /ppid
+[2016-09-13 14:03:24 -0400] [7379] [DEBUG] Closing connection. 
+[2016-09-13 14:03:24 -0400] [7380] [INFO] Parent changed, shutting down: <Worker 7380>
+[2016-09-13 14:03:24 -0400] [7381] [INFO] Parent changed, shutting down: <Worker 7381>
+[2016-09-13 14:03:24 -0400] [7378] [INFO] Parent changed, shutting down: <Worker 7378>
+[2016-09-13 14:03:24 -0400] [7381] [INFO] Worker exiting (pid: 7381)
+[2016-09-13 14:03:24 -0400] [7380] [INFO] Worker exiting (pid: 7380)
+[2016-09-13 14:03:24 -0400] [7379] [INFO] Parent changed, shutting down: <Worker 7379>
+[2016-09-13 14:03:24 -0400] [7378] [INFO] Worker exiting (pid: 7378)
+[2016-09-13 14:03:24 -0400] [7379] [INFO] Worker exiting (pid: 7379)
