@@ -60,7 +60,7 @@ n_included = pd.crosstab(all_crps[np.logical_and(all_crps.lag==0,all_crps.list==
 # compute average prec
 prec_table = all_crps.loc[np.logical_and(all_crps.lag==0,all_crps.list==0), :]['prec'].groupby([all_crps.instruction_condition, all_crps.task_condition]).describe()
 
-with open("/Users/khealey/Library/Mobile Documents/com~apple~CloudDocs/lab/code/experiments/Heal16implicit/dissemination/manuscript/first_submission/table_values.tex", "w") as text_file:
+with open("./dissemination/manuscript/first_submission/table_values.tex", "w") as text_file:
     text_file.write('\\newcommand\\shoeExplicit{%s}\n' % n_tested['Explicit']['Shoebox'][0])
     text_file.write('\\newcommand\\shoeIncidental{%s}\n' % n_tested['Incidental']['Shoebox'][0])
     text_file.write('\\newcommand\\doorExplicit{%s}\n' % n_tested['Explicit']['Front Door'][0])
