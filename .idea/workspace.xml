@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="427dd9dd-3ead-4953-ac2a-9ec6a5a51768" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/analyses/E3.pdf" afterPath="$PROJECT_DIR$/static/analyses/E3.pdf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/analyses/FrontDoor.pdf" afterPath="$PROJECT_DIR$/static/analyses/FrontDoor.pdf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/analyses/Shoebox.pdf" afterPath="$PROJECT_DIR$/static/analyses/Shoebox.pdf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/analyses/all_crps.pkl" afterPath="$PROJECT_DIR$/static/analyses/all_crps.pkl" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/analyses/anal_funcs.py" afterPath="$PROJECT_DIR$/static/analyses/anal_funcs.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/analyses/run_analyses.py" afterPath="$PROJECT_DIR$/static/analyses/run_analyses.py" />
     </list>
     <ignored path="Heal16implicit.iws" />
@@ -59,8 +54,8 @@
       <file leaf-file-name="run_analyses.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/static/analyses/run_analyses.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="480">
-              <caret line="32" column="73" selection-start-line="32" selection-start-column="73" selection-end-line="32" selection-end-column="73" />
+            <state relative-caret-position="105">
+              <caret line="7" column="24" selection-start-line="7" selection-start-column="24" selection-end-line="7" selection-end-column="24" />
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
               </folding>
@@ -682,7 +677,14 @@
       <option name="project" value="LOCAL" />
       <updated>1491414639278</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="Changes to also do baseline corrected crp&#10;">
+      <created>1491418234264</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1491418234264</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TodoView">
@@ -781,7 +783,8 @@
     <MESSAGE value="draft figures for psysci" />
     <MESSAGE value="getting ready to finalize for first sub" />
     <MESSAGE value="As used for first full draft" />
-    <option name="LAST_COMMIT_MESSAGE" value="As used for first full draft" />
+    <MESSAGE value="Changes to also do baseline corrected crp&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="Changes to also do baseline corrected crp&#10;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1128,8 +1131,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/static/analyses/run_analyses.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="32" column="73" selection-start-line="32" selection-start-column="73" selection-end-line="32" selection-end-column="73" />
+        <state relative-caret-position="105">
+          <caret line="7" column="24" selection-start-line="7" selection-start-column="24" selection-end-line="7" selection-end-column="24" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
           </folding>

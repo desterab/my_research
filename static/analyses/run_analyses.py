@@ -5,7 +5,7 @@ from joblib import Parallel, delayed
 import multiprocessing
 
 
-remake_data_file = True
+remake_data_file = False
 
 # load or create the data
 if os.path.isfile("all_crps.pkl") and not remake_data_file:
