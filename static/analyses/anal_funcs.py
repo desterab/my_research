@@ -25,7 +25,7 @@ else:
 
 
 
-def load_the_data(n_perms):
+def load_the_data(n_perms, pool):
 
     #
     system('scp cbcc.psy.msu.edu:~/code/experiments/Heal16implicit/HealEtal16implicit.data.pkl \'/Users/khealey/Library/Mobile Documents/com~apple~CloudDocs/lab/code/experiments/Heal16implicit\'')
@@ -89,14 +89,16 @@ def load_the_data(n_perms):
 
             # compute random temporal factor
             tempf_z = rdf.relative_to_random(listlen=16, recalls=rec_mat, filter_ind=None, statistic_func=rdf.tem_fact,
-                                       data_col="tf", n_perms=n_perms)
+                                       data_col="tf", n_perms=n_perms, POOL=pool)
             tempf_z = pd.DataFrame.from_records(tempf_z)
             all_tf_z = tempf_z.tf.mean()
 
             # compute crp
-            crp = rdf.crp(listlen=16, recalls=rec_mat, filter_ind=None, allow_repeats=False, exclude_op=0)
-            crp = pd.DataFrame.from_records(crp)
-            #
+            crp = rdf.baseline_corrected_crp(listlen=16, recalls=rec_mat, filter_ind=None, allow_repeats=False, exclude_op=0, n_perms=n_perms,
+                                         POOL=pool)
+            # crp = rdf.crp(listlen=16, recalls=rec_mat, filter_ind=None, allow_repeats=False, exclude_op=0)
+            # crp = pd.DataFrame.from_records(crp)
+            # #
             # # compute random ctrl crp
             # crp_z = rdf.relative_to_random(listlen=16, recalls=rec_mat, filter_ind=None, statistic_func=rdf.crp,
             #                            data_col="crp", n_perms=n_perms)

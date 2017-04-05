@@ -1,6 +1,8 @@
 import os
 import pickle
 from anal_funcs import *
+from joblib import Parallel, delayed
+import multiprocessing
 
 
 remake_data_file = True
@@ -10,7 +12,9 @@ if os.path.isfile("all_crps.pkl") and not remake_data_file:
     all_crps = pickle.load(open("all_crps.pkl", "rb"))
     all_spcs = pickle.load(open("all_spcs.pkl", "rb"))
 else:
-    all_crps, all_spcs = load_the_data(n_perms=10000)
+    num_cores = multiprocessing.cpu_count()
+    with Parallel(n_jobs=num_cores, verbose=0) as POOL:
+        all_crps, all_spcs = load_the_data(n_perms=500, pool=POOL)
     all_crps.to_pickle("all_crps.pkl")
     all_spcs.to_pickle("all_spcs.pkl")
 
@@ -56,7 +60,7 @@ n_included = pd.crosstab(all_crps[np.logical_and(all_crps.lag==0,all_crps.list==
 # compute average prec
 prec_table = all_crps.loc[np.logical_and(all_crps.lag==0,all_crps.list==0), :]['prec'].groupby([all_crps.instruction_condition, all_crps.task_condition]).describe()
 
-with open("/Users/khealey/Library/Mobile Documents/com~apple~CloudDocs/lab/writing/manuscripts/Heal16implicit/table_values.tex", "w") as text_file:
+with open("/Users/khealey/Library/Mobile Documents/com~apple~CloudDocs/lab/code/experiments/Heal16implicit/dissemination/manuscript/first_submission/table_values.tex", "w") as text_file:
     text_file.write('\\newcommand\\shoeExplicit{%s}\n' % n_tested['Explicit']['Shoebox'][0])
     text_file.write('\\newcommand\\shoeIncidental{%s}\n' % n_tested['Incidental']['Shoebox'][0])
     text_file.write('\\newcommand\\doorExplicit{%s}\n' % n_tested['Explicit']['Front Door'][0])
@@ -165,81 +169,3 @@ which_list = 0
 data_filter = np.logical_and(np.logical_and(all_crps.task_condition != "Shoebox", all_crps.task_condition != "Front Door"), all_crps.lag.abs() <= 5)
 data_to_use = all_crps.loc[data_filter, :]
 processing_task_fig(data_to_use, which_instruction_cond, which_list, 'E3')
-
-# ##### Figure 3
-# which_instruction_cond = "Explicit"
-# which_list = 0
-# data_filter = np.logical_and(all_crps.task_condition != "Size", all_crps.lag.abs() <= 5)
-# data_to_use = all_crps.loc[data_filter, :]
-# processing_task_fig(data_to_use, which_instruction_cond, which_list, 'figure3')
-#
-#
-# ######Figure 4
-# which_list = 0
-# data_filter = all_crps.lag.abs() == 0
-# data_to_use = all_crps.loc[data_filter, :]
-# prec_fig(data_to_use, which_list, "figure4")
-
-
-
-
-
-#
-#
-#
-# #################### figures for list 2
-#
-# ##### Figure 1
-# which_list = 1
-# data_filter = np.logical_and(all_crps.task_condition == "Scenario", all_crps.lag.abs() <= 5)
-# data_to_use = all_crps.loc[data_filter, :]
-# encoding_instruct_fig(data_to_use, which_list, "l2_figure1")
-#
-# ##### Figure 2
-# which_instruction_cond = "Incidental"
-# which_list = 1
-# data_filter = np.logical_and(all_crps.task_condition != "Relational", all_crps.lag.abs() <= 5)
-# data_to_use = all_crps.loc[data_filter, :]
-# processing_task_fig(data_to_use, which_instruction_cond, which_list, 'l2_figure2')
-#
-# ##### Figure 3
-# which_instruction_cond = "Explicit"
-# which_list = 1
-# data_filter = np.logical_and(all_crps.task_condition != "Relational", all_crps.lag.abs() <= 5)
-# data_to_use = all_crps.loc[data_filter, :]
-# processing_task_fig(data_to_use, which_instruction_cond, which_list, 'l2_figure3')
-#
-#
-# ######Figure 4
-# which_list = 1
-# data_filter = np.logical_and(all_crps.task_condition != "Relational", all_crps.lag.abs() == 0)
-# data_to_use = all_crps.loc[data_filter, :]
-# prec_fig(data_to_use, which_list, "l2_figure4")
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-
-#
-#
-#
-# # make the exploratory figures
-# apply_perm_correction = False
-# if apply_perm_correction:
-#     fig_prefix = "_perm"
-# else:
-#     fig_prefix = "_standard"
-# fig_compare_tasks(all_crps, all_spcs, which_cond=0, which_list=0, apply_perm_correction=apply_perm_correction, print_to="explicit" + fig_prefix + "_l0")
-# fig_compare_tasks(all_crps, all_spcs, which_cond=0, which_list=1, apply_perm_correction=apply_perm_correction, print_to='explicit' + fig_prefix + '_l1')
-# fig_compare_tasks(all_crps, all_spcs, which_cond=1, which_list=0, apply_perm_correction=apply_perm_correction, print_to='Incidental' + fig_prefix + '_l0')
-# fig_compare_tasks(all_crps, all_spcs, which_cond=1, which_list=1, apply_perm_correction=apply_perm_correction, print_to='Incidental' + fig_prefix + '_l1')
-
