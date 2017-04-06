@@ -2,55 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="427dd9dd-3ead-4953-ac2a-9ec6a5a51768" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/analyses/.ipynb_checkpoints/make_figs-checkpoint.ipynb" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/analyses/8000_all_crps.pkl" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/analyses/8000_all_spcs.pkl" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/analyses/8000_figs/explicit_standard_l0.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/analyses/8000_figs/explicit_standard_l0TFDIST.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/analyses/8000_figs/explicit_standard_l1.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/analyses/8000_figs/explicit_standard_l1TFDIST.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/analyses/8000_figs/figure1.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/analyses/8000_figs/figure2.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/analyses/8000_figs/figure3.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/analyses/8000_figs/figure4.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/analyses/8000_figs/implicit_standard_l0.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/analyses/8000_figs/implicit_standard_l0TFDIST.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/analyses/8000_figs/implicit_standard_l1.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/analyses/8000_figs/implicit_standard_l1TFDIST.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/analyses/8000_figs/l2_figure1.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/analyses/8000_figs/l2_figure2.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/analyses/8000_figs/l2_figure3.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/analyses/8000_figs/l2_figure4.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/analyses/E3.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/analyses/FrontDoor.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/analyses/Shoebox.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/analyses/__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/analyses/all_crps.pkl" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/analyses/all_spcs.pkl" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/analyses/anal_funcs.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/analyses/door.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/analyses/explicit_perm_l0.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/analyses/explicit_perm_l0TFDIST.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/analyses/explicit_perm_l1.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/analyses/explicit_perm_l1TFDIST.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/analyses/figure1.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/analyses/figure1b.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/analyses/figure2.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/analyses/figure3.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/analyses/figure4.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/analyses/implicit_perm_l0.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/analyses/implicit_perm_l0TFDIST.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/analyses/implicit_perm_l1.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/analyses/implicit_perm_l1TFDIST.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/analyses/l2_figure1.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/analyses/l2_figure2.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/analyses/l2_figure3.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/analyses/l2_figure4.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/analyses/make_figs.ipynb" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/analyses/run_analyses.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/analyses/table_values.tex" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/analyses/table_values.txt" afterPath="" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/analyses/all_crps.pkl" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/analyses/all_spcs.pkl" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/analyses/anal_funcs.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/analyses/run_analyses.py" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dissemination/manuscript/first_submission/figures/inputs.tex" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dissemination/manuscript/first_submission/table_values.tex" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dissemination/manuscript/first_submission/Heal16implicit.tex" afterPath="$PROJECT_DIR$/dissemination/manuscript/first_submission/Heal16implicit.tex" />
     </list>
     <ignored path="Heal16implicit.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -89,7 +48,7 @@
       <file leaf-file-name="anal_funcs.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/analyses/anal_funcs.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-585">
+            <state relative-caret-position="-216">
               <caret line="120" column="43" selection-start-line="120" selection-start-column="43" selection-end-line="120" selection-end-column="43" />
               <folding>
                 <element signature="e#0#44#0" expanded="true" />
@@ -98,11 +57,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="run_analyses.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="run_analyses.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/analyses/run_analyses.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="897">
-              <caret line="166" column="0" selection-start-line="166" selection-start-column="0" selection-end-line="166" selection-end-column="0" />
+            <state relative-caret-position="645">
+              <caret line="60" column="0" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
               </folding>
@@ -127,7 +86,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Heal16implicit.tex" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Heal16implicit.tex" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/dissemination/manuscript/first_submission/Heal16implicit.tex">
           <provider selected="true" editor-type-id="LaTeXFileEditor">
             <state />
@@ -175,6 +134,8 @@
         <option value="$PROJECT_DIR$/../../py_modules/beh_tools/recall_dynamics.py" />
         <option value="$PROJECT_DIR$/static/analyses/run_analyses.py" />
         <option value="$PROJECT_DIR$/static/analyses/anal_funcs.py" />
+        <option value="$PROJECT_DIR$/analyses/run_analyses.py" />
+        <option value="$PROJECT_DIR$/dissemination/manuscript/first_submission/Heal16implicit.tex" />
       </list>
     </option>
   </component>
@@ -231,6 +192,54 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="Heal16implicit" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Heal16implicit" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Heal16implicit" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dissemination" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="manuscript" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="first_submission" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Heal16implicit" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Heal16implicit" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dissemination" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="manuscript" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="first_submission" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="figures" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -744,7 +753,14 @@
       <option name="project" value="LOCAL" />
       <updated>1491419886212</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="refactoring dir structure">
+      <created>1491486532574</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1491486532574</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TodoView">
@@ -758,18 +774,19 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="302" y="84" width="1871" height="1071" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3290566" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3998187" sideWeight="0.50540733" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32798833" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23061225" sideWeight="0.49459264" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3156282" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3156282" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32968834" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2819203" sideWeight="0.49459264" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18917441" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18917441" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32890704" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.16931818" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.45250255" sideWeight="0.49459264" order="3" side_tool="false" content_ui="tabs" />
@@ -779,7 +796,6 @@
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Thumbnails" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3299285" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295626" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Concurrent Activities Diagram" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32910246" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
     </layout>
@@ -846,7 +862,8 @@
     <MESSAGE value="getting ready to finalize for first sub" />
     <MESSAGE value="As used for first full draft" />
     <MESSAGE value="Changes to also do baseline corrected crp&#10;" />
-    <option name="LAST_COMMIT_MESSAGE" value="Changes to also do baseline corrected crp&#10;" />
+    <MESSAGE value="refactoring dir structure" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactoring dir structure" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -881,13 +898,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/templates/stage.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/make_data_file.py" />
     <entry file="file://$PROJECT_DIR$/static/js/task.js">
       <provider selected="true" editor-type-id="text-editor">
@@ -1143,11 +1153,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dissemination/manuscript/first_submission/Heal16implicit.tex">
-      <provider selected="true" editor-type-id="LaTeXFileEditor">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../../py_modules/beh_tools/recall_dynamics.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="777">
@@ -1158,7 +1163,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/analyses/anal_funcs.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-585">
+        <state relative-caret-position="-216">
           <caret line="120" column="43" selection-start-line="120" selection-start-column="43" selection-end-line="120" selection-end-column="43" />
           <folding>
             <element signature="e#0#44#0" expanded="true" />
@@ -1168,12 +1173,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/analyses/run_analyses.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="897">
-          <caret line="166" column="0" selection-start-line="166" selection-start-column="0" selection-end-line="166" selection-end-column="0" />
+        <state relative-caret-position="645">
+          <caret line="60" column="0" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
           </folding>
         </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dissemination/manuscript/first_submission/figures/inputs.tex">
+      <provider selected="true" editor-type-id="LaTeXFileEditor">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dissemination/manuscript/first_submission/Heal16implicit.tex">
+      <provider selected="true" editor-type-id="LaTeXFileEditor">
+        <state />
       </provider>
     </entry>
   </component>
