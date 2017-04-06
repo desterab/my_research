@@ -22,7 +22,7 @@ if os.path.isfile("all_crps.pkl") and not remake_data_file:
 else:
     num_cores = multiprocessing.cpu_count()
     with Parallel(n_jobs=num_cores, verbose=0) as POOL:
-        all_crps, all_spcs = load_the_data(n_perms=10000, pool=POOL)
+        all_crps, all_spcs = load_the_data(n_perms=10000, pool=POOL, save_name=results_dir + 'Heal16implicit_data.csv')
     all_crps.to_pickle("all_crps.pkl")
     all_spcs.to_pickle("all_spcs.pkl")
 

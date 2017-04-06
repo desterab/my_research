@@ -19,7 +19,7 @@ tf_lims = [-.025, .2]
 tf_col ='all_tf_z'
 
 
-def load_the_data(n_perms, pool):
+def load_the_data(n_perms, pool, save_name):
 
     #
     system('scp cbcc.psy.msu.edu:~/code/experiments/Heal16implicit/HealEtal16implicit.data.pkl \'/Users/khealey/Library/Mobile Documents/com~apple~CloudDocs/lab/code/experiments/Heal16implicit\'')
@@ -147,7 +147,7 @@ def load_the_data(n_perms, pool):
     e3 = np.logical_and(np.in1d(recalls.task_condition, ["Weight", "Animacy", "Scenario", "Movie", "Relational"]),
                         recalls.instruction_condition == "Incidental")
     used_data = np.logical_and(np.logical_or(e1, np.logical_or(e2, e3)), recalls.list == 0)  # in a used condition and the first list
-    recalls.loc[np.logical_and(np.in1d(recalls.subject, included_subjects), used_data)].to_csv("test.csv")
+    recalls.loc[np.logical_and(np.in1d(recalls.subject, included_subjects), used_data)].to_csv(save_name)
 
     print "Data Loaded!"
     return all_crps, all_spcs

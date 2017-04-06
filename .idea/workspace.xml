@@ -2,17 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="427dd9dd-3ead-4953-ac2a-9ec6a5a51768" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/analyses/used_recall_dynamics.py" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dissemination/manuscript/first_submission/figures/E3.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dissemination/manuscript/first_submission/figures/FrontDoor.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dissemination/manuscript/first_submission/figures/peerscrp.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dissemination/manuscript/first_submission/figures/shoebox.pdf" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/analyses/all_crps.pkl" afterPath="$PROJECT_DIR$/analyses/all_crps.pkl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/analyses/all_spcs.pkl" afterPath="$PROJECT_DIR$/analyses/all_spcs.pkl" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/analyses/anal_funcs.py" afterPath="$PROJECT_DIR$/analyses/anal_funcs.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/analyses/run_analyses.py" afterPath="$PROJECT_DIR$/analyses/run_analyses.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dissemination/manuscript/first_submission/Heal16implicit.tex" afterPath="$PROJECT_DIR$/dissemination/manuscript/first_submission/Heal16implicit.tex" />
     </list>
     <ignored path="Heal16implicit.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -42,8 +34,8 @@
       <file leaf-file-name="run_analyses.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/analyses/run_analyses.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="19" column="54" selection-start-line="19" selection-start-column="54" selection-end-line="19" selection-end-column="54" />
+            <state relative-caret-position="405">
+              <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
               </folding>
@@ -54,8 +46,8 @@
       <file leaf-file-name="anal_funcs.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/analyses/anal_funcs.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="915">
-              <caret line="74" column="19" selection-start-line="74" selection-start-column="19" selection-end-line="74" selection-end-column="19" />
+            <state relative-caret-position="1485">
+              <caret line="102" column="65" selection-start-line="102" selection-start-column="65" selection-end-line="102" selection-end-column="65" />
               <folding>
                 <element signature="e#0#34#0" expanded="true" />
               </folding>
@@ -122,9 +114,9 @@
         <option value="$PROJECT_DIR$/static/analyses/run_analyses.py" />
         <option value="$PROJECT_DIR$/static/analyses/anal_funcs.py" />
         <option value="$PROJECT_DIR$/analyses/used_recall_dynamics.py" />
-        <option value="$PROJECT_DIR$/analyses/run_analyses.py" />
         <option value="$PROJECT_DIR$/dissemination/manuscript/first_submission/Heal16implicit.tex" />
         <option value="$PROJECT_DIR$/analyses/anal_funcs.py" />
+        <option value="$PROJECT_DIR$/analyses/run_analyses.py" />
       </list>
     </option>
   </component>
@@ -750,7 +742,14 @@
       <option name="project" value="LOCAL" />
       <updated>1491486886092</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="saving data to post">
+      <created>1491490660096</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1491490660096</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TodoView">
@@ -853,7 +852,8 @@
     <MESSAGE value="As used for first full draft" />
     <MESSAGE value="Changes to also do baseline corrected crp&#10;" />
     <MESSAGE value="refactoring dir structure" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactoring dir structure" />
+    <MESSAGE value="saving data to post" />
+    <option name="LAST_COMMIT_MESSAGE" value="saving data to post" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1172,8 +1172,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/analyses/anal_funcs.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="915">
-          <caret line="74" column="19" selection-start-line="74" selection-start-column="19" selection-end-line="74" selection-end-column="19" />
+        <state relative-caret-position="1485">
+          <caret line="102" column="65" selection-start-line="102" selection-start-column="65" selection-end-line="102" selection-end-column="65" />
           <folding>
             <element signature="e#0#34#0" expanded="true" />
           </folding>
@@ -1182,8 +1182,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/analyses/run_analyses.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="19" column="54" selection-start-line="19" selection-start-column="54" selection-end-line="19" selection-end-column="54" />
+        <state relative-caret-position="405">
+          <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
           </folding>
