@@ -76,7 +76,7 @@ def load_the_data(n_perms, pool, save_name):
             if prec <= 0.:
                 continue
             included_subjects.append(s)
-            continue
+            # continue
 
 
             # compute spc
