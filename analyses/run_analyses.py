@@ -1,17 +1,19 @@
 import os
 import pickle
 from anal_funcs import *
-from joblib import Parallel, delayed
+from joblib import Parallel
 import multiprocessing
 
 
 
-results_dir = "/Users/khealey/Library/Mobile Documents/com~apple~CloudDocs/lab/code/experiments/Heal16implicit/dissemination/manuscript/first_submission/figures"
+results_dir = "/Users/khealey/Library/Mobile Documents/com~apple~CloudDocs/lab/code/experiments/Heal16implicit/dissemination/manuscript/first_submission/figures/"
+
+
 
 ##################################################################################################
 #  load and analyse data
 
-remake_data_file = False
+remake_data_file = True
 
 # load or create the data
 if os.path.isfile("all_crps.pkl") and not remake_data_file:
@@ -28,7 +30,7 @@ else:
 all_crps = all_crps.groupby(['subject', 'lag', 'list'], as_index=False).mean()
 all_spcs = all_spcs.groupby(['subject', 'serial_pos', 'list'], as_index=False).mean()
 
-# change conditions from numerical to verbal labels
+# change conditions from numerical to verbal labelsls
 all_crps.loc[all_crps.task_condition == 0, 'task_condition'] = "Shoebox"
 all_crps.loc[all_crps.task_condition == 1, 'task_condition'] = "Movie"
 all_crps.loc[all_crps.task_condition == 2, 'task_condition'] = "Relational"
@@ -152,17 +154,17 @@ sns.set_palette(colors)
 which_list = 0
 data_filter = np.logical_and(all_crps.task_condition == "Shoebox", all_crps.lag.abs() <= 5)
 data_to_use = all_crps.loc[data_filter, :]
-encoding_instruct_fig(data_to_use, which_list, "Shoebox")
+encoding_instruct_fig(data_to_use, which_list, results_dir + "Shoebox")
 
 ##### door
 which_list = 0
 data_filter = np.logical_and(all_crps.task_condition == "Front Door", all_crps.lag.abs() <= 5)
 data_to_use = all_crps.loc[data_filter, :]
-encoding_instruct_fig(data_to_use, which_list, "Front Door")
+encoding_instruct_fig(data_to_use, which_list, results_dir + "FrontDoor")
 
 ##### many tasks
 which_instruction_cond = "Incidental"
 which_list = 0
 data_filter = np.logical_and(np.logical_and(all_crps.task_condition != "Shoebox", all_crps.task_condition != "Front Door"), all_crps.lag.abs() <= 5)
 data_to_use = all_crps.loc[data_filter, :]
-processing_task_fig(data_to_use, which_instruction_cond, which_list, 'E3')
+processing_task_fig(data_to_use, which_instruction_cond, which_list, results_dir + 'E3')

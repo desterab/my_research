@@ -2,13 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="427dd9dd-3ead-4953-ac2a-9ec6a5a51768" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/analyses/all_crps.pkl" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/analyses/all_spcs.pkl" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/analyses/anal_funcs.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/analyses/run_analyses.py" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dissemination/manuscript/first_submission/figures/inputs.tex" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dissemination/manuscript/first_submission/table_values.tex" afterPath="" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/analyses/used_recall_dynamics.py" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dissemination/manuscript/first_submission/figures/E3.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dissemination/manuscript/first_submission/figures/FrontDoor.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dissemination/manuscript/first_submission/figures/peerscrp.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dissemination/manuscript/first_submission/figures/shoebox.pdf" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/analyses/all_crps.pkl" afterPath="$PROJECT_DIR$/analyses/all_crps.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/analyses/all_spcs.pkl" afterPath="$PROJECT_DIR$/analyses/all_spcs.pkl" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/analyses/anal_funcs.py" afterPath="$PROJECT_DIR$/analyses/anal_funcs.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/analyses/run_analyses.py" afterPath="$PROJECT_DIR$/analyses/run_analyses.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dissemination/manuscript/first_submission/Heal16implicit.tex" afterPath="$PROJECT_DIR$/dissemination/manuscript/first_submission/Heal16implicit.tex" />
     </list>
     <ignored path="Heal16implicit.iws" />
@@ -23,6 +26,7 @@
   </component>
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/Heal16implicit$correction_analyses.coverage" NAME="correction_analyses Coverage Results" MODIFIED="1476982215470" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/static/analyses" />
+    <SUITE FILE_PATH="coverage/Heal16implicit$run_analyses__1_.coverage" NAME="run_analyses (1) Coverage Results" MODIFIED="1491490524595" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/analyses" />
     <SUITE FILE_PATH="coverage/Heal16implicit$toy_model.coverage" NAME="toy_model Coverage Results" MODIFIED="1477933212046" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../../../teaching/psy200/lectures/class18" />
     <SUITE FILE_PATH="coverage/Heal16implicit$run_analyses.coverage" NAME="run_analyses Coverage Results" MODIFIED="1491485858682" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/static/analyses" />
   </component>
@@ -35,33 +39,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="config.txt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/config.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="405">
-              <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="anal_funcs.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/analyses/anal_funcs.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-216">
-              <caret line="120" column="43" selection-start-line="120" selection-start-column="43" selection-end-line="120" selection-end-column="43" />
-              <folding>
-                <element signature="e#0#44#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="run_analyses.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="run_analyses.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/analyses/run_analyses.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="645">
-              <caret line="60" column="0" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
+            <state relative-caret-position="285">
+              <caret line="19" column="54" selection-start-line="19" selection-start-column="54" selection-end-line="19" selection-end-column="54" />
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
               </folding>
@@ -69,24 +51,29 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Heal16implicit_letter.tex" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/dissemination/manuscript/first_submission/Heal16implicit_letter.tex">
-          <provider selected="true" editor-type-id="LaTeXFileEditor">
-            <state />
+      <file leaf-file-name="anal_funcs.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/analyses/anal_funcs.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="915">
+              <caret line="74" column="19" selection-start-line="74" selection-start-column="19" selection-end-line="74" selection-end-column="19" />
+              <folding>
+                <element signature="e#0#34#0" expanded="true" />
+              </folding>
+            </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="recall_dynamics.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../../py_modules/beh_tools/recall_dynamics.py">
+      <file leaf-file-name="parallel.py" pinned="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/anaconda/lib/python2.7/site-packages/joblib/parallel.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="777">
-              <caret line="463" column="47" selection-start-line="463" selection-start-column="47" selection-end-line="463" selection-end-column="47" />
+            <state relative-caret-position="184">
+              <caret line="468" column="0" selection-start-line="468" selection-start-column="0" selection-end-line="468" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Heal16implicit.tex" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Heal16implicit.tex" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dissemination/manuscript/first_submission/Heal16implicit.tex">
           <provider selected="true" editor-type-id="LaTeXFileEditor">
             <state />
@@ -134,8 +121,10 @@
         <option value="$PROJECT_DIR$/../../py_modules/beh_tools/recall_dynamics.py" />
         <option value="$PROJECT_DIR$/static/analyses/run_analyses.py" />
         <option value="$PROJECT_DIR$/static/analyses/anal_funcs.py" />
+        <option value="$PROJECT_DIR$/analyses/used_recall_dynamics.py" />
         <option value="$PROJECT_DIR$/analyses/run_analyses.py" />
         <option value="$PROJECT_DIR$/dissemination/manuscript/first_submission/Heal16implicit.tex" />
+        <option value="$PROJECT_DIR$/analyses/anal_funcs.py" />
       </list>
     </option>
   </component>
@@ -146,8 +135,8 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="302" />
-    <option name="y" value="84" />
+    <option name="x" value="542" />
+    <option name="y" value="229" />
     <option name="width" value="1871" />
     <option name="height" value="1071" />
   </component>
@@ -176,7 +165,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -227,38 +215,13 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="dissemination" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="manuscript" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="first_submission" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="figures" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Heal16implicit" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Heal16implicit" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="analyses" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
       <pane id="Scratches" />
     </panes>
   </component>
@@ -281,7 +244,7 @@
       <recent name="$PROJECT_DIR$/static" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.run_analyses">
+  <component name="RunManager" selected="Python.run_analyses (1)">
     <configuration default="false" name="run_analyses" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -332,6 +295,24 @@
       <module name="Heal16implicit" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../../../teaching/psy200/lectures/class18/toy_model.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="run_analyses (1)" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/analyses" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="Heal16implicit" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/analyses/run_analyses.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <method />
@@ -544,16 +525,18 @@
       <option name="USE_KEYWORD" value="false" />
       <method />
     </configuration>
-    <list size="3">
+    <list size="4">
       <item index="0" class="java.lang.String" itemvalue="Python.run_analyses" />
       <item index="1" class="java.lang.String" itemvalue="Python.correction_analyses" />
       <item index="2" class="java.lang.String" itemvalue="Python.toy_model" />
+      <item index="3" class="java.lang.String" itemvalue="Python.run_analyses (1)" />
     </list>
     <recent_temporary>
-      <list size="3">
-        <item index="0" class="java.lang.String" itemvalue="Python.run_analyses" />
-        <item index="1" class="java.lang.String" itemvalue="Python.toy_model" />
-        <item index="2" class="java.lang.String" itemvalue="Python.correction_analyses" />
+      <list size="4">
+        <item index="0" class="java.lang.String" itemvalue="Python.run_analyses (1)" />
+        <item index="1" class="java.lang.String" itemvalue="Python.run_analyses" />
+        <item index="2" class="java.lang.String" itemvalue="Python.toy_model" />
+        <item index="3" class="java.lang.String" itemvalue="Python.correction_analyses" />
       </list>
     </recent_temporary>
   </component>
@@ -760,7 +743,14 @@
       <option name="project" value="LOCAL" />
       <updated>1491486532574</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="refactoring dir structure">
+      <created>1491486886092</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1491486886092</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TodoView">
@@ -773,27 +763,27 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="302" y="84" width="1871" height="1071" extended-state="0" />
+    <frame x="542" y="229" width="1871" height="1071" extended-state="0" />
     <editor active="true" />
     <layout>
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19081466" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3290566" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3998187" sideWeight="0.50540733" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32798833" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23061225" sideWeight="0.49459264" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3156282" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32968834" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2819203" sideWeight="0.49459264" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18917441" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32890704" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32798833" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22982635" sideWeight="0.49459264" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3156282" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.16931818" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2819203" sideWeight="0.49459264" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.45250255" sideWeight="0.49459264" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32968834" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Thumbnails" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3299285" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -875,8 +865,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/analyses/anal_funcs.py</url>
-          <line>48</line>
-          <option name="timeStamp" value="166" />
+          <line>186</line>
+          <option name="timeStamp" value="170" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/analyses/anal_funcs.py</url>
+          <line>151</line>
+          <option name="timeStamp" value="173" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
@@ -893,12 +888,11 @@
           <properties />
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="170" />
+      <option name="time" value="174" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/make_data_file.py" />
     <entry file="file://$PROJECT_DIR$/static/js/task.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -983,20 +977,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/analyses/make_figs.ipynb">
-      <provider selected="true" editor-type-id="ipnb-editor">
-        <state>
-          <selected id="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/analyses/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/analyses/make_figs.ipynb" />
+    <entry file="file://$PROJECT_DIR$/analyses/__init__.py" />
     <entry file="file://$USER_HOME$/anaconda/lib/python2.7/site-packages/numpy/core/records.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="256">
@@ -1020,7 +1002,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/anaconda/lib/python2.7/site-packages/joblib/parallel.py" />
     <entry file="file://$PROJECT_DIR$/static/analyses/correction_analyses.py" />
     <entry file="file://$PROJECT_DIR$/static/analyses/contiguity_model.py" />
     <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/pydevd.py">
@@ -1148,47 +1129,65 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/make_data_file.py" />
-    <entry file="file://$PROJECT_DIR$/dissemination/manuscript/first_submission/Heal16implicit_letter.tex">
-      <provider selected="true" editor-type-id="LaTeXFileEditor">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../py_modules/beh_tools/recall_dynamics.py">
+    <entry file="file://$PROJECT_DIR$/dissemination/manuscript/first_submission/figures/inputs.tex" />
+    <entry file="file://$PROJECT_DIR$/analyses/used_recall_dynamics.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="777">
-          <caret line="463" column="47" selection-start-line="463" selection-start-column="47" selection-end-line="463" selection-end-column="47" />
+        <state relative-caret-position="7800">
+          <caret line="527" column="0" selection-start-line="527" selection-start-column="0" selection-end-line="527" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/../../py_modules/beh_tools/recall_dynamics.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="6075">
+          <caret line="412" column="47" selection-start-line="0" selection-start-column="0" selection-end-line="527" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dissemination/manuscript/first_submission/Heal16implicit_letter.tex">
+      <provider editor-type-id="LaTeXFileEditor">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/anaconda/lib/python2.7/site-packages/joblib/parallel.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="184">
+          <caret line="468" column="0" selection-start-line="468" selection-start-column="0" selection-end-line="468" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dissemination/manuscript/first_submission/Heal16implicit.tex">
+      <provider selected="true" editor-type-id="LaTeXFileEditor">
+        <state />
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/analyses/anal_funcs.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-216">
-          <caret line="120" column="43" selection-start-line="120" selection-start-column="43" selection-end-line="120" selection-end-column="43" />
+        <state relative-caret-position="915">
+          <caret line="74" column="19" selection-start-line="74" selection-start-column="19" selection-end-line="74" selection-end-column="19" />
           <folding>
-            <element signature="e#0#44#0" expanded="true" />
+            <element signature="e#0#34#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/analyses/run_analyses.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="645">
-          <caret line="60" column="0" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
+        <state relative-caret-position="285">
+          <caret line="19" column="54" selection-start-line="19" selection-start-column="54" selection-end-line="19" selection-end-column="54" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
           </folding>
         </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dissemination/manuscript/first_submission/figures/inputs.tex">
-      <provider selected="true" editor-type-id="LaTeXFileEditor">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dissemination/manuscript/first_submission/Heal16implicit.tex">
-      <provider selected="true" editor-type-id="LaTeXFileEditor">
-        <state />
       </provider>
     </entry>
   </component>

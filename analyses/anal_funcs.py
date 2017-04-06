@@ -1,4 +1,4 @@
-from beh_tools import recall_dynamics as rdf
+import used_recall_dynamics as rdf
 import pickle
 import pandas as pd
 import seaborn as sns
@@ -27,11 +27,23 @@ def load_the_data(n_perms, pool):
         "/Users/khealey/Library/Mobile Documents/com~apple~CloudDocs/lab/code/experiments/Heal16implicit/HealEtal16implicit.data.pkl",
         "rb"))
 
+    # change conditions from numerical to verbal labelsls
+    recalls.loc[recalls.task_condition == 0, 'task_condition'] = "Shoebox"
+    recalls.loc[recalls.task_condition == 1, 'task_condition'] = "Movie"
+    recalls.loc[recalls.task_condition == 2, 'task_condition'] = "Relational"
+    recalls.loc[recalls.task_condition == 3, 'task_condition'] = "Scenario"
+    recalls.loc[recalls.task_condition == 4, 'task_condition'] = "Animacy"
+    recalls.loc[recalls.task_condition == 5, 'task_condition'] = "Weight"
+    recalls.loc[recalls.task_condition == 6, 'task_condition'] = "Front Door"
+    recalls.loc[recalls.instruction_condition == 0, 'instruction_condition'] = "Explicit"
+    recalls.loc[recalls.instruction_condition == 1, 'instruction_condition'] = "Incidental"
+
     # loop over subjects and lists, for each isolate their data
     subjects = recalls.subject.unique()
+    included_subjects = []
     n_subs = subjects.shape[0]
     si = 0.  # for a progress counter
-    lists = recalls.list.unique()
+    lists = [0]  #  doing only the first list. to do all lists change to: recalls.list.unique()
     all_crps = pd.DataFrame()
     all_spcs = pd.DataFrame()
     for s in subjects:
@@ -48,10 +60,12 @@ def load_the_data(n_perms, pool):
             if cur_recalls.shape[0] == 0:
                 continue
 
+
+
             # skip lists if subject reported being aware
             aware = cur_recalls.aware[0].values == 'yes'
-            implicit = cur_recalls.instruction_condition[0] == 1
-            if aware.any() and implicit:
+            incidental = cur_recalls.instruction_condition[0] == "Incidental"
+            if aware.any() and incidental:
                 aware_check = 1
             else:
                 aware_check = 0
@@ -59,6 +73,11 @@ def load_the_data(n_perms, pool):
             # compute overall recall
             rec_mat = cur_recalls.as_matrix(range(recalls.shape[1] - 2))  # format recalls matrix for use with rdf functions
             prec = rdf.prec(listlen=16, recalls=rec_mat)
+            if prec <= 0.:
+                continue
+            included_subjects.append(s)
+            continue
+
 
             # compute spc
             spc = rdf.spc(listlen=16, recalls=rec_mat, filter_ind=None)
@@ -121,6 +140,15 @@ def load_the_data(n_perms, pool):
                                               index=spc.index)
             all_spcs = pd.concat([all_spcs, spc])
 
+
+    # save data used in the anals
+    e1 = recalls.task_condition == "Shoebox"
+    e2 = recalls.task_condition == "Front Door"
+    e3 = np.logical_and(np.in1d(recalls.task_condition, ["Weight", "Animacy", "Scenario", "Movie", "Relational"]),
+                        recalls.instruction_condition == "Incidental")
+    used_data = np.logical_and(np.logical_or(e1, np.logical_or(e2, e3)), recalls.list == 0)  # in a used condition and the first list
+    recalls.loc[np.logical_and(np.in1d(recalls.subject, included_subjects), used_data)].to_csv("test.csv")
+
     print "Data Loaded!"
     return all_crps, all_spcs
 
@@ -156,7 +184,7 @@ def encoding_instruct_fig(data_to_use, which_list, save_name):
     sns.despine()
     tf_axis.annotate('B.', xy=(-.175, 1), xycoords='axes fraction')
 
-    fig2.savefig(save_name.replace(" ", "") + '.pdf', bbox_inches='tight')
+    fig2.savefig(save_name + '.pdf', bbox_inches='tight')
     plt.close(fig2)
 
 
