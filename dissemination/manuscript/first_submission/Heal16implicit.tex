@@ -1,4 +1,4 @@
-\documentclass[jou,natbib]{apa6} %apa 6th edition format
+\documentclass[man,natbib,floatsintext]{apa6} %apa 6th edition format
 
 % watermark for first page
 % \usepackage[firstpage]{draftwatermark}
@@ -60,26 +60,19 @@ Version of \today\\
 
 \begin{document}
 \maketitle
-Success in remembering important information is powerfully influenced by how we encode that information \citep{CraiLock72,TulvPear66}. 
-%Thinking about the deep semantic meaning of an item is more effective than thinking about its phonological characteristics \cite{craik}. 
-Control processes \citep{LehmMalm13,RaaiShif81} allow us to strategically process information so as to maximize recall \citep[e.g.,][]{Unsw16}. But we know surprisingly little about how control processes impact one of the oldest and most influential observations about memory: Recalling one event tends to trigger recall of other events experienced nearby in time \citep{Aris,Bowe72,Kaha96}. 
 
-This Temporal Contiguity Effect (TCE) manifests in many laboratory tasks \citep{DaviEtal08,SchwEtal05}. For example, in free recall you study a list of words presented serially and recall them in any order. If you have just recalled the word studied in the $5^{th}$ serial position, the next word you recall is much more likely to be from the $6^{th}$ or $4^{th}$ position than a more distant position \citep{Kaha96}.
+%How we encode information powerfully impacts our success in remembering it \citep{CraiLock72,TulvPear66}.
+Control processes \citep{LehmMalm13,RaaiShif81} allow us to strategically process information during memory encoding, maximizing recall \citep[e.g.,][]{Unsw16}. Little is known about how control processes impact one of the oldest and most influential observations about memory: Recalling one event tends to trigger recall of other events experienced nearby in time \citep{Aris,Bowe72,Kaha96}.
 
-The TCE has shaped theories of episodic memory \citep{LehmMalm13,CortEtal15,LohnEtal14,DaveEtal05,Unsw08}, the testing effect \citep{KarpEtal14}, directed forgetting \citep{SahaEtal13}, retrieval induced forgetting \citep{KlieBaum16}, childhood development \citep{JarroEtal15}, cognitive aging \citep{WahlHuff15,HealKaha15}, event segmentation \citep{EzzyDava14}, time estimation \citep{SahaSmit13}, and even perception \citep{TurkEtal12}. Yet, little is known about how encoding control processes influence contiguity \citep{Hint16}.
+This Temporal Contiguity Effect (TCE) manifests in many tasks \citep{DaviEtal08,SchwEtal05}. For example, in free recall, you study words presented serially and recall them in any order. After recalling the word studied in the $5^{th}$ serial position, your next recall is much more likely to be from the $6^{th}$ or $4^{th}$ position than more distant positions \citep{Kaha96}.
 
-Because control processes are deliberately engaged to aid encoding, their effect on the TCE can be studied by comparing explicit encoding conditions in which subjects try to memorize items to incidental encoding conditions in which subjects do not suspect their memory will be tested and have no impetus to engage control processes.
+The TCE has shaped theories of  the testing effect \citep{KarpEtal14}, directed forgetting \citep{SahaEtal13}, retrieval induced forgetting \citep{KlieBaum16}, childhood development \citep{JarroEtal15}, cognitive aging \citep{WahlHuff15,HealKaha15}, event segmentation \citep{EzzyDava14}, time estimation \citep{SahaSmit13}, and even perception \citep{TurkEtal12}. Yet, little is known about how encoding control processes influence contiguity \citep{Hint16}.
 
 
-Some theories of the TCE suggest the effect is produced by task-general memory encoding processes that operate both in laboratory tasks and outside the laboratory when we form new memories without trying to memorize anything \citep{HealEtal14,LohnEtal14}. Such theories predict the TCE should be easily observed under incidental encoding. Other theories suggest that the TCE is entirely due to task-specific strategies implemented by control processes to handle the idiosyncratic demands of laboratory tasks. Such theories predict the TCE should disappear under incidental encoding \citep{Hint16}.
+Since control processes are deliberately engaged during encoding, their effect can be studied by comparing subjects who have effortfully memorized items to subjects who have only memorized items incidentally with no impetus to engage control processes. Some theories of the TCE suggest task-general processes, that operate both in and outside the laboratory when we unintentionally form new memories, produce the effect \citep{HealEtal14,LohnEtal14}. Such theories predict the TCE should still be observed under incidental encoding. Other theories suggest that the TCE is entirely due to task-specific strategies, implemented by control processes to handle the idiosyncratic demands of laboratory tasks. Such theories predict the TCE should disappear under incidental encoding \citep{Hint16}.
 
 
-
-
-
-%Theories of the TCE make very different predictions about what should happen under incidental encoding conditions. Some models suggest the TCE does not depend directly on control processes and should be easily observed under incidental encoding \citep{HealEtal14,LohnEtal14}.  %Other theories suggest that non-control processes promote contiguity but can be modulated by control processes \citep{Malm}.
-
-These competing predictions have never been directly tested. The only study to measure the TCE after incidental encoding \citep{NairEtal17} did not include an explicit encoding control condition because it was focused on the survival processing effect \citep{NairPand16}, not the role of encoding intent. Tantalizingly, this study did \emph{not} find a significant TCE, but the lack of a control condition leaves it unclear whether it was the absence of intent or some other factor that eliminated the TCE. Therefore, Experiment 1 directly compares the TCE under explicit and incidental encoding.
+These predictions have never been tested. The only study to measure the TCE after incidental encoding \citep{NairEtal17} did not include an explicit encoding control condition because the TCE was not its main focus. Tantalizingly, this study did \emph{not} find a significant TCE, but the lack of a control condition leaves the reason unclear. Therefore, Experiment 1 directly compares the TCE under explicit and incidental encoding.
 
 \section{Experiment 1}
 
@@ -207,11 +200,11 @@ The actual temporal factor score was then converted into a z-score, Z(TCE), by s
 \section{Results}
 
 \newcommand\paneltext{(A) Lag-conditional response probability functions. Error bars are bootstrapped within-subject 95\% confidence intervals. (B) The average Z(TCE).  Error bars are bootstrapped between-subject 95\% confidence intervals. Z(TCE) for a given subject is computed as follows: An observed temporal factor score was computed as the average percentile ranking the temporal lag of each actual transition in the recall sequence with respect to the lags of all transitions that were possible at that time. To determine the temporal factor score expected by chance, a permutation distribution was created by randomly shuffling the order of recalls within the sequence 10,000 times and computing a temporal factor score for each shuffling. The reported value, Z(TCE), is z-score of the observed temporal factor score within the permutation distribution.}
-\begin{figure*}
+\begin{figure}
 \fitfigure{figures/shoebox.pdf}
 \caption{The temporal contiguity effect (TCE) with the Shoebox size judgment task under explicit versus incidental encoding. \paneltext}
 \label{shoebox}
-\end{figure*}
+\end{figure}
 
 
 
@@ -231,55 +224,25 @@ See the supplemental materials for the exact task instructions.
 \section{Results}
 As predicted, the Front Door Task substantially improved memory accuracy in the Incidental condition to approximately the level seen in the Explicit condition of Experiment 1 (Table 1). The Front Door task did not, however, produce a significant TCE. Figure~\ref{door} shows that whereas the Explicit condition showed a distinctly peaked lag-CRP and a Z(TCE) significantly above zero, the Incidental condition showed a flattened lag-CRP and a Z(TCE) for which the confidence interval included zero.
 
-\begin{figure*}%[hp]
+\begin{figure}%[hp]
 \fitfigure{figures/FrontDoor.pdf}
 \caption{The temporal contiguity effect (TCE) with the Front Door size judgment task under explicit versus incidental encoding. \paneltext}
 \label{door}
-\end{figure*}
+\end{figure}
 
 \section{Interim Discussion}
+Experiments 1 and 2 show that the TCE can be absent when intent to encode is absent. This result is consistent with theories that ascribe the TCE to strategic control processes. Under this interpretation, the contiguity-generating processes are more or less inseparable from the intent to encode. But is intent to encode truly necessary to find a TCE? Perhaps not.
 
-Experiments 1 and 2 show that the TCE can be absent when intent to encode is absent and show that control processes strongly influence the TCE. This result is consistent with theories that ascribe the TCE to strategic or control processes that are not engaged under incidental encoding conditions. Under this interpretation, the contiguity-generating processes are more or less inseparable from the intent to encode. But is intent to encode truly necessary to find a TCE? Perhaps not.
+An alternate interpretation is that automatic encoding processes do produce contiguity, but their effect is obscured by processes required by the judgment task. For example, most models produce a TCE because the representations of items studied close together are more similar to each other than they are to the representations of items studied far apart. The Shoebox and Front Door tasks encourage subjects to maintain a common mental representation (e.g., image of a shoebox) throughout the list presentation. If this representation is incorporated into the representations of list items, it would increase the similarity of items separated by distant lags, attenuating the TCE. When trying to memorize, subjects likely process items in ways that are not necessry the judgment task, perhaps decreasing the similarity of items seperated by distant lags, increasign the TCE. That is, the judgment task might decrease the TCE in a way that is not due to the lack of intent to encode.
 
- An alternate interpretation of Experiments 1 and 2 is that automatic encoding processes do indeed tend to produce contiguity, but their effect is obscured by additional non-memory processes required by the judgment task. For example, most models produce a TCE because the representations of items studied close together are more similar to each other than they are to the representations of items studied far apart  \citep{}. But the Shoebox and Front Door tasks encourage subjects to maintain a common mental representation (i.e., an image of a shoebox or of their home) through the list presentation. If this representation is incorporated into the representations of list items, it would increase the similarity of items separated by distant lags, attenuating the TCE. In the Explicit conditions, subjects likely engage in processing of the items beyond that needed to make a size judgment, which might decrease the similarity of successive items, mitigating the effect of associating each item with a common representation. Although speculative, this is a plausible example of how the judgment task might decrease the TCE in a way that is not due to the lack of intent to encode. %Under this interpretation, the effect of explicit control processes is not to directly produce contiguity but to compensate for the contiguity-obscuring processes in the Incidental condition.
-
-%And that these processes do not generate contiguity. Explicit encoding adds an additional set of strategic or control processes, which do generate contiguity. Under this interpretation, the contiguity-generating processes are more or less inseparable from the intent to encode.
-
-
-%One interpretation is that under Incidental encoding, memories are formed by automatic processes similar to those that operate outside the laboratory when we form new memories without trying to memorize anything. And that these processes do not generate contiguity. Explicit encoding adds an additional set of strategic or control processes, which do generate contiguity. Under this interpretation, the contiguity-generating processes are more or less inseparable from the intent to encode. An alternate interpretation is that automatic encoding processes do indeed tend to produce contiguity, but their effect is obscured by additional non-memory processes required by the judgment task. Under this interpretation, the effect of explicit control processes is not to directly produce contiguity but to compensate for the contiguity-obscuring processes in the Incidental condition.
-
-
-
-More generally, if automatic encoding processes do not generate contiguity but control processes do, it should be very difficult, or perhaps impossible, to observe a TCE under incidental encoding. But if contiguity is simply obscured by some types of task-related processing, it should be very easy to find incidental encoding tasks that produce a TCE. Experiment 3 tests these predictions by examining five different encoding tasks that differ in the type of processing required.
-
-
-% More precisely, the TCE seems to depend on processing that occurs when trying to memorize a word but not when simply judging if a word's referent would fit in a shoebox or through your front door. 
-
-% But are contiguity-generating processes directly linked to deliberate encoding control processes, or do the two just happen to be confounded in the size judgment tasks? 
-
-% this critical processing inseparable from intent to encode
-
-% THIS COULD POSE THE CENTRAL QUESTION MORE CRISPLY: But is the critical difference between these two conditions the deliberate engagement of encoding control processes that are inseparable from intent to encode. Or is it that the judgment tasks just reduces the TCE in a way that is not directly related to intent to encode?
-
-% Are these critical processes inseparable from intent to encode (i.e., can you have a TCE without intent), or are they processes that 
-
-
-
-% For example, under most models \citep{HealEtal16}, the TCE depends on the memory representations of items that are studied close together being more similar to each other than they are to the representation of items studied far apart. But both the Shoebox and Door tasks make it likely that subjects are thinking of a shoebox or their home as they study each item. That is, they are maintaining a common mental representation through the list presentation. Therefore the items are likely to form associations with this representation, increasing the similarity of items that are separated by distant lags and potentially attenuating the TCE. By contrast, under explicit encoding instructions subjects are likely to engage in additional processing of the items beyond that needed to make a size judgment. This extra processing might decrease the similarity of successive items, mitigating the effect of associating each item with a common representation. This is just one, admittedly speculative, example of how an incidental encoding task might decrease the TCE in a way that is not due to the lack of intent to encode per se.      
-
-% % Participants in the task condition are likely to engage in they type an extent of processing needed to make the judgment, but no more. subjects in the intent condition likely engage in a host of other encoding processes. Therefore . Or it could be that the extra processing 
-
-% But we can test a more general prediction: If the TCE is intimately tied up with the intent to encode, it should be difficult, or perhaps impossible, to find an incidental encoding task that produces a TCE. Whereas if the TCE depends on intent to encode only to the extent that intent makes different types of processing more or less likely, then it should be very easy to find incidental encoding tasks that produce a TCE. Experiment 3 tests this predicting by examining five different encoding tasks that differ in the type of processing required.
+More generally, if only intentional control processes produce contiguity, it should be challenging, perhaps impossible, to observe a TCE under incidental encoding. But if contiguity is simply obscured by some types of task-related processing, it should be easy to find incidental encoding tasks that produce a TCE. Experiment 3 tests these predictions by examining five different encoding tasks.
 
 
 
 
 
-% AND OR: Therefore, whereas mental features representing size may remain activated from item to item, activity along other dimensions is free to drift from item to item. If we think of this in terms of three dimensions, the Scenario Task may force context to return to the same X and Y coordinates for each item, allowing only Z to vary. Whereas the size task constrains only a single dimension allowing the other two to vary. Therefore, mental context may change more from item to item, producing a larger contiguity effect.
 
 
-
-% and 2) determine if different types of processing can produce contiguity without intent to encode.
 
 \section{Experiment 3}
 \section{Method}
@@ -305,11 +268,11 @@ As seen in Figure~\ref{E3}, all of the processing tasks produced a TCE under inc
 Indeed, perhaps the most remarkable feature of the data is how little the size of the TCE differs among the tasks, consistent with the suggestion that the TCE is due to automatic encoding processes that are independent of the judgment task. %The only condition for which the z(TCE) differed significantly from any other condition was the Relational Task condition, which asked subjects to integrate each item in to an ongoing movie.
 In other words, robust contiguity of approximately the same magnitude was observed regardless of the processing task unless subjects were explicitly encouraged to integrate the current item with past items.
 
-\begin{figure*}%[hp]
+\begin{figure}%[hp]
 \fitfigure{figures/E3.pdf}
 \caption{The temporal contiguity effect (TCE) under incidental encoding with different judgment tasks. \paneltext}
 \label{E3}
-\end{figure*}
+\end{figure}
 
 \section{General Discussion}
 The source of the TCE has been a matter of debate. Is it due to task-general automatic memory encoding processes that operate whenever new memories are formed \citep{HealEtal14}? Or is the TCE a product of control processes that implement task-specific encoding strategies to handle the idiosyncratic demands of laboratory tasks \citep{Hint16}? The former possibility suggests that the TCE should be observable under almost any encoding circumstances, the latter suggests the TCE should be eaisly eliminated by removing the imptus to engage controled encoding processes. The results suggest that neither view is fully correct.

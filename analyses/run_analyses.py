@@ -3,7 +3,7 @@ import numpy as np
 
 # params for data prep and saving results
 results_dir = "/Users/khealey/Library/Mobile Documents/com~apple~CloudDocs/lab/code/experiments/Heal16implicit/dissemination/manuscript/first_submission/figures/"
-remake_data_file = True
+remake_data_file = False
 n_perms = 10000
 
 # load or create the data

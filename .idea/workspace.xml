@@ -2,10 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="427dd9dd-3ead-4953-ac2a-9ec6a5a51768" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dissemination/manuscript/first_submission/figures/E3.pdf" afterPath="$PROJECT_DIR$/dissemination/manuscript/first_submission/figures/E3.pdf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dissemination/manuscript/first_submission/figures/FrontDoor.pdf" afterPath="$PROJECT_DIR$/dissemination/manuscript/first_submission/figures/FrontDoor.pdf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dissemination/manuscript/first_submission/figures/all_crps.pkl" afterPath="$PROJECT_DIR$/dissemination/manuscript/first_submission/figures/all_crps.pkl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dissemination/manuscript/first_submission/figures/shoebox.pdf" afterPath="$PROJECT_DIR$/dissemination/manuscript/first_submission/figures/shoebox.pdf" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/analyses/run_analyses.py" afterPath="$PROJECT_DIR$/analyses/run_analyses.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dissemination/manuscript/first_submission/Heal16implicit.tex" afterPath="$PROJECT_DIR$/dissemination/manuscript/first_submission/Heal16implicit.tex" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dissemination/manuscript/first_submission/Heal16implicit_letter.tex" afterPath="$PROJECT_DIR$/dissemination/manuscript/first_submission/Heal16implicit_letter.tex" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dissemination/manuscript/first_submission/figures/table_values.tex" afterPath="$PROJECT_DIR$/dissemination/manuscript/first_submission/figures/table_values.tex" />
@@ -22,7 +21,7 @@
   </component>
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/Heal16implicit$correction_analyses.coverage" NAME="correction_analyses Coverage Results" MODIFIED="1476982215470" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/static/analyses" />
-    <SUITE FILE_PATH="coverage/Heal16implicit$run_analyses__1_.coverage" NAME="run_analyses (1) Coverage Results" MODIFIED="1491572634781" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/analyses" />
+    <SUITE FILE_PATH="coverage/Heal16implicit$run_analyses__1_.coverage" NAME="run_analyses (1) Coverage Results" MODIFIED="1491586568331" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/analyses" />
     <SUITE FILE_PATH="coverage/Heal16implicit$toy_model.coverage" NAME="toy_model Coverage Results" MODIFIED="1477933212046" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../../../teaching/psy200/lectures/class18" />
     <SUITE FILE_PATH="coverage/Heal16implicit$run_analyses.coverage" NAME="run_analyses Coverage Results" MODIFIED="1491485858682" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/static/analyses" />
   </component>
@@ -50,8 +49,8 @@
       <file leaf-file-name="run_analyses.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/analyses/run_analyses.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="480">
-              <caret line="32" column="0" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
+            <state relative-caret-position="105">
+              <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
               <folding>
                 <element signature="e#0#23#0" expanded="true" />
               </folding>
@@ -122,11 +121,11 @@
         <option value="$PROJECT_DIR$/static/analyses/run_analyses.py" />
         <option value="$PROJECT_DIR$/static/analyses/anal_funcs.py" />
         <option value="$PROJECT_DIR$/analyses/used_recall_dynamics.py" />
-        <option value="$PROJECT_DIR$/analyses/run_analyses.py" />
-        <option value="$PROJECT_DIR$/dissemination/manuscript/first_submission/figures/table_values.tex" />
         <option value="$PROJECT_DIR$/analyses/anal_funcs.py" />
-        <option value="$PROJECT_DIR$/dissemination/manuscript/first_submission/Heal16implicit.tex" />
         <option value="$PROJECT_DIR$/dissemination/manuscript/first_submission/Heal16implicit_letter.tex" />
+        <option value="$PROJECT_DIR$/dissemination/manuscript/first_submission/figures/table_values.tex" />
+        <option value="$PROJECT_DIR$/analyses/run_analyses.py" />
+        <option value="$PROJECT_DIR$/dissemination/manuscript/first_submission/Heal16implicit.tex" />
       </list>
     </option>
   </component>
@@ -137,8 +136,8 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="541" />
-    <option name="y" value="228" />
+    <option name="x" value="555" />
+    <option name="y" value="22" />
     <option name="width" value="1871" />
     <option name="height" value="1071" />
   </component>
@@ -918,7 +917,14 @@
       <option name="project" value="LOCAL" />
       <updated>1491575968973</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL-00037" summary="tidying analysis code&#10;">
+      <created>1491584658046</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1491584658047</updated>
+    </task>
+    <option name="localTasksCounter" value="38" />
     <servers />
   </component>
   <component name="TodoView">
@@ -931,7 +937,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="541" y="228" width="1871" height="1071" extended-state="0" />
+    <frame x="555" y="22" width="1871" height="1071" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19081466" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -1320,21 +1326,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/analyses/run_analyses.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="32" column="0" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#23#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dissemination/manuscript/first_submission/figures/table_values.tex">
-      <provider selected="true" editor-type-id="LaTeXFileEditor">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/analyses/anal_funcs.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="330">
@@ -1353,6 +1344,21 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dissemination/manuscript/first_submission/figures/table_values.tex">
+      <provider selected="true" editor-type-id="LaTeXFileEditor">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/analyses/run_analyses.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#23#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
