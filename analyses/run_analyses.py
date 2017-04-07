@@ -1,17 +1,10 @@
-import seaborn as sns
 import anal_funcs as af
 import numpy as np
 
 # params for data prep and saving results
 results_dir = "/Users/khealey/Library/Mobile Documents/com~apple~CloudDocs/lab/code/experiments/Heal16implicit/dissemination/manuscript/first_submission/figures/"
-remake_data_file = False
-n_perms = 1
-
-# figure style params
-sns.set_style("ticks")
-sns.set_context("talk", font_scale=2.5, rc={"lines.linewidth": 4})
-colors = ["#000000", "#808080", "#D3D3D3"]  # black and white
-sns.set_palette(colors)
+remake_data_file = True
+n_perms = 10000
 
 # load or create the data
 all_crps = af.load_the_data(n_perms=n_perms, remake_data_file=remake_data_file, save_name=results_dir)

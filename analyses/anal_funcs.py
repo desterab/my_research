@@ -10,6 +10,12 @@ from joblib import Parallel
 import multiprocessing
 
 
+# figure style params
+sns.set_style("ticks")
+sns.set_context("talk", font_scale=2.5, rc={"lines.linewidth": 4})
+colors = ["#000000", "#808080", "#D3D3D3"]  # black and white
+sns.set_palette(colors)
+
 # color palette for figures
 palette =["#be5104",
 "#0163c2",
