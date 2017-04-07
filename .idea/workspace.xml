@@ -2,13 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="427dd9dd-3ead-4953-ac2a-9ec6a5a51768" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dissemination/manuscript/first_submission/figures/E3.pdf" afterPath="$PROJECT_DIR$/dissemination/manuscript/first_submission/figures/E3.pdf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dissemination/manuscript/first_submission/figures/FrontDoor.pdf" afterPath="$PROJECT_DIR$/dissemination/manuscript/first_submission/figures/FrontDoor.pdf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dissemination/manuscript/first_submission/figures/all_crps.pkl" afterPath="$PROJECT_DIR$/dissemination/manuscript/first_submission/figures/all_crps.pkl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dissemination/manuscript/first_submission/figures/shoebox.pdf" afterPath="$PROJECT_DIR$/dissemination/manuscript/first_submission/figures/shoebox.pdf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/dissemination/manuscript/first_submission/Heal16implicit_AS_SUBMITTED.pdf" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dissemination/manuscript/first_submission/Heal16implicit.tex" afterPath="$PROJECT_DIR$/dissemination/manuscript/first_submission/Heal16implicit.tex" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dissemination/manuscript/first_submission/figures/table_values.tex" afterPath="$PROJECT_DIR$/dissemination/manuscript/first_submission/figures/table_values.tex" />
     </list>
     <ignored path="Heal16implicit.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -123,9 +118,9 @@
         <option value="$PROJECT_DIR$/static/analyses/anal_funcs.py" />
         <option value="$PROJECT_DIR$/analyses/used_recall_dynamics.py" />
         <option value="$PROJECT_DIR$/analyses/anal_funcs.py" />
-        <option value="$PROJECT_DIR$/dissemination/manuscript/first_submission/Heal16implicit_letter.tex" />
         <option value="$PROJECT_DIR$/dissemination/manuscript/first_submission/figures/table_values.tex" />
         <option value="$PROJECT_DIR$/analyses/run_analyses.py" />
+        <option value="$PROJECT_DIR$/dissemination/manuscript/first_submission/Heal16implicit_letter.tex" />
         <option value="$PROJECT_DIR$/dissemination/manuscript/first_submission/Heal16implicit.tex" />
       </list>
     </option>
@@ -940,7 +935,21 @@
       <option name="project" value="LOCAL" />
       <updated>1491590128535</updated>
     </task>
-    <option name="localTasksCounter" value="40" />
+    <task id="LOCAL-00040" summary="trying to cut words&#10;">
+      <created>1491598717212</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1491598717212</updated>
+    </task>
+    <task id="LOCAL-00041" summary="As submitted!">
+      <created>1491600475814</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1491600475814</updated>
+    </task>
+    <option name="localTasksCounter" value="42" />
     <servers />
   </component>
   <component name="TodoView">
@@ -956,7 +965,7 @@
     <frame x="555" y="22" width="1871" height="1071" extended-state="0" />
     <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19081466" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19081466" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32846716" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4518248" sideWeight="0.5071485" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -965,7 +974,7 @@
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22982635" sideWeight="0.49459264" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22369765" sideWeight="0.49563146" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.16931818" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26762003" sideWeight="0.49459264" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26762003" sideWeight="0.49459264" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4518248" sideWeight="0.49285147" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1051,7 +1060,8 @@
     <MESSAGE value="revising paper&#10;" />
     <MESSAGE value="tidying analysis code&#10;" />
     <MESSAGE value="trying to cut words&#10;" />
-    <option name="LAST_COMMIT_MESSAGE" value="trying to cut words&#10;" />
+    <MESSAGE value="As submitted!" />
+    <option name="LAST_COMMIT_MESSAGE" value="As submitted!" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1353,17 +1363,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dissemination/manuscript/first_submission/Heal16implicit_letter.tex">
-      <provider selected="true" editor-type-id="LaTeXFileEditor">
-        <state />
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/dissemination/manuscript/first_submission/figures/table_values.tex">
       <provider selected="true" editor-type-id="LaTeXFileEditor">
         <state />
@@ -1376,6 +1375,17 @@
           <folding>
             <element signature="e#0#23#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dissemination/manuscript/first_submission/Heal16implicit_letter.tex">
+      <provider selected="true" editor-type-id="LaTeXFileEditor">
+        <state />
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
