@@ -1,0 +1,138 @@
+\documentclass[man,natbib,floatsintext]{apa6} %apa 6th edition format
+
+% watermark for first page
+% \usepackage[firstpage]{draftwatermark}
+% \SetWatermarkText{In Prep}
+% \SetWatermarkScale{.75}
+% \SetWatermarkColor[gray]{0.88}
+
+\usepackage{amstext,amssymb,graphicx,bm,soul,color,url,lscape,rotating,setspace,csquotes,pdflscape,rotating}
+% \DeclareDelayedFloatFlavor{sidewaystable}{table}
+% \DeclareDelayedFloatFlavor{sidewaysfigure}{figure}
+
+
+\usepackage[space]{grffile}
+
+% as setup by apacite, natbib puts extra spaces between the commas and semicolons in the cites. This fixes it:
+\setcitestyle{citesep={;},aysep={,}}
+ 
+% Run texcount on tex-file and write results to a file
+\newcommand\wordcount{\input{wordcount.sum}}
+
+% environment to display a page in landscape in the final pdf
+\newenvironment{rotatepage}%
+    {\pagebreak[4]\global\pdfpageattr\expandafter{\the\pdfpageattr/Rotate 180}}%
+    {\pagebreak[4]\global\pdfpageattr\expandafter{\the\pdfpageattr/Rotate 0}}%
+
+% commands for inserting values determined by analyses scripts.
+\input{figures/table_values}
+
+% counter for panels of crp matrix figure
+\newcounter{crppanel}
+
+% commands for making margin notes marked with authors initials
+\setlength{\marginparwidth}{30pt}
+\newcommand{\mkh}[1]{\marginpar{\scriptsize \textcolor{red}{MKH: #1}}}
+
+\title{Supplemental Methods for: Temporal Contiguity in Incidentally Encoded Memories} 
+
+\author{M.\ Karl Healey}
+
+\affiliation{Michigan State University}
+
+\shorttitle{Supplemental Methods: Contiguity with Incidental Encoding}
+
+%\journal{???}
+
+\authornote{I thank Mitchell Uitvlugt and Kimberly Fenn for helpful discussions. Correspondence concerning this article should be addressed to M. Karl Healey (khealey@msu.edu) at Michigan State University, Department of Psychology, 316 Physics Road, East Lansing, MI.
+\begin{flushleft}
+phone: 517-432-3107\\
+Version of \today\\
+\wordcount Words (Approximate due to use of \LaTeX)
+\end{flushleft}
+}
+
+\abstract{}
+
+\keywords{episodic memory; free recall; temporal contiguity}
+
+\begin{document}
+\maketitle
+
+\section{Experiment 1}
+
+All subjects viewed a list of words presented on at a time and made a simple judgment about each. After the last item, all subjects were asked to recall as many of the words as they could, in any order. Participants in the Explicit condition were expecting this memory test---for participants in the Incidental condition, the memory test was a surprise. 
+
+\section{Method}
+
+% setup some commands to make changing text from study to study easy
+\newcommand\listlength{16} % words per list 
+\newcommand\presrate{4 seconds} % time per word
+\newcommand\isi{1 second} %
+\newcommand\DFRDelay{16 seconds} % length of distractor at end of study
+\newcommand\recalltime{75 seconds} % time to recall
+\newcommand\totalss{XX}
+\newcommand\totalexcluded{XX}
+
+
+
+\subsection{Data Sharing}All data analyzed in this report are freely available on the author's website (https://cbcc.psy.msu.edu/data/Heal16implicit.csv).
+
+
+\subsection{Procedure}
+
+\subsubsection{Encoding Instructions Manipulation} Subjects were randomly assigned to either the Incidental condition or the Explicit condition. Prior to seeing the first list, subjects in both conditions were told that they would see a series of words and would make a simple judgment about each one (i.e., Would it fit in a shoebox?). The exact instructions depended on the condition. In the Explicit condition, subjects were given standard free recall instructions that described the size judgment task but emphasized memory. Because the wording of the instructions are integral to the intent manipulation, they are quoted directly here:
+
+\textbf{Explicit Instructions:}
+
+\begin{displayquote}
+        Thank you for participating in this study. 
+
+        We are interested in how people make simple judgments about common words and
+        how they subsequently remember the words. Please position this window in the center
+        of your screen so you can comfortably view the words.
+
+        You will see a list of words appear one at a time and make a judgment about each one
+        (more details on the next page). After the list of words, you will do a few math problems.
+        After the math problems, you will be prompted to type in any words that you can remember
+        from the list.
+
+        When prompted, type any words that you can remember from the list you just saw,
+        \emph{in any order} (type one word in each of the provided text boxes).
+
+    [\textit{a screen showing task instructions, which did not mention memory and was identical for both conditions}]
+
+        Your main task is to remember as many of the words as possible; at the end of the list you will be prompted to
+    type as many words as you can remember from the list you just saw, \emph{in any order}.
+\end{displayquote}
+
+
+\textbf{Incidental Instructions:}
+
+\begin{displayquote}
+        Thank you for participating in this study.
+
+        We are interested in how people make simple judgments about common words.
+        Please position this window in the center of your screen so you can comfortably view the words.
+
+        You will see a list of words appear one at a time and make a judgment about each one
+        (more details on the next page). After the list of words, you will do a few math problems.
+        
+        [\textit{a screen showing task instructions, which did not mention memory and was identical for both conditions}]
+
+        Your main task is to make as accurate a judgment as possible about each word.
+\end{displayquote}
+
+\subsubsection{Judgment Task} 
+TODO: ADD FULL INSTRUCTIONS 
+
+In both conditions subjects were asked to make a size judgment about each word while it was present on the screen. Because subjects completed the task online and could not ask an experimenter for clarification, several measures were taken to ensure that subjects understood how to make a response and could be confident that their responses were being registered: During presentation of the lists, a task prompt was displayed above each word (i.e.., ``Is it easy to judge if it would it fit in a shoebox?''). An instruction about how to make a response was displayed below each word (i.e., ``press ``Y'' for yes, ``N'' for no''). The task prompt and response instructions were in lighter gray font than the black font used for words. The prompts disappeared once the subject made a valid response, but if the subject made an invalid response (e.g., pressing ``B'' instead of ``Y'' or ``N'') the response instructions were replaced with an error message in red font until a valid response was made. The word remained on screen for the full 4 second presentation period regardless of the subject's response.
+
+\subsection{Recall Scoring}
+Because subjects typed their responses, typos are likely and counting only exact matches with list words as correct would underestimate their recall scores. Therefore, a typo-sensitive scoring algorithm was implemented as follows: First, subjects responses were converted to lower case and stripped of any white space. Next, each response was compared to all the list-words that the subject had been presented with up to and including the current list (which were also lowercase and free of white space). If the response exactly matched any of these presented words, it was scored as a correct recall or a prior-list intrusion, depending on whether the matching list-word was presented on the current or a previous list. If the response did not exactly match a presented word, it was compared with each of the 235886 words in Webster's Second International dictionary (https://libraries.io/npm/web2a). If the response exactly matched a word in the dictionary, it was scored as an extra-list intrusion. If the response did not exactly match any word in the dictionary, it was assumed to be a typo and an attempt was made to correct its spelling.
+
+The spell-checking algorithm began by computing the Damerau-Levenshtein distance \citep{Dame64} between the response and each word in the dictionary, providing a measure of the response's similarity to each candidate word. Because almost all responses in free recall correspond to words that were presented on some list (i.e., extra-list intrusions are rare), the algorithm did not automatically replace the mistyped response with the most similar word in the dictionary. Instead it found the shortest distance between the response and an actually presented list-word, and then found where this ``nearest list-neighbor'' distance lay in the distribution of distances between the response and the dictionary words. If the nearest list-neighbor distance was below the tenth percentile of the distribution (i.e., if the response was closer to a list item than it was to 90\% of the words in the dictionary) it was assumed to be that list item, otherwise it is assumed to be an extra-list intrusion.
+
+
+\bibliography{healey_lab}
+\end{document}

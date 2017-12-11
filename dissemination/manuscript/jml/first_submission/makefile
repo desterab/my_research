@@ -7,6 +7,7 @@ GS = gs -q -dNOPAUSE -dBATCH -sDEVICE=pdfwrite
 # names of various files to be compiled
 LETTER = Heal16implicit_letter
 PAPER = Heal16implicit
+SUP = sup_mat
 FINAL = MKHealey.pdf
 
 # rules for compiling
@@ -25,9 +26,6 @@ letter: $(LETTER).tex
 
 paper: $(PAPER).tex
 	rm -f *.sum
-	texcount -1 -sum $(PAPER).tex > all.sum # total word count all sections
-	texcount -sub=section $(PAPER).tex  | grep "Method" | sed -e 's/+.*//' > temp.sum # methods word count
-	texcount -sub=section $(PAPER).tex  | grep "Results" | sed -e 's/+.*//' >> temp.sum # results word count
-	paste -s -d"+" temp.sum | bc >> all.sum # sum methods and results, add to all.sum
-	paste -s -d"-" all.sum | bc > wordcount.sum # subtract lines of all to get total excluding methods and results
+	texcount -1 -sum $(PAPER).tex > wordcount.sum
 	$(TEX) $(PAPER).tex
+	$(TEX) $(SUP).tex

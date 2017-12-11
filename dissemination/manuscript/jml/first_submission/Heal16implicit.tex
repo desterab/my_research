@@ -44,21 +44,48 @@
 
 %\journal{???}
 
-\authornote{M. K. Healey is the sole author of this article and is responsible for its content. I thank Mitchell Uitvlugt and Kimberly Fenn for helpful discussions.
-%Correspondence concerning this article should be addressed to M. Karl Healey (khealey@msu.edu) at Michigan State University of Pennsylvania, Department of Psychology, 316 Physics Road, East Lansing, MI.
+\authornote{I thank Mitchell Uitvlugt and Kimberly Fenn for helpful discussions. Correspondence concerning this article should be addressed to M. Karl Healey (khealey@msu.edu) at Michigan State University, Department of Psychology, 316 Physics Road, East Lansing, MI.
 \begin{flushleft}
 phone: 517-432-3107\\
 Version of \today\\
-\wordcount Words excluding Method and Results (Approximate due to use of \LaTeX)
+\wordcount Words (Approximate due to use of \LaTeX)
 \end{flushleft}
 }
 
-\abstract{Similarity is a key principle of memory: recalling one event triggers recall of similar events. The amount of time separating two events is believed to be a powerful determinant of similarity. If so, there should be a strong Temporal Contiguity Effect whereby thinking of one event triggers recall of other events experienced nearby in time. This effect has been observed, but its source remains a matter of debate. Is it due to task-general automatic processes that operate whenever new memories are formed? Or is it due to task-specific encoding strategies that operate only during intentional rote learning? We test these theories by looking for the Temporal Contiguity Effect when there is no intent to memorize, as is often the case outside the laboratory. Three experiments show that it is not the intent to memorize per se, but rather how subjects process information while incidentally learning it that generates temporal contiguity.}
+\abstract{Similarity is a key principle of memory: recalling one event triggers recall of similar events. The amount of time separating two events is believed to be a powerful determinant of similarity. If so, there should be a strong Temporal Contiguity Effect whereby thinking of one event triggers recall of other events experienced nearby in time. This effect has been observed, but its source remains a matter of debate. Is it due to task-general automatic processes that operate whenever new memories are formed? Or is it due to task-specific encoding strategies that operate only during intentional rote learning? I test these theories by looking for the Temporal Contiguity Effect when there is no intent to memorize, as is often the case outside the laboratory. Three experiments show that it is not the intent to memorize per se, but rather how subjects process information while incidentally learning it that generates temporal contiguity.}
 
 \keywords{episodic memory; free recall; temporal contiguity}
 
 \begin{document}
 \maketitle
+
+
+TODO: make sure all task instructions are quoted in supmat
+
+
+
+Temporal contiguity is robust and important. 
+
+But what causes it.
+
+Two theories
+
+One is that it is  automatic independent of the details of the task
+
+
+One is that it is the result of a control process engaged for specific tasks
+
+
+
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%
 
 %How we encode information powerfully impacts our success in remembering it \citep{CraiLock72,TulvPear66}.
 Control processes \citep{LehmMalm13,RaaiShif81} allow us to strategically process information during memory encoding, maximizing recall \citep[e.g.,][]{Unsw16}. Little is known about how control processes impact one of the oldest and most influential observations about memory: Recalling one event tends to trigger recall of other events experienced nearby in time \citep{Aris,Bowe72,Kaha96}.
@@ -73,13 +100,15 @@ These predictions have never been tested. The only study to measure the TCE afte
 
 \section{Experiment 1}
 
+All subjects viewed a list of words presented on at a time and made a simple judgment about each. After the last item, all subjects were asked to recall as many of the words as they could, in any order. Participants in the Explicit condition were expecting this memory test---for participants in the Incidental condition, the memory test was a surprise. 
+
 \section{Method}
 
 % setup some commands to make changing text from study to study easy
 \newcommand\listlength{16} % words per list 
 \newcommand\presrate{4 seconds} % time per word
 \newcommand\isi{1 second} %
-\newcommand\DFRDelay{16 seconds} % length of distractor at end of study
+\newcommand\DFRDelay{16 second} % length of distractor at end of study
 \newcommand\recalltime{75 seconds} % time to recall
 \newcommand\totalss{XX}
 \newcommand\totalexcluded{XX}
@@ -94,14 +123,14 @@ Given that manipulating encoding intention might reduce, but not eliminate, the 
 % here is how to get the SD: ((.614-.5)/31.2)*np.sqrt(510)
 In order to collect enough data to meet or exceed this sample size in the Incidental conditions, subjects for all of the experiments reported here were recruited using Amazon's Mechanical Turk, a crowdsourcing website that allows for efficient collection of large volumes of high-quality data. Subjects were paid \$1.00 for participating (a rate of roughly \$10 / hr).
 
-Subjects in the Incidental conditions were excluded from analysis if they reported in a post-experiment questionnaire that they suspected their memory would be tested while they were preforming the judgment task. The final analyzed sample was composed of \shoeExplicitIncluded~in the Explicit condition and \shoeIncidentalIncluded~in the Incidental condition. Table~\ref{sampsize_table} shows the total number of included and excluded subjects for each experiment.
+Subjects in the Incidental conditions were excluded from analysis if they reported in a post-experiment questionnaire that they suspected their memory would be tested while they were preforming the incidental encoding task. The final analyzed sample was composed of \shoeExplicitIncluded~in the Explicit condition and \shoeIncidentalIncluded~in the Incidental condition. Table~\ref{sampsize_table} shows the total number of included and excluded subjects for each experiment.
 
 \subsection{Procedure}
 All subjects completed two free recall lists (only the first of which is analyzed here). Each list was composed of \listlength~words drawn randomly from a pool of 1638 words, with the constraint that no word was used more than once for a given subject. Words were presented one at a time on the subject's computer screen for \presrate. 
 %This presentation rate was deliberately chosen to be slightly faster than the 5 seconds per word used by \citet{NairEtal17} to reduce the amount of ``free time'' subjects have between making the judgment and the presentation of the next word.
 There was an inter-stimulus interval of \isi~between word presentations during which a fixation cross was displayed in the same location in which the words appeared. The final word of each list was followed by a \DFRDelay~distractor period during which subjects answered math problems of the form $A+B+C=$?, where $A$, $B$, and $C$ were positive, single-digit integers, though the answer could have been one or two digits. Subjects typed their answers to the math problems in a text-box and pressed enter to submit. Upon pressing enter, a new math problem and a new blank text-box appeared. Subjects were instructed to ``Try to solve as many problems as you can without sacrificing accuracy. The task will automatically advance when the time is up.''.
 
-Following the math distractor task, subjects in both conditions were asked to recall as many items as possible from the preceding list, in any order. Subjects typed each recalled word in a text-box and pressed enter to submit the word. Upon pressing enter, the word disappeared and a new blank text-box appeared such that subjects could not see their prior responses. Subjects were given \recalltime~to recall as many words as they could. To ensure subjects noticed that the recall period had begun (e.g., were not looking at the keyboard and typing their answer from the final math problem), a red screen was flashed for 500 ms before the recall instructions were displayed and the recall text-box did not begin accepting input for a further 500 ms. Therefore, including the math distractor, there was a total delay of $16+0.5+0.5=17$ seconds between the end of the study period and the beginning of the recall period. 
+Following the math distractor task, subjects in both conditions were asked to recall as many items as possible from the preceding list, in any order. Subjects typed each recalled word in a text-box and pressed enter to submit the word. Upon pressing enter, the word disappeared and a new blank text-box appeared such that subjects could not see their prior responses. Subjects were given \recalltime~to recall as many words as they could. To ensure subjects noticed that the recall period had begun (e.g., were not looking at the keyboard and typing their answer from the final math problem), a red screen was flashed for 500 ms before the recall instructions were displayed and the recall text-box did not begin accepting input for a further 500 ms. Therefore, including the math distractor, there was a total delay of $16+0.5+0.5=17$ seconds between the end of the study period and the beginning of the recall period. A spell-checking algorithm (described in the supplemental materials) checked subjects typed responses for typos and scored their recall accuracy.
 
 % sample size table
 \begin{table}
@@ -128,56 +157,9 @@ Following the math distractor task, subjects in both conditions were asked to re
 \end{tabular}
 \end{table}
 
-\subsubsection{Encoding Instructions Manipulation} Subjects were randomly assigned to either the Incidental condition or the Explicit condition. Prior to seeing the first list, subjects in both conditions were told that they would see a series of words and would make a simple judgment about each one (i.e., Would it fit in a shoebox?). The exact instructions depended on the condition. In the Explicit condition, subjects were given standard free recall instructions that described the size judgment task but emphasized memory. Because the wording of the instructions are integral to the intent manipulation, they are quoted directly here:
+\subsubsection{Encoding Instructions Manipulation} Subjects were randomly assigned to either the Incidental condition or the Explicit condition. Prior to seeing the first list, subjects in both conditions were told that they would see a series of words and would make a simple judgment about each one (i.e., Would it fit in a shoebox?). The exact instructions depended on the condition. In the Explicit condition, subjects were given standard free recall instructions that described the size judgment task but emphasized memory. In the Incidental condition, subjects were given instructions only for the size judgment task and memory was never mentioned. Because the wording of the instructions are integral to the intent manipulation, they are reproduced exactly in the Supplementary Materials.
 
-\textbf{Explicit Instructions:}
-
-\begin{displayquote}
-        Thank you for participating in this study. 
-
-        We are interested in how people make simple judgments about common words and
-        how they subsequently remember the words. Please position this window in the center
-        of your screen so you can comfortably view the words.
-
-        You will see a list of words appear one at a time and make a judgment about each one
-        (more details on the next page). After the list of words, you will do a few math problems.
-        After the math problems, you will be prompted to type in any words that you can remember
-        from the list.
-
-        When prompted, type any words that you can remember from the list you just saw,
-        \emph{in any order} (type one word in each of the provided text boxes).
-
-    [\textit{a screen showing task instructions, which did not mention memory and was identical for both conditions}]
-
-        Your main task is to remember as many of the words as possible; at the end of the list you will be prompted to
-    type as many words as you can remember from the list you just saw, \emph{in any order}.
-\end{displayquote}
-
-
-\textbf{Incidental Instructions:}
-
-\begin{displayquote}
-        Thank you for participating in this study.
-
-        We are interested in how people make simple judgments about common words.
-        Please position this window in the center of your screen so you can comfortably view the words.
-
-        You will see a list of words appear one at a time and make a judgment about each one
-        (more details on the next page). After the list of words, you will do a few math problems.
-        
-        [\textit{a screen showing task instructions, which did not mention memory and was identical for both conditions}]
-
-        Your main task is to make as accurate a judgment as possible about each word.
-\end{displayquote}
-
-\subsubsection{Shoebox Task} In both conditions subjects were asked to make a size judgment about each word while it was present on the screen. Specifically, they were asked  to judge if the word referred to an object that would fit into a shoebox. To allow for the same yes/no response across all the encoding tasks used in all Experiments, subjects were told that we were norming the words for a later study to find items that were neither too easy nor too hard to process and they should press ``Y'' if it was easy to judge if the item would fit in a shoebox and ``N'' if it was difficult to make the judgment. See the supplemental materials for the exact task instructions.
-
-Because subjects completed the task online and could not ask an experimenter for clarification, several measures were taken to ensure that subjects understood how to make a response and could be confident that their responses were being registered: During presentation of the lists, a task prompt was displayed above each word (i.e.., ``Is it easy to judge if it would it fit in a shoebox?''). An instruction about how to make a response was displayed below each word (i.e., ``press ``Y'' for yes, ``N'' for no''). The task prompt and response instructions were in lighter gray font than the black font used for words. The prompts disappeared once the subject made a valid response, but if the subject made an invalid response (e.g., pressing ``B'' instead of ``Y'' or ``N'') the response instructions were replaced with an error message in red font until a valid response was made. The word remained on screen for the full 4 second presentation period regardless of the subject's response.
-
-\subsection{Recall Scoring}
-Because subjects typed their responses, typos are likely, and counting only exact matches with list words as correct would underestimate their recall scores. Therefore, a typo-sensitive scoring algorithm was implemented as follows: First, subjects responses were converted to lower case and stripped of any white space. Next, each response was compared to all the list-words that the subject had been presented with up to and including the current list (which were also lowercase and free of white space). If the response exactly matched any of these presented words, it was scored as a correct recall or a prior-list intrusion, depending on whether the matching list-word was presented on the current or a previous list. If the response did not exactly match a presented word, it was compared with each of the 235886 words in Webster's Second International dictionary (https://libraries.io/npm/web2a). If the response exactly matched any word in the dictionary, it was scored as an extra-list intrusion. If the response did not exactly match any word in the dictionary, it was assumed to be a typo and an attempt was made to correct its spelling.
-
-The spell-checking algorithm began by computing the Damerau-Levenshtein distance \citep{Dame64} between the response and each word in the dictionary, providing a measure of the response's similarity to each candidate word. Because almost all responses in free recall correspond to words that were presented on some list (i.e., extra-list intrusions are rare), the algorithm did not automatically replace the mistyped response with the most similar word in the dictionary. Instead it found the shortest distance between the response and an actually presented list-word, and then found where this ``nearest list-neighbor'' distance lay in the distribution of distances between the response and the dictionary words. If the nearest list-neighbor distance was below the tenth percentile of the distribution (i.e., if the response was closer to a list item than it was to 90\% of the words in the dictionary) it was assumed to be that list item, otherwise it is assumed to be an extra-list intrusion.
+\subsubsection{Shoebox Task} In both conditions subjects were asked to make a size judgment about each word while it was present on the screen. Specifically, they were asked  to judge if the word referred to an object that would fit into a shoebox. To allow for the same yes/no response for each task, subjects were asked to indicate if the judgment was easy to make under the guise of norming the items for a later study. See the supplemental materials for the exact task instructions. See the supplemental materials for the exact task instructions as well as measures taken to ensure subjects understood the task instructions.
 
 \subsection{Quantifying the Temporal Contiguity Effect} The TCE is most often examined using a \textit{lag conditional-response probability} function or lag-CRP. The lag-CRP gives the probability that recall of an item studied in position $i$ of a study list will be followed by recall of an item studied in position $i+lag$. For example, if recall of the item from position 5 was followed by recall of the item from position 6 the lag would be 1. If, however, it was followed by recall of the item from position 3, the lag would be -2. For each lag, the CRP is computed by dividing the number of times a transition of that lag was \emph{actually} made by the number of times it \emph{could} have been made \citep[e.g., it could not have been made if the item $i+lag$ was already recalled;][]{Kaha96}. The lag-CRP is typically highest for lags 1 and -1 and decreases sharply for larger absolute values of lag. If the TCE is reduced under incidental encoding conditions, the lag-CRP should be flatter.
 
@@ -189,9 +171,9 @@ The size of this artificial TCE can be estimated by taking the items which a sub
 %(or the maximum number of unique permutations, whichever was smaller). 
 The actual temporal factor score was then converted into a z-score, Z(TCE), by subtracting the permutation distribution's mean and dividing by its standard deviation. In the absence of a true TCE, the expected value of Z(TCE) is zero, so we can test for a TCE by determining if the across-subject average of Z(TCE) is significantly above zero.
 
+
+
 \section{Results}
-
-
 
 Figure~\ref{shoebox} shows the lag-CRP and corrected temporal factor scores for the Explicit and Incidental conditions. The Explicit condition shows a clear TCE: the lag-CRP is highest for short lags (i.e., $|lag|=1$) and decreases for larger lags. Moreover, the 95\% confidence interval on the Z(TCE) lies well above zero. By contrast, the Incidental condition shows no evidence of a TCE: the lag-CRP is nearly flat and the 95\% confidence interval on the Z(TCE) includes zero. Overall recall probability (Table~\ref{sampsize_table}) was also lower in the Incidental condition.
 
@@ -208,9 +190,9 @@ These results suggest that removing the intent to encode eliminates the TCE. How
 \section{Experiment 2}
 \section{Method}
 
-The methods were identical to those used in Experiment 1 except the judgment task instructions (see Table 1 for sample size information).
+The methods were identical to those used in Experiment 1 except for the judgment task instructions (see Table 1 for sample size information).
 
-The processing required by the Shoebox Task from Experiment 1 is quite simple. So simple that one could argue it ineffective at forming strong memories, which may artificially reduce the TCE. Therefore, we wanted to retain the basic task of judging size while increasing memory performance in the Incidental condition. That is, can processing that promotes memory do so without producing substantial contiguity? Mental imagery and self-referential processing are two effective ways to improve memory. Thus, the Front Door Judgment task asked subjects to imagine trying to move the object referred to by each item through the front door of their house and decide whether or not it would be possible (again, subjects were asked to indicate if this judgment was easy or difficult to make by pressing ``Y'' or ``N'').
+The processing required by the Shoebox Task from Experiment 1 is quite simple. So simple that one could argue it is  ineffective at forming strong memories, which may artificially reduce the TCE. Therefore, we wanted to retain the basic task of judging size while increasing memory performance in the Incidental condition. That is, can processing that promotes memory do so without producing substantial contiguity? Mental imagery and self-referential processing are two effective ways to improve memory. Thus, the Front Door Judgment task asked subjects to imagine trying to move the object referred to by each item through the front door of their house and decide whether or not it would be possible (again, subjects were asked to indicate if this judgment was easy or difficult to make by pressing ``Y'' or ``N'').
 %This Front Door task, should encourage subjects to form a more vivid and self-relevant mental image than the Shoebox task.
 See the supplemental materials for the exact task instructions.
 
@@ -261,11 +243,11 @@ In other words, robust contiguity of approximately the same magnitude was observ
 \end{figure}
 
 \section{General Discussion}
-The source of the TCE has been debated. Is it due to task-general automatic encoding processes \citep{HealEtal14}? Or is the TCE a product of control processes that implement task-specific strategies to handle the idiosyncratic demands of laboratory tasks \citep{Hint16}? The former possibility suggests the TCE should be observable under most encoding circumstances; the latter suggests the TCE should be easily eliminated by removing the impetus to engage controlled processes. These results suggest that neither view is totally correct.
+Is the TCE due to task-general automatic encoding processes \citep{HealEtal14}? Or is the TCE a product of control processes that implement task-specific strategies to handle the idiosyncratic demands of laboratory tasks \citep{Hint16}? The former possibility suggests the TCE should be observable under most encoding circumstances; the latter suggests the TCE should be easily eliminated by removing the impetus to engage controlled processes. These results suggest that neither view is totally correct.
 
 Experiments 1 and 2 showed that how participants process information at encoding matters: in these experiments, the TCE was eliminated when controlled encoding processing was discouraged via incidental encoding instructions. This finding points to a gap in our understanding of how encoding processes influence contiguity. There have been few attempts to model how automatic memory processes interact with controlled processes to meet task demands \citep{LehmMalm13,PolyEtal09}, thus existing models would likely have difficulty accounting for the difference between Explicit and Incidental conditions. The challenge is avoiding adding a homunculus to the models that does the hard work of interpreting task instructions and switches on some otherwise dormant process. What computational mechanisms allow instructions to regulate encoding processes?
 
-Just as clearly, however, Experiment 3 showed that the TCE does not require intent: a robust TCE was observed in five different implicit tasks. This finding strongly suggest that the TCE is not completely dependent upon controlled, strategic encoding processes as some theories have suggested \citep{Hint16}. These results are an existence proof for temporal contiguity under incidental encoding and show that the TCE is not due to task-specific strategies implemented by controlled encoding processes.
+Just as clearly, however, Experiment 3 showed that the TCE does not require intent: a robust TCE was observed in five different implicit tasks. This finding strongly suggests that the TCE is not completely dependent upon controlled, strategic encoding processes as some theories have suggested \citep{Hint16}. These results are an existence proof for temporal contiguity under incidental encoding and show that the TCE is not due to task-specific strategies implemented by controlled encoding processes.
 
 In summary, these results support theories that ascribe the TCE to task-general memory processes. They also, however, point to serious limitations of existing theories---we understand much about the processes that encode and search memories but little about how these processes are controlled.
 
