@@ -42,6 +42,15 @@
 
 \shorttitle{Supplemental Methods: Contiguity with Incidental Encoding}
 
+
+
+
+
+
+ 
+
+
+
 %\journal{???}
 
 % \authornote{I thank Mitchell Uitvlugt and Kimberly Fenn for helpful discussions. Correspondence concerning this article should be addressed to M. Karl Healey (khealey@msu.edu) at Michigan State University, Department of Psychology, 316 Physics Road, East Lansing, MI.
@@ -202,9 +211,9 @@ We are trying to find a set of words that are neither too easy nor too hard for 
 
 You will be asked to make a judgment about each word in the list. Specifically, you will decide how relevant each word is to an imaginary scenario.
 
-We would like you to imagine that you are planning to move to a new home in a foreign land. Over the next few months, youâ€™ll need to purchase a new house and find help transporting your belongings.
+We would like you to imagine that you are planning to move to a new home in a foreign land. Over the next few months, you'll need to purchase a new house and find help transporting your belongings.
 
-For each word you see, think of how relevant the word would be for you in this moving situation. Some of the words may be relevant and others may not â€“ itâ€™s up to you to decide.
+For each word you see, think of how relevant the word would be for you in this moving situation. Some of the words may be relevant and others may not it's up to you to decide.
 
 You will see each word for only a few seconds. Therefore, for some words, you will find it easy to judge its relevance. For other words, you will find it difficult. For each word, you will try to judge its relevance and decide if it is easy or difficult.
 
@@ -275,7 +284,7 @@ To ensure participants are thinking carefully about each word, we will randomly 
 
 
 \section{Recall Scoring}
-Because subjects typed their responses, typos are likely and counting only exact matches with list words as correct would underestimate their recall scores. Therefore, a typo-sensitive scoring algorithm was implemented as follows: First, subjects responses were converted to lower case and stripped of any white space. Next, each response was compared to all the list-words that the subject had been presented with up to and including the current list (which were also lowercase and free of white space). If the response exactly matched any of these presented words, it was scored as a correct recall or a prior-list intrusion, depending on whether the matching list-word was presented on the current or a previous list. If the response did not exactly match a presented word, it was compared with each of the 235886 words in Webster's Second International dictionary (https://libraries.io/npm/web2a). If the response exactly matched a word in the dictionary, it was scored as an extra-list intrusion. If the response did not exactly match any word in the dictionary, it was assumed to be a typo and an attempt was made to correct its spelling.
+Because subjects typed their responses, typos are likely and counting only exact matches with list words as correct would underestimate their recall scores. Therefore, a typo-sensitive scoring algorithm was implemented as follows: First, subjects' responses were converted to lower case and stripped of any white space. Next, each response was compared to all the list-words that the subject had been presented with up to and including the current list (which were also lowercase and free of white space). If the response exactly matched any of these presented words, it was scored as a correct recall or a prior-list intrusion, depending on whether the matching list-word was presented on the current or a previous list. If the response did not exactly match a presented word, it was compared with each of the 235,886 words in Webster's Second International dictionary (https://libraries.io/npm/web2a). If the response exactly matched a word in the dictionary, it was scored as an extra-list intrusion. If the response did not exactly match any word in the dictionary, it was assumed to be a typo and an attempt was made to correct its spelling.
 
 The spell-checking algorithm began by computing the Damerau-Levenshtein distance \citep{Dame64} between the response and each word in the dictionary, providing a measure of the response's similarity to each candidate word. Because almost all responses in free recall correspond to words that were presented on some list (i.e., extra-list intrusions are rare), the algorithm did not automatically replace the mistyped response with the most similar word in the dictionary. Instead it found the shortest distance between the response and an actually presented list-word, and then found where this ``nearest list-neighbor'' distance lay in the distribution of distances between the response and the dictionary words. If the nearest list-neighbor distance was below the tenth percentile of the distribution (i.e., if the response was closer to a list item than it was to 90\% of the words in the dictionary) it was assumed to be that list item, otherwise it is assumed to be an extra-list intrusion.
 
