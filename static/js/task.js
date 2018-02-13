@@ -56,7 +56,7 @@ var instruction_condition = 0
 
 // temp divert everyone into relational cond
 var task_condition = counterbalance;  // passed by psiturk based on num_counters variable in config.txt runs from 0 to num_counters-1. for this experiment, 0 = size, 1 = deep item, 2 = deep relational
-var task_condition = 6
+var task_condition = 7
 
 
 var one_to_nine = [1, 2, 3, 4, 5, 6, 7, 8, 9]; // digits to use in constructing math distractor problems
@@ -113,7 +113,10 @@ else if (task_condition==6) {
     task = "instructions/instructions-home-task.html"
     task_string = '<p>Is it easy to judge if it would fit through your front door?</p>'
 }
-
+else if (task_condition==7) {
+    task = "instructions/instructions-size-task.html"
+    task_string = '<p>Is it easy to judge if it would it fit in a shoebox?</p>'
+}
 
 
 
