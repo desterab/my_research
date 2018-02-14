@@ -36,10 +36,11 @@ var psiTurk = new PsiTurk(uniqueId, adServerLoc, mode);
  ********************/
 
 // user determined task params
-var num_of_lists = 2;
+var num_of_lists = 1;
 var list_length = 16;
-var pres_rate = 4000 //4000; // number of mileseconds each word presented for
-var isi = 4 //1000; // number of ms of blank screen between word presentations
+// todo: note change to one list with longer pres rate and shorter isi to give eaiser time with differing judgment
+var pres_rate = 4000 //5500; // number of mileseconds each word presented for
+var isi = 4 //500; // number of ms of blank screen between word presentations
 var recall_time = 1000 // 75000; // number of milleseconds given to recall
 var delay_between_lists = 5000; // number of mileseconds to pause between lists (display get ready message)
 var end_distractor_delay = 4 //16000; // number of mileseconds of distraction task before recall
@@ -48,66 +49,40 @@ var word_pool = make_pool(); // function in utils.js
 
 // set of objects to compare aginst
 var size_referents = [
-		["ABDOMEN"],
-		["ACORN"],
-		["ACROBAT"],
-        ["WALNUT"],
-		["WALRUS"],
-		["WAND"],
-		["WARDROBE"],
-		["WAREHOUSE"],
-		["WARRIOR"],
-		["WART"],
-		["WASHCLOTH"],
-		["WASHER"],
-		["WASP"],
-		["WATER"],
-		["WATERFALL"],
-		["WAVE"],
-		["WAX"],
-		["WEB"],
-		["WEED"],
-		["WELL"],
-		["WHALE"],
-		["WHEAT"],
-		["WHEEL"],
-		["WHIP"],
-		["WHISKERS"],
-		["WHISTLE"],
-		["WICK"],
-		["WILDERNESS"],
-		["WINDOW"],
-		["WINDSHIELD"],
-		["WINE"],
-		["WINGS"],
-		["WINNER"],
-		["WIRE"],
-		["WITCH"],
-		["WITNESS"],
-		["WOLF"],
-		["WOMAN"],
-		["WORKER"],
-		["WORLD"],
-		["WORM"],
-		["WRENCH"],
-		["WRIST"],
-		["WRITER"],
-		["XEROX"],
-		["YACHT"],
-		["YARD"],
-		["YARN"],
-		["YOLK"],
-		["ZEBRA"],
-		["ZIPPER"],
-		["ZOO"],
-		["ZUCCHINI"],
-    ];
+    ['<center><p>Is it easy to judge if it is larger than a <strong>golf ball</strong>?</p></center>'],
+    ['<center><p>Is it easy to judge if it is larger than a <strong>tennis ball</strong>?</p></center>'],
+    ['<center><p>Is it easy to judge if it is larger than a <strong>bowling ball</strong>?</p></center>'],
+    ['<center><p>Is it easy to judge if it is larger than a <strong>postage stamp</strong>?</p></center>'],
+    ['<center><p>Is it easy to judge if it is larger than a <strong>key</strong>?</p></center>'],
+    ['<center><p>Is it easy to judge if it is larger than a <strong>penny?'],
+    ['<center><p>Is it easy to judge if it is larger than a <strong>dollar bill</strong>?</p></center>'],
+    ['<center><p>Is it easy to judge if it is larger than a <strong>credit card</strong>?</p></center>'],
+    ['<center><p>Is it easy to judge if it is larger than a <strong>2-liter bottle</strong>?</p></center>'],
+    ['<center><p>Is it easy to judge if it is larger than a <strong>gallon of milk</strong>?</p></center>'],
+    ['<center><p>Is it easy to judge if it is larger than a <strong>lightbulb</strong>?</p></center>'],
+    ['<center><p>Is it easy to judge if it is larger than a <strong>cell phone</strong>?</p></center>'],
+    ['<center><p>Is it easy to judge if it is larger than a <strong>coffee mug</strong>?</p></center>'],
+    ['<center><p>Is it easy to judge if it is larger than a <strong>house plant</strong>?</p></center>'],
+    ['<center><p>Is it easy to judge if it is larger than a <strong>computer mouse</strong>?</p></center>'],
+    ['<center><p>Is it easy to judge if it is larger than a <strong>text book</strong>?</p></center>'],
+    ['<center><p>Is it easy to judge if it is larger than a <strong>chair</strong>?</p></center>'],
+    ['<center><p>Is it easy to judge if it is larger than a <strong>t-shirt</strong>?</p></center>'],
+    ['<center><p>Is it easy to judge if it is larger than a <strong>taco</strong>?</p></center>'],
+    ['<center><p>Is it easy to judge if it is larger than a <strong>sandwich</strong>?</p></center>'],
+    ['<center><p>Is it easy to judge if it is larger than a <strong>beer bottle</strong>?</p></center>'],
+    ['<center><p>Is it easy to judge if it is larger than a <strong>piano</strong>?</p></center>'],
+    ['<center><p>Is it easy to judge if it is larger than a <strong>potato</strong>?</p></center>'],
+    ['<center><p>Is it easy to judge if it is larger than a <strong>watermelon</strong>?</p></center>'],
+    ['<center><p>Is it easy to judge if it is larger than a <strong>yardstick</strong>?</p></center>'],
+    ['<center><p>Is it easy to judge if it is larger than a <strong>magazine</strong>?</p></center>'],
+    ['<center><p>Is it easy to judge if it is larger than a <strong>mosquito</strong>?</p></center>'],
+    ['<center><p>Is it easy to judge if it is larger than a <strong>thimble</strong>?</p></center>'],
+    ['<center><p>Is it easy to judge if it is larger than a <strong>tuba</strong>?</p></center>'],
+    ['<center><p>Is it easy to judge if it is larger than a <strong>violin</strong>?</p></center>'],
+    ['<center><p>Is it easy to judge if it is larger than a <strong>AA battery</strong>?</p></center>'],
+    ['<center><p>Is it easy to judge if it is larger than a <strong>keyboard</strong>?</p></center>'],
+];
 size_referents = _.shuffle(size_referents);
-
-
-
-
-
 
 
 
@@ -116,11 +91,11 @@ size_referents = _.shuffle(size_referents);
 
 // temp divert everyone into implicit cond
 //var instruction_condition = condition;  // passed by psiturk based on num_conds variable in config.txt runs from 0 to num_conds-1. for this experiment, 0 = explicit, 1 = implicit
-var instruction_condition = 0
+var instruction_condition = 1
 
 // temp divert everyone into relational cond
 // var task_condition = counterbalance;  // passed by psiturk based on num_counters variable in config.txt runs from 0 to num_counters-1. for this experiment, 0 = size, 1 = deep item, 2 = deep relational
-var task_condition = counterbalance + 7  // if setup to have two counterblances 0 and 1: 0+7 = 7 and 1+7 = 8
+var task_condition = 8 // counterbalance + 7  // if setup to have two counterblances 0 and 1: 0+7 = 7 and 1+7 = 8
 
 // instructions for the recall period --- either free recall or serial recall
 var recall_instruction_condition = condition;
@@ -183,13 +158,13 @@ else if (task_condition==6) {
 }
 else if (task_condition==7) {
     task = "instructions/instructions-size-task.html"
-    task_string = '<p>Is it easy to judge if it would it fit in a shoebox?</p>'
+    task_string = '<center><p>Is it easy to judge if it is larger than a shoebox?</p></center>'
 }
 else if (task_condition==8) {
     // todo: make this variable depending on item number
-    // todo: make a generic size instruction page that does not mention shoebox? or uses it as example..
+    // todo: make a generic size instruction page that does not mention shoebox? or uses it as example.. make sure it used the bigger than language
     task = "instructions/instructions-size-task.html"
-    task_string = '<p>Is it easy to judge if it would it fit in a shoebox?</p>'
+    // task_string = '<p>Is it easy to judge if it is larger than a </p>'
 }
 
 
@@ -337,7 +312,7 @@ var RunFR = function() {
                     break;
                 default:
                     response = "";
-                    d3.select("#query").html('<p id="prompt"> <span style="color: red; ">Invalid Response. Press Y or N</span></p>');
+                    d3.select("#query").html('<p id="prompt"> <span style="color: red; "><center>Invalid Response. Press Y or N</span></p></center>');
                     break;
             }
 
@@ -479,7 +454,7 @@ var RunFR = function() {
             cur_task = size_tasks.shift()
             d3.select("#task").html(cur_task[0]);
         }
-        d3.select("#query").html('<p id="prompt">press "Y" for yes, "N" for no.</p>');
+        d3.select("#query").html('<p id="prompt"><center>press "Y" for yes, "N" for no.</center></p>');
         d3.select("#stim")
             .append("div")
             .attr("id","word")
