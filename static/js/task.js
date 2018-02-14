@@ -38,13 +38,77 @@ var psiTurk = new PsiTurk(uniqueId, adServerLoc, mode);
 // user determined task params
 var num_of_lists = 2;
 var list_length = 16;
-var pres_rate = 4 //4000; // number of mileseconds each word presented for
+var pres_rate = 4000 //4000; // number of mileseconds each word presented for
 var isi = 4 //1000; // number of ms of blank screen between word presentations
-var recall_time = 75000; // number of milleseconds given to recall
+var recall_time = 1000 // 75000; // number of milleseconds given to recall
 var delay_between_lists = 5000; // number of mileseconds to pause between lists (display get ready message)
 var end_distractor_delay = 4 //16000; // number of mileseconds of distraction task before recall
 var recall_box_lag = 1000; // number of ms to ignore input into the text box after recall period starts --- so people don't accidentally enter responses to the math task here
 var word_pool = make_pool(); // function in utils.js
+
+// set of objects to compare aginst
+var size_referents = [
+		["ABDOMEN"],
+		["ACORN"],
+		["ACROBAT"],
+        ["WALNUT"],
+		["WALRUS"],
+		["WAND"],
+		["WARDROBE"],
+		["WAREHOUSE"],
+		["WARRIOR"],
+		["WART"],
+		["WASHCLOTH"],
+		["WASHER"],
+		["WASP"],
+		["WATER"],
+		["WATERFALL"],
+		["WAVE"],
+		["WAX"],
+		["WEB"],
+		["WEED"],
+		["WELL"],
+		["WHALE"],
+		["WHEAT"],
+		["WHEEL"],
+		["WHIP"],
+		["WHISKERS"],
+		["WHISTLE"],
+		["WICK"],
+		["WILDERNESS"],
+		["WINDOW"],
+		["WINDSHIELD"],
+		["WINE"],
+		["WINGS"],
+		["WINNER"],
+		["WIRE"],
+		["WITCH"],
+		["WITNESS"],
+		["WOLF"],
+		["WOMAN"],
+		["WORKER"],
+		["WORLD"],
+		["WORM"],
+		["WRENCH"],
+		["WRIST"],
+		["WRITER"],
+		["XEROX"],
+		["YACHT"],
+		["YARD"],
+		["YARN"],
+		["YOLK"],
+		["ZEBRA"],
+		["ZIPPER"],
+		["ZOO"],
+		["ZUCCHINI"],
+    ];
+size_referents = _.shuffle(size_referents);
+
+
+
+
+
+
 
 
 // fixed task params
@@ -123,6 +187,7 @@ else if (task_condition==7) {
 }
 else if (task_condition==8) {
     // todo: make this variable depending on item number
+    // todo: make a generic size instruction page that does not mention shoebox? or uses it as example..
     task = "instructions/instructions-size-task.html"
     task_string = '<p>Is it easy to judge if it would it fit in a shoebox?</p>'
 }
@@ -171,6 +236,7 @@ var RunFR = function() {
         first_recall = true, // keep tack of whether this is the first recall for a list
         end_distractor_done = false, // has the end of list distractor been finished yet
         stims = word_pool.splice(0,list_length); // get the items for this list: the next list_length elements of word pool
+        size_tasks = size_referents.splice(0,list_length); // get the size referents for this list: the next list_length elements of word pool
 
 
     /******
@@ -406,7 +472,13 @@ var RunFR = function() {
         remove_word()
 
         // show the word for pres_rate ms
-        d3.select("#task").html(task_string);
+        if (task_condition==7) {
+            d3.select("#task").html(task_string);
+        }
+        else if (task_condition==8) {
+            cur_task = size_tasks.shift()
+            d3.select("#task").html(cur_task[0]);
+        }
         d3.select("#query").html('<p id="prompt">press "Y" for yes, "N" for no.</p>');
         d3.select("#stim")
             .append("div")
