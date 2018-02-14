@@ -38,12 +38,12 @@ var psiTurk = new PsiTurk(uniqueId, adServerLoc, mode);
 // user determined task params
 var num_of_lists = 2;
 var list_length = 16;
-var pres_rate = 4000; // number of mileseconds each word presented for
-var isi = 1000; // number of ms of blank screen between word presentations
+var pres_rate = 4 //4000; // number of mileseconds each word presented for
+var isi = 4 //1000; // number of ms of blank screen between word presentations
 var recall_time = 75000; // number of milleseconds given to recall
 var delay_between_lists = 5000; // number of mileseconds to pause between lists (display get ready message)
-var end_distractor_delay = 16000; // number of mileseconds of distraction task before recall
-var recall_box_lag = 1000; // number of ms to ignore input into the text box after recall period starts --- so people don't accidently enter responses to the math task here
+var end_distractor_delay = 4 //16000; // number of mileseconds of distraction task before recall
+var recall_box_lag = 1000; // number of ms to ignore input into the text box after recall period starts --- so people don't accidentally enter responses to the math task here
 var word_pool = make_pool(); // function in utils.js
 
 
@@ -55,8 +55,12 @@ var word_pool = make_pool(); // function in utils.js
 var instruction_condition = 0
 
 // temp divert everyone into relational cond
-var task_condition = counterbalance;  // passed by psiturk based on num_counters variable in config.txt runs from 0 to num_counters-1. for this experiment, 0 = size, 1 = deep item, 2 = deep relational
-var task_condition = 7
+// var task_condition = counterbalance;  // passed by psiturk based on num_counters variable in config.txt runs from 0 to num_counters-1. for this experiment, 0 = size, 1 = deep item, 2 = deep relational
+var task_condition = counterbalance + 7  // if setup to have two counterblances 0 and 1: 0+7 = 7 and 1+7 = 8
+
+// instructions for the recall period --- either free recall or serial recall
+var recall_instruction_condition = condition;
+// todo: find all instruction_conditions and make sure it also records recall_instruction_condition
 
 
 var one_to_nine = [1, 2, 3, 4, 5, 6, 7, 8, 9]; // digits to use in constructing math distractor problems
@@ -117,8 +121,17 @@ else if (task_condition==7) {
     task = "instructions/instructions-size-task.html"
     task_string = '<p>Is it easy to judge if it would it fit in a shoebox?</p>'
 }
+else if (task_condition==8) {
+    // todo: make this variable depending on item number
+    task = "instructions/instructions-size-task.html"
+    task_string = '<p>Is it easy to judge if it would it fit in a shoebox?</p>'
+}
 
 
+
+// task_condition is constant or change
+// recall_instruction_condition is free or serial
+// do instruction first... need to pass
 
 
 // pick emphasis page (third/last instruction page) based on instruction_condition
@@ -272,6 +285,7 @@ var RunFR = function() {
 
                 psiTurk.recordTrialData({
                         'instruction_condition': instruction_condition,
+                        'recall_instruction_condition': recall_instruction_condition,
                         'task_condition': task_condition,
                         'list': cur_list_num,
                         'phase': "study",
@@ -312,6 +326,7 @@ var RunFR = function() {
                 var elapsed = new Date().getTime() - start_time;
                 psiTurk.recordTrialData({
                         'instruction_condition': instruction_condition,
+                        'recall_instruction_condition': recall_instruction_condition,
                         'task_condition': task_condition,
                         'list': cur_list_num,
                         'phase': "recall",
@@ -351,6 +366,7 @@ var RunFR = function() {
                 var elapsed = new Date().getTime() - end_distractor_start_time;
                 psiTurk.recordTrialData({
                         'instruction_condition': instruction_condition,
+                        'recall_instruction_condition': recall_instruction_condition,
                         'task_condition': task_condition,
                         'list': cur_list_num,
                         'phase': "end_distractor",
@@ -420,9 +436,21 @@ var RunFR = function() {
 //        d3.select("#task").remove();
 
         // display input box
-        disp_this = '<p>You now have ' + recall_time/1000 +
+        if (recall_instruction_condition==0) {
+            disp_this = '<p>You now have ' + recall_time/1000 +
             ' seconds to to try and recall the words from the list you just saw. ' +
             'You can recall the words in any order. Try to recall as many words as you can. If you cannot remember any more words, that is okay; the task will automatically advance when the time is up.</p>'
+        }
+        else if (recall_instruction_condition==1) {
+            disp_this = '<p>You now have ' + recall_time/1000 +
+            ' seconds to to try and recall the words from the list you just saw. Try to recall the words in the <strong>same order you saw them</strong>' +
+            '. Try to recall as many words as you can. If you cannot remember any more words, that is okay; the task will automatically advance when the time is up.</p>'
+        }
+
+
+
+
+
         d3.select("#task").html(disp_this);
         d3.select("#recall_input").html('<span>Type a word and press ENTER to submit:</span> ' +
             '<input type="text" id="recall_field" name="recall_field"/>');
@@ -499,6 +527,7 @@ var RunFR = function() {
             var rt = new Date().getTime() - wordon;
             psiTurk.recordTrialData({
                     'instruction_condition': instruction_condition,
+                    'recall_instruction_condition': recall_instruction_condition,
                     'task_condition': task_condition,
                     'list': cur_list_num,
                     'phase': "study",
@@ -620,6 +649,7 @@ var Questionnaire = function() {
 		    psiTurk.recordTrialData({
                         'instruction_condition': instruction_condition,
                         'task_condition': task_condition,
+                        'recall_instruction_condition': recall_instruction_condition,
                         'phase': "postquestionnaire",
                         'strategy': this.name,
                         'strategy_description': this.value,
@@ -633,6 +663,7 @@ var Questionnaire = function() {
 		    psiTurk.recordTrialData({
                         'instruction_condition': instruction_condition,
                         'task_condition': task_condition,
+                        'recall_instruction_condition': recall_instruction_condition,
                         'phase': "postquestionnaire",
                         'aware_question': this.name,
                         'aware_ans': this.value,
