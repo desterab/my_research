@@ -326,7 +326,7 @@ def trans_fact(recs, dists):
                 continue
 
             # rank them
-            ranks = rankdata(dists[recs[i-1]-1][ind])
+            ranks = rankdata(dists[int(recs[i-1])-1][ind])
             #print ranks
 
             # set the tf for that transition

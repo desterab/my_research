@@ -30,8 +30,8 @@ tf_col ='all_tf_z'
 
 
 def make_psiturk_recall_matrix(data, remake_data_file, dict_path, save_file):
-    if os.path.isfile(save_file) and not remake_data_file:
-        recalls = pickle.load(open(save_file, "rb"))
+    if os.path.isfile(save_file + ".pkl") and not remake_data_file:
+        recalls = pickle.load(open(save_file + ".pkl", "rb"))
         return recalls
 
     recalls = pd.DataFrame()
@@ -98,7 +98,7 @@ def load_the_data(n_perms, remake_data_file, recalls_file, save_name):
         all_crps = pickle.load(open("all_crps.pkl", "rb"))
         return all_crps
     else:
-        num_cores = multiprocessing.cpu_count()
+        num_cores = multiprocessing.cpu_count() / 2
         with Parallel(n_jobs=num_cores, verbose=0) as POOL:
             # os.system('scp cbcc.psy.msu.edu:~/code/experiments/Heal16implicit/HealEtal16implicit.data.pkl \'/Users/khealey/Library/Mobile Documents/com~apple~CloudDocs/lab/code/experiments/Heal16implicit\'')
             recalls = pickle.load(open(

@@ -12,7 +12,6 @@ n_perms = 10000
 data = pickle.load( open( "HealEtal16implicit.data.raw.pkl", "rb" ) )
 recalls = af.make_psiturk_recall_matrix(data, remake_data_file, dict_path, 'HealEtal16implicit.recalls')
 
-
 # load or compute the recall dynamics
 all_crps = af.load_the_data(n_perms=n_perms, remake_data_file=remake_data_file,
                             recalls_file='HealEtal16implicit.recalls.pkl', save_name=results_dir)
