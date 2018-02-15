@@ -15,7 +15,7 @@ browser_exclude_rule = MSIE, mobile, tablet, bot
 # database_url = sqlite:///participants.db
 # table_name = turkdemo2
 database_url = mysql://khealey:Bib96?reply@127.0.0.1:3306/Heal16implicit
-table_name = test_qs
+table_name = test_1
 # E1_item_relational_debug
 
 [Server Parameters]
