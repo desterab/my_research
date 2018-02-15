@@ -18,7 +18,7 @@ table_name = E1_item_relational_debug
 # table_name = turkdemo
 
 [Server Parameters]
-host = localhost
+host = 0.0.0.0
 port = 22362
 # adserver_revproxy_host = participate-cbcc.psy.msu.edu
 # adserver_revproxy_port = 80
