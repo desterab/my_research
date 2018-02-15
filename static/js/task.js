@@ -477,7 +477,7 @@ var RunFR = function() {
             }
             else if (task_condition==8) {
                 disp_this = '<p>You now have ' + recall_time/1000 +
-                ' seconds to to try and recall the words from the list you just saw. Recall the words that were presented in large font in the center of the screen, <strong>not</strong> the size referents that appared in smaller font above the words. ' +
+                ' seconds to to try and recall the words from the list you just saw. Recall the words that were presented in large font in the center of the screen, <strong>NOT</strong> the size referents that appared in smaller font above the words. ' +
                 'You can recall the words in any order. Try to recall as many words as you can. If you cannot remember any more words, that is okay; the task will automatically advance when the time is up.</p>'
             }
 
@@ -490,7 +490,7 @@ var RunFR = function() {
             }
             else if (task_condition==8) {
                 disp_this = '<p>You now have ' + recall_time / 1000 +
-                ' seconds to to try and recall the words from the list you just saw. Recall the words that were presented in large font in the center of the screen, <strong>not</strong> the size referents that appared in smaller font above the words. Try to recall the words in the <strong>same order you saw them</strong>' +
+                ' seconds to to try and recall the words from the list you just saw. Recall the words that were presented in large font in the center of the screen, <strong>NOT</strong> the size referents that appared in smaller font above the words. Try to recall the words in the <strong>same order you saw them</strong>' +
                 '. Try to recall as many words as you can. If you cannot remember any more words, that is okay; the task will automatically advance when the time is up.</p>'
             }
         }
