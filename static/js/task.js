@@ -146,7 +146,7 @@ else if (task_condition==6) {
 }
 else if (task_condition==7) {
     task = "instructions/instructions-size-task.html"
-    task_string = '<center><p>Is it easy to judge if it is larger than a shoebox?</p></center>'
+    task_string = '<center><p>Is it easy to judge if it is larger than a <strong>shoebox</strong>?</p></center>'
 }
 else if (task_condition==8) {
     // todo: make this variable depending on item number
