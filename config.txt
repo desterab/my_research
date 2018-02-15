@@ -12,16 +12,16 @@ organization_name = Michigan State University
 browser_exclude_rule = MSIE, mobile, tablet, bot
 
 [Database Parameters]
-database_url = sqlite:///participants.db
-table_name = turkdemo2
-# database_url = mysql://khealey:Bib96?reply@127.0.0.1:3306/Heal16implicit
-# table_name = E1_item_relational
+# database_url = sqlite:///participants.db
+# table_name = turkdemo2
+database_url = mysql://khealey:Bib96?reply@127.0.0.1:3306/Heal16implicit
+table_name = E1_item_relational_debug
 
 [Server Parameters]
 host = 0.0.0.0
 port = 22362
-# adserver_revproxy_host = participate-cbcc.psy.msu.edu
-# adserver_revproxy_port = 80
+adserver_revproxy_host = participate-cbcc.psy.msu.edu
+adserver_revproxy_port = 80
 cutoff_time = 60
 logfile = server.log
 loglevel = 0
