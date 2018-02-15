@@ -11164,3 +11164,303 @@ OperationalError: (_mysql_exceptions.OperationalError) (1054, "Unknown column 'E
 [2018-02-15 10:07:50 -0500] [25872] [INFO] Worker exiting (pid: 25872)
 [2018-02-15 10:07:50 -0500] [25838] [INFO] Parent changed, shutting down: <Worker 25838>
 [2018-02-15 10:07:50 -0500] [25838] [INFO] Worker exiting (pid: 25838)
+[2018-02-15 10:43:03 -0500] [26780] [DEBUG] Current configuration:
+  proxy_protocol: False
+  worker_connections: 1000
+  statsd_host: None
+  max_requests_jitter: 0
+  post_fork: <function post_fork at 0x10484ba28>
+  pythonpath: None
+  enable_stdio_inheritance: False
+  worker_class: sync
+  ssl_version: 3
+  suppress_ragged_eofs: True
+  syslog: False
+  syslog_facility: user
+  when_ready: <function when_ready at 0x10484b758>
+  pre_fork: <function pre_fork at 0x10484b8c0>
+  cert_reqs: 0
+  preload_app: False
+  keepalive: 2
+  accesslog: None
+  group: 20
+  graceful_timeout: 30
+  do_handshake_on_connect: False
+  spew: False
+  workers: 100
+  proc_name: psiturk_experiment_server
+  sendfile: None
+  pidfile: None
+  umask: 0
+  on_reload: <function on_reload at 0x10484b5f0>
+  pre_exec: <function pre_exec at 0x104859050>
+  worker_tmp_dir: None
+  post_worker_init: <function post_worker_init at 0x10484bb90>
+  limit_request_fields: 100
+  on_exit: <function on_exit at 0x10488a500>
+  config: None
+  secure_scheme_headers: {'X-FORWARDED-PROTOCOL': 'ssl', 'X-FORWARDED-PROTO': 'https', 'X-FORWARDED-SSL': 'on'}
+  proxy_allow_ips: ['127.0.0.1']
+  pre_request: <function pre_request at 0x1048591b8>
+  post_request: <function post_request at 0x1048592a8>
+  user: 501
+  forwarded_allow_ips: ['127.0.0.1']
+  worker_int: <function worker_int at 0x10484bcf8>
+  threads: 1
+  max_requests: 0
+  limit_request_line: 0
+  access_log_format: %(h)s %(l)s %(u)s %(t)s "%(r)s" %(s)s %(b)s "%(f)s" "%(a)s"
+  certfile: None
+  worker_exit: <function worker_exit at 0x104859410>
+  chdir: /Users/khealey/code/experiments/Heal16implicit
+  paste: None
+  default_proc_name: gunicorn
+  errorlog: server.log
+  loglevel: debug
+  logconfig: None
+  syslog_addr: unix:///var/run/syslog
+  syslog_prefix: None
+  daemon: False
+  ciphers: TLSv1
+  on_starting: <function on_starting at 0x10484b488>
+  worker_abort: <function worker_abort at 0x10484be60>
+  bind: ['0.0.0.0:22362']
+  raw_env: []
+  reload: False
+  check_config: False
+  limit_request_field_size: 8190
+  nworkers_changed: <function nworkers_changed at 0x104859578>
+  timeout: 30
+  ca_certs: None
+  django_settings: None
+  tmp_upload_dir: None
+  keyfile: None
+  backlog: 2048
+  logger_class: gunicorn.glogging.Logger
+  statsd_prefix: 
+[2018-02-15 10:43:03 -0500] [26780] [INFO] Starting gunicorn 19.4.5
+[2018-02-15 10:43:03 -0500] [26780] [DEBUG] Arbiter booted
+[2018-02-15 10:43:03 -0500] [26780] [INFO] Listening at: http://0.0.0.0:22362 (26780)
+[2018-02-15 10:43:03 -0500] [26780] [INFO] Using worker: sync
+[2018-02-15 10:43:03 -0500] [26783] [INFO] Booting worker with pid: 26783
+[2018-02-15 10:43:03 -0500] [26784] [INFO] Booting worker with pid: 26784
+[2018-02-15 10:43:03 -0500] [26785] [INFO] Booting worker with pid: 26785
+[2018-02-15 10:43:03 -0500] [26786] [INFO] Booting worker with pid: 26786
+[2018-02-15 10:43:03 -0500] [26787] [INFO] Booting worker with pid: 26787
+[2018-02-15 10:43:03 -0500] [26788] [INFO] Booting worker with pid: 26788
+[2018-02-15 10:43:04 -0500] [26789] [INFO] Booting worker with pid: 26789
+[2018-02-15 10:43:04 -0500] [26790] [INFO] Booting worker with pid: 26790
+[2018-02-15 10:43:04 -0500] [26791] [INFO] Booting worker with pid: 26791
+[2018-02-15 10:43:04 -0500] [26792] [INFO] Booting worker with pid: 26792
+[2018-02-15 10:43:04 -0500] [26793] [INFO] Booting worker with pid: 26793
+[2018-02-15 10:43:04 -0500] [26794] [INFO] Booting worker with pid: 26794
+[2018-02-15 10:43:04 -0500] [26795] [INFO] Booting worker with pid: 26795
+[2018-02-15 10:43:04 -0500] [26796] [INFO] Booting worker with pid: 26796
+[2018-02-15 10:43:04 -0500] [26797] [INFO] Booting worker with pid: 26797
+[2018-02-15 10:43:04 -0500] [26798] [INFO] Booting worker with pid: 26798
+[2018-02-15 10:43:04 -0500] [26799] [INFO] Booting worker with pid: 26799
+[2018-02-15 10:43:04 -0500] [26789] [DEBUG] Closing connection. 
+[2018-02-15 10:43:04 -0500] [26805] [INFO] Booting worker with pid: 26805
+[2018-02-15 10:43:04 -0500] [26806] [INFO] Booting worker with pid: 26806
+[2018-02-15 10:43:04 -0500] [26807] [INFO] Booting worker with pid: 26807
+[2018-02-15 10:43:04 -0500] [26808] [INFO] Booting worker with pid: 26808
+[2018-02-15 10:43:04 -0500] [26809] [INFO] Booting worker with pid: 26809
+[2018-02-15 10:43:04 -0500] [26810] [INFO] Booting worker with pid: 26810
+[2018-02-15 10:43:04 -0500] [26811] [INFO] Booting worker with pid: 26811
+[2018-02-15 10:43:04 -0500] [26812] [INFO] Booting worker with pid: 26812
+[2018-02-15 10:43:04 -0500] [26813] [INFO] Booting worker with pid: 26813
+[2018-02-15 10:43:05 -0500] [26814] [INFO] Booting worker with pid: 26814
+[2018-02-15 10:43:05 -0500] [26815] [INFO] Booting worker with pid: 26815
+[2018-02-15 10:43:05 -0500] [26816] [INFO] Booting worker with pid: 26816
+[2018-02-15 10:43:05 -0500] [26817] [INFO] Booting worker with pid: 26817
+[2018-02-15 10:43:05 -0500] [26818] [INFO] Booting worker with pid: 26818
+[2018-02-15 10:43:05 -0500] [26819] [INFO] Booting worker with pid: 26819
+[2018-02-15 10:43:05 -0500] [26820] [INFO] Booting worker with pid: 26820
+[2018-02-15 10:43:05 -0500] [26821] [INFO] Booting worker with pid: 26821
+[2018-02-15 10:43:05 -0500] [26822] [INFO] Booting worker with pid: 26822
+[2018-02-15 10:43:05 -0500] [26823] [INFO] Booting worker with pid: 26823
+[2018-02-15 10:43:05 -0500] [26824] [INFO] Booting worker with pid: 26824
+[2018-02-15 10:43:05 -0500] [26825] [INFO] Booting worker with pid: 26825
+[2018-02-15 10:43:05 -0500] [26826] [INFO] Booting worker with pid: 26826
+[2018-02-15 10:43:05 -0500] [26827] [INFO] Booting worker with pid: 26827
+[2018-02-15 10:43:05 -0500] [26828] [INFO] Booting worker with pid: 26828
+[2018-02-15 10:43:06 -0500] [26829] [INFO] Booting worker with pid: 26829
+[2018-02-15 10:43:06 -0500] [26830] [INFO] Booting worker with pid: 26830
+[2018-02-15 10:43:06 -0500] [26831] [INFO] Booting worker with pid: 26831
+[2018-02-15 10:43:06 -0500] [26832] [INFO] Booting worker with pid: 26832
+[2018-02-15 10:43:06 -0500] [26833] [INFO] Booting worker with pid: 26833
+[2018-02-15 10:43:06 -0500] [26834] [INFO] Booting worker with pid: 26834
+[2018-02-15 10:43:06 -0500] [26835] [INFO] Booting worker with pid: 26835
+[2018-02-15 10:43:06 -0500] [26796] [DEBUG] Closing connection. 
+[2018-02-15 10:43:06 -0500] [26812] [DEBUG] Closing connection. 
+[2018-02-15 10:43:06 -0500] [26846] [INFO] Booting worker with pid: 26846
+[2018-02-15 10:43:06 -0500] [26848] [INFO] Booting worker with pid: 26848
+[2018-02-15 10:43:06 -0500] [26849] [INFO] Booting worker with pid: 26849
+[2018-02-15 10:43:06 -0500] [26850] [INFO] Booting worker with pid: 26850
+[2018-02-15 10:43:06 -0500] [26820] [DEBUG] Closing connection. 
+[2018-02-15 10:43:06 -0500] [26856] [INFO] Booting worker with pid: 26856
+[2018-02-15 10:43:06 -0500] [26857] [INFO] Booting worker with pid: 26857
+[2018-02-15 10:43:06 -0500] [26859] [INFO] Booting worker with pid: 26859
+[2018-02-15 10:43:06 -0500] [26860] [INFO] Booting worker with pid: 26860
+[2018-02-15 10:43:06 -0500] [26861] [INFO] Booting worker with pid: 26861
+[2018-02-15 10:43:06 -0500] [26863] [INFO] Booting worker with pid: 26863
+[2018-02-15 10:43:06 -0500] [26864] [INFO] Booting worker with pid: 26864
+[2018-02-15 10:43:07 -0500] [26865] [INFO] Booting worker with pid: 26865
+[2018-02-15 10:43:07 -0500] [26816] [DEBUG] GET /ad
+[2018-02-15 10:43:07 -0500] [26866] [INFO] Booting worker with pid: 26866
+[2018-02-15 10:43:07 -0500] [26867] [INFO] Booting worker with pid: 26867
+[2018-02-15 10:43:07 -0500] [26868] [INFO] Booting worker with pid: 26868
+[2018-02-15 10:43:07 -0500] [26791] [DEBUG] GET /static/images/MSU-Wordmark-PMS-567.jpg
+[2018-02-15 10:43:07 -0500] [26808] [DEBUG] GET /static/css/bootstrap.min.css
+[2018-02-15 10:43:07 -0500] [26870] [INFO] Booting worker with pid: 26870
+[2018-02-15 10:43:07 -0500] [26871] [INFO] Booting worker with pid: 26871
+[2018-02-15 10:43:07 -0500] [26872] [INFO] Booting worker with pid: 26872
+[2018-02-15 10:43:07 -0500] [26873] [INFO] Booting worker with pid: 26873
+[2018-02-15 10:43:07 -0500] [26874] [INFO] Booting worker with pid: 26874
+[2018-02-15 10:43:07 -0500] [26875] [INFO] Booting worker with pid: 26875
+[2018-02-15 10:43:07 -0500] [26876] [INFO] Booting worker with pid: 26876
+[2018-02-15 10:43:07 -0500] [26877] [INFO] Booting worker with pid: 26877
+[2018-02-15 10:43:07 -0500] [26878] [INFO] Booting worker with pid: 26878
+[2018-02-15 10:43:07 -0500] [26879] [INFO] Booting worker with pid: 26879
+[2018-02-15 10:43:07 -0500] [26880] [INFO] Booting worker with pid: 26880
+[2018-02-15 10:43:07 -0500] [26881] [INFO] Booting worker with pid: 26881
+[2018-02-15 10:43:07 -0500] [26882] [INFO] Booting worker with pid: 26882
+[2018-02-15 10:43:07 -0500] [26883] [INFO] Booting worker with pid: 26883
+[2018-02-15 10:43:07 -0500] [26884] [INFO] Booting worker with pid: 26884
+[2018-02-15 10:43:07 -0500] [26885] [INFO] Booting worker with pid: 26885
+[2018-02-15 10:43:08 -0500] [26886] [INFO] Booting worker with pid: 26886
+[2018-02-15 10:43:08 -0500] [26887] [INFO] Booting worker with pid: 26887
+[2018-02-15 10:43:08 -0500] [26888] [INFO] Booting worker with pid: 26888
+[2018-02-15 10:43:08 -0500] [26889] [INFO] Booting worker with pid: 26889
+[2018-02-15 10:43:08 -0500] [26890] [INFO] Booting worker with pid: 26890
+[2018-02-15 10:43:08 -0500] [26891] [INFO] Booting worker with pid: 26891
+[2018-02-15 10:43:08 -0500] [26892] [INFO] Booting worker with pid: 26892
+[2018-02-15 10:43:08 -0500] [26893] [INFO] Booting worker with pid: 26893
+[2018-02-15 10:43:08 -0500] [26894] [INFO] Booting worker with pid: 26894
+[2018-02-15 10:43:08 -0500] [26895] [INFO] Booting worker with pid: 26895
+[2018-02-15 10:43:08 -0500] [26896] [INFO] Booting worker with pid: 26896
+[2018-02-15 10:43:08 -0500] [26897] [INFO] Booting worker with pid: 26897
+[2018-02-15 10:43:08 -0500] [26834] [DEBUG] GET /consent
+[2018-02-15 10:43:08 -0500] [26898] [INFO] Booting worker with pid: 26898
+[2018-02-15 10:43:08 -0500] [26834] [DEBUG] GET /static/css/bootstrap.min.css
+[2018-02-15 10:43:08 -0500] [26884] [DEBUG] GET /static/css/style.css
+[2018-02-15 10:43:08 -0500] [26899] [INFO] Booting worker with pid: 26899
+[2018-02-15 10:43:08 -0500] [26900] [INFO] Booting worker with pid: 26900
+[2018-02-15 10:43:08 -0500] [26901] [INFO] Booting worker with pid: 26901
+[2018-02-15 10:43:08 -0500] [26902] [INFO] Booting worker with pid: 26902
+[2018-02-15 10:43:08 -0500] [26903] [INFO] Booting worker with pid: 26903
+[2018-02-15 10:43:09 -0500] [26904] [INFO] Booting worker with pid: 26904
+[2018-02-15 10:43:09 -0500] [26905] [INFO] Booting worker with pid: 26905
+[2018-02-15 10:43:09 -0500] [26906] [INFO] Booting worker with pid: 26906
+[2018-02-15 10:43:09 -0500] [26780] [DEBUG] 100 workers
+[2018-02-15 10:43:11 -0500] [26905] [DEBUG] GET /exp
+[2018-02-15 10:43:11 -0500] [26791] [DEBUG] GET /static/js/psiturk.js
+[2018-02-15 10:43:11 -0500] [26831] [DEBUG] GET /static/lib/backbone-min.js
+[2018-02-15 10:43:11 -0500] [26850] [DEBUG] GET /static/css/bootstrap.min.css
+[2018-02-15 10:43:11 -0500] [26878] [DEBUG] GET /static/lib/underscore-min.js
+[2018-02-15 10:43:11 -0500] [26784] [DEBUG] GET /static/lib/jquery-min.js
+[2018-02-15 10:43:11 -0500] [26795] [DEBUG] GET /static/css/style.css
+[2018-02-15 10:43:11 -0500] [26835] [DEBUG] GET /static/lib/d3.v3.min.js
+[2018-02-15 10:43:11 -0500] [26795] [DEBUG] GET /static/js/utils.js
+[2018-02-15 10:43:11 -0500] [26891] [DEBUG] GET /static/js/task.js
+[2018-02-15 10:43:11 -0500] [26857] [DEBUG] GET /sync/debug78WMVH%3AdebugVG9H5C
+[2018-02-15 10:43:11 -0500] [26828] [DEBUG] GET /instructions/instructions-incidental-greeting.html
+[2018-02-15 10:43:11 -0500] [26807] [DEBUG] GET /instructions/instructions-E4constant-size-task.html
+[2018-02-15 10:43:11 -0500] [26892] [DEBUG] GET /instructions/instructions-incidental-emphasis.html
+[2018-02-15 10:43:11 -0500] [26819] [DEBUG] GET /stage.html
+[2018-02-15 10:43:11 -0500] [26819] [DEBUG] GET /postquestionnaire.html
+[2018-02-15 10:43:15 -0500] [26786] [DEBUG] PUT /sync/debug78WMVH%3AdebugVG9H5C
+[2018-02-15 10:43:15 -0500] [26792] [DEBUG] POST /inexp
+[2018-02-15 10:43:33 -0500] [26806] [DEBUG] PUT /sync/debug78WMVH%3AdebugVG9H5C
+[2018-02-15 10:43:33 -0500] [26809] [DEBUG] GET /compute_bonus
+[2018-02-15 10:43:33 -0500] [26887] [DEBUG] GET /complete
+[2018-02-15 10:43:33 -0500] [26797] [DEBUG] GET /static/css/bootstrap.min.css
+[2018-02-15 10:43:33 -0500] [26903] [DEBUG] GET /static/css/style.css
+[2018-02-15 10:43:33 -0500] [26898] [DEBUG] GET /static/images/MSU-Wordmark-PMS-567.jpg
+[2018-02-15 10:44:35 -0500] [26891] [DEBUG] Closing connection. 
+[2018-02-15 10:44:35 -0500] [26866] [DEBUG] Closing connection. 
+[2018-02-15 10:44:35 -0500] [26897] [DEBUG] Closing connection. 
+[2018-02-15 10:44:35 -0500] [26793] [DEBUG] GET /ad
+[2018-02-15 10:44:35 -0500] [26867] [DEBUG] GET /static/css/bootstrap.min.css
+[2018-02-15 10:44:35 -0500] [26783] [DEBUG] GET /static/images/MSU-Wordmark-PMS-567.jpg
+[2018-02-15 10:44:36 -0500] [26817] [DEBUG] GET /consent
+[2018-02-15 10:44:36 -0500] [26856] [DEBUG] GET /static/css/bootstrap.min.css
+[2018-02-15 10:44:36 -0500] [26864] [DEBUG] GET /static/css/style.css
+[2018-02-15 10:44:38 -0500] [26823] [DEBUG] GET /exp
+[2018-02-15 10:44:38 -0500] [26873] [DEBUG] GET /static/css/bootstrap.min.css
+[2018-02-15 10:44:38 -0500] [26786] [DEBUG] GET /static/lib/jquery-min.js
+[2018-02-15 10:44:38 -0500] [26889] [DEBUG] GET /static/lib/underscore-min.js
+[2018-02-15 10:44:38 -0500] [26823] [DEBUG] GET /static/lib/backbone-min.js
+[2018-02-15 10:44:38 -0500] [26822] [DEBUG] GET /static/js/psiturk.js
+[2018-02-15 10:44:38 -0500] [26814] [DEBUG] GET /static/css/style.css
+[2018-02-15 10:44:38 -0500] [26899] [DEBUG] GET /static/js/utils.js
+[2018-02-15 10:44:38 -0500] [26902] [DEBUG] GET /static/lib/d3.v3.min.js
+[2018-02-15 10:44:38 -0500] [26786] [DEBUG] GET /static/js/task.js
+[2018-02-15 10:44:38 -0500] [26899] [DEBUG] GET /sync/debugE33QBY%3AdebugRLQF04
+[2018-02-15 10:44:38 -0500] [26830] [DEBUG] GET /instructions/instructions-incidental-greeting.html
+[2018-02-15 10:44:38 -0500] [26818] [DEBUG] GET /instructions/instructions-E4constant-size-task.html
+[2018-02-15 10:44:38 -0500] [26903] [DEBUG] GET /instructions/instructions-incidental-emphasis.html
+[2018-02-15 10:44:38 -0500] [26806] [DEBUG] GET /stage.html
+[2018-02-15 10:44:38 -0500] [26867] [DEBUG] GET /postquestionnaire.html
+[2018-02-15 10:44:41 -0500] [26786] [DEBUG] PUT /sync/debugE33QBY%3AdebugRLQF04
+[2018-02-15 10:44:41 -0500] [26783] [DEBUG] POST /inexp
+[2018-02-15 10:46:16 -0500] [26866] [DEBUG] Closing connection. 
+[2018-02-15 10:46:16 -0500] [26893] [DEBUG] Closing connection. 
+[2018-02-15 10:46:16 -0500] [26897] [DEBUG] Closing connection. 
+[2018-02-15 10:46:16 -0500] [26795] [DEBUG] GET /ad
+[2018-02-15 10:46:16 -0500] [26895] [DEBUG] GET /static/css/bootstrap.min.css
+[2018-02-15 10:46:16 -0500] [26799] [DEBUG] GET /static/images/MSU-Wordmark-PMS-567.jpg
+[2018-02-15 10:46:18 -0500] [26888] [DEBUG] GET /consent
+[2018-02-15 10:46:18 -0500] [26808] [DEBUG] GET /static/css/bootstrap.min.css
+[2018-02-15 10:46:18 -0500] [26849] [DEBUG] GET /static/css/style.css
+[2018-02-15 10:46:19 -0500] [26872] [DEBUG] GET /exp
+[2018-02-15 10:46:20 -0500] [26806] [DEBUG] GET /static/css/bootstrap.min.css
+[2018-02-15 10:46:20 -0500] [26859] [DEBUG] GET /static/js/psiturk.js
+[2018-02-15 10:46:20 -0500] [26828] [DEBUG] GET /static/lib/underscore-min.js
+[2018-02-15 10:46:20 -0500] [26789] [DEBUG] GET /static/css/style.css
+[2018-02-15 10:46:20 -0500] [26819] [DEBUG] GET /static/lib/backbone-min.js
+[2018-02-15 10:46:20 -0500] [26875] [DEBUG] GET /static/lib/jquery-min.js
+[2018-02-15 10:46:20 -0500] [26813] [DEBUG] GET /static/js/utils.js
+[2018-02-15 10:46:20 -0500] [26876] [DEBUG] GET /static/js/task.js
+[2018-02-15 10:46:20 -0500] [26875] [DEBUG] GET /static/lib/d3.v3.min.js
+[2018-02-15 10:46:20 -0500] [26889] [DEBUG] GET /sync/debugD6FO0Y%3AdebugTRU0C1
+[2018-02-15 10:46:20 -0500] [26894] [DEBUG] GET /instructions/instructions-incidental-greeting.html
+[2018-02-15 10:46:20 -0500] [26883] [DEBUG] GET /instructions/instructions-E4varying-size-task.html
+[2018-02-15 10:46:20 -0500] [26805] [DEBUG] GET /instructions/instructions-incidental-emphasis.html
+[2018-02-15 10:46:20 -0500] [26894] [DEBUG] GET /stage.html
+[2018-02-15 10:46:20 -0500] [26812] [DEBUG] GET /postquestionnaire.html
+[2018-02-15 10:46:23 -0500] [26834] [DEBUG] PUT /sync/debugD6FO0Y%3AdebugTRU0C1
+[2018-02-15 10:46:23 -0500] [26791] [DEBUG] POST /inexp
+[2018-02-15 10:49:12 -0500] [26870] [DEBUG] Closing connection. 
+[2018-02-15 10:49:12 -0500] [26891] [DEBUG] Closing connection. 
+[2018-02-15 10:49:12 -0500] [26815] [DEBUG] Closing connection. 
+[2018-02-15 10:49:12 -0500] [26783] [DEBUG] GET /ad
+[2018-02-15 10:49:12 -0500] [26820] [DEBUG] GET /static/css/bootstrap.min.css
+[2018-02-15 10:49:13 -0500] [26884] [DEBUG] GET /static/images/MSU-Wordmark-PMS-567.jpg
+[2018-02-15 10:49:14 -0500] [26885] [DEBUG] GET /consent
+[2018-02-15 10:49:14 -0500] [26871] [DEBUG] GET /static/css/style.css
+[2018-02-15 10:49:14 -0500] [26885] [DEBUG] GET /static/css/bootstrap.min.css
+[2018-02-15 10:49:16 -0500] [26828] [DEBUG] GET /exp
+[2018-02-15 10:49:16 -0500] [26857] [DEBUG] GET /static/lib/underscore-min.js
+[2018-02-15 10:49:16 -0500] [26891] [DEBUG] GET /static/css/style.css
+[2018-02-15 10:49:16 -0500] [26898] [DEBUG] GET /static/js/psiturk.js
+[2018-02-15 10:49:16 -0500] [26811] [DEBUG] GET /static/lib/jquery-min.js
+[2018-02-15 10:49:16 -0500] [26849] [DEBUG] GET /static/js/utils.js
+[2018-02-15 10:49:16 -0500] [26886] [DEBUG] GET /static/css/bootstrap.min.css
+[2018-02-15 10:49:16 -0500] [26884] [DEBUG] GET /static/lib/backbone-min.js
+[2018-02-15 10:49:16 -0500] [26815] [DEBUG] GET /static/lib/d3.v3.min.js
+[2018-02-15 10:49:16 -0500] [26859] [DEBUG] GET /static/js/task.js
+[2018-02-15 10:49:16 -0500] [26887] [DEBUG] GET /sync/debugE6DW94%3AdebugQRBNXB
+[2018-02-15 10:49:16 -0500] [26849] [DEBUG] GET /instructions/instructions-incidental-greeting.html
+[2018-02-15 10:49:16 -0500] [26828] [DEBUG] GET /instructions/instructions-E4varying-size-task.html
+[2018-02-15 10:49:16 -0500] [26888] [DEBUG] GET /instructions/instructions-incidental-emphasis.html
+[2018-02-15 10:49:16 -0500] [26806] [DEBUG] GET /stage.html
+[2018-02-15 10:49:16 -0500] [26875] [DEBUG] GET /postquestionnaire.html
+[2018-02-15 10:49:19 -0500] [26807] [DEBUG] PUT /sync/debugE6DW94%3AdebugQRBNXB
+[2018-02-15 10:49:19 -0500] [26834] [DEBUG] POST /inexp
+[2018-02-15 10:50:28 -0500] [26818] [DEBUG] PUT /sync/debugE6DW94%3AdebugQRBNXB
+[2018-02-15 10:50:28 -0500] [26878] [DEBUG] GET /compute_bonus
+[2018-02-15 10:50:28 -0500] [26893] [DEBUG] GET /complete
+[2018-02-15 10:50:28 -0500] [26827] [DEBUG] GET /static/css/bootstrap.min.css
+[2018-02-15 10:50:28 -0500] [26848] [DEBUG] GET /static/css/style.css
+[2018-02-15 10:50:28 -0500] [26834] [DEBUG] GET /static/images/MSU-Wordmark-PMS-567.jpg
