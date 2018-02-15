@@ -5,7 +5,7 @@ import pickle
 # params for data prep and saving results
 results_dir = "../dissemination/manuscript/jml/second_submission/figures"
 dict_path = "/Users/khealey/code/py_modules/cbcc_tools/wordpool_files/websters_dict.txt"  # dictionary to use when looking for ELIs and correcting spelling
-remake_data_file = False
+remake_data_file = True
 n_perms = 10000
 
 # load or create the recalls matrix

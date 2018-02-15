@@ -63,7 +63,7 @@ def make_psiturk_recall_matrix(data, remake_data_file, dict_path, save_file):
         cur_items = data.loc[s_filter & study_filter, ['list', 'word']]
 
         # somehow, there seems to be some uniqueid's that are have two of each list.... just move on if that is the case
-        if cur_items.shape[0] != 32:
+        if cur_items.shape[0] > 32:
             print "DUP!"
             continue
 
