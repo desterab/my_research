@@ -1,7 +1,4 @@
-# todo: sanity check for 1 list per participant
-
 import sys,os,os.path
-sys.path.append("/home/khealey/code/py_modules/")
 from cbcc_tools.data_munging import preprocess_fr_exp_psiturk
 import pandas as pd
 import time
@@ -17,14 +14,19 @@ exp_data_dir = "/fmri2/PI/healey/data/HealEtal16implicit"  # path to data dir on
 
 # load the data from the psiturk experiment database and make it into a free recall object
 data = preprocess_fr_exp_psiturk.load_psiturk_data(db_url, table_name)
-recalls = preprocess_fr_exp_psiturk.make_psiturk_recall_matrix(data, dict_path)
-
-# save the data to a pickle file (once to a file that will become the current working data, and once to a dated
-# file that will be a backup
-recalls.to_pickle(save_file + ".pkl")
-recalls.to_pickle(time.strftime("%Y%m%d-%H%M%S") + save_file + ".pkl")
 data.to_pickle(time.strftime("%Y%m%d-%H%M%S") + save_file + ".raw" + ".pkl")
 
-# put copies on circ2
-os.system("scp " + "*" + save_file + "*" + " circ2.psy.msu.edu:" + exp_data_dir)
-os.system("scp " + time.strftime("%Y%m%d-%H%M%S") + save_file + " circ2.psy.msu.edu:" + exp_data_dir)
+
+
+
+# recalls = af.make_psiturk_recall_matrix(data, dict_path)
+#
+# # save the data to a pickle file (once to a file that will become the current working data, and once to a dated
+# # file that will be a backup
+# recalls.to_pickle(save_file + ".pkl")
+# recalls.to_pickle(time.strftime("%Y%m%d-%H%M%S") + save_file + ".pkl")
+# data.to_pickle(time.strftime("%Y%m%d-%H%M%S") + save_file + ".raw" + ".pkl")
+#
+# # put copies on circ2
+# os.system("scp " + "*" + save_file + "*" + " circ2.psy.msu.edu:" + exp_data_dir)
+# os.system("scp " + time.strftime("%Y%m%d-%H%M%S") + save_file + " circ2.psy.msu.edu:" + exp_data_dir)
