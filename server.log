@@ -10931,3 +10931,236 @@ OperationalError: (_mysql_exceptions.OperationalError) (1054, "Unknown column 'E
 [2018-02-15 09:52:53 -0500] [25913] [DEBUG] GET /static/css/style.css
 [2018-02-15 09:52:53 -0500] [25868] [DEBUG] GET /static/css/bootstrap.min.css
 [2018-02-15 09:52:53 -0500] [25897] [DEBUG] GET /static/images/MSU-Wordmark-PMS-567.jpg
+[2018-02-15 10:07:13 -0500] [25880] [DEBUG] GET /ad
+[2018-02-15 10:07:13 -0500] [25861] [DEBUG] GET /static/css/bootstrap.min.css
+[2018-02-15 10:07:13 -0500] [25913] [DEBUG] GET /static/images/MSU-Wordmark-PMS-567.jpg
+[2018-02-15 10:07:13 -0500] [25899] [DEBUG] GET /favicon.ico
+[2018-02-15 10:07:17 -0500] [25871] [DEBUG] GET /consent
+[2018-02-15 10:07:17 -0500] [25817] [DEBUG] GET /static/css/style.css
+[2018-02-15 10:07:17 -0500] [25831] [DEBUG] GET /static/css/bootstrap.min.css
+[2018-02-15 10:07:22 -0500] [25864] [DEBUG] GET /exp
+[2018-02-15 10:07:22 -0500] [25817] [DEBUG] GET /static/lib/jquery-min.js
+[2018-02-15 10:07:22 -0500] [25823] [DEBUG] GET /static/lib/underscore-min.js
+[2018-02-15 10:07:22 -0500] [25858] [DEBUG] GET /static/lib/backbone-min.js
+[2018-02-15 10:07:22 -0500] [25848] [DEBUG] GET /static/lib/d3.v3.min.js
+[2018-02-15 10:07:22 -0500] [25908] [DEBUG] GET /static/js/psiturk.js
+[2018-02-15 10:07:22 -0500] [25863] [DEBUG] GET /static/js/utils.js
+[2018-02-15 10:07:22 -0500] [25843] [DEBUG] GET /static/js/task.js
+[2018-02-15 10:07:22 -0500] [25823] [DEBUG] GET /static/css/bootstrap.min.css
+[2018-02-15 10:07:22 -0500] [25874] [DEBUG] GET /static/css/style.css
+[2018-02-15 10:07:22 -0500] [25897] [DEBUG] GET /sync/debug9DK1MU%3Adebug9NIFTV
+[2018-02-15 10:07:22 -0500] [25886] [DEBUG] GET /instructions/instructions-incidental-greeting.html
+[2018-02-15 10:07:22 -0500] [25873] [DEBUG] GET /instructions/instructions-E4varying-size-task.html
+[2018-02-15 10:07:22 -0500] [25873] [DEBUG] GET /instructions/instructions-incidental-emphasis.html
+[2018-02-15 10:07:22 -0500] [25873] [DEBUG] GET /stage.html
+[2018-02-15 10:07:22 -0500] [25826] [DEBUG] GET /postquestionnaire.html
+[2018-02-15 10:07:27 -0500] [25879] [DEBUG] PUT /sync/debug9DK1MU%3Adebug9NIFTV
+[2018-02-15 10:07:27 -0500] [25851] [DEBUG] POST /inexp
+[2018-02-15 10:07:46 -0500] [25882] [DEBUG] Closing connection. 
+[2018-02-15 10:07:48 -0500] [25918] [DEBUG] GET /ppid
+[2018-02-15 10:07:48 -0500] [25859] [DEBUG] Closing connection. 
+[2018-02-15 10:07:48 -0500] [25901] [DEBUG] Closing connection. 
+[2018-02-15 10:07:48 -0500] [25845] [INFO] Parent changed, shutting down: <Worker 25845>
+[2018-02-15 10:07:48 -0500] [25851] [INFO] Parent changed, shutting down: <Worker 25851>
+[2018-02-15 10:07:48 -0500] [25826] [INFO] Parent changed, shutting down: <Worker 25826>
+[2018-02-15 10:07:48 -0500] [25901] [INFO] Parent changed, shutting down: <Worker 25901>
+[2018-02-15 10:07:48 -0500] [25856] [INFO] Parent changed, shutting down: <Worker 25856>
+[2018-02-15 10:07:48 -0500] [25825] [INFO] Parent changed, shutting down: <Worker 25825>
+[2018-02-15 10:07:48 -0500] [25853] [INFO] Parent changed, shutting down: <Worker 25853>
+[2018-02-15 10:07:48 -0500] [25824] [INFO] Parent changed, shutting down: <Worker 25824>
+[2018-02-15 10:07:48 -0500] [25917] [INFO] Parent changed, shutting down: <Worker 25917>
+[2018-02-15 10:07:48 -0500] [25844] [INFO] Parent changed, shutting down: <Worker 25844>
+[2018-02-15 10:07:48 -0500] [25859] [INFO] Parent changed, shutting down: <Worker 25859>
+[2018-02-15 10:07:48 -0500] [25852] [INFO] Parent changed, shutting down: <Worker 25852>
+[2018-02-15 10:07:48 -0500] [25884] [INFO] Parent changed, shutting down: <Worker 25884>
+[2018-02-15 10:07:48 -0500] [25911] [INFO] Parent changed, shutting down: <Worker 25911>
+[2018-02-15 10:07:48 -0500] [25856] [INFO] Worker exiting (pid: 25856)
+[2018-02-15 10:07:48 -0500] [25882] [INFO] Parent changed, shutting down: <Worker 25882>
+[2018-02-15 10:07:48 -0500] [25866] [INFO] Parent changed, shutting down: <Worker 25866>
+[2018-02-15 10:07:48 -0500] [25846] [INFO] Parent changed, shutting down: <Worker 25846>
+[2018-02-15 10:07:48 -0500] [25845] [INFO] Worker exiting (pid: 25845)
+[2018-02-15 10:07:48 -0500] [25901] [INFO] Worker exiting (pid: 25901)
+[2018-02-15 10:07:48 -0500] [25865] [INFO] Parent changed, shutting down: <Worker 25865>
+[2018-02-15 10:07:48 -0500] [25859] [INFO] Worker exiting (pid: 25859)
+[2018-02-15 10:07:48 -0500] [25877] [INFO] Parent changed, shutting down: <Worker 25877>
+[2018-02-15 10:07:48 -0500] [25918] [DEBUG] Closing connection. 
+[2018-02-15 10:07:48 -0500] [25910] [INFO] Parent changed, shutting down: <Worker 25910>
+[2018-02-15 10:07:48 -0500] [25817] [INFO] Parent changed, shutting down: <Worker 25817>
+[2018-02-15 10:07:48 -0500] [25844] [INFO] Worker exiting (pid: 25844)
+[2018-02-15 10:07:48 -0500] [25852] [INFO] Worker exiting (pid: 25852)
+[2018-02-15 10:07:48 -0500] [25894] [INFO] Parent changed, shutting down: <Worker 25894>
+[2018-02-15 10:07:48 -0500] [25897] [INFO] Parent changed, shutting down: <Worker 25897>
+[2018-02-15 10:07:48 -0500] [25882] [INFO] Worker exiting (pid: 25882)
+[2018-02-15 10:07:48 -0500] [25877] [INFO] Worker exiting (pid: 25877)
+[2018-02-15 10:07:48 -0500] [25826] [INFO] Worker exiting (pid: 25826)
+[2018-02-15 10:07:48 -0500] [25879] [INFO] Parent changed, shutting down: <Worker 25879>
+[2018-02-15 10:07:48 -0500] [25918] [INFO] Parent changed, shutting down: <Worker 25918>
+[2018-02-15 10:07:48 -0500] [25866] [INFO] Worker exiting (pid: 25866)
+[2018-02-15 10:07:48 -0500] [25897] [INFO] Worker exiting (pid: 25897)
+[2018-02-15 10:07:48 -0500] [25879] [INFO] Worker exiting (pid: 25879)
+[2018-02-15 10:07:48 -0500] [25896] [INFO] Parent changed, shutting down: <Worker 25896>
+[2018-02-15 10:07:48 -0500] [25911] [INFO] Worker exiting (pid: 25911)
+[2018-02-15 10:07:48 -0500] [25884] [INFO] Worker exiting (pid: 25884)
+[2018-02-15 10:07:48 -0500] [25819] [INFO] Parent changed, shutting down: <Worker 25819>
+[2018-02-15 10:07:48 -0500] [25858] [INFO] Parent changed, shutting down: <Worker 25858>
+[2018-02-15 10:07:48 -0500] [25853] [INFO] Worker exiting (pid: 25853)
+[2018-02-15 10:07:48 -0500] [25824] [INFO] Worker exiting (pid: 25824)
+[2018-02-15 10:07:48 -0500] [25896] [INFO] Worker exiting (pid: 25896)
+[2018-02-15 10:07:48 -0500] [25819] [INFO] Worker exiting (pid: 25819)
+[2018-02-15 10:07:48 -0500] [25839] [INFO] Parent changed, shutting down: <Worker 25839>
+[2018-02-15 10:07:48 -0500] [25910] [INFO] Worker exiting (pid: 25910)
+[2018-02-15 10:07:48 -0500] [25839] [INFO] Worker exiting (pid: 25839)
+[2018-02-15 10:07:48 -0500] [25861] [INFO] Parent changed, shutting down: <Worker 25861>
+[2018-02-15 10:07:48 -0500] [25817] [INFO] Worker exiting (pid: 25817)
+[2018-02-15 10:07:48 -0500] [25894] [INFO] Worker exiting (pid: 25894)
+[2018-02-15 10:07:48 -0500] [25918] [INFO] Worker exiting (pid: 25918)
+[2018-02-15 10:07:48 -0500] [25917] [INFO] Worker exiting (pid: 25917)
+[2018-02-15 10:07:48 -0500] [25865] [INFO] Worker exiting (pid: 25865)
+[2018-02-15 10:07:48 -0500] [25846] [INFO] Worker exiting (pid: 25846)
+[2018-02-15 10:07:48 -0500] [25851] [INFO] Worker exiting (pid: 25851)
+[2018-02-15 10:07:48 -0500] [25825] [INFO] Worker exiting (pid: 25825)
+[2018-02-15 10:07:48 -0500] [25861] [INFO] Worker exiting (pid: 25861)
+[2018-02-15 10:07:48 -0500] [25864] [INFO] Parent changed, shutting down: <Worker 25864>
+[2018-02-15 10:07:48 -0500] [25858] [INFO] Worker exiting (pid: 25858)
+[2018-02-15 10:07:48 -0500] [25864] [INFO] Worker exiting (pid: 25864)
+[2018-02-15 10:07:49 -0500] [25899] [INFO] Parent changed, shutting down: <Worker 25899>
+[2018-02-15 10:07:49 -0500] [25876] [INFO] Parent changed, shutting down: <Worker 25876>
+[2018-02-15 10:07:49 -0500] [25883] [INFO] Parent changed, shutting down: <Worker 25883>
+[2018-02-15 10:07:49 -0500] [25914] [INFO] Parent changed, shutting down: <Worker 25914>
+[2018-02-15 10:07:49 -0500] [25827] [INFO] Parent changed, shutting down: <Worker 25827>
+[2018-02-15 10:07:49 -0500] [25860] [INFO] Parent changed, shutting down: <Worker 25860>
+[2018-02-15 10:07:49 -0500] [25871] [INFO] Parent changed, shutting down: <Worker 25871>
+[2018-02-15 10:07:49 -0500] [25905] [INFO] Parent changed, shutting down: <Worker 25905>
+[2018-02-15 10:07:49 -0500] [25863] [INFO] Parent changed, shutting down: <Worker 25863>
+[2018-02-15 10:07:49 -0500] [25916] [INFO] Parent changed, shutting down: <Worker 25916>
+[2018-02-15 10:07:49 -0500] [25870] [INFO] Parent changed, shutting down: <Worker 25870>
+[2018-02-15 10:07:49 -0500] [25889] [INFO] Parent changed, shutting down: <Worker 25889>
+[2018-02-15 10:07:49 -0500] [25822] [INFO] Parent changed, shutting down: <Worker 25822>
+[2018-02-15 10:07:49 -0500] [25818] [INFO] Parent changed, shutting down: <Worker 25818>
+[2018-02-15 10:07:49 -0500] [25898] [DEBUG] Closing connection. 
+[2018-02-15 10:07:49 -0500] [25847] [INFO] Parent changed, shutting down: <Worker 25847>
+[2018-02-15 10:07:49 -0500] [25848] [INFO] Parent changed, shutting down: <Worker 25848>
+[2018-02-15 10:07:49 -0500] [25913] [INFO] Parent changed, shutting down: <Worker 25913>
+[2018-02-15 10:07:49 -0500] [25850] [INFO] Parent changed, shutting down: <Worker 25850>
+[2018-02-15 10:07:49 -0500] [25891] [INFO] Parent changed, shutting down: <Worker 25891>
+[2018-02-15 10:07:49 -0500] [25920] [INFO] Parent changed, shutting down: <Worker 25920>
+[2018-02-15 10:07:49 -0500] [25873] [INFO] Parent changed, shutting down: <Worker 25873>
+[2018-02-15 10:07:49 -0500] [25816] [INFO] Parent changed, shutting down: <Worker 25816>
+[2018-02-15 10:07:49 -0500] [25830] [INFO] Parent changed, shutting down: <Worker 25830>
+[2018-02-15 10:07:49 -0500] [25904] [INFO] Parent changed, shutting down: <Worker 25904>
+[2018-02-15 10:07:49 -0500] [25908] [INFO] Parent changed, shutting down: <Worker 25908>
+[2018-02-15 10:07:49 -0500] [25892] [INFO] Parent changed, shutting down: <Worker 25892>
+[2018-02-15 10:07:49 -0500] [25855] [INFO] Parent changed, shutting down: <Worker 25855>
+[2018-02-15 10:07:49 -0500] [25895] [INFO] Parent changed, shutting down: <Worker 25895>
+[2018-02-15 10:07:49 -0500] [25854] [INFO] Parent changed, shutting down: <Worker 25854>
+[2018-02-15 10:07:49 -0500] [25899] [INFO] Worker exiting (pid: 25899)
+[2018-02-15 10:07:49 -0500] [25887] [INFO] Parent changed, shutting down: <Worker 25887>
+[2018-02-15 10:07:49 -0500] [25849] [INFO] Parent changed, shutting down: <Worker 25849>
+[2018-02-15 10:07:49 -0500] [25915] [INFO] Parent changed, shutting down: <Worker 25915>
+[2018-02-15 10:07:49 -0500] [25888] [INFO] Parent changed, shutting down: <Worker 25888>
+[2018-02-15 10:07:49 -0500] [25921] [INFO] Parent changed, shutting down: <Worker 25921>
+[2018-02-15 10:07:49 -0500] [25860] [INFO] Worker exiting (pid: 25860)
+[2018-02-15 10:07:49 -0500] [25873] [INFO] Worker exiting (pid: 25873)
+[2018-02-15 10:07:49 -0500] [25886] [INFO] Parent changed, shutting down: <Worker 25886>
+[2018-02-15 10:07:49 -0500] [25889] [INFO] Worker exiting (pid: 25889)
+[2018-02-15 10:07:49 -0500] [25863] [INFO] Worker exiting (pid: 25863)
+[2018-02-15 10:07:49 -0500] [25847] [INFO] Worker exiting (pid: 25847)
+[2018-02-15 10:07:49 -0500] [25920] [INFO] Worker exiting (pid: 25920)
+[2018-02-15 10:07:49 -0500] [25855] [INFO] Worker exiting (pid: 25855)
+[2018-02-15 10:07:49 -0500] [25876] [INFO] Worker exiting (pid: 25876)
+[2018-02-15 10:07:49 -0500] [25900] [INFO] Parent changed, shutting down: <Worker 25900>
+[2018-02-15 10:07:49 -0500] [25827] [INFO] Worker exiting (pid: 25827)
+[2018-02-15 10:07:49 -0500] [25831] [INFO] Parent changed, shutting down: <Worker 25831>
+[2018-02-15 10:07:49 -0500] [25850] [INFO] Worker exiting (pid: 25850)
+[2018-02-15 10:07:49 -0500] [25906] [INFO] Parent changed, shutting down: <Worker 25906>
+[2018-02-15 10:07:49 -0500] [25905] [INFO] Worker exiting (pid: 25905)
+[2018-02-15 10:07:49 -0500] [25870] [INFO] Worker exiting (pid: 25870)
+[2018-02-15 10:07:49 -0500] [25914] [INFO] Worker exiting (pid: 25914)
+[2018-02-15 10:07:49 -0500] [25887] [INFO] Worker exiting (pid: 25887)
+[2018-02-15 10:07:49 -0500] [25818] [INFO] Worker exiting (pid: 25818)
+[2018-02-15 10:07:49 -0500] [25908] [INFO] Worker exiting (pid: 25908)
+[2018-02-15 10:07:49 -0500] [25921] [INFO] Worker exiting (pid: 25921)
+[2018-02-15 10:07:49 -0500] [25830] [INFO] Worker exiting (pid: 25830)
+[2018-02-15 10:07:49 -0500] [25871] [INFO] Worker exiting (pid: 25871)
+[2018-02-15 10:07:49 -0500] [25822] [INFO] Worker exiting (pid: 25822)
+[2018-02-15 10:07:49 -0500] [25891] [INFO] Worker exiting (pid: 25891)
+[2018-02-15 10:07:49 -0500] [25883] [INFO] Worker exiting (pid: 25883)
+[2018-02-15 10:07:49 -0500] [25848] [INFO] Worker exiting (pid: 25848)
+[2018-02-15 10:07:49 -0500] [25898] [INFO] Parent changed, shutting down: <Worker 25898>
+[2018-02-15 10:07:49 -0500] [25854] [INFO] Worker exiting (pid: 25854)
+[2018-02-15 10:07:49 -0500] [25916] [INFO] Worker exiting (pid: 25916)
+[2018-02-15 10:07:49 -0500] [25913] [INFO] Worker exiting (pid: 25913)
+[2018-02-15 10:07:49 -0500] [25816] [INFO] Worker exiting (pid: 25816)
+[2018-02-15 10:07:49 -0500] [25915] [INFO] Worker exiting (pid: 25915)
+[2018-02-15 10:07:49 -0500] [25904] [INFO] Worker exiting (pid: 25904)
+[2018-02-15 10:07:49 -0500] [25892] [INFO] Worker exiting (pid: 25892)
+[2018-02-15 10:07:49 -0500] [25906] [INFO] Worker exiting (pid: 25906)
+[2018-02-15 10:07:49 -0500] [25888] [INFO] Worker exiting (pid: 25888)
+[2018-02-15 10:07:49 -0500] [25849] [INFO] Worker exiting (pid: 25849)
+[2018-02-15 10:07:49 -0500] [25886] [INFO] Worker exiting (pid: 25886)
+[2018-02-15 10:07:49 -0500] [25831] [INFO] Worker exiting (pid: 25831)
+[2018-02-15 10:07:49 -0500] [25898] [INFO] Worker exiting (pid: 25898)
+[2018-02-15 10:07:49 -0500] [25900] [INFO] Worker exiting (pid: 25900)
+[2018-02-15 10:07:49 -0500] [25895] [INFO] Worker exiting (pid: 25895)
+[2018-02-15 10:07:49 -0500] [25843] [INFO] Parent changed, shutting down: <Worker 25843>
+[2018-02-15 10:07:49 -0500] [25909] [INFO] Parent changed, shutting down: <Worker 25909>
+[2018-02-15 10:07:49 -0500] [25862] [INFO] Parent changed, shutting down: <Worker 25862>
+[2018-02-15 10:07:49 -0500] [25868] [INFO] Parent changed, shutting down: <Worker 25868>
+[2018-02-15 10:07:49 -0500] [25880] [INFO] Parent changed, shutting down: <Worker 25880>
+[2018-02-15 10:07:49 -0500] [25823] [INFO] Parent changed, shutting down: <Worker 25823>
+[2018-02-15 10:07:49 -0500] [25867] [INFO] Parent changed, shutting down: <Worker 25867>
+[2018-02-15 10:07:49 -0500] [25902] [INFO] Parent changed, shutting down: <Worker 25902>
+[2018-02-15 10:07:49 -0500] [25881] [INFO] Parent changed, shutting down: <Worker 25881>
+[2018-02-15 10:07:49 -0500] [25885] [INFO] Parent changed, shutting down: <Worker 25885>
+[2018-02-15 10:07:49 -0500] [25821] [INFO] Parent changed, shutting down: <Worker 25821>
+[2018-02-15 10:07:49 -0500] [25903] [INFO] Parent changed, shutting down: <Worker 25903>
+[2018-02-15 10:07:49 -0500] [25909] [INFO] Worker exiting (pid: 25909)
+[2018-02-15 10:07:49 -0500] [25857] [INFO] Parent changed, shutting down: <Worker 25857>
+[2018-02-15 10:07:49 -0500] [25862] [INFO] Worker exiting (pid: 25862)
+[2018-02-15 10:07:49 -0500] [25893] [INFO] Parent changed, shutting down: <Worker 25893>
+[2018-02-15 10:07:49 -0500] [25840] [INFO] Parent changed, shutting down: <Worker 25840>
+[2018-02-15 10:07:49 -0500] [25880] [INFO] Worker exiting (pid: 25880)
+[2018-02-15 10:07:49 -0500] [25843] [INFO] Worker exiting (pid: 25843)
+[2018-02-15 10:07:49 -0500] [25881] [INFO] Worker exiting (pid: 25881)
+[2018-02-15 10:07:49 -0500] [25875] [INFO] Parent changed, shutting down: <Worker 25875>
+[2018-02-15 10:07:49 -0500] [25841] [INFO] Parent changed, shutting down: <Worker 25841>
+[2018-02-15 10:07:49 -0500] [25857] [INFO] Worker exiting (pid: 25857)
+[2018-02-15 10:07:49 -0500] [25821] [INFO] Worker exiting (pid: 25821)
+[2018-02-15 10:07:49 -0500] [25903] [INFO] Worker exiting (pid: 25903)
+[2018-02-15 10:07:49 -0500] [25840] [INFO] Worker exiting (pid: 25840)
+[2018-02-15 10:07:49 -0500] [25885] [INFO] Worker exiting (pid: 25885)
+[2018-02-15 10:07:49 -0500] [25875] [INFO] Worker exiting (pid: 25875)
+[2018-02-15 10:07:49 -0500] [25841] [INFO] Worker exiting (pid: 25841)
+[2018-02-15 10:07:49 -0500] [25874] [INFO] Parent changed, shutting down: <Worker 25874>
+[2018-02-15 10:07:49 -0500] [25842] [INFO] Parent changed, shutting down: <Worker 25842>
+[2018-02-15 10:07:49 -0500] [25867] [INFO] Worker exiting (pid: 25867)
+[2018-02-15 10:07:49 -0500] [25874] [INFO] Worker exiting (pid: 25874)
+[2018-02-15 10:07:49 -0500] [25820] [DEBUG] Closing connection. 
+[2018-02-15 10:07:49 -0500] [25842] [INFO] Worker exiting (pid: 25842)
+[2018-02-15 10:07:49 -0500] [25907] [INFO] Parent changed, shutting down: <Worker 25907>
+[2018-02-15 10:07:49 -0500] [25868] [INFO] Worker exiting (pid: 25868)
+[2018-02-15 10:07:49 -0500] [25907] [INFO] Worker exiting (pid: 25907)
+[2018-02-15 10:07:49 -0500] [25820] [INFO] Parent changed, shutting down: <Worker 25820>
+[2018-02-15 10:07:49 -0500] [25823] [INFO] Worker exiting (pid: 25823)
+[2018-02-15 10:07:49 -0500] [25828] [INFO] Parent changed, shutting down: <Worker 25828>
+[2018-02-15 10:07:49 -0500] [25820] [INFO] Worker exiting (pid: 25820)
+[2018-02-15 10:07:49 -0500] [25893] [INFO] Worker exiting (pid: 25893)
+[2018-02-15 10:07:49 -0500] [25828] [INFO] Worker exiting (pid: 25828)
+[2018-02-15 10:07:49 -0500] [25902] [INFO] Worker exiting (pid: 25902)
+[2018-02-15 10:07:50 -0500] [25878] [INFO] Parent changed, shutting down: <Worker 25878>
+[2018-02-15 10:07:50 -0500] [25832] [INFO] Parent changed, shutting down: <Worker 25832>
+[2018-02-15 10:07:50 -0500] [25869] [INFO] Parent changed, shutting down: <Worker 25869>
+[2018-02-15 10:07:50 -0500] [25912] [INFO] Parent changed, shutting down: <Worker 25912>
+[2018-02-15 10:07:50 -0500] [25829] [INFO] Parent changed, shutting down: <Worker 25829>
+[2018-02-15 10:07:50 -0500] [25890] [INFO] Parent changed, shutting down: <Worker 25890>
+[2018-02-15 10:07:50 -0500] [25838] [DEBUG] Closing connection. 
+[2018-02-15 10:07:50 -0500] [25872] [INFO] Parent changed, shutting down: <Worker 25872>
+[2018-02-15 10:07:50 -0500] [25878] [INFO] Worker exiting (pid: 25878)
+[2018-02-15 10:07:50 -0500] [25832] [INFO] Worker exiting (pid: 25832)
+[2018-02-15 10:07:50 -0500] [25869] [INFO] Worker exiting (pid: 25869)
+[2018-02-15 10:07:50 -0500] [25829] [INFO] Worker exiting (pid: 25829)
+[2018-02-15 10:07:50 -0500] [25890] [INFO] Worker exiting (pid: 25890)
+[2018-02-15 10:07:50 -0500] [25912] [INFO] Worker exiting (pid: 25912)
+[2018-02-15 10:07:50 -0500] [25872] [INFO] Worker exiting (pid: 25872)
+[2018-02-15 10:07:50 -0500] [25838] [INFO] Parent changed, shutting down: <Worker 25838>
+[2018-02-15 10:07:50 -0500] [25838] [INFO] Worker exiting (pid: 25838)
