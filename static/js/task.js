@@ -4,25 +4,14 @@
  *     utils.js
  */
 
-// for later:
-// todo: consider doing psiturk.saveData() after each list---with no arguments it hangs
-// todo: program task manipulation - siply define a string at begining with if statment
-// todo: ensure any words used as examples are not  in the pool
-
-
-
-// debug:
-//todo: logging both strategy and awarness question properly
-// todo: make sure is logging condition and counterblanace in results!!
 
 // before going live:
+// todo: new instruction screens for the new conditions
 // todo: change to production database
 // todo: change version number in config.txt
 // todo: review config.txt
-
-
-// clear text after distraction
-
+// todo: note methods change to one list with longer pres rate and shorter isi to give eaiser time with differing judgment
+// todo: note in methods change to size task --- is it bigger rather than would it fit
 
 
 // Initalize psiturk object
@@ -38,8 +27,7 @@ var psiTurk = new PsiTurk(uniqueId, adServerLoc, mode);
 // user determined task params
 var num_of_lists = 1;
 var list_length = 16;
-// todo: note change to one list with longer pres rate and shorter isi to give eaiser time with differing judgment
-var pres_rate = 4000 //5500; // number of mileseconds each word presented for
+var pres_rate = 1000 //5500; // number of mileseconds each word presented for
 var isi = 4 //500; // number of ms of blank screen between word presentations
 var recall_time = 1000 // 75000; // number of milleseconds given to recall
 var delay_between_lists = 5000; // number of mileseconds to pause between lists (display get ready message)
@@ -88,21 +76,21 @@ size_referents = _.shuffle(size_referents);
 
 // fixed task params
 
+//condition is passed by psiturk based on num_conds variable in config.txt runs from 0 to num_conds-1. for this experiment, 0 = explicit, 1 = implicit
+//var instruction_condition = condition;
+var instruction_condition = 1; // temp divert everyone into implicit cond
 
-// temp divert everyone into implicit cond
-//var instruction_condition = condition;  // passed by psiturk based on num_conds variable in config.txt runs from 0 to num_conds-1. for this experiment, 0 = explicit, 1 = implicit
-var instruction_condition = 1
 
-// temp divert everyone into relational cond
-// var task_condition = counterbalance;  // passed by psiturk based on num_counters variable in config.txt runs from 0 to num_counters-1. for this experiment, 0 = size, 1 = deep item, 2 = deep relational
-var task_condition = 8 // counterbalance + 7  // if setup to have two counterblances 0 and 1: 0+7 = 7 and 1+7 = 8
+// counterbalance is passed by psiturk based on num_counters variable in config.txt runs from 0 to num_counters-1. for this experiment, 0 = size, 1 = deep item, 2 = deep relational
+var task_condition = counterbalance + 7;  // divert everyone into one of the Exp4 task conditions (shoebox or varying referent) if setup to have two counterblances 0 and 1: 0+7 = 7 and 1+7 = 8
 
 // instructions for the recall period --- either free recall or serial recall
-var recall_instruction_condition = condition;
-// todo: find all instruction_conditions and make sure it also records recall_instruction_condition
+var recall_instruction_condition = condition;  // co-opting the condition variable to use for the Exp4 recall instructions (whther the susprise mem test gives free or serial instructions
 
 
-var one_to_nine = [1, 2, 3, 4, 5, 6, 7, 8, 9]; // digits to use in constructing math distractor problems
+
+ // digits to use in constructing math distractor problems
+var one_to_nine = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
 
 // preallocate and initialize variables
