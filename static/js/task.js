@@ -6,7 +6,7 @@
 
 
 // before going live:
-// todo: new instruction screens for the new conditions
+// todo: what about intrusions from referents?
 // todo: change to production database
 // todo: change version number in config.txt
 // todo: review config.txt
@@ -27,9 +27,9 @@ var psiTurk = new PsiTurk(uniqueId, adServerLoc, mode);
 // user determined task params
 var num_of_lists = 1;
 var list_length = 16;
-var pres_rate = 1000 //5500; // number of mileseconds each word presented for
+var pres_rate = 4 //5500; // number of mileseconds each word presented for
 var isi = 4 //500; // number of ms of blank screen between word presentations
-var recall_time = 1000 // 75000; // number of milleseconds given to recall
+var recall_time = 15000 // 75000; // number of milleseconds given to recall
 var delay_between_lists = 5000; // number of mileseconds to pause between lists (display get ready message)
 var end_distractor_delay = 4 //16000; // number of mileseconds of distraction task before recall
 var recall_box_lag = 1000; // number of ms to ignore input into the text box after recall period starts --- so people don't accidentally enter responses to the math task here
@@ -82,10 +82,10 @@ var instruction_condition = 1; // temp divert everyone into implicit cond
 
 
 // counterbalance is passed by psiturk based on num_counters variable in config.txt runs from 0 to num_counters-1. for this experiment, 0 = size, 1 = deep item, 2 = deep relational
-var task_condition = 8 // counterbalance + 7;  // divert everyone into one of the Exp4 task conditions (shoebox or varying referent) if setup to have two counterblances 0 and 1: 0+7 = 7 and 1+7 = 8
+var task_condition = 8 //counterbalance + 7;  // divert everyone into one of the Exp4 task conditions (shoebox or varying referent) if setup to have two counterblances 0 and 1: 0+7 = 7 and 1+7 = 8
 
 // instructions for the recall period --- either free recall or serial recall
-var recall_instruction_condition = condition;  // co-opting the condition variable to use for the Exp4 recall instructions (whther the susprise mem test gives free or serial instructions
+var recall_instruction_condition = 0 //condition;  // co-opting the condition variable to use for the Exp4 recall instructions (whther the susprise mem test gives free or serial instructions
 
 
 
@@ -470,14 +470,29 @@ var RunFR = function() {
 
         // display input box
         if (recall_instruction_condition==0) {
-            disp_this = '<p>You now have ' + recall_time/1000 +
-            ' seconds to to try and recall the words from the list you just saw. ' +
-            'You can recall the words in any order. Try to recall as many words as you can. If you cannot remember any more words, that is okay; the task will automatically advance when the time is up.</p>'
+            if (task_condition==7) {
+                disp_this = '<p>You now have ' + recall_time/1000 +
+                ' seconds to to try and recall the words from the list you just saw. ' +
+                'You can recall the words in any order. Try to recall as many words as you can. If you cannot remember any more words, that is okay; the task will automatically advance when the time is up.</p>'
+            }
+            else if (task_condition==8) {
+                disp_this = '<p>You now have ' + recall_time/1000 +
+                ' seconds to to try and recall the words from the list you just saw. Recall the words that were presented in large font in the center of the screen, <strong>not</strong> the size referents that appared in smaller font above the words. ' +
+                'You can recall the words in any order. Try to recall as many words as you can. If you cannot remember any more words, that is okay; the task will automatically advance when the time is up.</p>'
+            }
+
         }
         else if (recall_instruction_condition==1) {
-            disp_this = '<p>You now have ' + recall_time/1000 +
-            ' seconds to to try and recall the words from the list you just saw. Try to recall the words in the <strong>same order you saw them</strong>' +
-            '. Try to recall as many words as you can. If you cannot remember any more words, that is okay; the task will automatically advance when the time is up.</p>'
+            if (task_condition==7) {
+                disp_this = '<p>You now have ' + recall_time / 1000 +
+                ' seconds to to try and recall the words from the list you just saw. Try to recall the words in the <strong>same order you saw them</strong>' +
+                '. Try to recall as many words as you can. If you cannot remember any more words, that is okay; the task will automatically advance when the time is up.</p>'
+            }
+            else if (task_condition==8) {
+                disp_this = '<p>You now have ' + recall_time / 1000 +
+                ' seconds to to try and recall the words from the list you just saw. Recall the words that were presented in large font in the center of the screen, <strong>not</strong> the size referents that appared in smaller font above the words. Try to recall the words in the <strong>same order you saw them</strong>' +
+                '. Try to recall as many words as you can. If you cannot remember any more words, that is okay; the task will automatically advance when the time is up.</p>'
+            }
         }
 
 
