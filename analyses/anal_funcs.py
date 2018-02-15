@@ -28,6 +28,59 @@ tf_lims = [-.025, .2]
 tf_col ='all_tf_z'
 
 
+def make_psiturk_recall_matrix(data, dict_path):
+    recalls = pd.DataFrame()
+
+    # load the webesters dict
+    dict_file = open(dict_path, "r") #TODO: put this path as a param somewhere!
+    dictionary = dict_file.read().split()
+    dict_file.close()
+
+    # first normalize the recalls, pools, and dictionary to get rid of obvious typos like caps and spaces and to make
+    # everything lowercase
+    data.word = data.word.str.replace(" ", "").str.lower()
+    data.response = data.response.str.replace(" ", "").str.lower()
+    dictionary = [word.lower().replace(" ", "") for word in dictionary]
+
+    # loop over subjects, for each isolate their data
+    subjects = data.uniqueid.unique()
+    for s in subjects:
+        s_filter = data.uniqueid == s
+        recalls_filter = data.phase == 'recall'
+        study_filter = data.phase == 'study'
+        awareness_filter = data.aware_question == 'awarenesscheck'
+        aware = data.loc[s_filter & awareness_filter, 'aware_ans']
+        cur_recalls = data.loc[s_filter & recalls_filter, ['list', 'response', 'instruction_condition','task_condition']]
+        cur_items = data.loc[s_filter & study_filter, ['list', 'word']]
+
+        # somehow, there seems to be some uniqueid's that are have two of each list.... just move on if that is the case
+        if cur_items.shape[0] != 32:
+            print "DUP!"
+            continue
+
+        # loop over this subject's lists
+        lists = cur_recalls.list.unique()
+        for l in lists:
+            list_filter = cur_recalls.list == l
+            recalled_this_list = cur_recalls.loc[list_filter, :]
+
+            # loop over recalls in this list and for each find its serial position or mark as intrusion then put it all
+            # in a dataframe
+            sp = []
+            op = []
+            for index, recall in recalled_this_list.iterrows():
+                sp.append(which_item(recall, cur_items.loc[cur_items.list <= recall.list], dictionary))
+                op.append(int(np.where(recalled_this_list.index==index)[0])) # the output position
+
+            # we need to add the subject id and conditions to the beginning of the line
+            sp.extend((s, recall.list, recall.instruction_condition, recall.task_condition, aware)) #sp.insert(0, s)
+            op.extend(('subject', 'list', 'instruction_condition', 'task_condition', 'aware' )) #op.insert(0, 'subject')
+            recalls = recalls.append(pd.DataFrame([sp], columns=tuple(op)))
+
+    recalls.set_index('subject')
+    return recalls
+
+
 def load_the_data(n_perms, remake_data_file, save_name):
 
     if os.path.isfile("all_crps.pkl") and not remake_data_file:
