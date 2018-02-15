@@ -82,7 +82,7 @@ var instruction_condition = 1; // temp divert everyone into implicit cond
 
 
 // counterbalance is passed by psiturk based on num_counters variable in config.txt runs from 0 to num_counters-1. for this experiment, 0 = size, 1 = deep item, 2 = deep relational
-var task_condition = counterbalance + 7;  // divert everyone into one of the Exp4 task conditions (shoebox or varying referent) if setup to have two counterblances 0 and 1: 0+7 = 7 and 1+7 = 8
+var task_condition = 7 // counterbalance + 7;  // divert everyone into one of the Exp4 task conditions (shoebox or varying referent) if setup to have two counterblances 0 and 1: 0+7 = 7 and 1+7 = 8
 
 // instructions for the recall period --- either free recall or serial recall
 var recall_instruction_condition = condition;  // co-opting the condition variable to use for the Exp4 recall instructions (whther the susprise mem test gives free or serial instructions
@@ -145,7 +145,7 @@ else if (task_condition==6) {
     task_string = '<p>Is it easy to judge if it would fit through your front door?</p>'
 }
 else if (task_condition==7) {
-    task = "instructions/instructions-size-task.html"
+    task = "/instructions/instructions-E4constant-size-task.html"
     task_string = '<center><p>Is it easy to judge if it is larger than a <strong>shoebox</strong>?</p></center>'
 }
 else if (task_condition==8) {
