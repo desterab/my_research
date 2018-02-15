@@ -8,7 +8,8 @@ import matplotlib.pyplot as plt
 from matplotlib import gridspec
 from joblib import Parallel
 import multiprocessing
-
+from cbcc_tools.data_munging import spell_checker
+from pyxdameraulevenshtein import damerau_levenshtein_distance_ndarray
 
 # figure style params
 sns.set_style("ticks")
@@ -28,7 +29,11 @@ tf_lims = [-.025, .2]
 tf_col ='all_tf_z'
 
 
-def make_psiturk_recall_matrix(data, dict_path):
+def make_psiturk_recall_matrix(data, remake_data_file, dict_path, save_file):
+    if os.path.isfile(save_file) and not remake_data_file:
+        recalls = pickle.load(open(save_file, "rb"))
+        return recalls
+
     recalls = pd.DataFrame()
 
     # load the webesters dict
@@ -44,13 +49,17 @@ def make_psiturk_recall_matrix(data, dict_path):
 
     # loop over subjects, for each isolate their data
     subjects = data.uniqueid.unique()
+    n_ss = len(subjects)
+    loop = 0.
     for s in subjects:
+        loop += 1.
+        print(loop/n_ss*100)
         s_filter = data.uniqueid == s
         recalls_filter = data.phase == 'recall'
         study_filter = data.phase == 'study'
         awareness_filter = data.aware_question == 'awarenesscheck'
         aware = data.loc[s_filter & awareness_filter, 'aware_ans']
-        cur_recalls = data.loc[s_filter & recalls_filter, ['list', 'response', 'instruction_condition','task_condition']]
+        cur_recalls = data.loc[s_filter & recalls_filter, ['list', 'response', 'instruction_condition','task_condition', 'recall_instruction_condition']]
         cur_items = data.loc[s_filter & study_filter, ['list', 'word']]
 
         # somehow, there seems to be some uniqueid's that are have two of each list.... just move on if that is the case
@@ -71,17 +80,19 @@ def make_psiturk_recall_matrix(data, dict_path):
             for index, recall in recalled_this_list.iterrows():
                 sp.append(which_item(recall, cur_items.loc[cur_items.list <= recall.list], dictionary))
                 op.append(int(np.where(recalled_this_list.index==index)[0])) # the output position
+                # print (recall)
 
             # we need to add the subject id and conditions to the beginning of the line
-            sp.extend((s, recall.list, recall.instruction_condition, recall.task_condition, aware)) #sp.insert(0, s)
-            op.extend(('subject', 'list', 'instruction_condition', 'task_condition', 'aware' )) #op.insert(0, 'subject')
+            sp.extend((s, recall.list, recall.instruction_condition, recall.task_condition, recall.recall_instruction_condition, aware)) #sp.insert(0, s)
+            op.extend(('subject', 'list', 'instruction_condition', 'task_condition', 'recall_instruction_condition', 'aware' )) #op.insert(0, 'subject')
             recalls = recalls.append(pd.DataFrame([sp], columns=tuple(op)))
 
     recalls.set_index('subject')
+    recalls.to_pickle(save_file + ".pkl")
     return recalls
 
 
-def load_the_data(n_perms, remake_data_file, save_name):
+def load_the_data(n_perms, remake_data_file, recalls_file, save_name):
 
     if os.path.isfile("all_crps.pkl") and not remake_data_file:
         all_crps = pickle.load(open("all_crps.pkl", "rb"))
@@ -89,9 +100,9 @@ def load_the_data(n_perms, remake_data_file, save_name):
     else:
         num_cores = multiprocessing.cpu_count()
         with Parallel(n_jobs=num_cores, verbose=0) as POOL:
-            os.system('scp cbcc.psy.msu.edu:~/code/experiments/Heal16implicit/HealEtal16implicit.data.pkl \'/Users/khealey/Library/Mobile Documents/com~apple~CloudDocs/lab/code/experiments/Heal16implicit\'')
+            # os.system('scp cbcc.psy.msu.edu:~/code/experiments/Heal16implicit/HealEtal16implicit.data.pkl \'/Users/khealey/Library/Mobile Documents/com~apple~CloudDocs/lab/code/experiments/Heal16implicit\'')
             recalls = pickle.load(open(
-                "/Users/khealey/Library/Mobile Documents/com~apple~CloudDocs/lab/code/experiments/Heal16implicit/HealEtal16implicit.data.pkl",
+                recalls_file,
                 "rb"))
 
             # loop over subjects and lists, for each isolate their data
@@ -363,3 +374,69 @@ def sample_size_table(all_crps, results_dir):
                                                                    prec_table["Incidental"]["Weight"]["std"]))
     return all_crps
 
+def which_item(recall, presented, dictionary):
+    """
+
+    :param recall: the string typed in by the subject
+    :param presented: a list of words seen by this subject so far in the experiment
+    :param dictionary: a list of strings we want to consider as possible intrusions
+    :return:
+    """
+
+    # does the recall exactly match a word that has been presented
+    seen, seen_where = self_term_search(recall.response, presented.word)
+    if seen:
+
+        # could be a PLI
+        intrusion = presented.iloc[seen_where].list != recall.list
+        if intrusion:
+            return -1.0 #todo: what are the standard matlab codes for ELI and PLI?
+
+        # its not a PLI, so find the serial pos
+        first_item = next(item for item, listnum in enumerate(presented.list) if listnum == recall.list)
+        serial_pos = seen_where - first_item + 1.0
+        return serial_pos
+
+    # does the recall exactly match a word in the dictionary
+    in_dict, where_in_dict = self_term_search(recall.response, dictionary)
+    if in_dict:
+        return -999.0 #todo: what are the standard matlab codes for ELI and PLI?
+
+    # is the response a nan?
+    if not type(recall.response) == str:
+        if type(recall.response) ==  unicode or np.isnan(recall.response):
+            return -1999.0 #todo: what are the standard matlab codes for ELI and PLI?
+
+    # does the string include non letters?
+    non_letter = not recall.response.isalpha()
+    if non_letter:
+        return -2999.0  # todo: what are the standard matlab codes for ELI and PLI?
+
+    # the closest match based on edit distance
+    recall = correct_spelling(recall, presented, dictionary)
+    return which_item(recall, presented, dictionary)
+
+
+def self_term_search(find_this, in_this):
+    for index, word in enumerate(in_this):
+        if word == find_this:
+            return True, index
+    return False, None
+
+
+def correct_spelling(recall, presented, dictionary):
+
+    # edit distance to each item in the pool and dictionary
+    dist_to_pool = damerau_levenshtein_distance_ndarray(recall.response, np.array(presented.word))
+    dist_to_dict = damerau_levenshtein_distance_ndarray(recall.response, np.array(dictionary))
+
+    # position in distribution of dist_to_dict
+    ptile = np.true_divide(sum(dist_to_dict <= np.amin(dist_to_pool)), dist_to_dict.size)
+
+    # decide if it is a word in the pool or an ELI
+    if ptile <= .1: #todo: make this a param
+        corrected_recall = presented.iloc[np.argmin(dist_to_pool)].word
+    else:
+        corrected_recall = dictionary[np.argmin(dist_to_dict)]
+    recall.response = corrected_recall
+    return recall
