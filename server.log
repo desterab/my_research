@@ -10425,3 +10425,509 @@ OperationalError: (_mysql_exceptions.OperationalError) (1054, "Unknown column 'E
 [2018-02-15 09:39:56 -0500] [14230] [DEBUG] GET /postquestionnaire.html
 [2018-02-15 09:40:03 -0500] [14245] [DEBUG] PUT /sync/debugWWVWHS%3Adebug4DHBLY
 [2018-02-15 09:40:03 -0500] [14260] [DEBUG] POST /inexp
+[2018-02-15 09:41:34 -0500] [14285] [DEBUG] Closing connection. 
+[2018-02-15 09:41:34 -0500] [14262] [DEBUG] Closing connection. 
+[2018-02-15 09:41:34 -0500] [14310] [DEBUG] Closing connection. 
+[2018-02-15 09:41:34 -0500] [14288] [DEBUG] GET /ad
+[2018-02-15 09:41:34 -0500] [14282] [DEBUG] GET /static/css/bootstrap.min.css
+[2018-02-15 09:41:34 -0500] [14253] [DEBUG] GET /static/images/MSU-Wordmark-PMS-567.jpg
+[2018-02-15 09:41:36 -0500] [14259] [DEBUG] GET /consent
+[2018-02-15 09:41:36 -0500] [14260] [DEBUG] GET /static/css/style.css
+[2018-02-15 09:41:36 -0500] [14272] [DEBUG] GET /static/css/bootstrap.min.css
+[2018-02-15 09:41:37 -0500] [14255] [DEBUG] GET /exp
+[2018-02-15 09:41:37 -0500] [14332] [DEBUG] GET /static/js/psiturk.js
+[2018-02-15 09:41:37 -0500] [14248] [DEBUG] GET /static/css/style.css
+[2018-02-15 09:41:37 -0500] [14254] [DEBUG] GET /static/lib/jquery-min.js
+[2018-02-15 09:41:37 -0500] [14306] [DEBUG] GET /static/lib/underscore-min.js
+[2018-02-15 09:41:37 -0500] [14228] [DEBUG] GET /static/lib/backbone-min.js
+[2018-02-15 09:41:37 -0500] [14304] [DEBUG] GET /static/js/utils.js
+[2018-02-15 09:41:37 -0500] [14293] [DEBUG] GET /static/js/task.js
+[2018-02-15 09:41:37 -0500] [14248] [DEBUG] GET /static/lib/d3.v3.min.js
+[2018-02-15 09:41:37 -0500] [14280] [DEBUG] GET /static/css/bootstrap.min.css
+[2018-02-15 09:41:37 -0500] [14231] [DEBUG] GET /sync/debug4I4DDN%3Adebug8RICCK
+[2018-02-15 09:41:38 -0500] [14270] [DEBUG] GET /instructions/instructions-incidental-greeting.html
+[2018-02-15 09:41:38 -0500] [14270] [DEBUG] GET /instructions/instructions-E4constant-size-task.html
+[2018-02-15 09:41:38 -0500] [14275] [DEBUG] GET /instructions/instructions-incidental-emphasis.html
+[2018-02-15 09:41:38 -0500] [14281] [DEBUG] GET /stage.html
+[2018-02-15 09:41:38 -0500] [14281] [DEBUG] GET /postquestionnaire.html
+[2018-02-15 09:41:41 -0500] [14226] [DEBUG] PUT /sync/debug4I4DDN%3Adebug8RICCK
+[2018-02-15 09:41:41 -0500] [14266] [DEBUG] POST /inexp
+[2018-02-15 09:49:44 -0500] [14342] [DEBUG] Closing connection. 
+[2018-02-15 09:49:44 -0500] [14324] [DEBUG] Closing connection. 
+[2018-02-15 09:49:45 -0500] [14229] [DEBUG] Closing connection. 
+[2018-02-15 09:49:45 -0500] [14250] [DEBUG] GET /ad
+[2018-02-15 09:49:45 -0500] [14242] [DEBUG] GET /static/css/bootstrap.min.css
+[2018-02-15 09:49:45 -0500] [14235] [DEBUG] GET /static/images/MSU-Wordmark-PMS-567.jpg
+[2018-02-15 09:49:46 -0500] [14226] [DEBUG] GET /consent
+[2018-02-15 09:49:46 -0500] [14231] [DEBUG] GET /static/css/style.css
+[2018-02-15 09:49:46 -0500] [14288] [DEBUG] GET /static/css/bootstrap.min.css
+[2018-02-15 09:49:49 -0500] [14290] [DEBUG] GET /exp
+[2018-02-15 09:49:49 -0500] [14282] [DEBUG] GET /static/js/psiturk.js
+[2018-02-15 09:49:49 -0500] [14234] [DEBUG] GET /static/css/style.css
+[2018-02-15 09:49:49 -0500] [14260] [DEBUG] GET /static/lib/backbone-min.js
+[2018-02-15 09:49:49 -0500] [14316] [DEBUG] GET /static/lib/jquery-min.js
+[2018-02-15 09:49:49 -0500] [14308] [DEBUG] GET /static/lib/underscore-min.js
+[2018-02-15 09:49:49 -0500] [14310] [DEBUG] GET /static/js/utils.js
+[2018-02-15 09:49:49 -0500] [14225] [DEBUG] GET /static/js/task.js
+[2018-02-15 09:49:49 -0500] [14250] [DEBUG] GET /static/lib/d3.v3.min.js
+[2018-02-15 09:49:49 -0500] [14288] [DEBUG] GET /static/css/bootstrap.min.css
+[2018-02-15 09:49:49 -0500] [14257] [DEBUG] GET /sync/debugCWNB5Y%3Adebug5FF8JV
+[2018-02-15 09:49:49 -0500] [14260] [DEBUG] GET /instructions/instructions-incidental-greeting.html
+[2018-02-15 09:49:49 -0500] [14305] [DEBUG] GET /instructions/instructions-E4varying-size-task.html
+[2018-02-15 09:49:49 -0500] [14339] [DEBUG] GET /instructions/instructions-incidental-emphasis.html
+[2018-02-15 09:49:49 -0500] [14226] [DEBUG] GET /stage.html
+[2018-02-15 09:49:49 -0500] [14309] [DEBUG] GET /postquestionnaire.html
+[2018-02-15 09:49:54 -0500] [14288] [DEBUG] PUT /sync/debugCWNB5Y%3Adebug5FF8JV
+[2018-02-15 09:49:54 -0500] [14256] [DEBUG] POST /inexp
+[2018-02-15 09:50:24 -0500] [14288] [DEBUG] Closing connection. 
+[2018-02-15 09:50:24 -0500] [14288] [DEBUG] Closing connection. 
+[2018-02-15 09:50:24 -0500] [14233] [DEBUG] Closing connection. 
+[2018-02-15 09:50:25 -0500] [14265] [DEBUG] GET /ad
+[2018-02-15 09:50:25 -0500] [14268] [DEBUG] GET /static/css/bootstrap.min.css
+[2018-02-15 09:50:25 -0500] [14255] [DEBUG] GET /static/images/MSU-Wordmark-PMS-567.jpg
+[2018-02-15 09:50:26 -0500] [14224] [DEBUG] GET /consent
+[2018-02-15 09:50:26 -0500] [14235] [DEBUG] GET /static/css/style.css
+[2018-02-15 09:50:26 -0500] [14341] [DEBUG] GET /static/css/bootstrap.min.css
+[2018-02-15 09:50:28 -0500] [14336] [DEBUG] GET /exp
+[2018-02-15 09:50:28 -0500] [14258] [DEBUG] GET /static/css/style.css
+[2018-02-15 09:50:28 -0500] [14323] [DEBUG] GET /static/lib/backbone-min.js
+[2018-02-15 09:50:28 -0500] [14233] [DEBUG] GET /static/js/utils.js
+[2018-02-15 09:50:28 -0500] [14288] [DEBUG] GET /static/lib/jquery-min.js
+[2018-02-15 09:50:28 -0500] [14253] [DEBUG] GET /static/lib/underscore-min.js
+[2018-02-15 09:50:28 -0500] [14305] [DEBUG] GET /static/js/psiturk.js
+[2018-02-15 09:50:28 -0500] [14256] [DEBUG] GET /static/lib/d3.v3.min.js
+[2018-02-15 09:50:28 -0500] [14264] [DEBUG] GET /static/js/task.js
+[2018-02-15 09:50:28 -0500] [14267] [DEBUG] GET /static/css/bootstrap.min.css
+[2018-02-15 09:50:28 -0500] [14265] [DEBUG] GET /sync/debugFMD24G%3AdebugQZDNQL
+[2018-02-15 09:50:28 -0500] [14232] [DEBUG] GET /instructions/instructions-incidental-greeting.html
+[2018-02-15 09:50:28 -0500] [14226] [DEBUG] GET /instructions/instructions-E4varying-size-task.html
+[2018-02-15 09:50:28 -0500] [14335] [DEBUG] GET /instructions/instructions-incidental-emphasis.html
+[2018-02-15 09:50:28 -0500] [14252] [DEBUG] GET /stage.html
+[2018-02-15 09:50:28 -0500] [14226] [DEBUG] GET /postquestionnaire.html
+[2018-02-15 09:50:31 -0500] [14223] [DEBUG] PUT /sync/debugFMD24G%3AdebugQZDNQL
+[2018-02-15 09:50:31 -0500] [14262] [DEBUG] POST /inexp
+[2018-02-15 09:50:52 -0500] [14248] [DEBUG] PUT /sync/debugFMD24G%3AdebugQZDNQL
+[2018-02-15 09:50:52 -0500] [14262] [DEBUG] GET /compute_bonus
+[2018-02-15 09:50:52 -0500] [14295] [DEBUG] GET /complete
+[2018-02-15 09:50:52 -0500] [14269] [DEBUG] GET /static/css/style.css
+[2018-02-15 09:50:52 -0500] [14276] [DEBUG] GET /static/images/MSU-Wordmark-PMS-567.jpg
+[2018-02-15 09:50:52 -0500] [14325] [DEBUG] GET /static/css/bootstrap.min.css
+[2018-02-15 09:51:53 -0500] [14234] [DEBUG] Closing connection. 
+[2018-02-15 09:51:55 -0500] [14257] [DEBUG] Closing connection. 
+[2018-02-15 09:51:55 -0500] [14252] [DEBUG] Closing connection. 
+[2018-02-15 09:51:55 -0500] [14260] [DEBUG] GET /ppid
+[2018-02-15 09:51:55 -0500] [14275] [INFO] Parent changed, shutting down: <Worker 14275>
+[2018-02-15 09:51:55 -0500] [14253] [INFO] Parent changed, shutting down: <Worker 14253>
+[2018-02-15 09:51:55 -0500] [14283] [INFO] Parent changed, shutting down: <Worker 14283>
+[2018-02-15 09:51:55 -0500] [14343] [INFO] Parent changed, shutting down: <Worker 14343>
+[2018-02-15 09:51:55 -0500] [14280] [INFO] Parent changed, shutting down: <Worker 14280>
+[2018-02-15 09:51:55 -0500] [14301] [INFO] Parent changed, shutting down: <Worker 14301>
+[2018-02-15 09:51:55 -0500] [14235] [INFO] Parent changed, shutting down: <Worker 14235>
+[2018-02-15 09:51:55 -0500] [14309] [INFO] Parent changed, shutting down: <Worker 14309>
+[2018-02-15 09:51:55 -0500] [14275] [INFO] Worker exiting (pid: 14275)
+[2018-02-15 09:51:55 -0500] [14341] [INFO] Parent changed, shutting down: <Worker 14341>
+[2018-02-15 09:51:55 -0500] [14294] [DEBUG] Closing connection. 
+[2018-02-15 09:51:55 -0500] [14253] [INFO] Worker exiting (pid: 14253)
+[2018-02-15 09:51:55 -0500] [14260] [INFO] Parent changed, shutting down: <Worker 14260>
+[2018-02-15 09:51:55 -0500] [14245] [INFO] Parent changed, shutting down: <Worker 14245>
+[2018-02-15 09:51:55 -0500] [14283] [INFO] Worker exiting (pid: 14283)
+[2018-02-15 09:51:55 -0500] [14310] [INFO] Parent changed, shutting down: <Worker 14310>
+[2018-02-15 09:51:55 -0500] [14301] [INFO] Worker exiting (pid: 14301)
+[2018-02-15 09:51:55 -0500] [14292] [INFO] Parent changed, shutting down: <Worker 14292>
+[2018-02-15 09:51:55 -0500] [14341] [INFO] Worker exiting (pid: 14341)
+[2018-02-15 09:51:55 -0500] [14259] [INFO] Parent changed, shutting down: <Worker 14259>
+[2018-02-15 09:51:55 -0500] [14260] [INFO] Worker exiting (pid: 14260)
+[2018-02-15 09:51:55 -0500] [14245] [INFO] Worker exiting (pid: 14245)
+[2018-02-15 09:51:55 -0500] [14292] [INFO] Worker exiting (pid: 14292)
+[2018-02-15 09:51:55 -0500] [14235] [INFO] Worker exiting (pid: 14235)
+[2018-02-15 09:51:55 -0500] [14259] [INFO] Worker exiting (pid: 14259)
+[2018-02-15 09:51:55 -0500] [14299] [INFO] Parent changed, shutting down: <Worker 14299>
+[2018-02-15 09:51:55 -0500] [14308] [INFO] Parent changed, shutting down: <Worker 14308>
+[2018-02-15 09:51:55 -0500] [14266] [INFO] Parent changed, shutting down: <Worker 14266>
+[2018-02-15 09:51:55 -0500] [14280] [INFO] Worker exiting (pid: 14280)
+[2018-02-15 09:51:55 -0500] [14343] [INFO] Worker exiting (pid: 14343)
+[2018-02-15 09:51:55 -0500] [14308] [INFO] Worker exiting (pid: 14308)
+[2018-02-15 09:51:55 -0500] [14332] [INFO] Parent changed, shutting down: <Worker 14332>
+[2018-02-15 09:51:55 -0500] [14250] [INFO] Parent changed, shutting down: <Worker 14250>
+[2018-02-15 09:51:55 -0500] [14266] [INFO] Worker exiting (pid: 14266)
+[2018-02-15 09:51:55 -0500] [14332] [INFO] Worker exiting (pid: 14332)
+[2018-02-15 09:51:55 -0500] [14250] [INFO] Worker exiting (pid: 14250)
+[2018-02-15 09:51:55 -0500] [14262] [INFO] Parent changed, shutting down: <Worker 14262>
+[2018-02-15 09:51:55 -0500] [14325] [INFO] Parent changed, shutting down: <Worker 14325>
+[2018-02-15 09:51:55 -0500] [14299] [INFO] Worker exiting (pid: 14299)
+[2018-02-15 09:51:55 -0500] [14310] [INFO] Worker exiting (pid: 14310)
+[2018-02-15 09:51:55 -0500] [14294] [INFO] Parent changed, shutting down: <Worker 14294>
+[2018-02-15 09:51:55 -0500] [14325] [INFO] Worker exiting (pid: 14325)
+[2018-02-15 09:51:55 -0500] [14294] [INFO] Worker exiting (pid: 14294)
+[2018-02-15 09:51:55 -0500] [14262] [INFO] Worker exiting (pid: 14262)
+[2018-02-15 09:51:55 -0500] [14309] [INFO] Worker exiting (pid: 14309)
+[2018-02-15 09:51:56 -0500] [14231] [INFO] Parent changed, shutting down: <Worker 14231>
+[2018-02-15 09:51:56 -0500] [14279] [INFO] Parent changed, shutting down: <Worker 14279>
+[2018-02-15 09:51:56 -0500] [14227] [INFO] Parent changed, shutting down: <Worker 14227>
+[2018-02-15 09:51:56 -0500] [14271] [INFO] Parent changed, shutting down: <Worker 14271>
+[2018-02-15 09:51:56 -0500] [14272] [INFO] Parent changed, shutting down: <Worker 14272>
+[2018-02-15 09:51:56 -0500] [14265] [INFO] Parent changed, shutting down: <Worker 14265>
+[2018-02-15 09:51:56 -0500] [14232] [INFO] Parent changed, shutting down: <Worker 14232>
+[2018-02-15 09:51:56 -0500] [14335] [INFO] Parent changed, shutting down: <Worker 14335>
+[2018-02-15 09:51:56 -0500] [14337] [INFO] Parent changed, shutting down: <Worker 14337>
+[2018-02-15 09:51:56 -0500] [14272] [INFO] Worker exiting (pid: 14272)
+[2018-02-15 09:51:56 -0500] [14226] [INFO] Parent changed, shutting down: <Worker 14226>
+[2018-02-15 09:51:56 -0500] [14244] [INFO] Parent changed, shutting down: <Worker 14244>
+[2018-02-15 09:51:56 -0500] [14223] [INFO] Parent changed, shutting down: <Worker 14223>
+[2018-02-15 09:51:56 -0500] [14342] [INFO] Parent changed, shutting down: <Worker 14342>
+[2018-02-15 09:51:56 -0500] [14338] [INFO] Parent changed, shutting down: <Worker 14338>
+[2018-02-15 09:51:56 -0500] [14269] [INFO] Parent changed, shutting down: <Worker 14269>
+[2018-02-15 09:51:56 -0500] [14281] [INFO] Parent changed, shutting down: <Worker 14281>
+[2018-02-15 09:51:56 -0500] [14243] [INFO] Parent changed, shutting down: <Worker 14243>
+[2018-02-15 09:51:56 -0500] [14241] [INFO] Parent changed, shutting down: <Worker 14241>
+[2018-02-15 09:51:56 -0500] [14284] [INFO] Parent changed, shutting down: <Worker 14284>
+[2018-02-15 09:51:56 -0500] [14249] [INFO] Parent changed, shutting down: <Worker 14249>
+[2018-02-15 09:51:56 -0500] [14287] [INFO] Parent changed, shutting down: <Worker 14287>
+[2018-02-15 09:51:56 -0500] [14269] [INFO] Worker exiting (pid: 14269)
+[2018-02-15 09:51:56 -0500] [14300] [INFO] Parent changed, shutting down: <Worker 14300>
+[2018-02-15 09:51:56 -0500] [14334] [INFO] Parent changed, shutting down: <Worker 14334>
+[2018-02-15 09:51:56 -0500] [14263] [INFO] Parent changed, shutting down: <Worker 14263>
+[2018-02-15 09:51:56 -0500] [14274] [INFO] Parent changed, shutting down: <Worker 14274>
+[2018-02-15 09:51:56 -0500] [14276] [INFO] Parent changed, shutting down: <Worker 14276>
+[2018-02-15 09:51:56 -0500] [14295] [INFO] Parent changed, shutting down: <Worker 14295>
+[2018-02-15 09:51:56 -0500] [14282] [INFO] Parent changed, shutting down: <Worker 14282>
+[2018-02-15 09:51:56 -0500] [14297] [DEBUG] Closing connection. 
+[2018-02-15 09:51:56 -0500] [14261] [INFO] Parent changed, shutting down: <Worker 14261>
+[2018-02-15 09:51:56 -0500] [14293] [INFO] Parent changed, shutting down: <Worker 14293>
+[2018-02-15 09:51:56 -0500] [14263] [INFO] Worker exiting (pid: 14263)
+[2018-02-15 09:51:56 -0500] [14289] [INFO] Parent changed, shutting down: <Worker 14289>
+[2018-02-15 09:51:56 -0500] [14230] [INFO] Parent changed, shutting down: <Worker 14230>
+[2018-02-15 09:51:56 -0500] [14256] [INFO] Parent changed, shutting down: <Worker 14256>
+[2018-02-15 09:51:56 -0500] [14242] [INFO] Parent changed, shutting down: <Worker 14242>
+[2018-02-15 09:51:56 -0500] [14267] [INFO] Parent changed, shutting down: <Worker 14267>
+[2018-02-15 09:51:56 -0500] [14340] [INFO] Parent changed, shutting down: <Worker 14340>
+[2018-02-15 09:51:56 -0500] [14248] [INFO] Parent changed, shutting down: <Worker 14248>
+[2018-02-15 09:51:56 -0500] [14258] [INFO] Parent changed, shutting down: <Worker 14258>
+[2018-02-15 09:51:56 -0500] [14288] [INFO] Parent changed, shutting down: <Worker 14288>
+[2018-02-15 09:51:56 -0500] [14271] [INFO] Worker exiting (pid: 14271)
+[2018-02-15 09:51:56 -0500] [14229] [INFO] Parent changed, shutting down: <Worker 14229>
+[2018-02-15 09:51:56 -0500] [14255] [INFO] Parent changed, shutting down: <Worker 14255>
+[2018-02-15 09:51:56 -0500] [14247] [INFO] Parent changed, shutting down: <Worker 14247>
+[2018-02-15 09:51:56 -0500] [14290] [INFO] Parent changed, shutting down: <Worker 14290>
+[2018-02-15 09:51:56 -0500] [14316] [INFO] Parent changed, shutting down: <Worker 14316>
+[2018-02-15 09:51:56 -0500] [14327] [INFO] Parent changed, shutting down: <Worker 14327>
+[2018-02-15 09:51:56 -0500] [14335] [INFO] Worker exiting (pid: 14335)
+[2018-02-15 09:51:56 -0500] [14254] [INFO] Parent changed, shutting down: <Worker 14254>
+[2018-02-15 09:51:56 -0500] [14307] [INFO] Parent changed, shutting down: <Worker 14307>
+[2018-02-15 09:51:56 -0500] [14270] [INFO] Parent changed, shutting down: <Worker 14270>
+[2018-02-15 09:51:56 -0500] [14291] [INFO] Parent changed, shutting down: <Worker 14291>
+[2018-02-15 09:51:56 -0500] [14339] [INFO] Parent changed, shutting down: <Worker 14339>
+[2018-02-15 09:51:56 -0500] [14336] [INFO] Parent changed, shutting down: <Worker 14336>
+[2018-02-15 09:51:56 -0500] [14244] [INFO] Worker exiting (pid: 14244)
+[2018-02-15 09:51:56 -0500] [14268] [INFO] Parent changed, shutting down: <Worker 14268>
+[2018-02-15 09:51:56 -0500] [14302] [INFO] Parent changed, shutting down: <Worker 14302>
+[2018-02-15 09:51:56 -0500] [14273] [INFO] Parent changed, shutting down: <Worker 14273>
+[2018-02-15 09:51:56 -0500] [14338] [INFO] Worker exiting (pid: 14338)
+[2018-02-15 09:51:56 -0500] [14222] [INFO] Parent changed, shutting down: <Worker 14222>
+[2018-02-15 09:51:56 -0500] [14324] [INFO] Parent changed, shutting down: <Worker 14324>
+[2018-02-15 09:51:56 -0500] [14226] [INFO] Worker exiting (pid: 14226)
+[2018-02-15 09:51:56 -0500] [14342] [INFO] Worker exiting (pid: 14342)
+[2018-02-15 09:51:56 -0500] [14306] [INFO] Parent changed, shutting down: <Worker 14306>
+[2018-02-15 09:51:56 -0500] [14249] [INFO] Worker exiting (pid: 14249)
+[2018-02-15 09:51:56 -0500] [14298] [INFO] Parent changed, shutting down: <Worker 14298>
+[2018-02-15 09:51:56 -0500] [14223] [INFO] Worker exiting (pid: 14223)
+[2018-02-15 09:51:56 -0500] [14228] [INFO] Parent changed, shutting down: <Worker 14228>
+[2018-02-15 09:51:56 -0500] [14254] [INFO] Worker exiting (pid: 14254)
+[2018-02-15 09:51:56 -0500] [14231] [INFO] Worker exiting (pid: 14231)
+[2018-02-15 09:51:56 -0500] [14303] [INFO] Parent changed, shutting down: <Worker 14303>
+[2018-02-15 09:51:56 -0500] [14323] [INFO] Parent changed, shutting down: <Worker 14323>
+[2018-02-15 09:51:56 -0500] [14296] [INFO] Parent changed, shutting down: <Worker 14296>
+[2018-02-15 09:51:56 -0500] [14233] [INFO] Parent changed, shutting down: <Worker 14233>
+[2018-02-15 09:51:56 -0500] [14252] [INFO] Parent changed, shutting down: <Worker 14252>
+[2018-02-15 09:51:56 -0500] [14265] [INFO] Worker exiting (pid: 14265)
+[2018-02-15 09:51:56 -0500] [14227] [INFO] Worker exiting (pid: 14227)
+[2018-02-15 09:51:56 -0500] [14224] [INFO] Parent changed, shutting down: <Worker 14224>
+[2018-02-15 09:51:56 -0500] [14228] [INFO] Worker exiting (pid: 14228)
+[2018-02-15 09:51:56 -0500] [14277] [INFO] Parent changed, shutting down: <Worker 14277>
+[2018-02-15 09:51:56 -0500] [14225] [INFO] Parent changed, shutting down: <Worker 14225>
+[2018-02-15 09:51:56 -0500] [14304] [INFO] Parent changed, shutting down: <Worker 14304>
+[2018-02-15 09:51:56 -0500] [14285] [INFO] Parent changed, shutting down: <Worker 14285>
+[2018-02-15 09:51:56 -0500] [14284] [INFO] Worker exiting (pid: 14284)
+[2018-02-15 09:51:56 -0500] [14222] [INFO] Worker exiting (pid: 14222)
+[2018-02-15 09:51:56 -0500] [14286] [INFO] Parent changed, shutting down: <Worker 14286>
+[2018-02-15 09:51:56 -0500] [14257] [INFO] Parent changed, shutting down: <Worker 14257>
+[2018-02-15 09:51:56 -0500] [14232] [INFO] Worker exiting (pid: 14232)
+[2018-02-15 09:51:56 -0500] [14246] [INFO] Parent changed, shutting down: <Worker 14246>
+[2018-02-15 09:51:56 -0500] [14234] [INFO] Parent changed, shutting down: <Worker 14234>
+[2018-02-15 09:51:56 -0500] [14279] [INFO] Worker exiting (pid: 14279)
+[2018-02-15 09:51:56 -0500] [14293] [INFO] Worker exiting (pid: 14293)
+[2018-02-15 09:51:56 -0500] [14261] [INFO] Worker exiting (pid: 14261)
+[2018-02-15 09:51:56 -0500] [14287] [INFO] Worker exiting (pid: 14287)
+[2018-02-15 09:51:56 -0500] [14285] [INFO] Worker exiting (pid: 14285)
+[2018-02-15 09:51:56 -0500] [14264] [INFO] Parent changed, shutting down: <Worker 14264>
+[2018-02-15 09:51:56 -0500] [14267] [INFO] Worker exiting (pid: 14267)
+[2018-02-15 09:51:56 -0500] [14230] [INFO] Worker exiting (pid: 14230)
+[2018-02-15 09:51:56 -0500] [14305] [INFO] Parent changed, shutting down: <Worker 14305>
+[2018-02-15 09:51:56 -0500] [14282] [INFO] Worker exiting (pid: 14282)
+[2018-02-15 09:51:56 -0500] [14316] [INFO] Worker exiting (pid: 14316)
+[2018-02-15 09:51:56 -0500] [14257] [INFO] Worker exiting (pid: 14257)
+[2018-02-15 09:51:56 -0500] [14295] [INFO] Worker exiting (pid: 14295)
+[2018-02-15 09:51:56 -0500] [14337] [INFO] Worker exiting (pid: 14337)
+[2018-02-15 09:51:56 -0500] [14340] [INFO] Worker exiting (pid: 14340)
+[2018-02-15 09:51:56 -0500] [14339] [INFO] Worker exiting (pid: 14339)
+[2018-02-15 09:51:56 -0500] [14242] [INFO] Worker exiting (pid: 14242)
+[2018-02-15 09:51:56 -0500] [14290] [INFO] Worker exiting (pid: 14290)
+[2018-02-15 09:51:56 -0500] [14234] [INFO] Worker exiting (pid: 14234)
+[2018-02-15 09:51:56 -0500] [14302] [INFO] Worker exiting (pid: 14302)
+[2018-02-15 09:51:56 -0500] [14233] [INFO] Worker exiting (pid: 14233)
+[2018-02-15 09:51:56 -0500] [14307] [INFO] Worker exiting (pid: 14307)
+[2018-02-15 09:51:56 -0500] [14252] [INFO] Worker exiting (pid: 14252)
+[2018-02-15 09:51:56 -0500] [14251] [INFO] Parent changed, shutting down: <Worker 14251>
+[2018-02-15 09:51:56 -0500] [14277] [INFO] Worker exiting (pid: 14277)
+[2018-02-15 09:51:56 -0500] [14251] [INFO] Worker exiting (pid: 14251)
+[2018-02-15 09:51:56 -0500] [14268] [INFO] Worker exiting (pid: 14268)
+[2018-02-15 09:51:56 -0500] [14303] [INFO] Worker exiting (pid: 14303)
+[2018-02-15 09:51:56 -0500] [14256] [INFO] Worker exiting (pid: 14256)
+[2018-02-15 09:51:56 -0500] [14296] [INFO] Worker exiting (pid: 14296)
+[2018-02-15 09:51:56 -0500] [14225] [INFO] Worker exiting (pid: 14225)
+[2018-02-15 09:51:56 -0500] [14297] [INFO] Parent changed, shutting down: <Worker 14297>
+[2018-02-15 09:51:56 -0500] [14274] [INFO] Worker exiting (pid: 14274)
+[2018-02-15 09:51:56 -0500] [14246] [INFO] Worker exiting (pid: 14246)
+[2018-02-15 09:51:56 -0500] [14241] [INFO] Worker exiting (pid: 14241)
+[2018-02-15 09:51:56 -0500] [14327] [INFO] Worker exiting (pid: 14327)
+[2018-02-15 09:51:56 -0500] [14288] [INFO] Worker exiting (pid: 14288)
+[2018-02-15 09:51:56 -0500] [14297] [INFO] Worker exiting (pid: 14297)
+[2018-02-15 09:51:56 -0500] [14304] [INFO] Worker exiting (pid: 14304)
+[2018-02-15 09:51:56 -0500] [14258] [INFO] Worker exiting (pid: 14258)
+[2018-02-15 09:51:56 -0500] [14276] [INFO] Worker exiting (pid: 14276)
+[2018-02-15 09:51:56 -0500] [14247] [INFO] Worker exiting (pid: 14247)
+[2018-02-15 09:51:56 -0500] [14336] [INFO] Worker exiting (pid: 14336)
+[2018-02-15 09:51:56 -0500] [14255] [INFO] Worker exiting (pid: 14255)
+[2018-02-15 09:51:56 -0500] [14306] [INFO] Worker exiting (pid: 14306)
+[2018-02-15 09:51:56 -0500] [14278] [INFO] Parent changed, shutting down: <Worker 14278>
+[2018-02-15 09:51:56 -0500] [14264] [INFO] Worker exiting (pid: 14264)
+[2018-02-15 09:51:56 -0500] [14298] [INFO] Worker exiting (pid: 14298)
+[2018-02-15 09:51:56 -0500] [14324] [INFO] Worker exiting (pid: 14324)
+[2018-02-15 09:51:56 -0500] [14323] [INFO] Worker exiting (pid: 14323)
+[2018-02-15 09:51:56 -0500] [14281] [INFO] Worker exiting (pid: 14281)
+[2018-02-15 09:51:56 -0500] [14273] [INFO] Worker exiting (pid: 14273)
+[2018-02-15 09:51:56 -0500] [14278] [INFO] Worker exiting (pid: 14278)
+[2018-02-15 09:51:56 -0500] [14224] [INFO] Worker exiting (pid: 14224)
+[2018-02-15 09:51:56 -0500] [14289] [INFO] Worker exiting (pid: 14289)
+[2018-02-15 09:51:56 -0500] [14300] [INFO] Worker exiting (pid: 14300)
+[2018-02-15 09:51:56 -0500] [14286] [INFO] Worker exiting (pid: 14286)
+[2018-02-15 09:51:56 -0500] [14305] [INFO] Worker exiting (pid: 14305)
+[2018-02-15 09:51:56 -0500] [14334] [INFO] Worker exiting (pid: 14334)
+[2018-02-15 09:51:56 -0500] [14291] [INFO] Worker exiting (pid: 14291)
+[2018-02-15 09:51:56 -0500] [14248] [INFO] Worker exiting (pid: 14248)
+[2018-02-15 09:51:56 -0500] [14243] [INFO] Worker exiting (pid: 14243)
+[2018-02-15 09:51:56 -0500] [14270] [INFO] Worker exiting (pid: 14270)
+[2018-02-15 09:51:56 -0500] [14229] [INFO] Worker exiting (pid: 14229)
+[2018-02-15 09:52:03 -0500] [25813] [DEBUG] Current configuration:
+  proxy_protocol: False
+  worker_connections: 1000
+  statsd_host: None
+  max_requests_jitter: 0
+  post_fork: <function post_fork at 0x108751a28>
+  pythonpath: None
+  enable_stdio_inheritance: False
+  worker_class: sync
+  ssl_version: 3
+  suppress_ragged_eofs: True
+  syslog: False
+  syslog_facility: user
+  when_ready: <function when_ready at 0x108751758>
+  pre_fork: <function pre_fork at 0x1087518c0>
+  cert_reqs: 0
+  preload_app: False
+  keepalive: 2
+  accesslog: None
+  group: 20
+  graceful_timeout: 30
+  do_handshake_on_connect: False
+  spew: False
+  workers: 100
+  proc_name: psiturk_experiment_server
+  sendfile: None
+  pidfile: None
+  umask: 0
+  on_reload: <function on_reload at 0x1087515f0>
+  pre_exec: <function pre_exec at 0x10875f050>
+  worker_tmp_dir: None
+  post_worker_init: <function post_worker_init at 0x108751b90>
+  limit_request_fields: 100
+  on_exit: <function on_exit at 0x108790500>
+  config: None
+  secure_scheme_headers: {'X-FORWARDED-PROTOCOL': 'ssl', 'X-FORWARDED-PROTO': 'https', 'X-FORWARDED-SSL': 'on'}
+  proxy_allow_ips: ['127.0.0.1']
+  pre_request: <function pre_request at 0x10875f1b8>
+  post_request: <function post_request at 0x10875f2a8>
+  user: 501
+  forwarded_allow_ips: ['127.0.0.1']
+  worker_int: <function worker_int at 0x108751cf8>
+  threads: 1
+  max_requests: 0
+  limit_request_line: 0
+  access_log_format: %(h)s %(l)s %(u)s %(t)s "%(r)s" %(s)s %(b)s "%(f)s" "%(a)s"
+  certfile: None
+  worker_exit: <function worker_exit at 0x10875f410>
+  chdir: /Users/khealey/code/experiments/Heal16implicit
+  paste: None
+  default_proc_name: gunicorn
+  errorlog: server.log
+  loglevel: debug
+  logconfig: None
+  syslog_addr: unix:///var/run/syslog
+  syslog_prefix: None
+  daemon: False
+  ciphers: TLSv1
+  on_starting: <function on_starting at 0x108751488>
+  worker_abort: <function worker_abort at 0x108751e60>
+  bind: ['localhost:22362']
+  raw_env: []
+  reload: False
+  check_config: False
+  limit_request_field_size: 8190
+  nworkers_changed: <function nworkers_changed at 0x10875f578>
+  timeout: 30
+  ca_certs: None
+  django_settings: None
+  tmp_upload_dir: None
+  keyfile: None
+  backlog: 2048
+  logger_class: gunicorn.glogging.Logger
+  statsd_prefix: 
+[2018-02-15 09:52:03 -0500] [25813] [INFO] Starting gunicorn 19.4.5
+[2018-02-15 09:52:03 -0500] [25813] [DEBUG] Arbiter booted
+[2018-02-15 09:52:03 -0500] [25813] [INFO] Listening at: http://127.0.0.1:22362 (25813)
+[2018-02-15 09:52:03 -0500] [25813] [INFO] Using worker: sync
+[2018-02-15 09:52:03 -0500] [25816] [INFO] Booting worker with pid: 25816
+[2018-02-15 09:52:03 -0500] [25817] [INFO] Booting worker with pid: 25817
+[2018-02-15 09:52:03 -0500] [25818] [INFO] Booting worker with pid: 25818
+[2018-02-15 09:52:03 -0500] [25819] [INFO] Booting worker with pid: 25819
+[2018-02-15 09:52:03 -0500] [25820] [INFO] Booting worker with pid: 25820
+[2018-02-15 09:52:03 -0500] [25821] [INFO] Booting worker with pid: 25821
+[2018-02-15 09:52:03 -0500] [25822] [INFO] Booting worker with pid: 25822
+[2018-02-15 09:52:03 -0500] [25823] [INFO] Booting worker with pid: 25823
+[2018-02-15 09:52:03 -0500] [25824] [INFO] Booting worker with pid: 25824
+[2018-02-15 09:52:04 -0500] [25825] [INFO] Booting worker with pid: 25825
+[2018-02-15 09:52:04 -0500] [25826] [INFO] Booting worker with pid: 25826
+[2018-02-15 09:52:04 -0500] [25827] [INFO] Booting worker with pid: 25827
+[2018-02-15 09:52:04 -0500] [25828] [INFO] Booting worker with pid: 25828
+[2018-02-15 09:52:04 -0500] [25829] [INFO] Booting worker with pid: 25829
+[2018-02-15 09:52:04 -0500] [25830] [INFO] Booting worker with pid: 25830
+[2018-02-15 09:52:04 -0500] [25831] [INFO] Booting worker with pid: 25831
+[2018-02-15 09:52:04 -0500] [25832] [INFO] Booting worker with pid: 25832
+[2018-02-15 09:52:04 -0500] [25819] [DEBUG] Closing connection. 
+[2018-02-15 09:52:04 -0500] [25838] [INFO] Booting worker with pid: 25838
+[2018-02-15 09:52:04 -0500] [25839] [INFO] Booting worker with pid: 25839
+[2018-02-15 09:52:04 -0500] [25840] [INFO] Booting worker with pid: 25840
+[2018-02-15 09:52:04 -0500] [25841] [INFO] Booting worker with pid: 25841
+[2018-02-15 09:52:04 -0500] [25842] [INFO] Booting worker with pid: 25842
+[2018-02-15 09:52:04 -0500] [25843] [INFO] Booting worker with pid: 25843
+[2018-02-15 09:52:04 -0500] [25844] [INFO] Booting worker with pid: 25844
+[2018-02-15 09:52:04 -0500] [25845] [INFO] Booting worker with pid: 25845
+[2018-02-15 09:52:04 -0500] [25846] [INFO] Booting worker with pid: 25846
+[2018-02-15 09:52:04 -0500] [25847] [INFO] Booting worker with pid: 25847
+[2018-02-15 09:52:05 -0500] [25848] [INFO] Booting worker with pid: 25848
+[2018-02-15 09:52:05 -0500] [25849] [INFO] Booting worker with pid: 25849
+[2018-02-15 09:52:05 -0500] [25850] [INFO] Booting worker with pid: 25850
+[2018-02-15 09:52:05 -0500] [25851] [INFO] Booting worker with pid: 25851
+[2018-02-15 09:52:05 -0500] [25852] [INFO] Booting worker with pid: 25852
+[2018-02-15 09:52:05 -0500] [25853] [INFO] Booting worker with pid: 25853
+[2018-02-15 09:52:05 -0500] [25854] [INFO] Booting worker with pid: 25854
+[2018-02-15 09:52:05 -0500] [25855] [INFO] Booting worker with pid: 25855
+[2018-02-15 09:52:05 -0500] [25856] [INFO] Booting worker with pid: 25856
+[2018-02-15 09:52:05 -0500] [25857] [INFO] Booting worker with pid: 25857
+[2018-02-15 09:52:05 -0500] [25858] [INFO] Booting worker with pid: 25858
+[2018-02-15 09:52:05 -0500] [25859] [INFO] Booting worker with pid: 25859
+[2018-02-15 09:52:05 -0500] [25860] [INFO] Booting worker with pid: 25860
+[2018-02-15 09:52:05 -0500] [25861] [INFO] Booting worker with pid: 25861
+[2018-02-15 09:52:05 -0500] [25862] [INFO] Booting worker with pid: 25862
+[2018-02-15 09:52:05 -0500] [25863] [INFO] Booting worker with pid: 25863
+[2018-02-15 09:52:05 -0500] [25864] [INFO] Booting worker with pid: 25864
+[2018-02-15 09:52:05 -0500] [25865] [INFO] Booting worker with pid: 25865
+[2018-02-15 09:52:06 -0500] [25866] [INFO] Booting worker with pid: 25866
+[2018-02-15 09:52:06 -0500] [25867] [INFO] Booting worker with pid: 25867
+[2018-02-15 09:52:06 -0500] [25868] [INFO] Booting worker with pid: 25868
+[2018-02-15 09:52:06 -0500] [25869] [INFO] Booting worker with pid: 25869
+[2018-02-15 09:52:06 -0500] [25870] [INFO] Booting worker with pid: 25870
+[2018-02-15 09:52:06 -0500] [25871] [INFO] Booting worker with pid: 25871
+[2018-02-15 09:52:06 -0500] [25872] [INFO] Booting worker with pid: 25872
+[2018-02-15 09:52:06 -0500] [25873] [INFO] Booting worker with pid: 25873
+[2018-02-15 09:52:06 -0500] [25874] [INFO] Booting worker with pid: 25874
+[2018-02-15 09:52:06 -0500] [25875] [INFO] Booting worker with pid: 25875
+[2018-02-15 09:52:06 -0500] [25876] [INFO] Booting worker with pid: 25876
+[2018-02-15 09:52:06 -0500] [25877] [INFO] Booting worker with pid: 25877
+[2018-02-15 09:52:06 -0500] [25878] [INFO] Booting worker with pid: 25878
+[2018-02-15 09:52:06 -0500] [25879] [INFO] Booting worker with pid: 25879
+[2018-02-15 09:52:06 -0500] [25880] [INFO] Booting worker with pid: 25880
+[2018-02-15 09:52:06 -0500] [25881] [INFO] Booting worker with pid: 25881
+[2018-02-15 09:52:06 -0500] [25882] [INFO] Booting worker with pid: 25882
+[2018-02-15 09:52:06 -0500] [25883] [INFO] Booting worker with pid: 25883
+[2018-02-15 09:52:06 -0500] [25884] [INFO] Booting worker with pid: 25884
+[2018-02-15 09:52:06 -0500] [25885] [INFO] Booting worker with pid: 25885
+[2018-02-15 09:52:06 -0500] [25886] [INFO] Booting worker with pid: 25886
+[2018-02-15 09:52:07 -0500] [25887] [INFO] Booting worker with pid: 25887
+[2018-02-15 09:52:07 -0500] [25888] [INFO] Booting worker with pid: 25888
+[2018-02-15 09:52:07 -0500] [25889] [INFO] Booting worker with pid: 25889
+[2018-02-15 09:52:07 -0500] [25890] [INFO] Booting worker with pid: 25890
+[2018-02-15 09:52:07 -0500] [25891] [INFO] Booting worker with pid: 25891
+[2018-02-15 09:52:07 -0500] [25892] [INFO] Booting worker with pid: 25892
+[2018-02-15 09:52:07 -0500] [25893] [INFO] Booting worker with pid: 25893
+[2018-02-15 09:52:07 -0500] [25894] [INFO] Booting worker with pid: 25894
+[2018-02-15 09:52:07 -0500] [25895] [INFO] Booting worker with pid: 25895
+[2018-02-15 09:52:07 -0500] [25896] [INFO] Booting worker with pid: 25896
+[2018-02-15 09:52:07 -0500] [25897] [INFO] Booting worker with pid: 25897
+[2018-02-15 09:52:07 -0500] [25898] [INFO] Booting worker with pid: 25898
+[2018-02-15 09:52:07 -0500] [25899] [INFO] Booting worker with pid: 25899
+[2018-02-15 09:52:07 -0500] [25900] [INFO] Booting worker with pid: 25900
+[2018-02-15 09:52:07 -0500] [25901] [INFO] Booting worker with pid: 25901
+[2018-02-15 09:52:07 -0500] [25902] [INFO] Booting worker with pid: 25902
+[2018-02-15 09:52:07 -0500] [25903] [INFO] Booting worker with pid: 25903
+[2018-02-15 09:52:07 -0500] [25904] [INFO] Booting worker with pid: 25904
+[2018-02-15 09:52:08 -0500] [25905] [INFO] Booting worker with pid: 25905
+[2018-02-15 09:52:08 -0500] [25906] [INFO] Booting worker with pid: 25906
+[2018-02-15 09:52:08 -0500] [25907] [INFO] Booting worker with pid: 25907
+[2018-02-15 09:52:08 -0500] [25908] [INFO] Booting worker with pid: 25908
+[2018-02-15 09:52:08 -0500] [25909] [INFO] Booting worker with pid: 25909
+[2018-02-15 09:52:08 -0500] [25910] [INFO] Booting worker with pid: 25910
+[2018-02-15 09:52:08 -0500] [25911] [INFO] Booting worker with pid: 25911
+[2018-02-15 09:52:08 -0500] [25912] [INFO] Booting worker with pid: 25912
+[2018-02-15 09:52:08 -0500] [25913] [INFO] Booting worker with pid: 25913
+[2018-02-15 09:52:08 -0500] [25914] [INFO] Booting worker with pid: 25914
+[2018-02-15 09:52:08 -0500] [25915] [INFO] Booting worker with pid: 25915
+[2018-02-15 09:52:08 -0500] [25916] [INFO] Booting worker with pid: 25916
+[2018-02-15 09:52:08 -0500] [25917] [INFO] Booting worker with pid: 25917
+[2018-02-15 09:52:08 -0500] [25918] [INFO] Booting worker with pid: 25918
+[2018-02-15 09:52:08 -0500] [25920] [INFO] Booting worker with pid: 25920
+[2018-02-15 09:52:08 -0500] [25921] [INFO] Booting worker with pid: 25921
+[2018-02-15 09:52:08 -0500] [25813] [DEBUG] 100 workers
+[2018-02-15 09:52:09 -0500] [25822] [DEBUG] Closing connection. 
+[2018-02-15 09:52:09 -0500] [25916] [DEBUG] Closing connection. 
+[2018-02-15 09:52:09 -0500] [25852] [DEBUG] Closing connection. 
+[2018-02-15 09:52:10 -0500] [25896] [DEBUG] GET /ad
+[2018-02-15 09:52:10 -0500] [25869] [DEBUG] GET /static/css/bootstrap.min.css
+[2018-02-15 09:52:10 -0500] [25854] [DEBUG] GET /static/images/MSU-Wordmark-PMS-567.jpg
+[2018-02-15 09:52:11 -0500] [25900] [DEBUG] GET /consent
+[2018-02-15 09:52:11 -0500] [25860] [DEBUG] GET /static/css/style.css
+[2018-02-15 09:52:11 -0500] [25822] [DEBUG] GET /static/css/bootstrap.min.css
+[2018-02-15 09:52:13 -0500] [25844] [DEBUG] GET /exp
+[2018-02-15 09:52:13 -0500] [25855] [DEBUG] GET /static/css/style.css
+[2018-02-15 09:52:13 -0500] [25822] [DEBUG] GET /static/lib/jquery-min.js
+[2018-02-15 09:52:13 -0500] [25901] [DEBUG] GET /static/js/psiturk.js
+[2018-02-15 09:52:13 -0500] [25826] [DEBUG] GET /static/lib/underscore-min.js
+[2018-02-15 09:52:13 -0500] [25817] [DEBUG] GET /static/lib/backbone-min.js
+[2018-02-15 09:52:13 -0500] [25841] [DEBUG] GET /static/js/utils.js
+[2018-02-15 09:52:13 -0500] [25907] [DEBUG] GET /static/js/task.js
+[2018-02-15 09:52:13 -0500] [25891] [DEBUG] GET /static/lib/d3.v3.min.js
+[2018-02-15 09:52:13 -0500] [25860] [DEBUG] GET /static/css/bootstrap.min.css
+[2018-02-15 09:52:13 -0500] [25860] [DEBUG] GET /sync/debugUL0DV0%3Adebug7R2I8M
+[2018-02-15 09:52:13 -0500] [25909] [DEBUG] GET /instructions/instructions-incidental-greeting.html
+[2018-02-15 09:52:13 -0500] [25825] [DEBUG] GET /instructions/instructions-E4varying-size-task.html
+[2018-02-15 09:52:13 -0500] [25909] [DEBUG] GET /instructions/instructions-incidental-emphasis.html
+[2018-02-15 09:52:13 -0500] [25909] [DEBUG] GET /stage.html
+[2018-02-15 09:52:13 -0500] [25825] [DEBUG] GET /postquestionnaire.html
+[2018-02-15 09:52:16 -0500] [25910] [DEBUG] PUT /sync/debugUL0DV0%3Adebug7R2I8M
+[2018-02-15 09:52:16 -0500] [25855] [DEBUG] POST /inexp
+[2018-02-15 09:52:53 -0500] [25852] [DEBUG] PUT /sync/debugUL0DV0%3Adebug7R2I8M
+[2018-02-15 09:52:53 -0500] [25877] [DEBUG] GET /compute_bonus
+[2018-02-15 09:52:53 -0500] [25900] [DEBUG] GET /complete
+[2018-02-15 09:52:53 -0500] [25913] [DEBUG] GET /static/css/style.css
+[2018-02-15 09:52:53 -0500] [25868] [DEBUG] GET /static/css/bootstrap.min.css
+[2018-02-15 09:52:53 -0500] [25897] [DEBUG] GET /static/images/MSU-Wordmark-PMS-567.jpg
