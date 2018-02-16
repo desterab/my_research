@@ -37,7 +37,7 @@ def make_psiturk_recall_matrix(data, remake_data_file, dict_path, save_file):
     recalls = pd.DataFrame()
 
     # load the webesters dict
-    dict_file = open(dict_path, "r") #TODO: put this path as a param somewhere!
+    dict_file = open(dict_path, "r")
     dictionary = dict_file.read().split()
     dict_file.close()
 
@@ -62,8 +62,12 @@ def make_psiturk_recall_matrix(data, remake_data_file, dict_path, save_file):
         cur_recalls = data.loc[s_filter & recalls_filter, ['list', 'response', 'instruction_condition','task_condition', 'recall_instruction_condition']]
         cur_items = data.loc[s_filter & study_filter, ['list', 'word']]
 
+        if cur_recalls.recall_instruction_condition.isnull().all():
+            print ('we are only doing E4 conditions skipping this one!!')
+            continue
+
         # somehow, there seems to be some uniqueid's that are have two of each list.... just move on if that is the case
-        if cur_items.shape[0] > 32:
+        if cur_items.shape[0] != 32 and cur_items.shape[0] != 16:
             print "DUP!"
             continue
 
@@ -94,8 +98,8 @@ def make_psiturk_recall_matrix(data, remake_data_file, dict_path, save_file):
 
 def load_the_data(n_perms, remake_data_file, recalls_file, save_name):
 
-    if os.path.isfile("all_crps.pkl") and not remake_data_file:
-        all_crps = pickle.load(open("all_crps.pkl", "rb"))
+    if os.path.isfile(save_name + "all_crps.pkl") and not remake_data_file:
+        all_crps = pickle.load(open(save_name + "all_crps.pkl", "rb"))
         return all_crps
     else:
         num_cores = multiprocessing.cpu_count() / 2
@@ -157,6 +161,8 @@ def load_the_data(n_perms, remake_data_file, recalls_file, save_name):
                     crp['list'] = pd.Series([l for x in range(len(crp.index))], index=crp.index)
                     crp['instruction_condition'] = pd.Series([cur_recalls.instruction_condition[0] for x in range(len(crp.index))],
                                                              index=crp.index)
+                    crp['recall_instruction_condition'] = pd.Series([cur_recalls.recall_instruction_condition[0] for x in range(len(crp.index))],
+                                                             index=crp.index)
                     crp['task_condition'] = pd.Series([cur_recalls.task_condition[0] for x in range(len(crp.index))],
                                                       index=crp.index)
                     crp['prec'] = pd.Series([prec for x in range(len(crp.index))],
@@ -175,6 +181,10 @@ def load_the_data(n_perms, remake_data_file, recalls_file, save_name):
             recalls.loc[recalls.task_condition == 4, 'task_condition'] = "Animacy"
             recalls.loc[recalls.task_condition == 5, 'task_condition'] = "Weight"
             recalls.loc[recalls.task_condition == 6, 'task_condition'] = "Front Door"
+            recalls.loc[recalls.task_condition == 7, 'task_condition'] = "Constant Size"
+            recalls.loc[recalls.task_condition == 8, 'task_condition'] = "Varying Size"
+            recalls.loc[recalls.recall_instruction_condition == 0, 'recall_instruction_condition'] = "Free"
+            recalls.loc[recalls.recall_instruction_condition == 1, 'recall_instruction_condition'] = "Serial"
             recalls.loc[recalls.instruction_condition == 0, 'instruction_condition'] = "Explicit"
             recalls.loc[recalls.instruction_condition == 1, 'instruction_condition'] = "Incidental"
 
@@ -274,6 +284,11 @@ def sample_size_table(all_crps, results_dir):
     all_crps.loc[all_crps.task_condition == 4, 'task_condition'] = "Animacy"
     all_crps.loc[all_crps.task_condition == 5, 'task_condition'] = "Weight"
     all_crps.loc[all_crps.task_condition == 6, 'task_condition'] = "Front Door"
+    # all_crps.loc[all_crps.task_condition == 7, 'task_condition'] = "Constant Size"
+    # all_crps.loc[all_crps.task_condition == 8, 'task_condition'] = "Varying Size"
+    # all_crps.loc[all_crps.recall_instruction_condition.isnull(), 'recall_instruction_condition'] = 'Free'
+    # all_crps.loc[all_crps.recall_instruction_condition == 0, 'recall_instruction_condition'] = "Free"
+    # all_crps.loc[all_crps.recall_instruction_condition == 1, 'recall_instruction_condition'] = "Serial"
     all_crps.loc[all_crps.instruction_condition == 0, 'instruction_condition'] = "Explicit"
     all_crps.loc[all_crps.instruction_condition == 1, 'instruction_condition'] = "Incidental"
 
@@ -304,15 +319,18 @@ def sample_size_table(all_crps, results_dir):
         [all_crps.instruction_condition, all_crps.task_condition]).describe()
 
     with open(results_dir + "table_values.tex", "w") as text_file:
-        text_file.write('\\newcommand\\shoeExplicit{%s}\n' % n_tested['Explicit']['Shoebox'][0])
-        text_file.write('\\newcommand\\shoeIncidental{%s}\n' % n_tested['Incidental']['Shoebox'][0])
-        text_file.write('\\newcommand\\doorExplicit{%s}\n' % n_tested['Explicit']['Front Door'][0])
-        text_file.write('\\newcommand\\doorIncidental{%s}\n' % n_tested['Incidental']['Front Door'][0])
-        text_file.write('\\newcommand\\Movie{%s}\n' % n_tested['Incidental']['Movie'][0])
-        text_file.write('\\newcommand\\Relational{%s}\n' % n_tested['Incidental']['Relational'][0])
-        text_file.write('\\newcommand\\Scenario{%s}\n' % n_tested['Incidental']['Scenario'][0])
-        text_file.write('\\newcommand\\Animacy{%s}\n' % n_tested['Incidental']['Animacy'][0])
-        text_file.write('\\newcommand\\Weight{%s}\n' % n_tested['Incidental']['Weight'][0])
+        text_file.write('\\newcommand\\shoeExplicit{%s}\n' % n_tested['Explicit']['Shoebox']['Free'][0])
+        text_file.write('\\newcommand\\shoeIncidental{%s}\n' % n_tested['Incidental']['Shoebox']['Free'][0])
+        text_file.write('\\newcommand\\doorExplicit{%s}\n' % n_tested['Explicit']['Front Door']['Free'][0])
+        text_file.write('\\newcommand\\doorIncidental{%s}\n' % n_tested['Incidental']['Front Door']['Free'][0])
+        text_file.write('\\newcommand\\Movie{%s}\n' % n_tested['Incidental']['Movie']['Free'][0])
+        text_file.write('\\newcommand\\Relational{%s}\n' % n_tested['Incidental']['Relational']['Free'][0])
+        text_file.write('\\newcommand\\Scenario{%s}\n' % n_tested['Incidental']['Scenario']['Free'][0])
+        text_file.write('\\newcommand\\Animacy{%s}\n' % n_tested['Incidental']['Animacy']['Free'][0])
+        text_file.write('\\newcommand\\Weight{%s}\n' % n_tested['Incidental']['Weight']['Free'][0])
+        # text_file.write('\\newcommand\\ConstantFree{%s}\n' % n_tested['Incidental']['Constant Size']['Free'][0])
+        # text_file.write('\\newcommand\\ConstantSerial{%s}\n' % n_tested['Incidental']['Varying Size']['Serial'][0])
+
 
         text_file.write('\\newcommand\\shoeExplicitAware{--}\n' % n_aware['Explicit']['Shoebox'][1])
         text_file.write('\\newcommand\\shoeIncidentalAware{%s}\n' % n_aware['Incidental']['Shoebox'][1])
@@ -374,6 +392,153 @@ def sample_size_table(all_crps, results_dir):
                                                                    prec_table["Incidental"]["Weight"]["std"]))
     return all_crps
 
+
+def E4_sample_size_table(all_crps, results_dir):
+
+    # take mean within subject, list, and lag to give each row an unique index (currently the inxexing resets for each
+    # subject, which makes it impossible to do crosstabs
+    all_crps = all_crps.groupby(['subject', 'lag', 'list'], as_index=False).mean()
+
+    # change conditions from numerical to verbal labelsls
+    all_crps.loc[all_crps.task_condition == 0, 'task_condition'] = "Shoebox"
+    all_crps.loc[all_crps.task_condition == 1, 'task_condition'] = "Movie"
+    all_crps.loc[all_crps.task_condition == 2, 'task_condition'] = "Relational"
+    all_crps.loc[all_crps.task_condition == 3, 'task_condition'] = "Scenario"
+    all_crps.loc[all_crps.task_condition == 4, 'task_condition'] = "Animacy"
+    all_crps.loc[all_crps.task_condition == 5, 'task_condition'] = "Weight"
+    all_crps.loc[all_crps.task_condition == 6, 'task_condition'] = "Front Door"
+    all_crps.loc[all_crps.task_condition == 7, 'task_condition'] = "Constant Size"
+    all_crps.loc[all_crps.task_condition == 8, 'task_condition'] = "Varying Size"
+    all_crps.loc[all_crps.recall_instruction_condition.isnull(), 'recall_instruction_condition'] = 'Free'
+    all_crps.loc[all_crps.recall_instruction_condition == 0, 'recall_instruction_condition'] = "Free"
+    all_crps.loc[all_crps.recall_instruction_condition == 1, 'recall_instruction_condition'] = "Serial"
+    all_crps.loc[all_crps.instruction_condition == 0, 'instruction_condition'] = "Explicit"
+    all_crps.loc[all_crps.instruction_condition == 1, 'instruction_condition'] = "Incidental"
+
+    # get overall sample sizes
+    n_tested = pd.crosstab(all_crps[np.logical_and(all_crps.lag == 0, all_crps.list == 0)].lag,
+                           [all_crps.instruction_condition, all_crps.task_condition, all_crps.recall_instruction_condition])
+
+    # get number excluded for being aware
+    all_crps['aware_keep'] = all_crps.aware_check == 0
+    n_aware = pd.crosstab(all_crps[np.logical_and(all_crps.lag == 0, all_crps.list == 0)].aware_check,
+                          [all_crps.instruction_condition, all_crps.task_condition, all_crps.recall_instruction_condition])
+
+    # get number excluded for poor recall
+    all_crps['prec_keep'] = all_crps.prec > 0
+    n_Prec = pd.crosstab(all_crps[np.logical_and(all_crps.lag == 0, all_crps.list == 0)].prec_keep,
+                         [all_crps.instruction_condition, all_crps.task_condition, all_crps.recall_instruction_condition])
+
+    # exclude the bad people
+    data_filter = np.logical_and(all_crps.aware_keep, all_crps.prec_keep)
+    all_crps = all_crps.loc[data_filter, :]
+
+    # final analysed sample size
+    n_included = pd.crosstab(all_crps[np.logical_and(all_crps.lag == 0, all_crps.list == 0)].lag,
+                             [all_crps.instruction_condition, all_crps.task_condition, all_crps.recall_instruction_condition])
+
+    # compute average prec
+    prec_table = all_crps.loc[np.logical_and(all_crps.lag == 0, all_crps.list == 0), :]['prec'].groupby(
+        [all_crps.instruction_condition, all_crps.task_condition, all_crps.recall_instruction_condition]).describe()
+
+    with open(results_dir + "E4_table_values.tex", "w") as text_file:
+        text_file.write('\\newcommand\\ConstantFree{%s}\n' % n_tested['Incidental']['Constant Size']['Free'][0])
+        text_file.write('\\newcommand\\ConstantSerial{%s}\n' % n_tested['Incidental']['Constant Size']['Serial'][0])
+        text_file.write('\\newcommand\\VaryingFree{%s}\n' % n_tested['Incidental']['Varying Size']['Free'][0])
+        text_file.write('\\newcommand\\VaryingSerial{%s}\n' % n_tested['Incidental']['Varying Size']['Serial'][0])
+
+        text_file.write('\\newcommand\\ConstantFreeAware{%s}\n' % n_aware['Incidental']['Constant Size']['Free'][1])
+        text_file.write('\\newcommand\\ConstantSerialAware{%s}\n' % n_aware['Incidental']['Constant Size']['Serial'][1])
+        text_file.write('\\newcommand\\VaryingFreeAware{%s}\n' % n_aware['Incidental']['Varying Size']['Free'][1])
+        text_file.write('\\newcommand\\VaryingSerialAware{%s}\n' % n_aware['Incidental']['Varying Size']['Serial'][1])
+
+        text_file.write('\\newcommand\\ConstantFreeIncluded{%s}\n' % n_included['Incidental']['Constant Size']['Free'][0])
+        text_file.write('\\newcommand\\ConstantSerialIncluded{%s}\n' % n_included['Incidental']['Constant Size']['Serial'][0])
+        text_file.write('\\newcommand\\VaryingFreeIncluded{%s}\n' % n_included['Incidental']['Varying Size']['Free'][0])
+        text_file.write('\\newcommand\\VaryingSerialIncluded{%s}\n' % n_included['Incidental']['Varying Size']['Serial'][0])
+
+
+
+
+
+
+        # text_file.write('\\newcommand\\shoeExplicitAware{--}\n' % n_aware['Explicit']['Shoebox'][1])
+        # text_file.write('\\newcommand\\shoeIncidentalAware{%s}\n' % n_aware['Incidental']['Shoebox'][1])
+        # text_file.write('\\newcommand\\doorExplicitAware{--}\n' % n_aware['Explicit']['Front Door'][1])
+        # text_file.write('\\newcommand\\doorIncidentalAware{%s}\n' % n_aware['Incidental']['Front Door'][1])
+        # text_file.write('\\newcommand\\MovieAware{%s}\n' % n_aware['Incidental']['Movie'][1])
+        # text_file.write('\\newcommand\\RelationalAware{%s}\n' % n_aware['Incidental']['Relational'][1])
+        # text_file.write('\\newcommand\\ScenarioAware{%s}\n' % n_aware['Incidental']['Scenario'][1])
+        # text_file.write('\\newcommand\\AnimacyAware{%s}\n' % n_aware['Incidental']['Animacy'][1])
+        # text_file.write('\\newcommand\\WeightAware{%s}\n' % n_aware['Incidental']['Weight'][1])
+        #
+        # # # commented out because there are no people with zero prec and the 1st entry thus does not exist and throws an error
+        # text_file.write('\\newcommand\\shoeExplicitZeroPrec{%s}\n' % n_Prec['Explicit']['Shoebox'][1])
+        # text_file.write('\\newcommand\\shoeIncidentalZeroPrec{%s}\n' % n_Prec['Incidental']['Shoebox'][1])
+        # text_file.write('\\newcommand\\doorExplicitZeroPrec{%s}\n' % n_Prec['Explicit']['Front Door'][1])
+        # text_file.write('\\newcommand\\doorIncidentalZeroPrec{%s}\n' % n_Prec['Incidental']['Front Door'][1])
+        # text_file.write('\\newcommand\\MovieZeroPrec{%s}\n' % n_Prec['Incidental']['Movie'][1])
+        # text_file.write('\\newcommand\\RelationalZeroPrec{%s}\n' % n_Prec['Incidental']['Relational'][1])
+        # text_file.write('\\newcommand\\ScenarioZeroPrec{%s}\n' % n_Prec['Incidental']['Scenario'][1])
+        # text_file.write('\\newcommand\\AnimacyZeroPrec{%s}\n' % n_Prec['Incidental']['Animacy'][1])
+        # text_file.write('\\newcommand\\WeightZeroPrec{%s}\n' % n_Prec['Incidental']['Weight'][1])
+        #
+        # text_file.write('\\newcommand\\shoeExplicitIncluded{%s}\n' % n_included['Explicit']['Shoebox'][0])
+        # text_file.write('\\newcommand\\shoeIncidentalIncluded{%s}\n' % n_included['Incidental']['Shoebox'][0])
+        # text_file.write('\\newcommand\\doorExplicitIncluded{%s}\n' % n_included['Explicit']['Front Door'][0])
+        # text_file.write('\\newcommand\\doorIncidentalIncluded{%s}\n' % n_included['Incidental']['Front Door'][0])
+        # text_file.write('\\newcommand\\MovieIncluded{%s}\n' % n_included['Incidental']['Movie'][0])
+        # text_file.write('\\newcommand\\RelationalIncluded{%s}\n' % n_included['Incidental']['Relational'][0])
+        # text_file.write('\\newcommand\\ScenarioIncluded{%s}\n' % n_included['Incidental']['Scenario'][0])
+        # text_file.write('\\newcommand\\AnimacyIncluded{%s}\n' % n_included['Incidental']['Animacy'][0])
+        # text_file.write('\\newcommand\\WeightIncluded{%s}\n' % n_included['Incidental']['Weight'][0])
+
+        # text_file.write(
+        #     '\\newcommand\\shoeExplicitPrec{{{:.2f} ({:.2f})}}\n'.format(prec_table["Explicit"]["Shoebox"]["mean"],
+        #                                                                  prec_table["Explicit"]["Shoebox"]["std"]))
+        # text_file.write(
+        #     '\\newcommand\\shoeIncidentalPrec{{{:.2f} ({:.2f})}}\n'.format(prec_table["Incidental"]["Shoebox"]["mean"],
+        #                                                                    prec_table["Incidental"]["Shoebox"]["std"]))
+        # text_file.write(
+        #     '\\newcommand\\doorExplicitPrec{{{:.2f} ({:.2f})}}\n'.format(prec_table["Explicit"]["Front Door"]["mean"],
+        #                                                                  prec_table["Explicit"]["Front Door"]["std"]))
+        # text_file.write('\\newcommand\\doorIncidentalPrec{{{:.2f} ({:.2f})}}\n'.format(
+        #     prec_table["Incidental"]["Front Door"]["mean"], prec_table["Incidental"]["Front Door"]["std"]))
+        #
+        # text_file.write(
+        #     '\\newcommand\\MoviePrec{{{:.2f} ({:.2f})}}\n'.format(prec_table["Incidental"]["Movie"]["mean"],
+        #                                                           prec_table["Incidental"]["Movie"]["std"]))
+        # text_file.write(
+        #     '\\newcommand\\RelationalPrec{{{:.2f} ({:.2f})}}\n'.format(prec_table["Incidental"]["Relational"]["mean"],
+        #                                                                prec_table["Incidental"]["Relational"]["std"]))
+        # text_file.write(
+        #     '\\newcommand\\ScenarioPrec{{{:.2f} ({:.2f})}}\n'.format(prec_table["Incidental"]["Scenario"]["mean"],
+        #                                                              prec_table["Incidental"]["Scenario"]["std"]))
+        # text_file.write(
+        #     '\\newcommand\\AnimacyPrec{{{:.2f} ({:.2f})}}\n'.format(prec_table["Incidental"]["Animacy"]["mean"],
+        #                                                             prec_table["Incidental"]["Animacy"]["std"]))
+
+
+        text_file.write(
+            '\\newcommand\\ConstantFreePrec{{{:.2f} ({:.2f})}}\n'.format(prec_table['mean'][0],
+                                                                         prec_table['std'][0]))
+        text_file.write(
+            '\\newcommand\\ConstantSerialPrec{{{:.2f} ({:.2f})}}\n'.format(prec_table['mean'][1],
+                                                                         prec_table['std'][1]))
+        text_file.write(
+            '\\newcommand\\VaryingFreePrec{{{:.2f} ({:.2f})}}\n'.format(prec_table['mean'][2],
+                                                                         prec_table['std'][2]))
+        text_file.write(
+            '\\newcommand\\VaryingSerialPrec{{{:.2f} ({:.2f})}}\n'.format(prec_table['mean'][3],
+                                                                         prec_table['std'][3]))
+    return all_crps
+
+
+
+
+
+
+
 def which_item(recall, presented, dictionary):
     """
 
@@ -404,7 +569,9 @@ def which_item(recall, presented, dictionary):
 
     # is the response a nan?
     if not type(recall.response) == str:
-        if type(recall.response) ==  unicode or np.isnan(recall.response):
+        if type(recall.response) ==  unicode:
+            recall.response = str(recall.response)
+        elif np.isnan(recall.response):
             return -1999.0 #todo: what are the standard matlab codes for ELI and PLI?
 
     # does the string include non letters?
@@ -440,3 +607,38 @@ def correct_spelling(recall, presented, dictionary):
         corrected_recall = dictionary[np.argmin(dist_to_dict)]
     recall.response = corrected_recall
     return recall
+
+
+def E4_fig(data_to_use, which_list, save_name):
+    colors = ["#000000", "#808080"]
+    sns.set_palette(colors)
+
+
+    # setup the grid
+    fig2 = plt.figure(figsize=(30, 10))
+    gs = gridspec.GridSpec(1, 2)
+    crp_axis = fig2.add_subplot(gs[0, 0])
+    tf_axis = fig2.add_subplot(gs[0, 1])
+
+    # plot crps
+    data_filter = data_to_use.list == which_list
+    g = sns.factorplot(x="lag", y="crp", hue="recall_instruction_condition", data=data_to_use.loc[data_filter, :],
+                   hue_order=["Free", "Serial"], dodge=.25, units='subject', ax=crp_axis)
+    crp_axis.set(xlabel="Lag", ylabel="Cond. Resp. Prob.", ylim=[0., .2], xticks=range(0, 11, 2),
+                 xticklabels=range(-5, 6, 2))
+    crp_axis.legend(title='Recall Instructions', ncol=2, labelspacing=.2, handlelength=.01, loc=2)
+    plt.figure(fig2.number)
+    sns.despine()
+    crp_axis.annotate('A.', xy=(-.175, 1), xycoords='axes fraction')
+
+    # plot temp factors
+    data_filter = np.logical_and(data_to_use.list == which_list, data_to_use.lag == 0)
+    g = sns.barplot(x="recall_instruction_condition", y=tf_col, data=data_to_use.loc[data_filter, :], order=["Free", "Serial"], ax=tf_axis) #
+    tf_axis.set(xlabel="Recal Instructions", ylabel="Z(TCE)", ylim=tf_lims)
+    plt.axhline(linewidth=3, linestyle='--', color='k')
+    plt.figure(fig2.number)
+    sns.despine()
+    tf_axis.annotate('B.', xy=(-.175, 1), xycoords='axes fraction')
+
+    fig2.savefig(save_name + '.pdf', bbox_inches='tight')
+    plt.close(fig2)
