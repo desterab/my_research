@@ -191,7 +191,7 @@ def load_the_data(n_perms, remake_data_file, recalls_file, save_name):
             # save data used in the anals
             e1 = recalls.task_condition == "Shoebox"
             e2 = recalls.task_condition == "Front Door"
-            e3 = np.logical_and(np.in1d(recalls.task_condition, ["Weight", "Animacy", "Scenario", "Movie", "Relational"]),
+            e3 = np.logical_and(np.in1d(recalls.task_condition, ['Constant Size', "Varying Size", "Weight", "Animacy", "Scenario", "Movie", "Relational"]),
                                 recalls.instruction_condition == "Incidental")
             used_data = np.logical_and(np.logical_or(e1, np.logical_or(e2, e3)), recalls.list == 0)  # in a used condition and the first list
             recalls.loc[np.logical_and(np.in1d(recalls.subject, included_subjects), used_data)].to_csv(save_name + 'Heal16implicit_data.csv')
@@ -642,3 +642,108 @@ def E4_fig(data_to_use, which_list, save_name):
 
     fig2.savefig(save_name + '.pdf', bbox_inches='tight')
     plt.close(fig2)
+
+
+def get_spc(n_perms, remake_data_file, recalls_file, save_name):
+
+    if os.path.isfile(save_name + "all_spc.pkl") and not remake_data_file:
+        all_spcs = pickle.load(open(save_name + "all_spc.pkl", "rb"))
+        return all_spcs
+    else:
+        num_cores = multiprocessing.cpu_count() / 2
+        with Parallel(n_jobs=num_cores, verbose=0) as POOL:
+            # os.system('scp cbcc.psy.msu.edu:~/code/experiments/Heal16implicit/HealEtal16implicit.data.pkl \'/Users/khealey/Library/Mobile Documents/com~apple~CloudDocs/lab/code/experiments/Heal16implicit\'')
+            recalls = pickle.load(open(
+                recalls_file,
+                "rb"))
+
+            # loop over subjects and lists, for each isolate their data
+            subjects = recalls.subject.unique()
+            included_subjects = []
+            n_subs = subjects.shape[0]
+            si = 0.  # for a progress counter
+            lists = [0]  #  doing only the first list. to do all lists change to: recalls.list.unique()
+            all_spcs = pd.DataFrame()
+            for s in subjects:
+                si += 1
+                print si / n_subs * 100.
+                for l in lists:
+
+                    # get the data for just this list
+                    s_filter = recalls.subject == s
+                    l_filter = recalls.list == l
+                    cur_recalls = recalls.loc[s_filter & l_filter, :]
+
+                    # skip if there were no recalls
+                    if cur_recalls.shape[0] == 0:
+                        continue
+
+                    # skip lists if subject reported being aware
+                    aware = cur_recalls.aware[0].values == 'yes'
+                    incidental = cur_recalls.instruction_condition[0] == 1
+                    if aware.any() and incidental:
+                        aware_check = 1
+                    else:
+                        aware_check = 0
+
+                    # # compute overall recall
+                    rec_mat = cur_recalls.as_matrix(range(recalls.shape[1] - 2))  # format recalls matrix for use with rdf functions
+                    # prec = rdf.prec(listlen=16, recalls=rec_mat)
+                    # if prec <= 0.:
+                    #     continue
+                    # included_subjects.append(s)
+                    # # continue
+                    # 
+                    # # compute random temporal factor
+                    # tempf_z = rdf.relative_to_random(listlen=16, recalls=rec_mat, filter_ind=None, statistic_func=rdf.tem_fact,
+                    #                            data_col="tf", n_perms=n_perms, POOL=POOL)
+                    # tempf_z = pd.DataFrame.from_records(tempf_z)
+                    # all_tf_z = tempf_z.tf.mean()
+
+                    # compute crp
+                    spc = rdf.spc(listlen=16, recalls=rec_mat, filter_ind=None, allow_repeats=False, exclude_op=0)
+                    spc = pd.DataFrame.from_records(spc)
+
+                    # fanilize crp data: add list number, and condition ids
+                    spc['subject'] = pd.Series([s for x in range(len(spc.index))], index=spc.index)
+                    spc['list'] = pd.Series([l for x in range(len(spc.index))], index=spc.index)
+                    spc['instruction_condition'] = pd.Series([cur_recalls.instruction_condition[0] for x in range(len(spc.index))],
+                                                             index=spc.index)
+                    spc['recall_instruction_condition'] = pd.Series([cur_recalls.recall_instruction_condition[0] for x in range(len(spc.index))],
+                                                             index=spc.index)
+                    spc['task_condition'] = pd.Series([cur_recalls.task_condition[0] for x in range(len(spc.index))],
+                                                      index=spc.index)
+                    # spc['prec'] = pd.Series([prec for x in range(len(spc.index))],
+                    #                         index=spc.index)  # todo: this needlessly makes a copy of prec for each lag... this seems like a xarray issue
+                    # spc['all_tf_z'] = pd.Series([all_tf_z for x in range(len(spc.index))],
+                    #                           index=spc.index)
+                    spc["aware_check"] = pd.Series([aware_check for x in range(len(spc.index))],
+                                              index=spc.index)
+                    all_spcs = pd.concat([all_spcs, spc])
+
+            # change conditions from numerical to verbal labelsls
+            recalls.loc[recalls.task_condition == 0, 'task_condition'] = "Shoebox"
+            recalls.loc[recalls.task_condition == 1, 'task_condition'] = "Movie"
+            recalls.loc[recalls.task_condition == 2, 'task_condition'] = "Relational"
+            recalls.loc[recalls.task_condition == 3, 'task_condition'] = "Scenario"
+            recalls.loc[recalls.task_condition == 4, 'task_condition'] = "Animacy"
+            recalls.loc[recalls.task_condition == 5, 'task_condition'] = "Weight"
+            recalls.loc[recalls.task_condition == 6, 'task_condition'] = "Front Door"
+            recalls.loc[recalls.task_condition == 7, 'task_condition'] = "Constant Size"
+            recalls.loc[recalls.task_condition == 8, 'task_condition'] = "Varying Size"
+            recalls.loc[recalls.recall_instruction_condition == 0, 'recall_instruction_condition'] = "Free"
+            recalls.loc[recalls.recall_instruction_condition == 1, 'recall_instruction_condition'] = "Serial"
+            recalls.loc[recalls.instruction_condition == 0, 'instruction_condition'] = "Explicit"
+            recalls.loc[recalls.instruction_condition == 1, 'instruction_condition'] = "Incidental"
+
+            # save data used in the anals
+            e1 = recalls.task_condition == "Shoebox"
+            e2 = recalls.task_condition == "Front Door"
+            e3 = np.logical_and(np.in1d(recalls.task_condition, ["Weight", "Animacy", "Scenario", "Movie", "Relational"]),
+                                recalls.instruction_condition == "Incidental")
+            used_data = np.logical_and(np.logical_or(e1, np.logical_or(e2, e3)), recalls.list == 0)  # in a used condition and the first list
+            recalls.loc[np.logical_and(np.in1d(recalls.subject, included_subjects), used_data)].to_csv(save_name + 'Heal16implicit_data.csv')
+            all_spcs.to_pickle(save_name + "all_spc.pkl")
+
+            print "Data Loaded!"
+            return all_spcs
