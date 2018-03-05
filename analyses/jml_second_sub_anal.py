@@ -46,9 +46,6 @@ sub1_data = pd.DataFrame.from_csv('/Users/khealey/code/experiments/Heal16implici
 sub2_data = pd.DataFrame.from_csv('/Users/khealey/code/experiments/Heal16implicit/dissemination/manuscript/jml/second_submission/figures/Heal16implicit_data.csv')
 all_data = pd.concat([sub1_data, sub2_data])
 
-##### assem
-# ble xarray
-
 # split into lists
 ds, sample_sizes_aware_counts, sample_sizes_included_counts = make_xarray(all_data.loc[all_data.list==0, :])
 
