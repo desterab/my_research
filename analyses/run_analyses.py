@@ -1,5 +1,6 @@
 import anal_funcs as af
 import numpy as np
+import pandas as pd
 import pickle
 
 # params for data prep and saving results
@@ -9,8 +10,20 @@ dict_path = "/Users/khealey/code/py_modules/cbcc_tools/wordpool_files/websters_d
 # number of permutations for permutations tests
 n_perms = 10000
 
-# load or create the recalls matrix
+
+# load all the data for all experiments from the file made from the master database on cbcc
 data = pickle.load( open( "HealEtal16implicit.data.raw.pkl", "rb" ) )
+
+# load the E1--3 data from the cvs file created for the first submission
+sub1_data = pd.DataFrame.from_csv('/Users/khealey/code/experiments/Heal16implicit/dissemination/'
+                                  'manuscript/jml/first_submission/figures/Heal16implicit_data.csv')
+
+
+# load or create the recalls matrix
+
+
+
+
 recalls = af.make_psiturk_recall_matrix(data, remake_data_file=False, dict_path=dict_path,
                                         save_file='HealEtal16implicit.recalls')
 

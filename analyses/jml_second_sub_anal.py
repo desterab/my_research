@@ -51,6 +51,10 @@ ds, sample_sizes_aware_counts, sample_sizes_included_counts = make_xarray(all_da
 
 rdf.run_these_analyses(ds, ['pfr', 'spc', 'crp'])
 
+
+# e1 crp for comparison
+
+
 # setup the grid
 fig = plt.figure(figsize=(30, 10))
 gs = gridspec.GridSpec(1, 2)

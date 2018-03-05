@@ -83,7 +83,7 @@ def make_psiturk_recall_matrix(data, remake_data_file, dict_path, save_file):
             op = []
             for index, recall in recalled_this_list.iterrows():
                 sp.append(which_item(recall, cur_items.loc[cur_items.list <= recall.list], dictionary))
-                op.append(int(np.where(recalled_this_list.index==index)[0])) # the output position
+                op.append(int(np.where(recalled_this_list.index == index)[0]))  # the output position
                 # print (recall)
 
             # we need to add the subject id and conditions to the beginning of the line
