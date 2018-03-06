@@ -8,31 +8,44 @@ results_dir = "../dissemination/manuscript/jml/second_submission/figures/"
 dict_path = "/Users/khealey/code/py_modules/cbcc_tools/wordpool_files/websters_dict.txt"
 
 # number of permutations for permutations tests
-n_perms = 10000
+n_perms = 1
 
-
-# load all the data for all experiments from the file made from the master database on cbcc
-data = pickle.load( open( "HealEtal16implicit.data.raw.pkl", "rb" ) )
-
-# load the E1--3 data from the cvs file created for the first submission
-sub1_data = pd.DataFrame.from_csv('/Users/khealey/code/experiments/Heal16implicit/dissemination/'
-                                  'manuscript/jml/first_submission/figures/Heal16implicit_data.csv')
-
-
-# load or create the recalls matrix
-
-
-
-
-recalls = af.make_psiturk_recall_matrix(data, remake_data_file=False, dict_path=dict_path,
+# load or make the recall matrix
+recalls = af.make_psiturk_recall_matrix(remake_data_file=True, dict_path=dict_path,
                                         save_file='HealEtal16implicit.recalls')
 
 # load or compute the recall dynamics
-all_crps = af.load_the_data(n_perms=n_perms, remake_data_file=False,
+all_crps = af.load_the_data(n_perms=n_perms, remake_data_file=True,
                             recalls_file='HealEtal16implicit.recalls.pkl', save_name=results_dir)
 
+## figures from original submission
+
 # make table 1
-all_crps = af.E4_sample_size_table(all_crps, results_dir)
+all_crps = af.sample_size_table(all_crps, results_dir)
+
+# make Firgure 1
+which_list = 0
+data_filter = np.logical_and(all_crps.task_condition == "Shoebox", all_crps.lag.abs() <= 5)
+data_to_use = all_crps.loc[data_filter, :]
+af.encoding_instruct_fig(data_to_use, which_list, results_dir + "Shoebox")
+
+# make figure 2
+which_list = 0
+data_filter = np.logical_and(all_crps.task_condition == "Front Door", all_crps.lag.abs() <= 5)
+data_to_use = all_crps.loc[data_filter, :]
+af.encoding_instruct_fig(data_to_use, which_list, results_dir + "FrontDoor")
+
+# make figure 3
+which_instruction_cond = "Incidental"
+which_list = 0
+data_filter = np.logical_and(np.logical_and(all_crps.task_condition != "Shoebox",
+                                            all_crps.task_condition != "Front Door"), all_crps.lag.abs() <= 5)
+data_to_use = all_crps.loc[data_filter, :]
+af.processing_task_fig(data_to_use, which_instruction_cond, which_list, results_dir + 'E3')
+
+
+# make E4 stuff
+af.E4_sample_size_table(all_crps, results_dir)
 
 
 # make crp/temp fact figure for constant exp
@@ -46,32 +59,3 @@ which_list = 0
 data_filter = np.logical_and(all_crps.task_condition == "Varying Size", all_crps.lag.abs() <= 5)
 data_to_use = all_crps.loc[data_filter, :]
 af.E4_fig(data_to_use, which_list, results_dir + "E4_varying")
-
-
-
-
-
-### figures from original submission
-
-# # make table 1
-# all_crps = af.sample_size_table(all_crps, results_dir)
-
-# # make Firgure 1
-# which_list = 0
-# data_filter = np.logical_and(all_crps.task_condition == "Shoebox", all_crps.lag.abs() <= 5)
-# data_to_use = all_crps.loc[data_filter, :]
-# af.encoding_instruct_fig(data_to_use, which_list, results_dir + "Shoebox")
-#
-# # make figure 2
-# which_list = 0
-# data_filter = np.logical_and(all_crps.task_condition == "Front Door", all_crps.lag.abs() <= 5)
-# data_to_use = all_crps.loc[data_filter, :]
-# af.encoding_instruct_fig(data_to_use, which_list, results_dir + "FrontDoor")
-#
-# # make figure 3
-# which_instruction_cond = "Incidental"
-# which_list = 0
-# data_filter = np.logical_and(np.logical_and(all_crps.task_condition != "Shoebox",
-#                                             all_crps.task_condition != "Front Door"), all_crps.lag.abs() <= 5)
-# data_to_use = all_crps.loc[data_filter, :]
-# af.processing_task_fig(data_to_use, which_instruction_cond, which_list, results_dir + 'E3')
