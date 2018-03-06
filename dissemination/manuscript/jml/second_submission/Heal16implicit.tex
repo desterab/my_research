@@ -26,7 +26,6 @@
 
 % commands for inserting values determined by analyses scripts.
 \input{figures/table_values}
-\input{figures/E4_table_values}
 
 % counter for panels of crp matrix figure
 \newcounter{crppanel}
@@ -67,7 +66,14 @@ Control processes \citep{LehmMalm13,AtkiShif68} allow us to strategically proces
 
 Other theories suggest that the TCE is produced by task-general processes that operate even when we form new memories in the absence of deliberate study. For example, some models assume that as list items are presented they form associations to a representation of time \citep{HowaEtal14a,BrowEtal07} or drifting mental context \citep{LohnEtal14}. Alternatively, contiguity might arise form temporally adjacent items spending time together in working memory and thus becoming linked \citep{LehmMalm13}. The key feature is that these contiguity-generating processes are assumed to underlie memory across a range of situations including those that do not involve deliberate study. Thus, such an account  predicts that the TCE should be observed even under incidental encoding.
 
-Of course, these two accounts are not mutually exclusive. \citet{Hint16}, for example, suggests that people engage in deliberate strategies but might also automatically notice similarities among temporally proximate items and therefore remember them together at recall. But so little work has been done in this area that we do not know the answer to even basic questions. We focus on perhaps the most basic: are control processes necessary to generate the contiguity effect or are automatic processes sufficient? On this question, the two perspectives make competing predictions about the influence of removing the intention to encode. 
+Of course, these two accounts are not mutually exclusive. \citet{Hint16}, for example, suggests that people engage in deliberate strategies but might also automatically notice similarities among temporally proximate items and therefore remember them together at recall. But so little work has been done in this area that we do not know the answer to even basic questions. 
+
+
+We do know that temporal order is encoded under incidental learning conditions. For example, \citet{Nair91, Nair90b, NairEtal17} showed participants lists of words under the guise of a rating task and later gave them a surprise order reconstruction task in which they were shown the words and had to reconstruct their order. Participants could do this with considerable accuracy, even when they were shown multiple listsand required to recall both which list and which within-list position the words were seen \citet{Nair91}. Moreover, transposition gradients, similar to those used in explicit order reconstruction tasks \cite{Heal74}, showed that errors were not random--participants tended to put words in positions adjacent to the correct ones \citet{Nair91}. 
+
+In these studies, encoding of temporal information was incidental, but at retrieval participants were explicitly asked to use that implicitly-acquired temporal information. The question for the present study is whether implicitly encoded temporal information is used to guide memory search.
+NEEDS WORK TO LINK THESE TWO:
+We focus on perhaps the most basic: are control processes necessary to generate the contiguity effect or are automatic processes sufficient? On this question, the two perspectives make competing predictions about the influence of removing the intention to encode. 
 
 \label{TODO-3} % needs to be cleaned up a litte:
 That is, what should happen if participant are unepectedely asked to recall information the never expected to be tested on---a direct memory test following incidental encoding.
@@ -161,7 +167,7 @@ The lag-CRP provides a visual representation of the TCE, but it is useful to hav
 When evaluating the size of the TCE, it is important to take into account the fact that the likelihood of successful recall is not random with respect to serial position (e.g., there are primacy and recency effects, or more generally autocorrelations in goodness of encoding), which can artificially increase the size of the TCE \citep{HealKaha17,Hint16}. The size of this artificial TCE can be measured by taking the items which a subject actually recalled for a given list, randomly shuffling (i.e., permuting) the order of recalls, and recomputing the temporal factor score. Repeating this permutation procedure many times provides a distribution of the temporal factor score expected if recall transitions are completely random with respect to lag \citep{HealKaha17}. 
 
 TODO:
-For example, imagine that a participant recalled the words from serial positions 5, 6, 8 in that order. The actual temporal factor score for that recall sequence is XX. We would build a distribution of the temporal factor score expected by chance by taking these recalled serial postions and randomly shuffling them. For example, rearanging the sequence to 6, 5, 8 gives a temporal facor score of XX. Rearanging them to 
+Imagine that a participant recalled 3 words: those from serial positions 5, 6, and 8, in that order. The actual temporal factor score for that recall sequence is XX. We would build a distribution of the temporal factor score expected by chance by taking this recall seqeuence and randomly shuffling it. For example, rearanging the sequence to 6, 5, 8 gives a temporal facor score of XX. Rearanging the sequence to 6, 8, 5 gives a temporal factor score of XX. If do this for all possible sequence, we find that the possible temp factor scores are XX, XX, XX. Our observed temporal factor score of XX lies at the XX percentile of that null distribution.
 
 
 This logic was used to provide a corrected measure of the TCE for each participant. For each list, the temporal factor score was computed for the actual recall sequence and for 10,000 random permutations of the sequence. The actual temporal factor score was then converted into a z-score, Z(TCE), by subtracting the permutation distribution's mean and dividing by its standard deviation. In the absence of a true TCE, the expected value of Z(TCE) is zero, so we can test for a TCE by determining if the across-subject average of Z(TCE) is significantly above zero.   

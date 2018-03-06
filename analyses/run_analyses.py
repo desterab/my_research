@@ -11,11 +11,11 @@ dict_path = "/Users/khealey/code/py_modules/cbcc_tools/wordpool_files/websters_d
 n_perms = 1
 
 # load or make the recall matrix
-recalls = af.make_psiturk_recall_matrix(remake_data_file=True, dict_path=dict_path,
+recalls = af.make_psiturk_recall_matrix(remake_data_file=False, dict_path=dict_path,
                                         save_file='HealEtal16implicit.recalls')
 
 # load or compute the recall dynamics
-all_crps = af.load_the_data(n_perms=n_perms, remake_data_file=True,
+all_crps = af.load_the_data(n_perms=n_perms, remake_data_file=False,
                             recalls_file='HealEtal16implicit.recalls.pkl', save_name=results_dir)
 
 ## figures from original submission
@@ -45,7 +45,7 @@ af.processing_task_fig(data_to_use, which_instruction_cond, which_list, results_
 
 
 # make E4 stuff
-af.E4_sample_size_table(all_crps, results_dir)
+# af.E4_sample_size_table(all_crps, results_dir)
 
 
 # make crp/temp fact figure for constant exp

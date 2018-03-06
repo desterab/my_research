@@ -64,9 +64,9 @@ def make_psiturk_recall_matrix(remake_data_file, dict_path, save_file):
     for s in subjects:
         loop += 1.
 
-        # do only a few subjects to speedup debugging
-        if loop > 50:
-            break
+        # # do only a few subjects to speedup debugging
+        # if loop > 50:
+        #     break
 
         print(loop/n_ss*100)
         s_filter = data.uniqueid == s
@@ -375,9 +375,10 @@ def sample_size_table(all_crps, results_dir):
         text_file.write('\\newcommand\\Scenario{%s}\n' % n_tested['Incidental']['Scenario']['Free'][0])
         text_file.write('\\newcommand\\Animacy{%s}\n' % n_tested['Incidental']['Animacy']['Free'][0])
         text_file.write('\\newcommand\\Weight{%s}\n' % n_tested['Incidental']['Weight']['Free'][0])
-        # text_file.write('\\newcommand\\ConstantFree{%s}\n' % n_tested['Incidental']['Constant Size']['Free'][0])
-        # text_file.write('\\newcommand\\ConstantSerial{%s}\n' % n_tested['Incidental']['Varying Size']['Serial'][0])
-
+        text_file.write('\\newcommand\\ConstantFree{%s}\n' % n_tested['Incidental']['Constant Size']['Free'][0])
+        text_file.write('\\newcommand\\ConstantSerial{%s}\n' % n_tested['Incidental']['Constant Size']['Serial'][0])
+        text_file.write('\\newcommand\\VaryingFree{%s}\n' % n_tested['Incidental']['Varying Size']['Free'][0])
+        text_file.write('\\newcommand\\VaryingSerial{%s}\n' % n_tested['Incidental']['Varying Size']['Serial'][0])
 
         text_file.write('\\newcommand\\shoeExplicitAware{--}\n' % n_aware['Explicit']['Shoebox']['Free'][1])
         text_file.write('\\newcommand\\shoeIncidentalAware{%s}\n' % n_aware['Incidental']['Shoebox']['Free'][1])
@@ -388,8 +389,11 @@ def sample_size_table(all_crps, results_dir):
         text_file.write('\\newcommand\\ScenarioAware{%s}\n' % n_aware['Incidental']['Scenario']['Free'][1])
         text_file.write('\\newcommand\\AnimacyAware{%s}\n' % n_aware['Incidental']['Animacy']['Free'][1])
         text_file.write('\\newcommand\\WeightAware{%s}\n' % n_aware['Incidental']['Weight']['Free'][1])
+        text_file.write('\\newcommand\\ConstantFreeAware{%s}\n' % n_aware['Incidental']['Constant Size']['Free'][1])
+        text_file.write('\\newcommand\\ConstantSerialAware{%s}\n' % n_aware['Incidental']['Constant Size']['Serial'][1])
+        text_file.write('\\newcommand\\VaryingFreeAware{%s}\n' % n_aware['Incidental']['Varying Size']['Free'][1])
+        text_file.write('\\newcommand\\VaryingSerialAware{%s}\n' % n_aware['Incidental']['Varying Size']['Serial'][1])
 
-        # # commented out because there are no people with zero prec and the 1st entry thus does not exist and throws an error
         text_file.write('\\newcommand\\shoeExplicitZeroPrec{%s}\n' % n_Prec['Explicit']['Shoebox']['Free'][1])
         text_file.write('\\newcommand\\shoeIncidentalZeroPrec{%s}\n' % n_Prec['Incidental']['Shoebox']['Free'][1])
         text_file.write('\\newcommand\\doorExplicitZeroPrec{%s}\n' % n_Prec['Explicit']['Front Door']['Free'][1])
@@ -399,6 +403,10 @@ def sample_size_table(all_crps, results_dir):
         text_file.write('\\newcommand\\ScenarioZeroPrec{%s}\n' % n_Prec['Incidental']['Scenario']['Free'][1])
         text_file.write('\\newcommand\\AnimacyZeroPrec{%s}\n' % n_Prec['Incidental']['Animacy']['Free'][1])
         text_file.write('\\newcommand\\WeightZeroPrec{%s}\n' % n_Prec['Incidental']['Weight']['Free'][1])
+        text_file.write('\\newcommand\\ConstantFreeZeroPrec{%s}\n' % n_Prec['Incidental']['Constant Size']['Free'][1])
+        text_file.write('\\newcommand\\ConstantSerialZeroPrec{%s}\n' % n_Prec['Incidental']['Constant Size']['Serial'][1])
+        text_file.write('\\newcommand\\VaryingFreeZeroPrec{%s}\n' % n_Prec['Incidental']['Varying Size']['Free'][1])
+        text_file.write('\\newcommand\\VaryingSerialZeroPrec{%s}\n' % n_Prec['Incidental']['Varying Size']['Serial'][1])
 
         text_file.write('\\newcommand\\shoeExplicitIncluded{%s}\n' % n_included['Explicit']['Shoebox']['Free'][0])
         text_file.write('\\newcommand\\shoeIncidentalIncluded{%s}\n' % n_included['Incidental']['Shoebox']['Free'][0])
@@ -409,6 +417,10 @@ def sample_size_table(all_crps, results_dir):
         text_file.write('\\newcommand\\ScenarioIncluded{%s}\n' % n_included['Incidental']['Scenario']['Free'][0])
         text_file.write('\\newcommand\\AnimacyIncluded{%s}\n' % n_included['Incidental']['Animacy']['Free'][0])
         text_file.write('\\newcommand\\WeightIncluded{%s}\n' % n_included['Incidental']['Weight']['Free'][0])
+        text_file.write('\\newcommand\\ConstantFreeIncluded{%s}\n' % n_included['Incidental']['Constant Size']['Free'][0])
+        text_file.write('\\newcommand\\ConstantSerialIncluded{%s}\n' % n_included['Incidental']['Constant Size']['Serial'][0])
+        text_file.write('\\newcommand\\VaryingFreeIncluded{%s}\n' % n_included['Incidental']['Varying Size']['Free'][0])
+        text_file.write('\\newcommand\\VaryingSerialIncluded{%s}\n' % n_included['Incidental']['Varying Size']['Serial'][0])
 
         text_file.write(
             '\\newcommand\\shoeExplicitPrec{{{:.2f} ({:.2f})}}\n'.format(prec_table["mean"]["Explicit"]["Shoebox"]['Free'],
@@ -437,6 +449,19 @@ def sample_size_table(all_crps, results_dir):
         text_file.write(
             '\\newcommand\\WeightPrec{{{:.2f} ({:.2f})}}\n'.format(prec_table["mean"]["Incidental"]["Weight"]['Free'],
                                                                    prec_table["std"]["Incidental"]["Weight"]['Free']))
+        text_file.write(
+            '\\newcommand\\ConstantFreePrec{{{:.2f} ({:.2f})}}\n'.format(prec_table["mean"]["Incidental"]["Constant Size"]['Free'],
+                                                                   prec_table["std"]["Incidental"]["Constant Size"]['Free']))
+        text_file.write(
+            '\\newcommand\\ConstantSerialPrec{{{:.2f} ({:.2f})}}\n'.format(prec_table["mean"]["Incidental"]["Constant Size"]['Serial'],
+                                                                   prec_table["std"]["Incidental"]["Constant Size"]['Serial']))
+        text_file.write(
+            '\\newcommand\\VaryingFreePrec{{{:.2f} ({:.2f})}}\n'.format(prec_table["mean"]["Incidental"]["Varying Size"]['Free'],
+                                                                   prec_table["std"]["Incidental"]["Varying Size"]['Free']))
+        text_file.write(
+            '\\newcommand\\VaryingSerialPrec{{{:.2f} ({:.2f})}}\n'.format(prec_table["mean"]["Incidental"]["Varying Size"]['Serial'],
+                                                                   prec_table["std"]["Incidental"]["Varying Size"]['Serial']))
+
     return all_crps
 
 
