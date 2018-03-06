@@ -24,7 +24,7 @@ def make_xarray(data):
     recall_instruction_condition = xr.DataArray(data.recall_instruction_condition, dims=('subject'), coords=coords)
 
 
-    n_outputs = 19
+    n_outputs = 24
     coords.update({'output_position': range(n_outputs+1)})
     coords.update({'list': [0]})
     rec_mat = data[data.columns[0:n_outputs+1]].values[:, np.newaxis, :]  # note adding an new axis for list
@@ -82,18 +82,15 @@ def lag_crp_plot(lag_crp, n_lags_to_plot=5, error_type='CI'):
 
 
 
-sub1_data = pd.DataFrame.from_csv('/Users/khealey/code/experiments/Heal16implicit/dissemination/manuscript/jml/first_submission/figures/Heal16implicit_data.csv')
-sub2_data = pd.DataFrame.from_csv('/Users/khealey/code/experiments/Heal16implicit/dissemination/manuscript/jml/second_submission/figures/Heal16implicit_data.csv')
-all_data = pd.concat([sub1_data, sub2_data])
 
-# split into lists
-ds, sample_sizes_aware_counts, sample_sizes_included_counts = make_xarray(sub2_data)
+data = pd.DataFrame.from_csv('/Users/khealey/code/experiments/Heal16implicit/dissemination/manuscript/jml/second_submission/figures/Heal16implicit_data.csv')
+ds, sample_sizes_aware_counts, sample_sizes_included_counts = make_xarray(data)
 
 # ds, sample_sizes_aware_counts, sample_sizes_included_counts = make_xarray(all_data.loc[all_data.list==0, :])
 
 
 
-rdf.run_these_analyses(ds, ['pfr', 'spc', 'lag_crp'])
+
 
 
 # load figure style sheet
@@ -110,10 +107,10 @@ plt.savefig('e1.pdf')
 plt.close()
 
 
-# e1 crp for comparison
+# e2 crp for comparison
 e2_explicit_filter = np.logical_and(ds.instruction_condition == 'Explicit', ds.task_condition == 'Front Door')
 e2_implicit_filter = np.logical_and(ds.instruction_condition == 'Incidental', ds.task_condition == 'Front Door')
-# lag_crp_plot(ds.lag_crp[e2_explicit_filter])
+lag_crp_plot(ds.lag_crp[e2_explicit_filter])
 lag_crp_plot(ds.lag_crp[e2_implicit_filter])
 plt.ylim(0, .2)
 plt.savefig('e2.pdf')
@@ -123,7 +120,7 @@ plt.close()
 
 # e1 crp for comparison
 e3_implicit_filter = np.logical_and(ds.instruction_condition == 'Incidental', ds.task_condition == 'Relational')
-# lag_crp_plot(ds.lag_crp[e2_explicit_filter])
+lag_crp_plot(ds.lag_crp[e2_explicit_filter])
 lag_crp_plot(ds.lag_crp[e3_implicit_filter])
 plt.ylim(0, .15)
 plt.savefig('e3.pdf')

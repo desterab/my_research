@@ -1,4 +1,5 @@
 import used_recall_dynamics as rdf
+from cbcc_tools.beh_anal import recall_dynamics as cbcc
 import pickle
 import pandas as pd
 import seaborn as sns
@@ -8,8 +9,8 @@ import matplotlib.pyplot as plt
 from matplotlib import gridspec
 from joblib import Parallel
 import multiprocessing
-from cbcc_tools.data_munging import spell_checker
 from pyxdameraulevenshtein import damerau_levenshtein_distance_ndarray
+import xarray as xr
 
 # figure style params
 sns.set_style("ticks")
@@ -114,6 +115,76 @@ def make_psiturk_recall_matrix(remake_data_file, dict_path, save_file):
     return recalls
 
 
+def which_item(recall, presented, dictionary):
+    """
+
+    :param recall: the string typed in by the subject
+    :param presented: a list of words seen by this subject so far in the experiment
+    :param dictionary: a list of strings we want to consider as possible intrusions
+    :return:
+    """
+
+    # does the recall exactly match a word that has been presented
+    seen, seen_where = self_term_search(recall.response, presented.word)
+    if seen:
+
+        # could be a PLI
+        intrusion = presented.iloc[seen_where].list != recall.list
+        if intrusion:
+            return -1.0 #todo: what are the standard matlab codes for ELI and PLI?
+
+        # its not a PLI, so find the serial pos
+        first_item = next(item for item, listnum in enumerate(presented.list) if listnum == recall.list)
+        serial_pos = seen_where - first_item + 1.0
+        return serial_pos
+
+    # does the recall exactly match a word in the dictionary
+    in_dict, where_in_dict = self_term_search(recall.response, dictionary)
+    if in_dict:
+        return -999.0 #todo: what are the standard matlab codes for ELI and PLI?
+
+    # is the response a nan?
+    if not type(recall.response) == str:
+        if type(recall.response) ==  unicode:
+            recall.response = str(recall.response)
+        elif np.isnan(recall.response):
+            return -1999.0 #todo: what are the standard matlab codes for ELI and PLI?
+
+    # does the string include non letters?
+    non_letter = not recall.response.isalpha()
+    if non_letter:
+        return -2999.0  # todo: what are the standard matlab codes for ELI and PLI?
+
+    # the closest match based on edit distance
+    recall = correct_spelling(recall, presented, dictionary)
+    return which_item(recall, presented, dictionary)
+
+
+def self_term_search(find_this, in_this):
+    for index, word in enumerate(in_this):
+        if word == find_this:
+            return True, index
+    return False, None
+
+
+def correct_spelling(recall, presented, dictionary):
+
+    # edit distance to each item in the pool and dictionary
+    dist_to_pool = damerau_levenshtein_distance_ndarray(recall.response, np.array(presented.word))
+    dist_to_dict = damerau_levenshtein_distance_ndarray(recall.response, np.array(dictionary))
+
+    # position in distribution of dist_to_dict
+    ptile = np.true_divide(sum(dist_to_dict <= np.amin(dist_to_pool)), dist_to_dict.size)
+
+    # decide if it is a word in the pool or an ELI
+    if ptile <= .1: #todo: make this a param
+        corrected_recall = presented.iloc[np.argmin(dist_to_pool)].word
+    else:
+        corrected_recall = dictionary[np.argmin(dist_to_dict)]
+    recall.response = corrected_recall
+    return recall
+
+
 def load_the_data(n_perms, remake_data_file, recalls_file, save_name):
 
     if os.path.isfile(save_name + "all_crps.pkl") and not remake_data_file:
@@ -201,6 +272,7 @@ def load_the_data(n_perms, remake_data_file, recalls_file, save_name):
             recalls.loc[recalls.task_condition == 6, 'task_condition'] = "Front Door"
             recalls.loc[recalls.task_condition == 7, 'task_condition'] = "Constant Size"
             recalls.loc[recalls.task_condition == 8, 'task_condition'] = "Varying Size"
+            recalls.loc[recalls.recall_instruction_condition.isnull(), 'recall_instruction_condition'] = 'Free'
             recalls.loc[recalls.recall_instruction_condition == 0, 'recall_instruction_condition'] = "Free"
             recalls.loc[recalls.recall_instruction_condition == 1, 'recall_instruction_condition'] = "Serial"
             recalls.loc[recalls.instruction_condition == 0, 'instruction_condition'] = "Explicit"
@@ -209,9 +281,11 @@ def load_the_data(n_perms, remake_data_file, recalls_file, save_name):
             # save data used in the anals
             e1 = recalls.task_condition == "Shoebox"
             e2 = recalls.task_condition == "Front Door"
-            e3 = np.logical_and(np.in1d(recalls.task_condition, ['Constant Size', "Varying Size", "Weight", "Animacy", "Scenario", "Movie", "Relational"]),
-                                recalls.instruction_condition == "Incidental")
-            used_data = np.logical_and(np.logical_or(e1, np.logical_or(e2, e3)), recalls.list == 0)  # in a used condition and the first list
+            e3and4 = np.logical_and(np.in1d(recalls.task_condition,
+                                            ['Constant Size', "Varying Size", "Weight", "Animacy",
+                                             "Scenario", "Movie", "Relational"]),
+                                    recalls.instruction_condition == "Incidental")
+            used_data = np.logical_or(e1, np.logical_or(e2, e3and4)) # in a used condition and the first list
             recalls.loc[np.logical_and(np.in1d(recalls.subject, included_subjects), used_data)].to_csv(save_name + 'Heal16implicit_data.csv')
             all_crps.to_pickle(save_name + "all_crps.pkl")
 
@@ -219,13 +293,57 @@ def load_the_data(n_perms, remake_data_file, recalls_file, save_name):
             return all_crps
 
 
-def encoding_instruct_fig(data_to_use, which_list, save_name):
-    colors = ["#000000", "#808080"]
-    sns.set_palette(colors)
+def make_xarray(data, list_number):
 
+    # get sample sizes (aware and not) then get rid of aware people in the incidential conditons
+    data['aware'] = data['aware'].str.contains('yes')
+    sample_sizes_aware_counts = pd.crosstab(data.aware, [data.instruction_condition, data.task_condition])
+    data = data.loc[np.logical_or(~data['aware'], data['instruction_condition'] == 'Explicit'), :]
+    data = data.loc[data.list == list_number]
+    sample_sizes_included_counts = pd.crosstab(data.aware, [data.instruction_condition, data.task_condition])
+
+
+    # condition vector
+    coords = {
+        'subject': data.subject,
+    }
+    instruction_condition = xr.DataArray(data.instruction_condition, dims=('subject'), coords=coords)
+    task_condition = xr.DataArray(data.task_condition, dims=('subject'), coords=coords)
+    recall_instruction_condition = xr.DataArray(data.recall_instruction_condition, dims=('subject'), coords=coords)
+
+
+    n_outputs = 24
+    coords.update({'output_position': range(n_outputs+1)})
+    coords.update({'list': [list_number]})
+    rec_mat = data[data.columns[0:n_outputs+1]].values[:, np.newaxis, :]  # note adding an new axis for list
+
+    # translate from beh_toolbox coding to cbcc_tools coding
+    rec_mat = rec_mat - 1  # convert to zero indexing
+    rec_mat[rec_mat == -1-1] = -2  # PLIs
+    rec_mat[rec_mat == -999.0-1] = -3  # PLIs
+    rec_mat[rec_mat == -1999.0-1] = -4  # nans in middle of sequence
+    rec_mat[rec_mat == -2999.0-1] = -4  # non alpha string
+    rec_mat[np.isnan(rec_mat)] = -1  # post last recall
+
+
+    rec_mat = rec_mat.astype('int')
+    recalls = xr.DataArray(rec_mat,
+                           dims=('subject', 'list', 'output_position'), coords=coords)
+    ds = xr.Dataset({
+        'recalls': recalls,
+        'instruction_condition': instruction_condition,
+        'task_condition': task_condition,
+        'recall_instruction_condition': recall_instruction_condition
+    })
+    ds.attrs['n_items_per_list'] = 16
+    return ds, sample_sizes_aware_counts, sample_sizes_included_counts
+
+def encoding_instruct_fig(data_to_use, which_list, save_name):
+    # colors = ["#000000", "#808080"]
+    # sns.set_palette(colors)
 
     # setup the grid
-    fig2 = plt.figure(figsize=(30, 10))
+    fig2 = plt.figure(figsize=(8, 3))
     gs = gridspec.GridSpec(1, 2)
     crp_axis = fig2.add_subplot(gs[0, 0])
     tf_axis = fig2.add_subplot(gs[0, 1])
@@ -245,40 +363,6 @@ def encoding_instruct_fig(data_to_use, which_list, save_name):
     data_filter = np.logical_and(data_to_use.list == which_list, data_to_use.lag == 0)
     g = sns.barplot(x="instruction_condition", y=tf_col, data=data_to_use.loc[data_filter, :], order=["Explicit", "Incidental"], ax=tf_axis) #
     tf_axis.set(xlabel="Encoding Instructions", ylabel="Z(TCE)", ylim=tf_lims)
-    plt.axhline(linewidth=3, linestyle='--', color='k')
-    plt.figure(fig2.number)
-    sns.despine()
-    tf_axis.annotate('B.', xy=(-.175, 1), xycoords='axes fraction')
-
-    fig2.savefig(save_name + '.pdf', bbox_inches='tight')
-    plt.close(fig2)
-
-
-def processing_task_fig(data_to_use, which_instruction_cond, which_list, save_name):
-    colors = palette
-    sns.set_palette(colors)
-
-    # setup the grid
-    fig2 = plt.figure(figsize=(30, 10))
-    gs = gridspec.GridSpec(1, 2)
-    crp_axis = fig2.add_subplot(gs[0, 0])
-    tf_axis = fig2.add_subplot(gs[0, 1])
-
-    # plot crps
-    data_filter = np.logical_and(data_to_use.instruction_condition == which_instruction_cond, data_to_use.list == which_list)
-    sns.factorplot(x="lag", y="crp", hue="task_condition", data=data_to_use.loc[data_filter, :], ax=crp_axis,
-                   hue_order=["Weight", "Animacy", "Scenario", "Movie", "Relational"], dodge=.35, units='subject')
-    crp_axis.set(xlabel="Lag", ylabel="Cond. Resp. Prob.", ylim=[0., .2], xticks=range(0, 11, 2), xticklabels=range(-5, 6, 2))
-    crp_axis.legend(title='Judgment Task', ncol=2, labelspacing=.2, handlelength=.01, loc=2)
-    plt.figure(fig2.number)
-    sns.despine()
-    crp_axis.annotate('A.', xy=(-.175, 1), xycoords='axes fraction')
-
-    # plot temp factors
-    data_filter = np.logical_and(np.logical_and(data_to_use.instruction_condition == which_instruction_cond, data_to_use.list == which_list), data_to_use.lag == 0)
-    sns.barplot(x="task_condition", y=tf_col, data=data_to_use.loc[data_filter, :], ax=tf_axis,
-                order=["Weight", "Animacy", "Scenario", "Movie", "Relational"])
-    tf_axis.set(xlabel="Judgment Task", ylabel="Z(TCE)", ylim=tf_lims)
     plt.axhline(linewidth=3, linestyle='--', color='k')
     plt.figure(fig2.number)
     sns.despine()
@@ -309,35 +393,6 @@ def sample_size_table(all_crps, results_dir):
     all_crps.loc[all_crps.recall_instruction_condition == 1, 'recall_instruction_condition'] = "Serial"
     all_crps.loc[all_crps.instruction_condition == 0, 'instruction_condition'] = "Explicit"
     all_crps.loc[all_crps.instruction_condition == 1, 'instruction_condition'] = "Incidental"
-
-
-    # WORKED BEFORE ADDING RECALL_INSTRUCTION_COND
-    # # get overall sample sizes
-    # n_tested = pd.crosstab(all_crps[np.logical_and(all_crps.lag == 0, all_crps.list == 0)].lag,
-    #                        [all_crps.instruction_condition, all_crps.task_condition])
-    #
-    # # get number excluded for being aware
-    # all_crps['aware_keep'] = all_crps.aware_check == 0
-    # n_aware = pd.crosstab(all_crps[np.logical_and(all_crps.lag == 0, all_crps.list == 0)].aware_check,
-    #                       [all_crps.instruction_condition, all_crps.task_condition])
-    #
-    # # get number excluded for poor recall
-    # all_crps['prec_keep'] = all_crps.prec > 0
-    # n_Prec = pd.crosstab(all_crps[np.logical_and(all_crps.lag == 0, all_crps.list == 0)].prec_keep,
-    #                      [all_crps.instruction_condition, all_crps.task_condition])
-    #
-    # # exclude the bad people
-    # data_filter = np.logical_and(all_crps.aware_keep, all_crps.prec_keep)
-    # all_crps = all_crps.loc[data_filter, :]
-    #
-    # # final analysed sample size
-    # n_included = pd.crosstab(all_crps[np.logical_and(all_crps.lag == 0, all_crps.list == 0)].lag,
-    #                          [all_crps.instruction_condition, all_crps.task_condition])
-    #
-    # # compute average prec
-    # prec_table = all_crps.loc[np.logical_and(all_crps.lag == 0, all_crps.list == 0), :]['prec'].groupby(
-    #     [all_crps.instruction_condition, all_crps.task_condition]).describe()
-
 
     # get overall sample sizes
     n_tested = pd.crosstab(all_crps[np.logical_and(all_crps.lag == 0, all_crps.list == 0)].lag,
@@ -465,226 +520,9 @@ def sample_size_table(all_crps, results_dir):
     return all_crps
 
 
-def E4_sample_size_table(all_crps, results_dir):
-
-    # take mean within subject, list, and lag to give each row an unique index (currently the inxexing resets for each
-    # subject, which makes it impossible to do crosstabs
-    # all_crps = all_crps.groupby(['subject', 'lag', 'list'], as_index=False).mean()
-    #
-    # # change conditions from numerical to verbal labelsls
-    # all_crps.loc[all_crps.task_condition == 0, 'task_condition'] = "Shoebox"
-    # all_crps.loc[all_crps.task_condition == 1, 'task_condition'] = "Movie"
-    # all_crps.loc[all_crps.task_condition == 2, 'task_condition'] = "Relational"
-    # all_crps.loc[all_crps.task_condition == 3, 'task_condition'] = "Scenario"
-    # all_crps.loc[all_crps.task_condition == 4, 'task_condition'] = "Animacy"
-    # all_crps.loc[all_crps.task_condition == 5, 'task_condition'] = "Weight"
-    # all_crps.loc[all_crps.task_condition == 6, 'task_condition'] = "Front Door"
-    # all_crps.loc[all_crps.task_condition == 7, 'task_condition'] = "Constant Size"
-    # all_crps.loc[all_crps.task_condition == 8, 'task_condition'] = "Varying Size"
-    # all_crps.loc[all_crps.recall_instruction_condition.isnull(), 'recall_instruction_condition'] = 'Free'
-    # all_crps.loc[all_crps.recall_instruction_condition == 0, 'recall_instruction_condition'] = "Free"
-    # all_crps.loc[all_crps.recall_instruction_condition == 1, 'recall_instruction_condition'] = "Serial"
-    # all_crps.loc[all_crps.instruction_condition == 0, 'instruction_condition'] = "Explicit"
-    # all_crps.loc[all_crps.instruction_condition == 1, 'instruction_condition'] = "Incidental"
-
-    # get overall sample sizes
-    n_tested = pd.crosstab(all_crps[np.logical_and(all_crps.lag == 0, all_crps.list == 0)].lag,
-                           [all_crps.instruction_condition, all_crps.task_condition, all_crps.recall_instruction_condition])
-
-    # get number excluded for being aware
-    all_crps['aware_keep'] = all_crps.aware_check == 0
-    n_aware = pd.crosstab(all_crps[np.logical_and(all_crps.lag == 0, all_crps.list == 0)].aware_check,
-                          [all_crps.instruction_condition, all_crps.task_condition, all_crps.recall_instruction_condition])
-
-    # get number excluded for poor recall
-    all_crps['prec_keep'] = all_crps.prec > 0
-    n_Prec = pd.crosstab(all_crps[np.logical_and(all_crps.lag == 0, all_crps.list == 0)].prec_keep,
-                         [all_crps.instruction_condition, all_crps.task_condition, all_crps.recall_instruction_condition])
-
-    # exclude the bad people
-    data_filter = np.logical_and(all_crps.aware_keep, all_crps.prec_keep)
-    all_crps = all_crps.loc[data_filter, :]
-
-    # final analysed sample size
-    n_included = pd.crosstab(all_crps[np.logical_and(all_crps.lag == 0, all_crps.list == 0)].lag,
-                             [all_crps.instruction_condition, all_crps.task_condition, all_crps.recall_instruction_condition])
-
-    # compute average prec
-    prec_table = all_crps.loc[np.logical_and(all_crps.lag == 0, all_crps.list == 0), :]['prec'].groupby(
-        [all_crps.instruction_condition, all_crps.task_condition, all_crps.recall_instruction_condition]).describe()
-
-    with open(results_dir + "E4_table_values.tex", "w") as text_file:
-        text_file.write('\\newcommand\\ConstantFree{%s}\n' % n_tested['Incidental']['Constant Size']['Free'][0])
-        text_file.write('\\newcommand\\ConstantSerial{%s}\n' % n_tested['Incidental']['Constant Size']['Serial'][0])
-        text_file.write('\\newcommand\\VaryingFree{%s}\n' % n_tested['Incidental']['Varying Size']['Free'][0])
-        text_file.write('\\newcommand\\VaryingSerial{%s}\n' % n_tested['Incidental']['Varying Size']['Serial'][0])
-
-        text_file.write('\\newcommand\\ConstantFreeAware{%s}\n' % n_aware['Incidental']['Constant Size']['Free'][1])
-        text_file.write('\\newcommand\\ConstantSerialAware{%s}\n' % n_aware['Incidental']['Constant Size']['Serial'][1])
-        text_file.write('\\newcommand\\VaryingFreeAware{%s}\n' % n_aware['Incidental']['Varying Size']['Free'][1])
-        text_file.write('\\newcommand\\VaryingSerialAware{%s}\n' % n_aware['Incidental']['Varying Size']['Serial'][1])
-
-        text_file.write('\\newcommand\\ConstantFreeIncluded{%s}\n' % n_included['Incidental']['Constant Size']['Free'][0])
-        text_file.write('\\newcommand\\ConstantSerialIncluded{%s}\n' % n_included['Incidental']['Constant Size']['Serial'][0])
-        text_file.write('\\newcommand\\VaryingFreeIncluded{%s}\n' % n_included['Incidental']['Varying Size']['Free'][0])
-        text_file.write('\\newcommand\\VaryingSerialIncluded{%s}\n' % n_included['Incidental']['Varying Size']['Serial'][0])
-
-
-
-
-
-
-        # text_file.write('\\newcommand\\shoeExplicitAware{--}\n' % n_aware['Explicit']['Shoebox'][1])
-        # text_file.write('\\newcommand\\shoeIncidentalAware{%s}\n' % n_aware['Incidental']['Shoebox'][1])
-        # text_file.write('\\newcommand\\doorExplicitAware{--}\n' % n_aware['Explicit']['Front Door'][1])
-        # text_file.write('\\newcommand\\doorIncidentalAware{%s}\n' % n_aware['Incidental']['Front Door'][1])
-        # text_file.write('\\newcommand\\MovieAware{%s}\n' % n_aware['Incidental']['Movie'][1])
-        # text_file.write('\\newcommand\\RelationalAware{%s}\n' % n_aware['Incidental']['Relational'][1])
-        # text_file.write('\\newcommand\\ScenarioAware{%s}\n' % n_aware['Incidental']['Scenario'][1])
-        # text_file.write('\\newcommand\\AnimacyAware{%s}\n' % n_aware['Incidental']['Animacy'][1])
-        # text_file.write('\\newcommand\\WeightAware{%s}\n' % n_aware['Incidental']['Weight'][1])
-        #
-        # # # commented out because there are no people with zero prec and the 1st entry thus does not exist and throws an error
-        # text_file.write('\\newcommand\\shoeExplicitZeroPrec{%s}\n' % n_Prec['Explicit']['Shoebox'][1])
-        # text_file.write('\\newcommand\\shoeIncidentalZeroPrec{%s}\n' % n_Prec['Incidental']['Shoebox'][1])
-        # text_file.write('\\newcommand\\doorExplicitZeroPrec{%s}\n' % n_Prec['Explicit']['Front Door'][1])
-        # text_file.write('\\newcommand\\doorIncidentalZeroPrec{%s}\n' % n_Prec['Incidental']['Front Door'][1])
-        # text_file.write('\\newcommand\\MovieZeroPrec{%s}\n' % n_Prec['Incidental']['Movie'][1])
-        # text_file.write('\\newcommand\\RelationalZeroPrec{%s}\n' % n_Prec['Incidental']['Relational'][1])
-        # text_file.write('\\newcommand\\ScenarioZeroPrec{%s}\n' % n_Prec['Incidental']['Scenario'][1])
-        # text_file.write('\\newcommand\\AnimacyZeroPrec{%s}\n' % n_Prec['Incidental']['Animacy'][1])
-        # text_file.write('\\newcommand\\WeightZeroPrec{%s}\n' % n_Prec['Incidental']['Weight'][1])
-        #
-        # text_file.write('\\newcommand\\shoeExplicitIncluded{%s}\n' % n_included['Explicit']['Shoebox'][0])
-        # text_file.write('\\newcommand\\shoeIncidentalIncluded{%s}\n' % n_included['Incidental']['Shoebox'][0])
-        # text_file.write('\\newcommand\\doorExplicitIncluded{%s}\n' % n_included['Explicit']['Front Door'][0])
-        # text_file.write('\\newcommand\\doorIncidentalIncluded{%s}\n' % n_included['Incidental']['Front Door'][0])
-        # text_file.write('\\newcommand\\MovieIncluded{%s}\n' % n_included['Incidental']['Movie'][0])
-        # text_file.write('\\newcommand\\RelationalIncluded{%s}\n' % n_included['Incidental']['Relational'][0])
-        # text_file.write('\\newcommand\\ScenarioIncluded{%s}\n' % n_included['Incidental']['Scenario'][0])
-        # text_file.write('\\newcommand\\AnimacyIncluded{%s}\n' % n_included['Incidental']['Animacy'][0])
-        # text_file.write('\\newcommand\\WeightIncluded{%s}\n' % n_included['Incidental']['Weight'][0])
-
-        # text_file.write(
-        #     '\\newcommand\\shoeExplicitPrec{{{:.2f} ({:.2f})}}\n'.format(prec_table["Explicit"]["Shoebox"]["mean"],
-        #                                                                  prec_table["Explicit"]["Shoebox"]["std"]))
-        # text_file.write(
-        #     '\\newcommand\\shoeIncidentalPrec{{{:.2f} ({:.2f})}}\n'.format(prec_table["Incidental"]["Shoebox"]["mean"],
-        #                                                                    prec_table["Incidental"]["Shoebox"]["std"]))
-        # text_file.write(
-        #     '\\newcommand\\doorExplicitPrec{{{:.2f} ({:.2f})}}\n'.format(prec_table["Explicit"]["Front Door"]["mean"],
-        #                                                                  prec_table["Explicit"]["Front Door"]["std"]))
-        # text_file.write('\\newcommand\\doorIncidentalPrec{{{:.2f} ({:.2f})}}\n'.format(
-        #     prec_table["Incidental"]["Front Door"]["mean"], prec_table["Incidental"]["Front Door"]["std"]))
-        #
-        # text_file.write(
-        #     '\\newcommand\\MoviePrec{{{:.2f} ({:.2f})}}\n'.format(prec_table["Incidental"]["Movie"]["mean"],
-        #                                                           prec_table["Incidental"]["Movie"]["std"]))
-        # text_file.write(
-        #     '\\newcommand\\RelationalPrec{{{:.2f} ({:.2f})}}\n'.format(prec_table["Incidental"]["Relational"]["mean"],
-        #                                                                prec_table["Incidental"]["Relational"]["std"]))
-        # text_file.write(
-        #     '\\newcommand\\ScenarioPrec{{{:.2f} ({:.2f})}}\n'.format(prec_table["Incidental"]["Scenario"]["mean"],
-        #                                                              prec_table["Incidental"]["Scenario"]["std"]))
-        # text_file.write(
-        #     '\\newcommand\\AnimacyPrec{{{:.2f} ({:.2f})}}\n'.format(prec_table["Incidental"]["Animacy"]["mean"],
-        #                                                             prec_table["Incidental"]["Animacy"]["std"]))
-
-
-        text_file.write(
-            '\\newcommand\\ConstantFreePrec{{{:.2f} ({:.2f})}}\n'.format(prec_table['mean'][0],
-                                                                         prec_table['std'][0]))
-        text_file.write(
-            '\\newcommand\\ConstantSerialPrec{{{:.2f} ({:.2f})}}\n'.format(prec_table['mean'][1],
-                                                                         prec_table['std'][1]))
-        text_file.write(
-            '\\newcommand\\VaryingFreePrec{{{:.2f} ({:.2f})}}\n'.format(prec_table['mean'][2],
-                                                                         prec_table['std'][2]))
-        text_file.write(
-            '\\newcommand\\VaryingSerialPrec{{{:.2f} ({:.2f})}}\n'.format(prec_table['mean'][3],
-                                                                         prec_table['std'][3]))
-    return #all_crps
-
-
-
-
-
-
-
-def which_item(recall, presented, dictionary):
-    """
-
-    :param recall: the string typed in by the subject
-    :param presented: a list of words seen by this subject so far in the experiment
-    :param dictionary: a list of strings we want to consider as possible intrusions
-    :return:
-    """
-
-    # does the recall exactly match a word that has been presented
-    seen, seen_where = self_term_search(recall.response, presented.word)
-    if seen:
-
-        # could be a PLI
-        intrusion = presented.iloc[seen_where].list != recall.list
-        if intrusion:
-            return -1.0 #todo: what are the standard matlab codes for ELI and PLI?
-
-        # its not a PLI, so find the serial pos
-        first_item = next(item for item, listnum in enumerate(presented.list) if listnum == recall.list)
-        serial_pos = seen_where - first_item + 1.0
-        return serial_pos
-
-    # does the recall exactly match a word in the dictionary
-    in_dict, where_in_dict = self_term_search(recall.response, dictionary)
-    if in_dict:
-        return -999.0 #todo: what are the standard matlab codes for ELI and PLI?
-
-    # is the response a nan?
-    if not type(recall.response) == str:
-        if type(recall.response) ==  unicode:
-            recall.response = str(recall.response)
-        elif np.isnan(recall.response):
-            return -1999.0 #todo: what are the standard matlab codes for ELI and PLI?
-
-    # does the string include non letters?
-    non_letter = not recall.response.isalpha()
-    if non_letter:
-        return -2999.0  # todo: what are the standard matlab codes for ELI and PLI?
-
-    # the closest match based on edit distance
-    recall = correct_spelling(recall, presented, dictionary)
-    return which_item(recall, presented, dictionary)
-
-
-def self_term_search(find_this, in_this):
-    for index, word in enumerate(in_this):
-        if word == find_this:
-            return True, index
-    return False, None
-
-
-def correct_spelling(recall, presented, dictionary):
-
-    # edit distance to each item in the pool and dictionary
-    dist_to_pool = damerau_levenshtein_distance_ndarray(recall.response, np.array(presented.word))
-    dist_to_dict = damerau_levenshtein_distance_ndarray(recall.response, np.array(dictionary))
-
-    # position in distribution of dist_to_dict
-    ptile = np.true_divide(sum(dist_to_dict <= np.amin(dist_to_pool)), dist_to_dict.size)
-
-    # decide if it is a word in the pool or an ELI
-    if ptile <= .1: #todo: make this a param
-        corrected_recall = presented.iloc[np.argmin(dist_to_pool)].word
-    else:
-        corrected_recall = dictionary[np.argmin(dist_to_dict)]
-    recall.response = corrected_recall
-    return recall
-
-
 def E4_fig(data_to_use, which_list, save_name):
-    colors = ["#000000", "#808080"]
-    sns.set_palette(colors)
-
+    # colors = ["#000000", "#808080"]
+    # sns.set_palette(colors)
 
     # setup the grid
     fig2 = plt.figure(figsize=(30, 10))
@@ -716,106 +554,123 @@ def E4_fig(data_to_use, which_list, save_name):
     plt.close(fig2)
 
 
-def get_spc(n_perms, remake_data_file, recalls_file, save_name):
+def e3fig(data, save_file):
+    # setup the grid
+    fig1 = plt.figure(figsize=(10, 6))
+    ax1 = plt.subplot2grid((2, 5), (0, 0), rowspan=1, colspan=1)
+    ax2 = plt.subplot2grid((2, 5), (0, 1), rowspan=1, colspan=1)
+    ax3 = plt.subplot2grid((2, 5), (0, 2), rowspan=1, colspan=1)
+    ax4 = plt.subplot2grid((2, 5), (0, 3), rowspan=1, colspan=1)
+    ax5 = plt.subplot2grid((2, 5), (0, 4), rowspan=1, colspan=1)
+    ax6 = plt.subplot2grid((2, 5), (1, 0), rowspan=1, colspan=5)
 
-    if os.path.isfile(save_name + "all_spc.pkl") and not remake_data_file:
-        all_spcs = pickle.load(open(save_name + "all_spc.pkl", "rb"))
-        return all_spcs
-    else:
-        num_cores = multiprocessing.cpu_count() / 2
-        with Parallel(n_jobs=num_cores, verbose=0) as POOL:
-            # os.system('scp cbcc.psy.msu.edu:~/code/experiments/Heal16implicit/HealEtal16implicit.data.pkl \'/Users/khealey/Library/Mobile Documents/com~apple~CloudDocs/lab/code/experiments/Heal16implicit\'')
-            recalls = pickle.load(open(
-                recalls_file,
-                "rb"))
+    # # load in the crp data
+    # data = pd.DataFrame.from_csv('~/Heal16implicit_analysis.csv')
+    3
+    # make the figure each axis at a time
 
-            # loop over subjects and lists, for each isolate their data
-            subjects = recalls.subject.unique()
-            included_subjects = []
-            n_subs = subjects.shape[0]
-            si = 0.  # for a progress counter
-            lists = [0]  #  doing only the first list. to do all lists change to: recalls.list.unique()
-            all_spcs = pd.DataFrame()
-            for s in subjects:
-                si += 1
-                print si / n_subs * 100.
-                for l in lists:
+    # AX1
+    cond1_data = data[(data['task_condition'] == 'Weight')]  # just the weight condition
 
-                    # get the data for just this list
-                    s_filter = recalls.subject == s
-                    l_filter = recalls.list == l
-                    cur_recalls = recalls.loc[s_filter & l_filter, :]
+    g = sns.factorplot(x="lag", y="crp", data=cond1_data, units='subject', ax=ax1)
+    ax1.set(ylim=[0., 0.15], xticks=[0, 5, 10], xticklabels=[-5, 0, 5])
+    ax1.xaxis.label.set_visible(False)
+    ax1.set(ylabel="Cond. Resp. Prob.")
+    plt.close()
 
-                    # skip if there were no recalls
-                    if cur_recalls.shape[0] == 0:
-                        continue
+    # AX2
+    cond2_data = data[(data['task_condition'] == "Animacy")]  # just the animacy condition
 
-                    # skip lists if subject reported being aware
-                    aware = cur_recalls.aware[0].values == 'yes'
-                    incidental = cur_recalls.instruction_condition[0] == 1
-                    if aware.any() and incidental:
-                        aware_check = 1
-                    else:
-                        aware_check = 0
+    sns.factorplot(x="lag", y="crp", data=cond2_data, units='subject', ax=ax2, color='#fc4f30')
+    ax2.set(ylim=[0., 0.15], xticks=[0, 5, 10], xticklabels=[-5, 0, 5])
+    ax2.xaxis.label.set_visible(False)
+    ax2.yaxis.label.set_visible(False)
+    ax2.yaxis.set_visible(False)
+    plt.close()
 
-                    # # compute overall recall
-                    rec_mat = cur_recalls.as_matrix(range(recalls.shape[1] - 2))  # format recalls matrix for use with rdf functions
-                    # prec = rdf.prec(listlen=16, recalls=rec_mat)
-                    # if prec <= 0.:
-                    #     continue
-                    # included_subjects.append(s)
-                    # # continue
-                    # 
-                    # # compute random temporal factor
-                    # tempf_z = rdf.relative_to_random(listlen=16, recalls=rec_mat, filter_ind=None, statistic_func=rdf.tem_fact,
-                    #                            data_col="tf", n_perms=n_perms, POOL=POOL)
-                    # tempf_z = pd.DataFrame.from_records(tempf_z)
-                    # all_tf_z = tempf_z.tf.mean()
+    # AX3
+    cond3_data = data[(data['task_condition'] == "Scenario")]  # just the scenario condition
 
-                    # compute crp
-                    spc = rdf.spc(listlen=16, recalls=rec_mat, filter_ind=None, allow_repeats=False, exclude_op=0)
-                    spc = pd.DataFrame.from_records(spc)
+    sns.factorplot(x="lag", y="crp", data=cond3_data, units='subject', ax=ax3, color='#e5ae38')
+    ax3.set(ylim=[0., 0.15], xticks=[0, 5, 10], xticklabels=[-5, 0, 5])
+    ax3.yaxis.label.set_visible(False)
+    ax3.yaxis.set_visible(False)
+    ax3.set(xlabel="Lag")
+    plt.close()
 
-                    # fanilize crp data: add list number, and condition ids
-                    spc['subject'] = pd.Series([s for x in range(len(spc.index))], index=spc.index)
-                    spc['list'] = pd.Series([l for x in range(len(spc.index))], index=spc.index)
-                    spc['instruction_condition'] = pd.Series([cur_recalls.instruction_condition[0] for x in range(len(spc.index))],
-                                                             index=spc.index)
-                    spc['recall_instruction_condition'] = pd.Series([cur_recalls.recall_instruction_condition[0] for x in range(len(spc.index))],
-                                                             index=spc.index)
-                    spc['task_condition'] = pd.Series([cur_recalls.task_condition[0] for x in range(len(spc.index))],
-                                                      index=spc.index)
-                    # spc['prec'] = pd.Series([prec for x in range(len(spc.index))],
-                    #                         index=spc.index)  # todo: this needlessly makes a copy of prec for each lag... this seems like a xarray issue
-                    # spc['all_tf_z'] = pd.Series([all_tf_z for x in range(len(spc.index))],
-                    #                           index=spc.index)
-                    spc["aware_check"] = pd.Series([aware_check for x in range(len(spc.index))],
-                                              index=spc.index)
-                    all_spcs = pd.concat([all_spcs, spc])
+    # AX4
+    cond4_data = data[(data['task_condition'] == "Movie")]  # just the movie condition
 
-            # change conditions from numerical to verbal labelsls
-            recalls.loc[recalls.task_condition == 0, 'task_condition'] = "Shoebox"
-            recalls.loc[recalls.task_condition == 1, 'task_condition'] = "Movie"
-            recalls.loc[recalls.task_condition == 2, 'task_condition'] = "Relational"
-            recalls.loc[recalls.task_condition == 3, 'task_condition'] = "Scenario"
-            recalls.loc[recalls.task_condition == 4, 'task_condition'] = "Animacy"
-            recalls.loc[recalls.task_condition == 5, 'task_condition'] = "Weight"
-            recalls.loc[recalls.task_condition == 6, 'task_condition'] = "Front Door"
-            recalls.loc[recalls.task_condition == 7, 'task_condition'] = "Constant Size"
-            recalls.loc[recalls.task_condition == 8, 'task_condition'] = "Varying Size"
-            recalls.loc[recalls.recall_instruction_condition == 0, 'recall_instruction_condition'] = "Free"
-            recalls.loc[recalls.recall_instruction_condition == 1, 'recall_instruction_condition'] = "Serial"
-            recalls.loc[recalls.instruction_condition == 0, 'instruction_condition'] = "Explicit"
-            recalls.loc[recalls.instruction_condition == 1, 'instruction_condition'] = "Incidental"
+    sns.factorplot(x="lag", y="crp", data=cond4_data, units='subject', ax=ax4, color='#6d904f')
+    ax4.set(ylim=[0., 0.15], xticks=[0, 5, 10], xticklabels=[-5, 0, 5])
+    ax4.xaxis.label.set_visible(False)
+    ax4.yaxis.set_visible(False)
+    plt.close()
 
-            # save data used in the anals
-            e1 = recalls.task_condition == "Shoebox"
-            e2 = recalls.task_condition == "Front Door"
-            e3 = np.logical_and(np.in1d(recalls.task_condition, ["Weight", "Animacy", "Scenario", "Movie", "Relational"]),
-                                recalls.instruction_condition == "Incidental")
-            used_data = np.logical_and(np.logical_or(e1, np.logical_or(e2, e3)), recalls.list == 0)  # in a used condition and the first list
-            recalls.loc[np.logical_and(np.in1d(recalls.subject, included_subjects), used_data)].to_csv(save_name + 'Heal16implicit_data.csv')
-            all_spcs.to_pickle(save_name + "all_spc.pkl")
+    # AX5
+    cond5_data = data[(data['task_condition'] == "Relational")]  # just the relational condition
 
-            print "Data Loaded!"
-            return all_spcs
+    sns.factorplot(x="lag", y="crp", data=cond5_data, units='subject', ax=ax5, color='#8b8b8b')
+    ax5.set(ylim=[0., 0.15], xticks=[0, 5, 10], xticklabels=[-5, 0, 5])
+    ax5.xaxis.label.set_visible(False)
+    ax5.yaxis.set_visible(False)
+    ax5.yaxis.label.set_visible(False)
+    plt.close()
+
+    # AX6
+    barplot_data = data  # already filtered no need of: [(data['task_condition'] >= 1) & (data['task_condition'] <= 5)]  # just the 5 conditions
+    barplot_data = barplot_data[(barplot_data['lag'] == 0)]  # only need one lag
+
+    g = sns.barplot(x="task_condition", y="all_tf_z", data=barplot_data, ax=ax6, order=["Weight", "Animacy", "Scenario", "Movie", "Relational"])
+    g.set_xticklabels(["Weight", "Animacy", "Moving Scenario", "Movie", "Relational"])
+    ax6.set(xlabel="Judgment Task", ylabel="Z(TCE)", ylim=[-.025, 0.2])
+    ax6.axhline(y=0, linewidth=1, linestyle='--', color='k')
+
+    # save the figure
+    plt.savefig(save_file + '.pdf')
+    plt.close()
+
+def spc_encoding_instructions_fig(to_plot, task, save_file):
+    # spc/pfr for list 0
+    fig = plt.figure(figsize=(4, 8))
+    gs = gridspec.GridSpec(2, 1)
+    spc_axis = fig.add_subplot(gs[0, 0])
+    e1_explicit_filter = np.logical_and(to_plot.instruction_condition == 'Explicit', to_plot.task_condition == task)
+    e1_implicit_filter = np.logical_and(to_plot.instruction_condition == 'Incidental', to_plot.task_condition == task)
+    cbcc.spc_plot(to_plot.spc[e1_explicit_filter], ax=spc_axis)
+    cbcc.spc_plot(to_plot.spc[e1_implicit_filter], ax=spc_axis)
+    plt.legend(['Explicit', "Incidental"])
+    spc_axis.set_xlabel('')
+    spc_axis.get_xaxis().set_ticklabels([])
+    pfr_axis = fig.add_subplot(gs[1, 0])
+    cbcc.pfr_plot(to_plot.pfr[e1_explicit_filter], ax=pfr_axis)
+    cbcc.pfr_plot(to_plot.pfr[e1_implicit_filter], ax=pfr_axis)
+    pfr_axis.set_ylim(0, 0.5)
+    plt.savefig(save_file)
+    plt.close()
+
+def e3_spc_fig(to_plot, save_file):
+    # spc/pfr for list 0
+    fig = plt.figure(figsize=(9, 8))
+    gs = gridspec.GridSpec(2, 5)
+    instruction_cond_filter = to_plot.instruction_condition == "Incidental"
+    task_list = ["Weight", "Animacy", "Scenario", "Movie", "Relational"]
+    task_col = 0
+    for task in task_list:
+        spc_axis = fig.add_subplot(gs[0, task_col])
+        cbcc.spc_plot(to_plot.spc[np.logical_and(instruction_cond_filter, to_plot.task_condition == task)], ax=spc_axis)
+        spc_axis.set_title(task)
+        spc_axis.set_xlabel('')
+        spc_axis.get_xaxis().set_ticklabels([])
+        pfr_axis = fig.add_subplot(gs[1, task_col])
+        cbcc.pfr_plot(to_plot.pfr[np.logical_and(instruction_cond_filter, to_plot.task_condition == task)], ax=pfr_axis)
+        pfr_axis.set_ylim(0, 0.5)
+        if task_col > 0:
+            spc_axis.set_ylabel('')
+            spc_axis.get_yaxis().set_ticklabels([])
+            pfr_axis.set_ylabel('')
+            pfr_axis.get_yaxis().set_ticklabels([])
+        task_col += 1
+    plt.savefig(save_file)
+    plt.close()
+
