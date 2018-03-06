@@ -651,7 +651,7 @@ def spc_encoding_instructions_fig(to_plot, task, save_file):
 
 def e3_spc_fig(to_plot, save_file):
     # spc/pfr for list 0
-    fig = plt.figure(figsize=(9, 8))
+    fig = plt.figure(figsize=(9, 5))
     gs = gridspec.GridSpec(2, 5)
     instruction_cond_filter = to_plot.instruction_condition == "Incidental"
     task_list = ["Weight", "Animacy", "Scenario", "Movie", "Relational"]

@@ -56,39 +56,42 @@ plt.close()
 
 ####### make E3 Figures
 
-# spc/pfr for list 0
+
 plt.style.use('~/code/py_modules/cbcc_tools/plotting/stylesheets/cbcc_bw.mplstyle')
 
-
-
+# spc/pfr
+rcParams['lines.linewidth'] = 2
+rcParams['lines.markersize'] = 4
 af.e3_spc_fig(list0, results_dir + "E3_spc_list1")
 af.e3_spc_fig(list1, results_dir + "E3_spc_list2")
 
+# list 0 crp
+which_list = 0
+instruction_cond_filter = all_crps.instruction_condition == "Incidental"
+task_cond_filter = all_crps.task_condition.isin(["Movie", "Relational", "Scenario", "Animacy", "Weight"])
+recall_cond_filter = all_crps.recall_instruction_condition == "Free"
+lag_filter = all_crps.lag.abs() <= 5
+list_filter = all_crps.list == which_list
+data_filter = np.logical_and(instruction_cond_filter,
+                             np.logical_and(task_cond_filter,
+                                            np.logical_and(lag_filter, list_filter)))
+data_to_use = all_crps.loc[data_filter, :]
+af.e3fig(data_to_use, results_dir + "E3_crp_list1")
+
+# list 1 crp
+which_list = 1
+instruction_cond_filter = all_crps.instruction_condition == "Incidental"
+task_cond_filter = all_crps.task_condition.isin(["Movie", "Relational", "Scenario", "Animacy", "Weight"])
+recall_cond_filter = all_crps.recall_instruction_condition == "Free"
+lag_filter = all_crps.lag.abs() <= 5
+list_filter = all_crps.list == which_list
+data_filter = np.logical_and(instruction_cond_filter,
+                             np.logical_and(task_cond_filter,
+                                            np.logical_and(lag_filter, list_filter)))
+data_to_use = all_crps.loc[data_filter, :]
+af.e3fig(data_to_use, results_dir + "E3_crp_list2")
 
 
-# # spc/pfr for list 0
-# fig = plt.figure(figsize=(9, 8))
-# gs = gridspec.GridSpec(2, 5)
-# instruction_cond_filter = to_plot.instruction_condition == "Incidental"
-# task_list = ["Weight", "Animacy",  "Scenario", "Movie", "Relational"]
-# task_col = 0
-# for task in task_list:
-#     spc_axis = fig.add_subplot(gs[0, task_col])
-#     cbcc.spc_plot(to_plot.spc[np.logical_and(instruction_cond_filter, to_plot.task_condition == task)], ax=spc_axis)
-#     spc_axis.set_title(task)
-#     spc_axis.set_xlabel('')
-#     spc_axis.get_xaxis().set_ticklabels([])
-#     pfr_axis = fig.add_subplot(gs[1, task_col])
-#     cbcc.pfr_plot(to_plot.pfr[np.logical_and(instruction_cond_filter, to_plot.task_condition == task)], ax=pfr_axis)
-#     pfr_axis.set_ylim(0, 0.5)
-#     if task_col > 0:
-#         spc_axis.set_ylabel('')
-#         spc_axis.get_yaxis().set_ticklabels([])
-#         pfr_axis.set_ylabel('')
-#         pfr_axis.get_yaxis().set_ticklabels([])
-#     task_col += 1
-# plt.savefig(results_dir + "E3_spc_list1")
-# plt.close()
 
 
 
@@ -175,30 +178,8 @@ af.encoding_instruct_fig(data_to_use, which_list, results_dir + "E2_crp_list2")
 #
 #
 #
-# # make E3 Figures
-# which_list = 0
-# instruction_cond_filter = all_crps.instruction_condition == "Incidental"
-# task_cond_filter = all_crps.task_condition.isin(["Movie", "Relational", "Scenario", "Animacy", "Weight"])
-# recall_cond_filter = all_crps.recall_instruction_condition == "Free"
-# lag_filter = all_crps.lag.abs() <= 5
-# list_filter = all_crps.list == which_list
-# data_filter = np.logical_and(instruction_cond_filter,
-#                              np.logical_and(task_cond_filter,
-#                                             np.logical_and(lag_filter, list_filter)))
-# data_to_use = all_crps.loc[data_filter, :]
-# af.e3fig(data_to_use, results_dir + "E3_crp_list1")
-#
-# which_list = 1
-# instruction_cond_filter = all_crps.instruction_condition == "Incidental"
-# task_cond_filter = all_crps.task_condition.isin(["Movie", "Relational", "Scenario", "Animacy", "Weight"])
-# recall_cond_filter = all_crps.recall_instruction_condition == "Free"
-# lag_filter = all_crps.lag.abs() <= 5
-# list_filter = all_crps.list == which_list
-# data_filter = np.logical_and(instruction_cond_filter,
-#                              np.logical_and(task_cond_filter,
-#                                             np.logical_and(lag_filter, list_filter)))
-# data_to_use = all_crps.loc[data_filter, :]
-# af.e3fig(data_to_use, results_dir + "E3_crp_list2")
+# make E3 Figures
+
 #
 #
 #
