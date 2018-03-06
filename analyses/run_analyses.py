@@ -11,14 +11,14 @@ results_dir = "../dissemination/manuscript/jml/second_submission/figures/"
 dict_path = "/Users/khealey/code/py_modules/cbcc_tools/wordpool_files/websters_dict.txt"
 
 # number of permutations for permutations tests
-n_perms = 1
+n_perms = 1000
 
 # load or make the recall matrix
 recalls = af.make_psiturk_recall_matrix(remake_data_file=False, dict_path=dict_path,
                                         save_file='HealEtal16implicit.recalls')
 
 # load or compute the recall dynamics
-all_crps = af.load_the_data(n_perms=n_perms, remake_data_file=False,
+all_crps = af.load_the_data(n_perms=n_perms, remake_data_file=True,
                             recalls_file='HealEtal16implicit.recalls.pkl', save_name=results_dir)
 
 # convert to xarray to make compatible with cbcc_tools --- then run RDF analyses
