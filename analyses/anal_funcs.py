@@ -838,7 +838,7 @@ def corr_fig(all_crps, save_name):
     ax1 = extended(ax1, np.unique(x), np.poly1d(np.polyfit(x, y, 1))(np.unique(x)), color='black',
                    linestyle='dashed', markersize=0)
 
-    ax1.text(.25, .02, '$\mathit{r}(%d) = %.2f, \mathit{p} = %.2f$' % (len(x), r_value, p_value), fontsize=14)
+    ax1.text(.25, .02, '$\mathit{r}(%d) = %.2f, \mathit{p} = %.2f$' % (len(x)-2, r_value, p_value), fontsize=14)
     # "%s is %d years old." % (name, age)
 
     # Save the figure
