@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt
 from matplotlib import gridspec
 from matplotlib import rcParams
 from cbcc_tools.beh_anal import recall_dynamics as cbcc
+import seaborn as sns
 
 # params for data prep and saving results
 results_dir = "../dissemination/manuscript/jml/second_submission/figures/"
@@ -149,6 +150,17 @@ all_crps = af.sample_size_table(all_crps, results_dir)
 #                                             np.logical_and(lag_filter, list_filter)))
 # data_to_use = all_crps.loc[data_filter, :]
 # af.e3fig(data_to_use, results_dir + "E3_crp_list2")
+
+
+##### E4 figs
+
+# spc/pfr for list 0
+af.e4_spc_fig(list0, results_dir + "E4_spc_list1")
+af.e4_spc_fig(list1, results_dir + "E4_spc_list2")
+
+af.e4_crp_fig(all_crps, results_dir + "E4_crp_list1")
+
+
 
 
 

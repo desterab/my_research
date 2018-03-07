@@ -698,3 +698,122 @@ def e3_spc_fig(to_plot, save_file):
     plt.savefig(save_file)
     plt.close()
 
+def e4_spc_fig(to_plot, save_file):
+    fig = plt.figure(figsize=(2.8, 4))  # 1 col width = 2.8
+    gs = gridspec.GridSpec(2, 1)
+    spc_axis = fig.add_subplot(gs[0, 0])
+    constant_free_filter = np.logical_and(to_plot.recall_instruction_condition == "Free",
+                                          np.logical_and(to_plot.instruction_condition == 'Incidental',
+                                                         to_plot.task_condition == "Constant Size"))
+    varying_free_filter = np.logical_and(to_plot.recall_instruction_condition == "Free",
+                                         np.logical_and(to_plot.instruction_condition == 'Incidental',
+                                                        to_plot.task_condition == "Varying Size"))
+
+    constant_serial_filter = np.logical_and(to_plot.recall_instruction_condition == "Serial",
+                                            np.logical_and(to_plot.instruction_condition == 'Incidental',
+                                                           to_plot.task_condition == "Constant Size"))
+    varying_serial_filter = np.logical_and(to_plot.recall_instruction_condition == "Serial",
+                                           np.logical_and(to_plot.instruction_condition == 'Incidental',
+                                                          to_plot.task_condition == "Varying Size"))
+    cbcc.spc_plot(to_plot.spc[constant_free_filter], ax=spc_axis, color='#000000')
+    cbcc.spc_plot(to_plot.spc[varying_free_filter], ax=spc_axis, color='#000000')
+    spc_axis.lines[-1].set_marker('s')
+    cbcc.spc_plot(to_plot.spc[constant_serial_filter], ax=spc_axis, color='#808080')
+    # spc_axis.lines[-1].set_color('#808080')
+    cbcc.spc_plot(to_plot.spc[varying_serial_filter], ax=spc_axis, color='#808080')
+    spc_axis.lines[-1].set_marker('s')
+    # spc_axis.lines[-1].set_color('#808080')
+    plt.legend(['Constant-Free', "Varying-Free", 'Constant-Serial', "Varying-Serial"])
+    spc_axis.set_xlabel('')
+    spc_axis.get_xaxis().set_ticklabels([])
+    spc_axis.annotate('A.', xy=(-.155, 1), xycoords='axes fraction', weight='bold')
+    pfr_axis = fig.add_subplot(gs[1, 0])
+    cbcc.pfr_plot(to_plot.pfr[constant_free_filter], ax=pfr_axis, color='#000000')
+    cbcc.pfr_plot(to_plot.pfr[varying_free_filter], ax=pfr_axis, color='#000000')
+    pfr_axis.lines[-1].set_marker('s')
+    # pfr_axis.lines[-1].set_color('#000000')
+    cbcc.pfr_plot(to_plot.pfr[constant_serial_filter], ax=pfr_axis, color='#808080')
+    # pfr_axis.lines[-1].set_color('#808080')
+    cbcc.pfr_plot(to_plot.pfr[varying_serial_filter], ax=pfr_axis, color='#808080')
+    pfr_axis.lines[-1].set_marker('s')
+    # pfr_axis.lines[-1].set_color('#808080')
+    pfr_axis.set_ylim(0, 0.5)
+    pfr_axis.annotate('B.', xy=(-.155, 1), xycoords='axes fraction', weight='bold')
+    plt.savefig(save_file)
+    plt.close()
+
+def e4_crp_fig(all_crps, save_file):
+    data_filter = np.logical_or(all_crps.task_condition == "Constant Size", all_crps.task_condition == "Varying Size")
+    data_to_use = all_crps.loc[data_filter, :]
+
+    data_filter = np.logical_and(data_to_use.recall_instruction_condition == "Free", data_to_use.lag.abs() <= 5)
+    free_data = data_to_use.loc[data_filter, :]
+
+    data_filter = np.logical_and(data_to_use.recall_instruction_condition == "Serial", data_to_use.lag.abs() <= 5)
+    serial_data = data_to_use.loc[data_filter, :]
+
+    # setup the grid
+    fig2 = plt.figure(figsize=(5.5, 4.5))
+    gs = gridspec.GridSpec(2, 2)
+    free_crp_axis = fig2.add_subplot(gs[0, 0])
+    free_tf_axis = fig2.add_subplot(gs[0, 1])
+    serial_crp_axis = fig2.add_subplot(gs[1, 0])
+    serial_tf_axis = fig2.add_subplot(gs[1, 1])
+
+    # plot crps
+    data_filter = data_to_use.list == 0
+    rcParams['lines.linewidth'] = 1
+    rcParams['lines.markersize'] = 0
+
+    g = sns.factorplot(x="lag", y="crp", hue="task_condition", data=free_data.loc[data_filter, :],
+                       hue_order=["Constant Size", "Varying Size"], dodge=.25, units='subject', ax=free_crp_axis)
+    free_crp_axis.set(xlabel="Lag", ylabel="Cond. Resp. Prob.", ylim=[0., .2], xticks=range(0, 11, 2),
+                      xticklabels=range(-5, 6, 2))
+    free_crp_axis.legend(title='Judgment Task', ncol=2, labelspacing=.2, handlelength=.01, loc=2)
+    plt.figure(fig2.number)
+    sns.despine()
+    free_crp_axis.annotate('A.', xy=(-.21, 1), xycoords='axes fraction', weight='bold')
+    free_crp_axis.set_xlabel('')
+    free_crp_axis.get_xaxis().set_ticklabels([])
+
+    rcParams['lines.marker'] = 's'
+    g2 = sns.factorplot(x="lag", y="crp", hue="task_condition", data=serial_data.loc[data_filter, :],
+                        hue_order=["Constant Size", "Varying Size"], dodge=.25, units='subject', ax=serial_crp_axis)
+    serial_crp_axis.set(xlabel="Lag", ylabel="Cond. Resp. Prob.", ylim=[0., .2], xticks=range(0, 11, 2),
+                      xticklabels=range(-5, 6, 2))
+    serial_crp_axis.legend().set_visible(False) #(title='Judgment Task', ncol=2, labelspacing=.2, handlelength=.01, loc=2)
+    plt.figure(fig2.number)
+    sns.despine()
+    serial_crp_axis.annotate('C.', xy=(-.21, 1), xycoords='axes fraction', weight='bold')
+
+    # plot temp factors
+    data_filter = np.logical_and(serial_data.list == 0, serial_data.lag == 0)
+    g = sns.barplot(x="task_condition", y=tf_col, data=serial_data.loc[data_filter, :],
+                    order=["Constant Size", "Varying Size"], ax=serial_tf_axis)  #
+    serial_tf_axis.set(xlabel="Judgment Task", ylabel="Z(TCE)", ylim=tf_lims)
+    serial_tf_axis.lines[0].set_color('grey')
+    serial_tf_axis.lines[1].set_color('black')
+    plt.axhline(linewidth=1, linestyle='--', color='k')
+    plt.figure(fig2.number)
+    sns.despine()
+    serial_tf_axis.annotate('D.', xy=(-.19, 1), xycoords='axes fraction', weight='bold')
+
+
+    # plot temp factors
+    data_filter = np.logical_and(free_data.list == 0, free_data.lag == 0)
+    g = sns.barplot(x="task_condition", y=tf_col, data=free_data.loc[data_filter, :],
+                    order=["Constant Size", "Varying Size"], ax=free_tf_axis)  #
+    free_tf_axis.set(xlabel="Judgment Task", ylabel="Z(TCE)", ylim=tf_lims)
+    free_tf_axis.lines[0].set_color('grey')
+    free_tf_axis.lines[1].set_color('black')
+    plt.axhline(linewidth=1, linestyle='--', color='k')
+    plt.figure(fig2.number)
+    sns.despine()
+    free_tf_axis.annotate('B.', xy=(-.19, 1), xycoords='axes fraction', weight='bold')
+    free_tf_axis.set_xlabel('')
+    free_tf_axis.get_xaxis().set_ticklabels([])
+
+
+
+    fig2.savefig(save_file + '.pdf', bbox_inches='tight')
+    plt.close(fig2)
