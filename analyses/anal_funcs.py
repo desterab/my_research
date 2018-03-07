@@ -1,5 +1,4 @@
 import used_recall_dynamics as rdf
-from cbcc_tools.beh_anal import recall_dynamics as cbcc
 import pickle
 import pandas as pd
 import seaborn as sns
@@ -11,6 +10,9 @@ from joblib import Parallel
 import multiprocessing
 from pyxdameraulevenshtein import damerau_levenshtein_distance_ndarray
 import xarray as xr
+from matplotlib import rcParams
+from cbcc_tools.beh_anal import recall_dynamics as cbcc
+from cycler import cycler
 
 # figure style params
 sns.set_style("ticks")
@@ -87,7 +89,7 @@ def make_psiturk_recall_matrix(remake_data_file, dict_path, save_file):
 
         # somehow, there seems to be some uniqueid's that are have two of each list.... just move on if that is the case
         if cur_items.shape[0] != 32 and cur_items.shape[0] != 16:
-            print "DUP!"
+            print ("DUP!")
             continue
 
         # loop over this subject's lists
@@ -207,7 +209,7 @@ def load_the_data(n_perms, remake_data_file, recalls_file, save_name):
             all_crps = pd.DataFrame()
             for s in subjects:
                 si += 1
-                print si / n_subs * 100.
+                print (si / n_subs * 100.)
                 for l in lists:
 
                     # get the data for just this list
@@ -289,7 +291,7 @@ def load_the_data(n_perms, remake_data_file, recalls_file, save_name):
             recalls.loc[np.logical_and(np.in1d(recalls.subject, included_subjects), used_data)].to_csv(save_name + 'Heal16implicit_data.csv')
             all_crps.to_pickle(save_name + "all_crps.pkl")
 
-            print "Data Loaded!"
+            print ("Data Loaded!")
             return all_crps
 
 
@@ -343,13 +345,15 @@ def encoding_instruct_fig(data_to_use, which_list, save_name):
     # sns.set_palette(colors)
 
     # setup the grid
-    fig2 = plt.figure(figsize=(8, 3))
+    fig2 = plt.figure(figsize=(5.5, 2.25))
     gs = gridspec.GridSpec(1, 2)
     crp_axis = fig2.add_subplot(gs[0, 0])
     tf_axis = fig2.add_subplot(gs[0, 1])
 
     # plot crps
     data_filter = data_to_use.list == which_list
+    rcParams['lines.linewidth'] = 1
+    rcParams['lines.markersize'] = 0
     g = sns.factorplot(x="lag", y="crp", hue="instruction_condition", data=data_to_use.loc[data_filter, :],
                    hue_order=["Explicit", "Incidental"], dodge=.25, units='subject', ax=crp_axis)
     crp_axis.set(xlabel="Lag", ylabel="Cond. Resp. Prob.", ylim=[0., .2], xticks=range(0, 11, 2),
@@ -357,16 +361,18 @@ def encoding_instruct_fig(data_to_use, which_list, save_name):
     crp_axis.legend(title='Encoding Instructions', ncol=2, labelspacing=.2, handlelength=.01, loc=2)
     plt.figure(fig2.number)
     sns.despine()
-    crp_axis.annotate('A.', xy=(-.175, 1), xycoords='axes fraction')
+    crp_axis.annotate('A.', xy=(-.21, 1), xycoords='axes fraction', weight='bold')
 
     # plot temp factors
     data_filter = np.logical_and(data_to_use.list == which_list, data_to_use.lag == 0)
     g = sns.barplot(x="instruction_condition", y=tf_col, data=data_to_use.loc[data_filter, :], order=["Explicit", "Incidental"], ax=tf_axis) #
     tf_axis.set(xlabel="Encoding Instructions", ylabel="Z(TCE)", ylim=tf_lims)
-    plt.axhline(linewidth=3, linestyle='--', color='k')
+    tf_axis.lines[0].set_color('grey')
+    tf_axis.lines[1].set_color('black')
+    plt.axhline(linewidth=1, linestyle='--', color='k')
     plt.figure(fig2.number)
     sns.despine()
-    tf_axis.annotate('B.', xy=(-.175, 1), xycoords='axes fraction')
+    tf_axis.annotate('B.', xy=(-.19, 1), xycoords='axes fraction', weight='bold')
 
     fig2.savefig(save_name + '.pdf', bbox_inches='tight')
     plt.close(fig2)
@@ -556,7 +562,7 @@ def E4_fig(data_to_use, which_list, save_name):
 
 def e3fig(data, save_file):
     # setup the grid
-    fig1 = plt.figure(figsize=(10, 6))
+    fig1 = plt.figure(figsize=(5.5, 3))
     ax1 = plt.subplot2grid((2, 5), (0, 0), rowspan=1, colspan=1)
     ax2 = plt.subplot2grid((2, 5), (0, 1), rowspan=1, colspan=1)
     ax3 = plt.subplot2grid((2, 5), (0, 2), rowspan=1, colspan=1)
@@ -564,9 +570,10 @@ def e3fig(data, save_file):
     ax5 = plt.subplot2grid((2, 5), (0, 4), rowspan=1, colspan=1)
     ax6 = plt.subplot2grid((2, 5), (1, 0), rowspan=1, colspan=5)
 
-    # # load in the crp data
-    # data = pd.DataFrame.from_csv('~/Heal16implicit_analysis.csv')
-    3
+    rcParams['lines.linewidth'] = 0.6
+    rcParams['lines.markersize'] = 0
+    rcParams['axes.prop_cycle'] = cycler('color', ['#000000', '#000000', '#000000', '#000000', '#000000'])
+
     # make the figure each axis at a time
 
     # AX1
@@ -581,40 +588,46 @@ def e3fig(data, save_file):
     # AX2
     cond2_data = data[(data['task_condition'] == "Animacy")]  # just the animacy condition
 
-    sns.factorplot(x="lag", y="crp", data=cond2_data, units='subject', ax=ax2, color='#fc4f30')
+    sns.factorplot(x="lag", y="crp", data=cond2_data, units='subject', ax=ax2, color='#000000')
     ax2.set(ylim=[0., 0.15], xticks=[0, 5, 10], xticklabels=[-5, 0, 5])
-    ax2.xaxis.label.set_visible(False)
+    ax2.get_yaxis().set_ticklabels([])
     ax2.yaxis.label.set_visible(False)
-    ax2.yaxis.set_visible(False)
+    ax2.xaxis.label.set_visible(False)
+    #ax2.yaxis.set_visible(False)
     plt.close()
 
     # AX3
     cond3_data = data[(data['task_condition'] == "Scenario")]  # just the scenario condition
 
-    sns.factorplot(x="lag", y="crp", data=cond3_data, units='subject', ax=ax3, color='#e5ae38')
+    sns.factorplot(x="lag", y="crp", data=cond3_data, units='subject', ax=ax3, color='#000000')
     ax3.set(ylim=[0., 0.15], xticks=[0, 5, 10], xticklabels=[-5, 0, 5])
+    ax3.get_yaxis().set_ticklabels([])
     ax3.yaxis.label.set_visible(False)
-    ax3.yaxis.set_visible(False)
+    # ax3.xaxis.label.set_visible(False)
+    #ax2.yaxis.set_visible(False)
     ax3.set(xlabel="Lag")
     plt.close()
 
     # AX4
     cond4_data = data[(data['task_condition'] == "Movie")]  # just the movie condition
 
-    sns.factorplot(x="lag", y="crp", data=cond4_data, units='subject', ax=ax4, color='#6d904f')
+    sns.factorplot(x="lag", y="crp", data=cond4_data, units='subject', ax=ax4, color='#000000')
     ax4.set(ylim=[0., 0.15], xticks=[0, 5, 10], xticklabels=[-5, 0, 5])
+    ax4.get_yaxis().set_ticklabels([])
+    ax4.yaxis.label.set_visible(False)
     ax4.xaxis.label.set_visible(False)
-    ax4.yaxis.set_visible(False)
+    #ax2.yaxis.set_visible(False)
     plt.close()
 
     # AX5
     cond5_data = data[(data['task_condition'] == "Relational")]  # just the relational condition
 
-    sns.factorplot(x="lag", y="crp", data=cond5_data, units='subject', ax=ax5, color='#8b8b8b')
+    sns.factorplot(x="lag", y="crp", data=cond5_data, units='subject', ax=ax5, color='#000000')
     ax5.set(ylim=[0., 0.15], xticks=[0, 5, 10], xticklabels=[-5, 0, 5])
-    ax5.xaxis.label.set_visible(False)
-    ax5.yaxis.set_visible(False)
+    ax5.get_yaxis().set_ticklabels([])
     ax5.yaxis.label.set_visible(False)
+    ax5.xaxis.label.set_visible(False)
+    #ax2.yaxis.set_visible(False)
     plt.close()
 
     # AX6
@@ -623,8 +636,12 @@ def e3fig(data, save_file):
 
     g = sns.barplot(x="task_condition", y="all_tf_z", data=barplot_data, ax=ax6, order=["Weight", "Animacy", "Scenario", "Movie", "Relational"])
     g.set_xticklabels(["Weight", "Animacy", "Moving Scenario", "Movie", "Relational"])
+    for line, l in enumerate(ax6.lines):
+        ax6.lines[line].set_color('grey')
     ax6.set(xlabel="Judgment Task", ylabel="Z(TCE)", ylim=[-.025, 0.2])
     ax6.axhline(y=0, linewidth=1, linestyle='--', color='k')
+
+
 
     # save the figure
     plt.savefig(save_file + '.pdf')
@@ -632,7 +649,7 @@ def e3fig(data, save_file):
 
 def spc_encoding_instructions_fig(to_plot, task, save_file):
     # spc/pfr for list 0
-    fig = plt.figure(figsize=(4, 8))
+    fig = plt.figure(figsize=(2.8, 4))  # 1 col width = 2.8
     gs = gridspec.GridSpec(2, 1)
     spc_axis = fig.add_subplot(gs[0, 0])
     e1_explicit_filter = np.logical_and(to_plot.instruction_condition == 'Explicit', to_plot.task_condition == task)
@@ -642,17 +659,22 @@ def spc_encoding_instructions_fig(to_plot, task, save_file):
     plt.legend(['Explicit', "Incidental"])
     spc_axis.set_xlabel('')
     spc_axis.get_xaxis().set_ticklabels([])
+    spc_axis.annotate('A.', xy=(-.155, 1), xycoords='axes fraction', weight='bold')
     pfr_axis = fig.add_subplot(gs[1, 0])
     cbcc.pfr_plot(to_plot.pfr[e1_explicit_filter], ax=pfr_axis)
     cbcc.pfr_plot(to_plot.pfr[e1_implicit_filter], ax=pfr_axis)
     pfr_axis.set_ylim(0, 0.5)
+    pfr_axis.annotate('B.', xy=(-.155, 1), xycoords='axes fraction', weight='bold')
     plt.savefig(save_file)
     plt.close()
 
 def e3_spc_fig(to_plot, save_file):
     # spc/pfr for list 0
-    fig = plt.figure(figsize=(9, 5))
+    fig = plt.figure(figsize=(5.5, 2))
     gs = gridspec.GridSpec(2, 5)
+    rcParams['lines.linewidth'] = 1
+    rcParams['lines.markersize'] = 1
+
     instruction_cond_filter = to_plot.instruction_condition == "Incidental"
     task_list = ["Weight", "Animacy", "Scenario", "Movie", "Relational"]
     task_col = 0
@@ -665,6 +687,8 @@ def e3_spc_fig(to_plot, save_file):
         pfr_axis = fig.add_subplot(gs[1, task_col])
         cbcc.pfr_plot(to_plot.pfr[np.logical_and(instruction_cond_filter, to_plot.task_condition == task)], ax=pfr_axis)
         pfr_axis.set_ylim(0, 0.5)
+        spc_axis.set_ylabel('Recall Prob.')
+        pfr_axis.set_ylabel('Prob. $1^{st}$ Recall')
         if task_col > 0:
             spc_axis.set_ylabel('')
             spc_axis.get_yaxis().set_ticklabels([])
