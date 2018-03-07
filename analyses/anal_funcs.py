@@ -13,6 +13,7 @@ import xarray as xr
 from matplotlib import rcParams
 from cbcc_tools.beh_anal import recall_dynamics as cbcc
 from cycler import cycler
+from scipy import stats
 
 # figure style params
 sns.set_style("ticks")
@@ -30,6 +31,10 @@ palette =["#be5104",
 # params for temporal factor plots
 tf_lims = [-.025, .2]
 tf_col ='all_tf_z'
+
+one_col = 3.5
+two_col = one_col*2
+base_height = 2.5
 
 
 def make_psiturk_recall_matrix(remake_data_file, dict_path, save_file):
@@ -345,7 +350,7 @@ def encoding_instruct_fig(data_to_use, which_list, save_name):
     # sns.set_palette(colors)
 
     # setup the grid
-    fig2 = plt.figure(figsize=(5.5, 2.25))
+    fig2 = plt.figure(figsize=(two_col, two_col/2))
     gs = gridspec.GridSpec(1, 2)
     crp_axis = fig2.add_subplot(gs[0, 0])
     tf_axis = fig2.add_subplot(gs[0, 1])
@@ -526,43 +531,9 @@ def sample_size_table(all_crps, results_dir):
     return all_crps
 
 
-def E4_fig(data_to_use, which_list, save_name):
-    # colors = ["#000000", "#808080"]
-    # sns.set_palette(colors)
-
-    # setup the grid
-    fig2 = plt.figure(figsize=(30, 10))
-    gs = gridspec.GridSpec(1, 2)
-    crp_axis = fig2.add_subplot(gs[0, 0])
-    tf_axis = fig2.add_subplot(gs[0, 1])
-
-    # plot crps
-    data_filter = data_to_use.list == which_list
-    g = sns.factorplot(x="lag", y="crp", hue="recall_instruction_condition", data=data_to_use.loc[data_filter, :],
-                   hue_order=["Free", "Serial"], dodge=.25, units='subject', ax=crp_axis)
-    crp_axis.set(xlabel="Lag", ylabel="Cond. Resp. Prob.", ylim=[0., .2], xticks=range(0, 11, 2),
-                 xticklabels=range(-5, 6, 2))
-    crp_axis.legend(title='Recall Instructions', ncol=2, labelspacing=.2, handlelength=.01, loc=2)
-    plt.figure(fig2.number)
-    sns.despine()
-    crp_axis.annotate('A.', xy=(-.175, 1), xycoords='axes fraction')
-
-    # plot temp factors
-    data_filter = np.logical_and(data_to_use.list == which_list, data_to_use.lag == 0)
-    g = sns.barplot(x="recall_instruction_condition", y=tf_col, data=data_to_use.loc[data_filter, :], order=["Free", "Serial"], ax=tf_axis) #
-    tf_axis.set(xlabel="Recal Instructions", ylabel="Z(TCE)", ylim=tf_lims)
-    plt.axhline(linewidth=3, linestyle='--', color='k')
-    plt.figure(fig2.number)
-    sns.despine()
-    tf_axis.annotate('B.', xy=(-.175, 1), xycoords='axes fraction')
-
-    fig2.savefig(save_name + '.pdf', bbox_inches='tight')
-    plt.close(fig2)
-
-
 def e3fig(data, save_file):
     # setup the grid
-    fig1 = plt.figure(figsize=(5.5, 3))
+    fig1 = plt.figure(figsize=(two_col, base_height*1.5))
     ax1 = plt.subplot2grid((2, 5), (0, 0), rowspan=1, colspan=1)
     ax2 = plt.subplot2grid((2, 5), (0, 1), rowspan=1, colspan=1)
     ax3 = plt.subplot2grid((2, 5), (0, 2), rowspan=1, colspan=1)
@@ -649,7 +620,7 @@ def e3fig(data, save_file):
 
 def spc_encoding_instructions_fig(to_plot, task, save_file):
     # spc/pfr for list 0
-    fig = plt.figure(figsize=(2.8, 4))  # 1 col width = 2.8
+    fig = plt.figure(figsize=(one_col, base_height*2))
     gs = gridspec.GridSpec(2, 1)
     spc_axis = fig.add_subplot(gs[0, 0])
     e1_explicit_filter = np.logical_and(to_plot.instruction_condition == 'Explicit', to_plot.task_condition == task)
@@ -670,7 +641,7 @@ def spc_encoding_instructions_fig(to_plot, task, save_file):
 
 def e3_spc_fig(to_plot, save_file):
     # spc/pfr for list 0
-    fig = plt.figure(figsize=(5.5, 2))
+    fig = plt.figure(figsize=(two_col, base_height*1.5))
     gs = gridspec.GridSpec(2, 5)
     rcParams['lines.linewidth'] = 1
     rcParams['lines.markersize'] = 1
@@ -699,7 +670,7 @@ def e3_spc_fig(to_plot, save_file):
     plt.close()
 
 def e4_spc_fig(to_plot, save_file):
-    fig = plt.figure(figsize=(2.8, 4))  # 1 col width = 2.8
+    fig = plt.figure(figsize=(one_col, base_height*2))  # 1 col width = 2.8
     gs = gridspec.GridSpec(2, 1)
     spc_axis = fig.add_subplot(gs[0, 0])
     constant_free_filter = np.logical_and(to_plot.recall_instruction_condition == "Free",
@@ -753,7 +724,7 @@ def e4_crp_fig(all_crps, save_file):
     serial_data = data_to_use.loc[data_filter, :]
 
     # setup the grid
-    fig2 = plt.figure(figsize=(5.5, 4.5))
+    fig2 = plt.figure(figsize=(two_col, base_height*2))
     gs = gridspec.GridSpec(2, 2)
     free_crp_axis = fig2.add_subplot(gs[0, 0])
     free_tf_axis = fig2.add_subplot(gs[0, 1])
@@ -817,3 +788,58 @@ def e4_crp_fig(all_crps, save_file):
 
     fig2.savefig(save_file + '.pdf', bbox_inches='tight')
     plt.close(fig2)
+
+
+def corr_fig(all_crps, save_name):
+    def extended(ax, x, y, **args):
+        xlim = ax.get_xlim()
+        ylim = ax.get_ylim()
+
+        x_ext = np.linspace(xlim[0], xlim[1], 100)
+        p = np.polyfit(x, y , deg=1)
+        y_ext = np.poly1d(p)(x_ext)
+        ax.plot(x_ext, y_ext, **args)
+        ax.set_xlim(xlim)
+        ax.set_ylim(ylim)
+        return ax
+
+        plt.style.use('~/code/py_modules/cbcc_tools/plotting/stylesheets/cbcc_bw.mplstyle')
+
+    # Load in the data
+    all_crps.to_csv('new_data.csv')
+    data = pd.read_csv('new_data.csv')
+    data['condition'] = data['task_condition'] + '_' + data['instruction_condition'] + '_' + data['recall_instruction_condition']
+
+    # Filter out unnecessary data
+    data = data[data['lag'] == 0]
+    data = data[data['list'] == 0]
+
+    # Get the means of each condition
+    means = data.groupby('condition').mean()
+
+    # Calculate the regression
+    x = means.prec
+    y = means.all_tf_z
+    slope, intercept, r_value, p_value, std_err = stats.linregress(x,y)
+    print 'PREC x Z_TCE:', r_value, p_value
+
+    # Make the figure
+    fig1 = plt.figure(figsize=(one_col, one_col))
+    ax1 = plt.subplot2grid((1, 1), (0, 0), rowspan=1, colspan=1)
+    ax1.scatter(x, y, c='k', s=50)
+    ax1.set(xlabel="Recall Prob.", ylabel="Z(TCE)")
+
+    # ax1.set(xlim=[0.35, 0.5], xticks=[0.35, 0.4, 0.45, 0.5])
+    # ax1.set(ylim=[0, 0.14])
+
+    # ax1.plot(np.unique(x), np.poly1d(np.polyfit(x, y, 1))(np.unique(x)), 'k--', lw = 2)
+
+    # Using this function makes sure that the dotted line runs across the entire figure and is not just a segment
+    ax1 = extended(ax1, np.unique(x), np.poly1d(np.polyfit(x, y, 1))(np.unique(x)), color='black',
+                   linestyle='dashed', markersize=0)
+
+    ax1.text(.25, .02, '$\mathit{r}(%d) = %.2f, \mathit{p} = %.2f$' % (len(x), r_value, p_value), fontsize=14)
+    # "%s is %d years old." % (name, age)
+
+    # Save the figure
+    plt.savefig(save_name)

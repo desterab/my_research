@@ -1,4 +1,4 @@
-\documentclass[man,natbib,floatsintext]{apa6} %apa 6th edition format
+\documentclass[jou,natbib,floatsintext]{apa6} %apa 6th edition format
 
 % watermark for first page
 % \usepackage[firstpage]{draftwatermark}
@@ -180,11 +180,11 @@ Figure~\ref{shoebox} shows the lag-CRP and corrected temporal factor scores for 
 
 
 \newcommand\paneltext{(A) Lag-conditional response probability functions. Error bars are bootstrapped within-subject 95\% confidence intervals. (B) The average Z(TCE).  Error bars are bootstrapped between-subject 95\% confidence intervals. Z(TCE) for a given subject is computed as follows: An observed temporal factor score was computed as the average percentile ranking the temporal lag of each actual transition in the recall sequence with respect to the lags of all transitions that were possible at that time. To determine the temporal factor score expected by chance, a permutation distribution was created by randomly shuffling the order of recalls within the sequence 10,000 times and computing a temporal factor score for each shuffling. The reported value, Z(TCE), is z-score of the observed temporal factor score within the permutation distribution.}
-\begin{figure}
-\fitfigure{figures/E1_crp_list1.pdf}
+\begin{figure*}
+\includegraphics{figures/E1_crp_list1.pdf}
 \caption{The temporal contiguity effect (TCE) on the first list under explicit versus incidental encoding using the Shoebox task (Experiment 1). \paneltext}
 \label{shoebox}
-\end{figure}
+\end{figure*}
 
 
 
@@ -195,7 +195,7 @@ Figure~\ref{e1_l1_spc} shows SPCs and PFRs for the first list.
 
 \newcommand\spcpaneltext{All Error bars are bootstrapped within-subject 95\% confidence intervals.}
 \begin{figure}
-\fitfigure{figures/E1_spc_list1.pdf}
+\includegraphics{figures/E1_spc_list1.pdf}
 \caption{(A) Serial Position Curves and (B) Probability of First Recall curves on the first list under explicit versus incidental encoding using the Shoebox task (Experiment 1). \spcpaneltext}
 \label{e1_l1_spc}
 \end{figure}
@@ -208,15 +208,15 @@ Figure~\ref{e1_l1_spc} shows SPCs and PFRs for the first list.
 
 \label{TODO-6} looking at the second list.... add analyses of second list
 
-\begin{figure}
-\fitfigure{figures/E1_crp_list2.pdf}
+\begin{figure*}
+\includegraphics{figures/E1_crp_list2.pdf}
 \caption{The temporal contiguity effect (TCE) on the second list under explicit versus incidental encoding using the Shoebox task (Experiment 1). \paneltext}
 \label{e1_l2_crp}
-\end{figure}
+\end{figure*}
 
 
 \begin{figure}
-\fitfigure{figures/E1_spc_list2.pdf}
+\includegraphics{figures/E1_spc_list2.pdf}
 \caption{(A) Serial Position Curves and (B) Probability of First Recall curves on the second list under explicit versus incidental encoding using the Shoebox task (Experiment 1). \spcpaneltext}
 \label{e1_l2_spc}
 \end{figure}
@@ -240,11 +240,11 @@ The processing required by the Shoebox Task from Experiment 1 is quite simple. S
 As predicted, the Front Door Task substantially improved memory accuracy in the Incidental condition. In fact, probability of recall was equal in the Explicit and Incidental conditions (Table 1). Nonetheless, the Front Door task did not produce a significant TCE under incidental encoding: Figure~\ref{door} shows that whereas the Explicit condition \color{red} had a \label{done-11} Z(TCE) significantly above zero \color{black}, the Incidental condition showed a flattened lag-CRP and a Z(TCE) for which the confidence interval included zero. These results confirm that incidental encoding can eliminate temporal contiguity without substantially decreasing memory performance \citep{NairEtal17}. This lack of coupling between level of recall and level of temporal contiguity has important theoretical implications, which we will consider in the discussion.
 
 
-\begin{figure}%[hp]
-\fitfigure{figures/E2_crp_list1.pdf}
+\begin{figure*}%[hp]
+\includegraphics{figures/E2_crp_list1.pdf}
 \caption{The temporal contiguity effect (TCE) on the first list under explicit versus incidental encoding using the Front Door task (Experiment 2). \paneltext}
 \label{door}
-\end{figure}
+\end{figure*}
 
 
 
@@ -259,7 +259,7 @@ Figure~\ref{e2_l1_spc} shows SPCs and PFRs for the first list.
 
 
 \begin{figure}
-\fitfigure{figures/E2_spc_list1.pdf}
+\includegraphics{figures/E2_spc_list1.pdf}
 \caption{(A) Serial Position Curves and (B) Probability of First Recall curves on the first list under explicit versus incidental encoding using the Front Door task (Experiment 2). \spcpaneltext}
 \label{e2_l1_spc}
 \end{figure}
@@ -306,11 +306,11 @@ It is also notable that there is substantial variation in recall levels across c
 
 Finally, we note that although Experiments 1 and 2 conceptually replicated Nairne et al.'s (2017) finding of no contiguity under incidental encoding using different encoding tasks, Experiment 3 failed to replicate the finding using an encoding task (Moving Scenario Task) almost identical to Nairne et al.'s. This failure may be due to our larger sample size ($n=299$ here versus $N=80$ in E1 and $N=80$ in E2 of Nairne et al.) providing more power to detect a small contiguity effect combined with seemingly minor methodological differences (e.g., different list lengths and presentation rates). In any case, the message across the present three experiments is consistent with Nairne et al.'s findings: incidental encoding \emph{can} eliminate contiguity and it certainly reduces the size of the effect relative to explicit encoding. 
 
-\begin{figure}%[hp]
-\fitfigure{figures/E3_crp_list1.pdf}
+\begin{figure*}%[hp]
+\includegraphics{figures/E3_crp_list1.pdf}
 \caption{The temporal contiguity effect (TCE) on the first list under incidental encoding with different judgment tasks (Experiment 3). (Top) Lag-conditional response probability functions. Error bars are bootstrapped within-subject 95\% confidence intervals. (Bottom) The average Z(TCE).  Error bars are bootstrapped between-subject 95\% confidence intervals. Z(TCE) for a given subject is computed as follows: An observed temporal factor score was computed as the average percentile ranking the temporal lag of each actual transition in the recall sequence with respect to the lags of all transitions that were possible at that time. To determine the temporal factor score expected by chance, a permutation distribution was created by randomly shuffling the order of recalls within the sequence 10,000 times and computing a temporal factor score for each shuffling. The reported value, Z(TCE), is z-score of the observed temporal factor score within the permutation distribution.}
 \label{E3}
-\end{figure}
+\end{figure*}
 
 
 \color{red}
@@ -318,11 +318,11 @@ TODO: discuss SPCs
 Figure~\ref{e2_l1_spc} shows SPCs and PFRs for the first list.
 
 
-\begin{figure}
-\fitfigure{figures/E3_spc_list1.pdf}
+\begin{figure*}
+\includegraphics{figures/E3_spc_list1.pdf}
 \caption{(Top row) Serial Position Curves and (Bottom row) Probability of First Recall curves on the first list under incidental encoding with different judgment tasks (Experiment 3). \spcpaneltext}
 \label{e3_l1_spc}
-\end{figure}
+\end{figure*}
 
 \color{black}
 
@@ -345,11 +345,11 @@ Figure~\ref{e2_l1_spc} shows SPCs and PFRs for the first list.
 
 
 
-\begin{figure}%[hp]
-\fitfigure{figures/E4_crp_list1.pdf}
+\begin{figure*}%[hp]
+\includegraphics{figures/E4_crp_list1.pdf}
 \caption{The temporal contiguity effect (TCE) on the first list as a function of encoding task variability and recall instructions (Experiment 4). \paneltext}
 \label{E4_crp_list1}
-\end{figure}
+\end{figure*}
 
 
 
@@ -362,7 +362,7 @@ Figure~\ref{e4_l1_spc} shows SPCs and PFRs for the first list.
 
 
 \begin{figure}
-\fitfigure{figures/E4_spc_list1.pdf}
+\includegraphics{figures/E4_spc_list1.pdf}
 \caption{(A) Serial Position Curves and (B) Probability of First Recall curves on the first list as a function of encoding task variability and recall instructions (Experiment 4). \spcpaneltext}
 \label{e4_l1_spc}
 \end{figure}
@@ -380,7 +380,7 @@ Experiment 3 showed that the TCE is not completely dependent on intent to encode
 
 
 \begin{figure}%[hp]
-\fitfigure{figures/corr.pdf}
+\includegraphics{figures/correlation.pdf}
 \caption{The size of the temporal contiguity effect versus the overall level of recall. Each dot represents the average of one of the conditions nine conditions reported across the 3 experiments.}
 \label{corr}
 \end{figure}
