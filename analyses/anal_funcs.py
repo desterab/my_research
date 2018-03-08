@@ -88,16 +88,31 @@ def make_psiturk_recall_matrix(remake_data_file, dict_path, save_file):
         cur_recalls = data.loc[s_filter & recalls_filter, ['list', 'response', 'instruction_condition','task_condition', 'recall_instruction_condition']]
         cur_items = data.loc[s_filter & study_filter, ['list', 'word']]
 
+        gender_filter = data.aware_question == 'gender'
+        gender = data.loc[s_filter & gender_filter, 'aware_ans'].values
+
+        english_filter = data.aware_question == 'english'
+        english = data.loc[s_filter & english_filter, 'aware_ans'].values
+
+        edu_filter = data.aware_question == 'edu'
+        edu = data.loc[s_filter & edu_filter, 'aware_ans'].values
+
+        age_filter = data.strategy == 'age'
+        age = data.loc[s_filter & age_filter, 'strategy_description'].values
+
+
+
+
         # we are only interested in people who were included in sub1 or are in the new E4
         in_e4 = ~cur_recalls.recall_instruction_condition.isnull().all()
         in_sub1 = s in sub1_ss_list
         if not in_e4 and not in_sub1:
-            print ('excluded subject!!')
+            # print ('excluded subject!!')
             continue
 
         # somehow, there seems to be some uniqueid's that are have two of each list.... just move on if that is the case
         if cur_items.shape[0] != 32 and cur_items.shape[0] != 16:
-            print ("DUP!")
+            # print ("DUP!")
             continue
 
         # loop over this subject's lists
@@ -113,11 +128,12 @@ def make_psiturk_recall_matrix(remake_data_file, dict_path, save_file):
             for index, recall in recalled_this_list.iterrows():
                 sp.append(which_item(recall, cur_items.loc[cur_items.list <= recall.list], dictionary))
                 op.append(int(np.where(recalled_this_list.index == index)[0]))  # the output position
-                # print (recall)
+            # recall = recalled_this_list.tail(1)
+
 
             # we need to add the subject id and conditions to the beginning of the line
-            sp.extend((s, recall.list, recall.instruction_condition, recall.task_condition, recall.recall_instruction_condition, aware)) #sp.insert(0, s)
-            op.extend(('subject', 'list', 'instruction_condition', 'task_condition', 'recall_instruction_condition', 'aware' )) #op.insert(0, 'subject')
+            sp.extend((s, recall.list, recall.instruction_condition, recall.task_condition, recall.recall_instruction_condition, aware, gender, english, edu, age)) #sp.insert(0, s)
+            op.extend(('subject', 'list', 'instruction_condition', 'task_condition', 'recall_instruction_condition', 'aware', "gender", "english", "edu", "age")) #op.insert(0, 'subject')
             recalls = recalls.append(pd.DataFrame([sp], columns=tuple(op)))
 
     recalls.set_index('subject')

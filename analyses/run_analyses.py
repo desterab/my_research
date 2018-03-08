@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt
 from matplotlib import gridspec
 from matplotlib import rcParams
 from cbcc_tools.beh_anal import recall_dynamics as cbcc
+import pickle
 
 # params for data prep and saving results
 results_dir = "../dissemination/manuscript/jml/second_submission/figures/"
@@ -14,11 +15,14 @@ dict_path = "/Users/khealey/code/py_modules/cbcc_tools/wordpool_files/websters_d
 n_perms = 10000
 
 # load or make the recall matrix
-recalls = af.make_psiturk_recall_matrix(remake_data_file=False, dict_path=dict_path,
+recalls = af.make_psiturk_recall_matrix(remake_data_file=True, dict_path=dict_path,
                                         save_file='HealEtal16implicit.recalls')
 
+
+
+
 # load or compute the recall dynamics
-all_crps = af.load_the_data(n_perms=n_perms, remake_data_file=False,
+all_crps = af.load_the_data(n_perms=n_perms, remake_data_file=True,
                             recalls_file='HealEtal16implicit.recalls.pkl', save_name=results_dir)
 
 # convert to xarray to make compatible with cbcc_tools --- then run RDF analyses
@@ -29,15 +33,55 @@ cbcc.run_these_analyses(list0, ['pfr', 'spc', 'lag_crp'])
 cbcc.run_these_analyses(list1, ['pfr', 'spc', 'lag_crp'])
 
 
+task_cond_filter = all_crps.task_condition == "Constant Size"
+recall_cond_filter = all_crps.recall_instruction_condition == "Free"
+
 
 
 # make figures etc
-which_figures = [3]
+which_figures = [0]
 
 plt.style.use('~/code/py_modules/cbcc_tools/plotting/stylesheets/cbcc_bw.mplstyle')
 
 # make table 1
 all_crps = af.sample_size_table(all_crps, results_dir)
+
+
+task_cond_filter = all_crps.task_condition == "Varying Size"
+recall_cond_filter = all_crps.recall_instruction_condition == "Free"
+e3 = task_cond_filter & recall_cond_filter
+
+task_cond_filter = all_crps.task_condition == "Constant Size"
+recall_cond_filter = all_crps.recall_instruction_condition == "Free"
+e41 = task_cond_filter & recall_cond_filter
+
+
+task_cond_filter = all_crps.task_condition == "Constant Size"
+recall_cond_filter = all_crps.recall_instruction_condition == "Serial"
+e42 = task_cond_filter & recall_cond_filter
+
+all_filt = np.logical_or(e41,  e42)
+
+these_data = all_crps[all_filt]
+
+
+age = []
+males = 0
+females = 0
+others = 0
+for s in these_data.subject.unique():
+    age.append(recalls[recalls.subject == s].age[0].astype(float)[0])
+    if recalls[recalls.subject == s].gender[0][0] == "male":
+        males += 1
+    if recalls[recalls.subject == s].gender[0][0] == "female":
+        females += 1
+    if recalls[recalls.subject == s].gender[0][0] == "other":
+        others += 1
+
+
+
+
+
 
 # Make a few plots of the CRPs generate by the cbcc_tools code just as a check to ensure it is doing exactly
 # the same thing as the legacy code used for the main CRP figures in the paper
@@ -152,5 +196,47 @@ if 4 in which_figures:
     data_to_use = all_crps.loc[data_filter, :]
     af.e4_crp_fig(data_to_use, which_list, results_dir + "E4_crp_list1")
 
+
+
+# # load all the data for all experiments from the file made from the master database on cbcc
+# data = pickle.load(open("HealEtal16implicit.data.raw.pkl", "rb"))
+#
+# # get only the data we want
+# these_data = data.loc[np.logical_or(data.task_condition == 7,
+#                         np.logical_and(data.task_condition == 8, data.recall_instruction_condition == 0))]
+#
+# gender_q = these_data.loc[these_data.aware_question == 'gender']
+#
+#
+# these_data.loc[these_data.aware_question == 'gender']['uniqueid', 'task_condition', 'recall_instruction_condition', 'aware_ans']
+#
+# these_data.loc[these_data.aware_question == 'gender'][['uniqueid', 'task_condition', 'recall_instruction_condition', 'aware_ans']]
+#
+# n_males_vf = these_data.loc[these_data.aware_question == 'gender'][['uniqueid', 'task_condition', 'recall_instruction_condition', 'aware_ans']]
+#
+#
+# # loop over subjects, for each isolate their data
+# subjects = data.uniqueid.unique()
+# n_ss = len(subjects)
+# pd.DataFrame(columns=['subject', 'age', 'gender', 'english', 'edu'])
+# for s in subjects:
+#     s_filter = data.uniqueid == s
+#     if ~np.any(data.loc[s_filter].task_condition.isin([7, 8])):
+#         print ('nope')
+#         continue
+#     data
+
+
+
+
+
+
+
+    # recalls_filter = data.phase == 'recall'
+    # study_filter = data.phase == 'study'
+    # awareness_filter = data.aware_question == 'awarenesscheck'
+    # aware = data.loc[s_filter & awareness_filter, 'aware_ans']
+    # cur_recalls = data.loc[s_filter & recalls_filter, ['list', 'response', 'instruction_condition','task_condition', 'recall_instruction_condition']]
+    # cur_items = data.loc[s_filter & study_filter, ['list', 'word']]
 
 

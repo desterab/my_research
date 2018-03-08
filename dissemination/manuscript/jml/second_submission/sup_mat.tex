@@ -289,6 +289,53 @@ Because subjects typed their responses, typos are likely and counting only exact
 
 The spell-checking algorithm began by computing the Damerau-Levenshtein distance \citep{Dame64} between the response and each word in the dictionary, providing a measure of the response's similarity to each candidate word. Because almost all responses in free recall correspond to words that were presented on some list (i.e., extra-list intrusions are rare), the algorithm did not automatically replace the mistyped response with the most similar word in the dictionary. Instead it found the shortest distance between the response and an actually presented list-word, and then found where this ``nearest list-neighbor'' distance lay in the distribution of distances between the response and the dictionary words. If the nearest list-neighbor distance was below the tenth percentile of the distribution (i.e., if the response was closer to a list item than it was to 90\% of the words in the dictionary) it was assumed to be that list item, otherwise it is assumed to be an extra-list intrusion.
 
+\section{List 2 Analyses for Experiments 2 and 3}
+
+\newcommand\spcpaneltext{All Error bars are bootstrapped within-subject 95\% confidence intervals.}
+
+
+\newcommand\paneltext{(A) Lag-conditional response probability functions. Error bars are bootstrapped within-subject 95\% confidence intervals. (B) The average Z(TCE).  Error bars are bootstrapped between-subject 95\% confidence intervals. Z(TCE) for a given subject is computed as follows: An observed temporal factor score was computed as the average percentile ranking the temporal lag of each actual transition in the recall sequence with respect to the lags of all transitions that were possible at that time. To determine the temporal factor score expected by chance, a permutation distribution was created by randomly shuffling the order of recalls within the sequence 10,000 times and computing a temporal factor score for each shuffling. The reported value, Z(TCE), is z-score of the observed temporal factor score within the permutation distribution.}
+
+%#####################
+%####### E2l1 spc ####
+%#####################
+\begin{figure}
+\includegraphics{figures/E2_spc_list2.pdf}
+\caption{(A) Serial Position Curves and (B) Probability of First Recall curves on the second list under explicit versus incidental encoding using the Front Door task (Experiment 2). \spcpaneltext}
+\label{e2_l2_spc}
+\end{figure}
+
+
+%#####################
+%####### E2l1 crp ####
+%#####################
+\begin{figure}%[hp]
+\includegraphics{figures/E2_crp_list2.pdf}
+\caption{The temporal contiguity effect (TCE) on the second list under explicit versus incidental encoding using the Front Door task (Experiment 2). \paneltext}
+\label{e2_l2_crp}
+\end{figure}
+
+
+
+%#####################
+%####### 3l1 spc ####
+%#####################
+\begin{figure}
+\includegraphics{figures/E3_spc_list2.pdf}
+\caption{(Top row) Serial Position Curves and (Bottom row) Probability of First Recall curves on the second list under incidental encoding with different judgment tasks (Experiment 3). \spcpaneltext}~NOTE: There was no second list in the Varying Size condition.
+\label{e3_l2_spc}
+\end{figure}
+
+
+
+%#####################
+%####### 3l1 crp ####
+%#####################
+\begin{figure}%[hp]
+\includegraphics{figures/E3_crp_list2.pdf}
+\caption{The temporal contiguity effect (TCE) on the second list under incidental encoding with different judgment tasks (Experiment 3). (Top) Lag-conditional response probability functions. Error bars are bootstrapped within-subject 95\% confidence intervals. (Bottom) The average Z(TCE).  Error bars are bootstrapped between-subject 95\% confidence intervals. Z(TCE) for a given subject is computed as follows: An observed temporal factor score was computed as the average percentile ranking the temporal lag of each actual transition in the recall sequence with respect to the lags of all transitions that were possible at that time. To determine the temporal factor score expected by chance, a permutation distribution was created by randomly shuffling the order of recalls within the sequence 10,000 times and computing a temporal factor score for each shuffling. The reported value, Z(TCE), is z-score of the observed temporal factor score within the permutation distribution.~NOTE: There was no second list in the Varying Size condition.}
+\label{e3_l2_crp}
+\end{figure}
 
 \bibliography{healey_lab}
 \end{document}
