@@ -348,43 +348,6 @@ def make_xarray(data, list_number):
     ds.attrs['n_items_per_list'] = 16
     return ds, sample_sizes_aware_counts, sample_sizes_included_counts
 
-def encoding_instruct_fig(data_to_use, which_list, save_name):
-    # colors = ["#000000", "#808080"]
-    # sns.set_palette(colors)
-
-    # setup the grid
-    fig2 = plt.figure(figsize=(two_col, two_col/2))
-    gs = gridspec.GridSpec(1, 2)
-    crp_axis = fig2.add_subplot(gs[0, 0])
-    tf_axis = fig2.add_subplot(gs[0, 1])
-
-    # plot crps
-    data_filter = data_to_use.list == which_list
-    rcParams['lines.linewidth'] = 1
-    rcParams['lines.markersize'] = 0
-    g = sns.factorplot(x="lag", y="crp", hue="instruction_condition", data=data_to_use.loc[data_filter, :],
-                   hue_order=["Explicit", "Incidental"], dodge=.25, units='subject', ax=crp_axis)
-    crp_axis.set(xlabel="Lag", ylabel="Cond. Resp. Prob.", ylim=[0., .2], xticks=range(0, 11, 2),
-                 xticklabels=range(-5, 6, 2))
-    crp_axis.legend(title='Encoding Instructions', ncol=2, labelspacing=.2, handlelength=.01, loc=2)
-    plt.figure(fig2.number)
-    sns.despine()
-    crp_axis.annotate('A.', xy=(-.21, 1), xycoords='axes fraction', weight='bold')
-
-    # plot temp factors
-    data_filter = np.logical_and(data_to_use.list == which_list, data_to_use.lag == 0)
-    g = sns.barplot(x="instruction_condition", y=tf_col, data=data_to_use.loc[data_filter, :], order=["Explicit", "Incidental"], ax=tf_axis) #
-    tf_axis.set(xlabel="Encoding Instructions", ylabel="Z(TCE)", ylim=tf_lims)
-    tf_axis.lines[0].set_color('grey')
-    tf_axis.lines[1].set_color('black')
-    plt.axhline(linewidth=1, linestyle='--', color='k')
-    plt.figure(fig2.number)
-    sns.despine()
-    tf_axis.annotate('B.', xy=(-.19, 1), xycoords='axes fraction', weight='bold')
-
-    fig2.savefig(save_name + '.pdf', bbox_inches='tight')
-    plt.close(fig2)
-
 
 def sample_size_table(all_crps, results_dir):
 
@@ -534,19 +497,80 @@ def sample_size_table(all_crps, results_dir):
     return all_crps
 
 
+def encoding_instruct_fig(data_to_use, which_list, save_name):
+    # colors = ["#000000", "#808080"]
+    # sns.set_palette(colors)
+
+    # setup the grid
+    fig2 = plt.figure(figsize=(two_col, two_col/2))
+    gs = gridspec.GridSpec(1, 2)
+    crp_axis = fig2.add_subplot(gs[0, 0])
+    tf_axis = fig2.add_subplot(gs[0, 1])
+
+    # plot crps
+    data_filter = data_to_use.list == which_list
+    rcParams['lines.linewidth'] = 1
+    rcParams['lines.markersize'] = 0
+    g = sns.factorplot(x="lag", y="crp", hue="instruction_condition", data=data_to_use.loc[data_filter, :],
+                   hue_order=["Explicit", "Incidental"], dodge=.25, units='subject', ax=crp_axis)
+    crp_axis.set(xlabel="Lag", ylabel="Cond. Resp. Prob.", ylim=[0., .2], xticks=range(0, 11, 2),
+                 xticklabels=range(-5, 6, 2))
+    crp_axis.legend(title='Encoding Instructions', ncol=2, labelspacing=.2, handlelength=.01, loc=2)
+    plt.figure(fig2.number)
+    sns.despine()
+    crp_axis.annotate('A.', xy=(-.21, 1), xycoords='axes fraction', weight='bold')
+
+    # plot temp factors
+    data_filter = np.logical_and(data_to_use.list == which_list, data_to_use.lag == 0)
+    g = sns.barplot(x="instruction_condition", y=tf_col, data=data_to_use.loc[data_filter, :], order=["Explicit", "Incidental"], ax=tf_axis) #
+    tf_axis.set(xlabel="Encoding Instructions", ylabel="Z(TCE)", ylim=tf_lims)
+    tf_axis.lines[0].set_color('grey')
+    tf_axis.lines[1].set_color('black')
+    plt.axhline(linewidth=1, linestyle='--', color='k')
+    plt.figure(fig2.number)
+    sns.despine()
+    tf_axis.annotate('B.', xy=(-.19, 1), xycoords='axes fraction', weight='bold')
+
+    fig2.savefig(save_name + '.pdf', bbox_inches='tight')
+    plt.close(fig2)
+
+
+def spc_encoding_instructions_fig(to_plot, task, save_file):
+    # spc/pfr for list 0
+    fig = plt.figure(figsize=(one_col, base_height*2))
+    gs = gridspec.GridSpec(2, 1)
+    spc_axis = fig.add_subplot(gs[0, 0])
+    e1_explicit_filter = np.logical_and(to_plot.instruction_condition == 'Explicit', to_plot.task_condition == task)
+    e1_implicit_filter = np.logical_and(to_plot.instruction_condition == 'Incidental', to_plot.task_condition == task)
+    cbcc.spc_plot(to_plot.spc[e1_explicit_filter], ax=spc_axis)
+    cbcc.spc_plot(to_plot.spc[e1_implicit_filter], ax=spc_axis)
+    plt.legend(['Explicit', "Incidental"])
+    spc_axis.set_xlabel('')
+    spc_axis.get_xaxis().set_ticklabels([])
+    spc_axis.annotate('A.', xy=(-.155, 1), xycoords='axes fraction', weight='bold')
+    pfr_axis = fig.add_subplot(gs[1, 0])
+    cbcc.pfr_plot(to_plot.pfr[e1_explicit_filter], ax=pfr_axis)
+    cbcc.pfr_plot(to_plot.pfr[e1_implicit_filter], ax=pfr_axis)
+    pfr_axis.set_ylim(0, 0.5)
+    pfr_axis.annotate('B.', xy=(-.155, 1), xycoords='axes fraction', weight='bold')
+    plt.savefig(save_file)
+    plt.close()
+
+
 def e3fig(data, save_file):
     # setup the grid
     fig1 = plt.figure(figsize=(two_col, base_height*1.5))
-    ax1 = plt.subplot2grid((2, 5), (0, 0), rowspan=1, colspan=1)
-    ax2 = plt.subplot2grid((2, 5), (0, 1), rowspan=1, colspan=1)
-    ax3 = plt.subplot2grid((2, 5), (0, 2), rowspan=1, colspan=1)
-    ax4 = plt.subplot2grid((2, 5), (0, 3), rowspan=1, colspan=1)
-    ax5 = plt.subplot2grid((2, 5), (0, 4), rowspan=1, colspan=1)
-    ax6 = plt.subplot2grid((2, 5), (1, 0), rowspan=1, colspan=5)
+    ax1 = plt.subplot2grid((2, 6), (0, 0), rowspan=1, colspan=1)
+    ax2 = plt.subplot2grid((2, 6), (0, 1), rowspan=1, colspan=1)
+    ax3 = plt.subplot2grid((2, 6), (0, 2), rowspan=1, colspan=1)
+    ax4 = plt.subplot2grid((2, 6), (0, 3), rowspan=1, colspan=1)
+    ax5 = plt.subplot2grid((2, 6), (0, 4), rowspan=1, colspan=1)
+    ax6 = plt.subplot2grid((2, 6), (0, 5), rowspan=1, colspan=1)
+    ax7 = plt.subplot2grid((2, 6), (1, 0), rowspan=1, colspan=6)
 
     rcParams['lines.linewidth'] = 0.6
     rcParams['lines.markersize'] = 0
-    rcParams['axes.prop_cycle'] = cycler('color', ['#000000', '#000000', '#000000', '#000000', '#000000'])
+    rcParams['axes.prop_cycle'] = cycler('color', ['#000000', '#000000', '#000000', '#000000', '#000000', '#000000'])
 
     # make the figure each axis at a time
 
@@ -605,15 +629,30 @@ def e3fig(data, save_file):
     plt.close()
 
     # AX6
+
+    cond6_data = data[data['task_condition'] == "Varying Size"]  # just the varying condition
+    try:  # because varying size has no list 2
+        sns.factorplot(x="lag", y="crp", data=cond6_data, units='subject', ax=ax6, color='#000000')
+    except:
+        print('no list!')
+    ax6.set(ylim=[0., 0.15], xticks=[0, 5, 10], xticklabels=[-5, 0, 5])
+    ax6.get_yaxis().set_ticklabels([])
+    ax6.yaxis.label.set_visible(False)
+    ax6.xaxis.label.set_visible(False)
+    #ax2.yaxis.set_visible(False)
+    # plt.close()
+
+    # AX7
     barplot_data = data  # already filtered no need of: [(data['task_condition'] >= 1) & (data['task_condition'] <= 5)]  # just the 5 conditions
     barplot_data = barplot_data[(barplot_data['lag'] == 0)]  # only need one lag
 
-    g = sns.barplot(x="task_condition", y="all_tf_z", data=barplot_data, ax=ax6, order=["Weight", "Animacy", "Scenario", "Movie", "Relational"])
-    g.set_xticklabels(["Weight", "Animacy", "Moving Scenario", "Movie", "Relational"])
-    for line, l in enumerate(ax6.lines):
-        ax6.lines[line].set_color('grey')
-    ax6.set(xlabel="Judgment Task", ylabel="Z(TCE)", ylim=[-.025, 0.2])
-    ax6.axhline(y=0, linewidth=1, linestyle='--', color='k')
+    g = sns.barplot(x="task_condition", y="all_tf_z", data=barplot_data, ax=ax7,
+                    order=["Weight", "Animacy", "Scenario", "Movie", "Relational", "Varying Size"])
+    g.set_xticklabels(["Weight", "Animacy", "Moving Scenario", "Movie", "Relational", "Varying Size"])
+    for line, l in enumerate(ax7.lines):
+        ax7.lines[line].set_color('grey')
+    ax7.set(xlabel="Judgment Task", ylabel="Z(TCE)", ylim=[-.025, 0.2])
+    ax7.axhline(y=0, linewidth=1, linestyle='--', color='k')
 
 
 
@@ -621,45 +660,27 @@ def e3fig(data, save_file):
     plt.savefig(save_file + '.pdf')
     plt.close()
 
-def spc_encoding_instructions_fig(to_plot, task, save_file):
-    # spc/pfr for list 0
-    fig = plt.figure(figsize=(one_col, base_height*2))
-    gs = gridspec.GridSpec(2, 1)
-    spc_axis = fig.add_subplot(gs[0, 0])
-    e1_explicit_filter = np.logical_and(to_plot.instruction_condition == 'Explicit', to_plot.task_condition == task)
-    e1_implicit_filter = np.logical_and(to_plot.instruction_condition == 'Incidental', to_plot.task_condition == task)
-    cbcc.spc_plot(to_plot.spc[e1_explicit_filter], ax=spc_axis)
-    cbcc.spc_plot(to_plot.spc[e1_implicit_filter], ax=spc_axis)
-    plt.legend(['Explicit', "Incidental"])
-    spc_axis.set_xlabel('')
-    spc_axis.get_xaxis().set_ticklabels([])
-    spc_axis.annotate('A.', xy=(-.155, 1), xycoords='axes fraction', weight='bold')
-    pfr_axis = fig.add_subplot(gs[1, 0])
-    cbcc.pfr_plot(to_plot.pfr[e1_explicit_filter], ax=pfr_axis)
-    cbcc.pfr_plot(to_plot.pfr[e1_implicit_filter], ax=pfr_axis)
-    pfr_axis.set_ylim(0, 0.5)
-    pfr_axis.annotate('B.', xy=(-.155, 1), xycoords='axes fraction', weight='bold')
-    plt.savefig(save_file)
-    plt.close()
 
 def e3_spc_fig(to_plot, save_file):
     # spc/pfr for list 0
     fig = plt.figure(figsize=(two_col, base_height*1.5))
-    gs = gridspec.GridSpec(2, 5)
+    gs = gridspec.GridSpec(2, 6)
     rcParams['lines.linewidth'] = 1
     rcParams['lines.markersize'] = 1
 
+    recall_instruction_cond_filter = to_plot.recall_instruction_condition == "Free"
     instruction_cond_filter = to_plot.instruction_condition == "Incidental"
-    task_list = ["Weight", "Animacy", "Scenario", "Movie", "Relational"]
+    cond_filter = np.logical_and(recall_instruction_cond_filter, instruction_cond_filter)
+    task_list = ["Weight", "Animacy", "Scenario", "Movie", "Relational", 'Varying Size']
     task_col = 0
     for task in task_list:
         spc_axis = fig.add_subplot(gs[0, task_col])
-        cbcc.spc_plot(to_plot.spc[np.logical_and(instruction_cond_filter, to_plot.task_condition == task)], ax=spc_axis)
+        cbcc.spc_plot(to_plot.spc[np.logical_and(cond_filter, to_plot.task_condition == task)], ax=spc_axis)
         spc_axis.set_title(task)
         spc_axis.set_xlabel('')
         spc_axis.get_xaxis().set_ticklabels([])
         pfr_axis = fig.add_subplot(gs[1, task_col])
-        cbcc.pfr_plot(to_plot.pfr[np.logical_and(instruction_cond_filter, to_plot.task_condition == task)], ax=pfr_axis)
+        cbcc.pfr_plot(to_plot.pfr[np.logical_and(cond_filter, to_plot.task_condition == task)], ax=pfr_axis)
         pfr_axis.set_ylim(0, 0.5)
         spc_axis.set_ylabel('Recall Prob.')
         pfr_axis.set_ylabel('Prob. $1^{st}$ Recall')
@@ -671,6 +692,7 @@ def e3_spc_fig(to_plot, save_file):
         task_col += 1
     plt.savefig(save_file)
     plt.close()
+
 
 def e4_spc_fig(to_plot, save_file):
     fig = plt.figure(figsize=(one_col, base_height*2))  # 1 col width = 2.8
@@ -690,111 +712,34 @@ def e4_spc_fig(to_plot, save_file):
                                            np.logical_and(to_plot.instruction_condition == 'Incidental',
                                                           to_plot.task_condition == "Varying Size"))
     cbcc.spc_plot(to_plot.spc[constant_free_filter], ax=spc_axis, color='#000000')
-    cbcc.spc_plot(to_plot.spc[varying_free_filter], ax=spc_axis, color='#000000')
-    spc_axis.lines[-1].set_marker('s')
+    # cbcc.spc_plot(to_plot.spc[varying_free_filter], ax=spc_axis, color='#000000')
+    # spc_axis.lines[-1].set_marker('s')
     cbcc.spc_plot(to_plot.spc[constant_serial_filter], ax=spc_axis, color='#808080')
     # spc_axis.lines[-1].set_color('#808080')
-    cbcc.spc_plot(to_plot.spc[varying_serial_filter], ax=spc_axis, color='#808080')
-    spc_axis.lines[-1].set_marker('s')
+    # cbcc.spc_plot(to_plot.spc[varying_serial_filter], ax=spc_axis, color='#808080')
+    # spc_axis.lines[-1].set_marker('s')
     # spc_axis.lines[-1].set_color('#808080')
-    plt.legend(['Constant-Free', "Varying-Free", 'Constant-Serial', "Varying-Serial"])
+    plt.legend(['Free', "Serial"])
     spc_axis.set_xlabel('')
     spc_axis.get_xaxis().set_ticklabels([])
     spc_axis.annotate('A.', xy=(-.155, 1), xycoords='axes fraction', weight='bold')
     pfr_axis = fig.add_subplot(gs[1, 0])
     cbcc.pfr_plot(to_plot.pfr[constant_free_filter], ax=pfr_axis, color='#000000')
-    cbcc.pfr_plot(to_plot.pfr[varying_free_filter], ax=pfr_axis, color='#000000')
-    pfr_axis.lines[-1].set_marker('s')
+    # cbcc.pfr_plot(to_plot.pfr[varying_free_filter], ax=pfr_axis, color='#000000')
+    # pfr_axis.lines[-1].set_marker('s')
     # pfr_axis.lines[-1].set_color('#000000')
     cbcc.pfr_plot(to_plot.pfr[constant_serial_filter], ax=pfr_axis, color='#808080')
     # pfr_axis.lines[-1].set_color('#808080')
-    cbcc.pfr_plot(to_plot.pfr[varying_serial_filter], ax=pfr_axis, color='#808080')
-    pfr_axis.lines[-1].set_marker('s')
+    # cbcc.pfr_plot(to_plot.pfr[varying_serial_filter], ax=pfr_axis, color='#808080')
+    # pfr_axis.lines[-1].set_marker('s')
     # pfr_axis.lines[-1].set_color('#808080')
     pfr_axis.set_ylim(0, 0.5)
     pfr_axis.annotate('B.', xy=(-.155, 1), xycoords='axes fraction', weight='bold')
     plt.savefig(save_file)
     plt.close()
 
-def e4_crp_fig(all_crps, save_file):
-    data_filter = np.logical_or(all_crps.task_condition == "Constant Size", all_crps.task_condition == "Varying Size")
-    data_to_use = all_crps.loc[data_filter, :]
 
-    data_filter = np.logical_and(data_to_use.recall_instruction_condition == "Free", data_to_use.lag.abs() <= 5)
-    free_data = data_to_use.loc[data_filter, :]
-
-    data_filter = np.logical_and(data_to_use.recall_instruction_condition == "Serial", data_to_use.lag.abs() <= 5)
-    serial_data = data_to_use.loc[data_filter, :]
-
-    # setup the grid
-    fig2 = plt.figure(figsize=(two_col, base_height*2))
-    gs = gridspec.GridSpec(2, 2)
-    free_crp_axis = fig2.add_subplot(gs[0, 0])
-    free_tf_axis = fig2.add_subplot(gs[0, 1])
-    serial_crp_axis = fig2.add_subplot(gs[1, 0])
-    serial_tf_axis = fig2.add_subplot(gs[1, 1])
-
-    # plot crps
-    data_filter = data_to_use.list == 0
-    rcParams['lines.linewidth'] = 1
-    rcParams['lines.markersize'] = 0
-
-    g = sns.factorplot(x="lag", y="crp", hue="task_condition", data=free_data.loc[data_filter, :],
-                       hue_order=["Constant Size", "Varying Size"], dodge=.25, units='subject', ax=free_crp_axis)
-    free_crp_axis.set(xlabel="Lag", ylabel="Cond. Resp. Prob.", ylim=[0., .2], xticks=range(0, 11, 2),
-                      xticklabels=range(-5, 6, 2))
-    free_crp_axis.legend(title='Judgment Task', ncol=2, labelspacing=.2, handlelength=.01, loc=2)
-    plt.figure(fig2.number)
-    sns.despine()
-    free_crp_axis.annotate('A.', xy=(-.21, 1), xycoords='axes fraction', weight='bold')
-    free_crp_axis.set_xlabel('')
-    free_crp_axis.get_xaxis().set_ticklabels([])
-
-    rcParams['lines.marker'] = 's'
-    g2 = sns.factorplot(x="lag", y="crp", hue="task_condition", data=serial_data.loc[data_filter, :],
-                        hue_order=["Constant Size", "Varying Size"], dodge=.25, units='subject', ax=serial_crp_axis)
-    serial_crp_axis.set(xlabel="Lag", ylabel="Cond. Resp. Prob.", ylim=[0., .2], xticks=range(0, 11, 2),
-                      xticklabels=range(-5, 6, 2))
-    serial_crp_axis.legend().set_visible(False) #(title='Judgment Task', ncol=2, labelspacing=.2, handlelength=.01, loc=2)
-    plt.figure(fig2.number)
-    sns.despine()
-    serial_crp_axis.annotate('C.', xy=(-.21, 1), xycoords='axes fraction', weight='bold')
-
-    # plot temp factors
-    data_filter = np.logical_and(serial_data.list == 0, serial_data.lag == 0)
-    g = sns.barplot(x="task_condition", y=tf_col, data=serial_data.loc[data_filter, :],
-                    order=["Constant Size", "Varying Size"], ax=serial_tf_axis)  #
-    serial_tf_axis.set(xlabel="Judgment Task", ylabel="Z(TCE)", ylim=tf_lims)
-    serial_tf_axis.lines[0].set_color('grey')
-    serial_tf_axis.lines[1].set_color('black')
-    plt.axhline(linewidth=1, linestyle='--', color='k')
-    plt.figure(fig2.number)
-    sns.despine()
-    serial_tf_axis.annotate('D.', xy=(-.19, 1), xycoords='axes fraction', weight='bold')
-
-
-    # plot temp factors
-    data_filter = np.logical_and(free_data.list == 0, free_data.lag == 0)
-    g = sns.barplot(x="task_condition", y=tf_col, data=free_data.loc[data_filter, :],
-                    order=["Constant Size", "Varying Size"], ax=free_tf_axis)  #
-    free_tf_axis.set(xlabel="Judgment Task", ylabel="Z(TCE)", ylim=tf_lims)
-    free_tf_axis.lines[0].set_color('grey')
-    free_tf_axis.lines[1].set_color('black')
-    plt.axhline(linewidth=1, linestyle='--', color='k')
-    plt.figure(fig2.number)
-    sns.despine()
-    free_tf_axis.annotate('B.', xy=(-.19, 1), xycoords='axes fraction', weight='bold')
-    free_tf_axis.set_xlabel('')
-    free_tf_axis.get_xaxis().set_ticklabels([])
-
-
-
-    fig2.savefig(save_file + '.pdf', bbox_inches='tight')
-    plt.close(fig2)
-
-
-
-def e4_new_fig(data_to_use, which_list, save_name):
+def e4_crp_fig(data_to_use, which_list, save_name):
     # colors = ["#000000", "#808080"]
     # sns.set_palette(colors)
 
@@ -831,8 +776,6 @@ def e4_new_fig(data_to_use, which_list, save_name):
 
     fig2.savefig(save_name + '.pdf', bbox_inches='tight')
     plt.close(fig2)
-
-
 
 
 def corr_fig(all_crps, save_name):
@@ -926,7 +869,7 @@ def corr_fig(all_crps, save_name):
 
     # Save the figure
     plt.savefig(save_name)
-
+    plt.close()
 
 
 def model_it(list0):

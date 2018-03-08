@@ -32,7 +32,7 @@ cbcc.run_these_analyses(list1, ['pfr', 'spc', 'lag_crp'])
 
 
 # make figures etc
-which_figures = [4]
+which_figures = [3]
 
 plt.style.use('~/code/py_modules/cbcc_tools/plotting/stylesheets/cbcc_bw.mplstyle')
 
@@ -115,7 +115,7 @@ if 3 in which_figures:
     # list 0 crp
     which_list = 0
     instruction_cond_filter = all_crps.instruction_condition == "Incidental"
-    task_cond_filter = all_crps.task_condition.isin(["Movie", "Relational", "Scenario", "Animacy", "Weight"])
+    task_cond_filter = all_crps.task_condition.isin(["Movie", "Relational", "Scenario", "Animacy", "Weight", "Varying Size"])
     recall_cond_filter = all_crps.recall_instruction_condition == "Free"
     lag_filter = all_crps.lag.abs() <= 5
     list_filter = all_crps.list == which_list
@@ -140,18 +140,17 @@ if 3 in which_figures:
 
 ##### E4 figs
 if 4 in which_figures:
+    # spc/pfr
+    plt.style.use('~/code/py_modules/cbcc_tools/plotting/stylesheets/cbcc_bw.mplstyle')
+    af.e4_spc_fig(list0, results_dir + "E4_spc_list1")
+
     # list 0 crp
     rcParams['lines.linewidth'] = 1.5
     rcParams['lines.markersize'] = 0
     which_list = 0
     data_filter = np.logical_and(all_crps.task_condition == "Constant Size", all_crps.lag.abs() <= 5)
     data_to_use = all_crps.loc[data_filter, :]
-    af.e4_new_fig(data_to_use, which_list, results_dir + "E4_NEW")
+    af.e4_crp_fig(data_to_use, which_list, results_dir + "E4_crp_list1")
 
-    # spc/pfr
-    plt.style.use('~/code/py_modules/cbcc_tools/plotting/stylesheets/cbcc_bw.mplstyle')
-    af.e4_spc_fig(list0, results_dir + "E4_spc_list1")
 
-    # # crps
-    # plt.style.use('~/code/py_modules/cbcc_tools/plotting/stylesheets/cbcc_bw.mplstyle')
-    # af.e4_crp_fig(all_crps, results_dir + "E4_crp_list1")
+
