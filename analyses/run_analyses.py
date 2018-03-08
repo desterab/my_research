@@ -49,15 +49,15 @@ conditions = (
     ('Incidental', 'Shoebox', 'Free'),
     ('Explicit', 'Front Door', 'Free'),
     ('Incidental', 'Front Door', 'Free'),
-    # ('Incidental', 'Movie', 'Free'),
+    ('Incidental', 'Movie', 'Free'),
     ('Incidental', 'Relational', 'Free'),
-    # ('Incidental', 'Scenario', 'Free'),
-    # ('Incidental', 'Animacy', 'Free'),
-    # ('Incidental', 'Weight', 'Free'),
+    ('Incidental', 'Scenario', 'Free'),
+    ('Incidental', 'Animacy', 'Free'),
+    ('Incidental', 'Weight', 'Free'),
     ('Incidental', 'Constant Size', 'Free'),
-    # # ('Incidental', 'Constant Size', 'Serial'),
+    ('Incidental', 'Constant Size', 'Serial'),
     ('Incidental', 'Varying Size', 'Free'),
-    # # ('Incidental', 'Varying Size', 'Serial'),
+    ('Incidental', 'Varying Size', 'Serial'),
 )
 
 

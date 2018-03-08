@@ -1,4 +1,4 @@
-\documentclass[jou,natbib,floatsintext]{apa6} %apa 6th edition format
+\documentclass[man,natbib,floatsintext]{apa6} %apa 6th edition format
 
 % watermark for first page
 % \usepackage[firstpage]{draftwatermark}
@@ -176,22 +176,49 @@ This logic was used to provide a corrected measure of the TCE for each participa
 
 \section{Results and Discussion}
 
-Figure~\ref{shoebox} shows the lag-CRP and corrected temporal factor scores for the Explicit and Incidental conditions. The Explicit condition shows a clear TCE: the lag-CRP is highest for short lags (i.e., $|lag|=1$) and decreases for larger lags. Moreover, the 95\% confidence interval on the Z(TCE) lies well above zero. By contrast, the Incidental condition shows no evidence of a TCE: the lag-CRP is nearly flat and the 95\% confidence interval on the Z(TCE) includes zero. Overall recall probability (Table~\ref{sampsize_table}) was also lower in the Incidental condition. These results suggest that removing the intent to encode can eliminate the TCE.
+Figure~\ref{e1_l1_crp} shows the lag-CRP and corrected temporal factor scores for the Explicit and Incidental conditions. The Explicit condition shows a clear TCE: the lag-CRP is highest for short lags (i.e., $|lag|=1$) and decreases for larger lags. Moreover, the 95\% confidence interval on the Z(TCE) lies well above zero. By contrast, the Incidental condition shows no evidence of a TCE: the lag-CRP is nearly flat and the 95\% confidence interval on the Z(TCE) includes zero. \color{red} These results show that removing the intent to encode can reduce the magnitude of the TCE to the point that it is statistically indistinguishable from zero.\color{black} \setstcolor{red} \st{These results suggest that removing the intent to encode can eliminate the TCE.}
 
 
+
+%#####################
+%####### E1 CRP ######
+%#####################
 \newcommand\paneltext{(A) Lag-conditional response probability functions. Error bars are bootstrapped within-subject 95\% confidence intervals. (B) The average Z(TCE).  Error bars are bootstrapped between-subject 95\% confidence intervals. Z(TCE) for a given subject is computed as follows: An observed temporal factor score was computed as the average percentile ranking the temporal lag of each actual transition in the recall sequence with respect to the lags of all transitions that were possible at that time. To determine the temporal factor score expected by chance, a permutation distribution was created by randomly shuffling the order of recalls within the sequence 10,000 times and computing a temporal factor score for each shuffling. The reported value, Z(TCE), is z-score of the observed temporal factor score within the permutation distribution.}
-\begin{figure*}
+\begin{figure}
 \includegraphics{figures/E1_crp_list1.pdf}
 \caption{The temporal contiguity effect (TCE) on the first list under explicit versus incidental encoding using the Shoebox task (Experiment 1). \paneltext}
-\label{shoebox}
-\end{figure*}
+\label{e1_l1_crp}
+\end{figure}
 
 
 
-TODO: discuss SPCs
-TODO: make error bars bootstrapped
+
+
 \color{red}
-Figure~\ref{e1_l1_spc} shows SPCs and PFRs for the first list.
+\label{TODO-5}
+It is notable that even in the Explicit condition, the TCE was small compared to most previous work. Across a range of variations of the free recall task, the lag-CRP typically peaks at about 0.3--0.5 \citep{HealKaha17} compared to approximately 0.12 for the Explicit condition. The critical difference is likely amount of task experiece. In a multi-list explict encoding study \citet{HealKaha17} found that on a participant's very first list the lag-CRP peaked at approximatley 0.15 but that on the twelfth list, it peaked at 0.3. Figure~\ref{e1_l2_crp} shows the TCE for the second list in the current study. In both conditions the Z(TCE) is significant and higher than on list 1 (TODO: STATS). The TCE is, however, still lower in the Incidental than the Explicit condition prerhaps refelecting that the Explicit condition are profiting form the explicit encoding practice they gained on the first list. These finding would be difficult to account for with most existing models, because they have no mechanism simulate practice or otherwise allow contiguity to change dramatically with task experience.
+
+%#####################
+%####### E1l2 CRP ####
+%#####################
+\begin{figure}
+\includegraphics{figures/E1_crp_list2.pdf}
+\caption{The temporal contiguity effect (TCE) on the second list under explicit versus incidental encoding using the Shoebox task (Experiment 1). \paneltext}
+\label{e1_l2_crp}
+\end{figure}
+
+\color{black}
+
+
+\color{red}
+\label{TODO-6}
+Althought the TCE is our main focus, examining other aspects of recall dynamics may help shed light on why TCE varies across conditions. Overall recall probability (Table~\ref{sampsize_table}) was lower in the Incidental condition, espically for early output positions (see A for Serial Position Curves).  This is largely attributable to Participants in the Incidental condition recalling fewer items from early serial positions  (Figure~\ref{e1_l1_spc}A). In multi-list delayed free recall tasks, participants typically initiate recall by first retreiving an item from near the begining of the list \citep[i.e., they focus first on primacy items][]{REF}. Participants in the Explicit condition showed this typicla pattern, but participants in the Incidental condition showed the oppsite pattern of focusing first on recency items (Figure~\ref{e1_l1_spc}B), which is more typical of imediate recall \citep{REF}. These in recall dynamics may refelect differences in resheshal while viewing the list. Rehershal is known to move the functional serial position of early items in the list \citep{WARD}. Although the TCE has been found under conditions designed to minimize rehershal \citep{REC}, it may be one factor that increases the effect by causing the participants to hold adjecent items in mind at the same time \cite{HINTsaythis?}.
+
+
+TODO: later revisit and say rehershal may matter, but it is not the full story...
+
+How does this compare to earlier studies??
+
 
 \newcommand\spcpaneltext{All Error bars are bootstrapped within-subject 95\% confidence intervals.}
 \begin{figure}
@@ -200,19 +227,7 @@ Figure~\ref{e1_l1_spc} shows SPCs and PFRs for the first list.
 \label{e1_l1_spc}
 \end{figure}
 
-\color{black}
-
-
-\color{red}
-\label{TODO-5} It is notable that in \emph{both} conditions the magnitiude of the TCE is much smaller than is typically seen in multi-list experiemts..... take some language from the reply letter
-
-\label{TODO-6} looking at the second list.... add analyses of second list
-
-\begin{figure*}
-\includegraphics{figures/E1_crp_list2.pdf}
-\caption{The temporal contiguity effect (TCE) on the second list under explicit versus incidental encoding using the Shoebox task (Experiment 1). \paneltext}
-\label{e1_l2_crp}
-\end{figure*}
+On the second list, these group differences in recall initiation and accuracy were eliminated Figure~\ref{e1_l2_spc}. 
 
 
 \begin{figure}
@@ -227,7 +242,12 @@ Figure~\ref{e1_l1_spc} shows SPCs and PFRs for the first list.
 
 
 
-Because the TCE has proven to be so robust in previous studies \citep{HealKaha17}, we attempt to replicate the finding in Experiment 2 using a slightly different processing task.
+ 
+
+
+
+
+In summary, Experiment 1 directly compared Explicit and Incidental encoding conditions and found that removing the intent to encode dramatically reduced the TCE. But because the TCE has proven to be so robust in previous studies \citep{HealKaha17}, we attempt to replicate the finding in Experiment 2 using a slightly different processing task.
 
 \section{Experiment 2}
 \section{Method}
@@ -240,11 +260,11 @@ The processing required by the Shoebox Task from Experiment 1 is quite simple. S
 As predicted, the Front Door Task substantially improved memory accuracy in the Incidental condition. In fact, probability of recall was equal in the Explicit and Incidental conditions (Table 1). Nonetheless, the Front Door task did not produce a significant TCE under incidental encoding: Figure~\ref{door} shows that whereas the Explicit condition \color{red} had a \label{done-11} Z(TCE) significantly above zero \color{black}, the Incidental condition showed a flattened lag-CRP and a Z(TCE) for which the confidence interval included zero. These results confirm that incidental encoding can eliminate temporal contiguity without substantially decreasing memory performance \citep{NairEtal17}. This lack of coupling between level of recall and level of temporal contiguity has important theoretical implications, which we will consider in the discussion.
 
 
-\begin{figure*}%[hp]
+\begin{figure}%[hp]
 \includegraphics{figures/E2_crp_list1.pdf}
 \caption{The temporal contiguity effect (TCE) on the first list under explicit versus incidental encoding using the Front Door task (Experiment 2). \paneltext}
 \label{door}
-\end{figure*}
+\end{figure}
 
 
 
@@ -306,11 +326,11 @@ It is also notable that there is substantial variation in recall levels across c
 
 Finally, we note that although Experiments 1 and 2 conceptually replicated Nairne et al.'s (2017) finding of no contiguity under incidental encoding using different encoding tasks, Experiment 3 failed to replicate the finding using an encoding task (Moving Scenario Task) almost identical to Nairne et al.'s. This failure may be due to our larger sample size ($n=299$ here versus $N=80$ in E1 and $N=80$ in E2 of Nairne et al.) providing more power to detect a small contiguity effect combined with seemingly minor methodological differences (e.g., different list lengths and presentation rates). In any case, the message across the present three experiments is consistent with Nairne et al.'s findings: incidental encoding \emph{can} eliminate contiguity and it certainly reduces the size of the effect relative to explicit encoding. 
 
-\begin{figure*}%[hp]
+\begin{figure}%[hp]
 \includegraphics{figures/E3_crp_list1.pdf}
 \caption{The temporal contiguity effect (TCE) on the first list under incidental encoding with different judgment tasks (Experiment 3). (Top) Lag-conditional response probability functions. Error bars are bootstrapped within-subject 95\% confidence intervals. (Bottom) The average Z(TCE).  Error bars are bootstrapped between-subject 95\% confidence intervals. Z(TCE) for a given subject is computed as follows: An observed temporal factor score was computed as the average percentile ranking the temporal lag of each actual transition in the recall sequence with respect to the lags of all transitions that were possible at that time. To determine the temporal factor score expected by chance, a permutation distribution was created by randomly shuffling the order of recalls within the sequence 10,000 times and computing a temporal factor score for each shuffling. The reported value, Z(TCE), is z-score of the observed temporal factor score within the permutation distribution.}
 \label{E3}
-\end{figure*}
+\end{figure}
 
 
 \color{red}
@@ -318,11 +338,11 @@ TODO: discuss SPCs
 Figure~\ref{e2_l1_spc} shows SPCs and PFRs for the first list.
 
 
-\begin{figure*}
+\begin{figure}
 \includegraphics{figures/E3_spc_list1.pdf}
 \caption{(Top row) Serial Position Curves and (Bottom row) Probability of First Recall curves on the first list under incidental encoding with different judgment tasks (Experiment 3). \spcpaneltext}
 \label{e3_l1_spc}
-\end{figure*}
+\end{figure}
 
 \color{black}
 
@@ -345,11 +365,11 @@ Figure~\ref{e2_l1_spc} shows SPCs and PFRs for the first list.
 
 
 
-\begin{figure*}%[hp]
+\begin{figure}%[hp]
 \includegraphics{figures/E4_crp_list1.pdf}
 \caption{The temporal contiguity effect (TCE) on the first list as a function of encoding task variability and recall instructions (Experiment 4). \paneltext}
 \label{E4_crp_list1}
-\end{figure*}
+\end{figure}
 
 
 
