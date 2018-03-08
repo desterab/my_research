@@ -14,6 +14,9 @@ from matplotlib import rcParams
 from cbcc_tools.beh_anal import recall_dynamics as cbcc
 from cycler import cycler
 from scipy import stats
+import tcm_Heal16implicit as tcm
+from scipy.optimize import differential_evolution
+
 
 # figure style params
 sns.set_style("ticks")
@@ -790,63 +793,46 @@ def e4_crp_fig(all_crps, save_file):
     plt.close(fig2)
 
 
-# def corr_fig(all_crps, save_name):
-#     def extended(ax, x, y, **args):
-#         xlim = ax.get_xlim()
-#         ylim = ax.get_ylim()
-#
-#         x_ext = np.linspace(xlim[0], xlim[1], 100)
-#         p = np.polyfit(x, y , deg=1)
-#         y_ext = np.poly1d(p)(x_ext)
-#         ax.plot(x_ext, y_ext, **args)
-#         ax.set_xlim(xlim)
-#         ax.set_ylim(ylim)
-#         return ax
-#
-#         plt.style.use('~/code/py_modules/cbcc_tools/plotting/stylesheets/cbcc_bw.mplstyle')
-#
-#     # Load in the data
-#     all_crps.to_csv('new_data.csv')
-#     data = pd.read_csv('new_data.csv')
-#     data['condition'] = data['task_condition'] + '_' + data['instruction_condition'] + '_' + data['recall_instruction_condition']
-#
-#     # Filter out unnecessary data
-#     data = data[data['lag'] == 0]
-#     data = data[data['list'] == 0]
-#
-#     # Get the means of each condition
-#     means = data.groupby('condition').mean()
-#
-#     # Calculate the regression
-#     x = means.prec
-#     y = means.all_tf_z
-#     slope, intercept, r_value, p_value, std_err = stats.linregress(x,y)
-#     print 'PREC x Z_TCE:', r_value, p_value
-#
-#     # Make the figure
-#     fig1 = plt.figure(figsize=(one_col, one_col))
-#     ax1 = plt.subplot2grid((1, 1), (0, 0), rowspan=1, colspan=1)
-#     ax1.scatter(x, y, c='k', s=50)
-#     ax1.set(xlabel="Recall Prob.", ylabel="Z(TCE)")
-#
-#     # ax1.set(xlim=[0.35, 0.5], xticks=[0.35, 0.4, 0.45, 0.5])
-#     # ax1.set(ylim=[0, 0.14])
-#
-#     # ax1.plot(np.unique(x), np.poly1d(np.polyfit(x, y, 1))(np.unique(x)), 'k--', lw = 2)
-#
-#     # Using this function makes sure that the dotted line runs across the entire figure and is not just a segment
-#     ax1 = extended(ax1, np.unique(x), np.poly1d(np.polyfit(x, y, 1))(np.unique(x)), color='black',
-#                    linestyle='dashed', markersize=0)
-#
-#     ax1.text(.25, .02, '$\mathit{r}(%d) = %.2f, \mathit{p} = %.2f$' % (len(x)-2, r_value, p_value), fontsize=14)
-#     # "%s is %d years old." % (name, age)
-#
-#     # Save the figure
-#     plt.savefig(save_name)
+
+def e4_new_fig(data_to_use, which_list, save_name):
+    # colors = ["#000000", "#808080"]
+    # sns.set_palette(colors)
+
+    # setup the grid
+    fig2 = plt.figure(figsize=(two_col, two_col/2))
+    gs = gridspec.GridSpec(1, 2)
+    crp_axis = fig2.add_subplot(gs[0, 0])
+    tf_axis = fig2.add_subplot(gs[0, 1])
+
+    # plot crps
+    data_filter = data_to_use.list == which_list
+    rcParams['lines.linewidth'] = 1
+    rcParams['lines.markersize'] = 0
+    g = sns.factorplot(x="lag", y="crp", hue="recall_instruction_condition", data=data_to_use.loc[data_filter, :],
+                   hue_order=["Free", "Serial"], dodge=.25, units='subject', ax=crp_axis)
+    crp_axis.set(xlabel="Lag", ylabel="Cond. Resp. Prob.", ylim=[0., .2], xticks=range(0, 11, 2),
+                 xticklabels=range(-5, 6, 2))
+    crp_axis.legend(title='Recall Instructions', ncol=2, labelspacing=.2, handlelength=.01, loc=2)
+    plt.figure(fig2.number)
+    sns.despine()
+    crp_axis.annotate('A.', xy=(-.21, 1), xycoords='axes fraction', weight='bold')
+
+    # plot temp factors
+    data_filter = np.logical_and(data_to_use.list == which_list, data_to_use.lag == 0)
+    g = sns.barplot(x="recall_instruction_condition", y=tf_col, data=data_to_use.loc[data_filter, :],
+                    order=["Free", "Serial"], ax=tf_axis)
+    tf_axis.set(xlabel="Recall Instructions", ylabel="Z(TCE)", ylim=tf_lims)
+    tf_axis.lines[0].set_color('grey')
+    tf_axis.lines[1].set_color('black')
+    plt.axhline(linewidth=1, linestyle='--', color='k')
+    plt.figure(fig2.number)
+    sns.despine()
+    tf_axis.annotate('B.', xy=(-.19, 1), xycoords='axes fraction', weight='bold')
+
+    fig2.savefig(save_name + '.pdf', bbox_inches='tight')
+    plt.close(fig2)
 
 
-
-#     plt.plot(cond[-2][0], cond[-2][1], marker="$%d$" % out, markersize=20, color='#000000')
 
 
 def corr_fig(all_crps, save_name):
@@ -871,20 +857,39 @@ def corr_fig(all_crps, save_name):
     data = data[data['list'] == 0]
 
     # Number all the conditions to numbers one by one
-    data.ix[((data['task_condition'] == 'Shoebox') & (data['instruction_condition'] == 'Explicit') & (data['recall_instruction_condition'] == 'Free')), 'condition_num'] = 0
-    data.ix[((data['task_condition'] == 'Shoebox') & (data['instruction_condition'] == 'Incidental') & (data['recall_instruction_condition'] == 'Free')), 'condition_num'] = 1
-    data.ix[((data['task_condition'] == 'Front Door') & (data['instruction_condition'] == 'Explicit') & (data['recall_instruction_condition'] == 'Free')), 'condition_num'] = 2
-    data.ix[((data['task_condition'] == 'Front Door') & (data['instruction_condition'] == 'Incidental') & (data['recall_instruction_condition'] == 'Free')), 'condition_num'] = 3
-    data.ix[((data['task_condition'] == 'Movie') & (data['instruction_condition'] == 'Incidental') & (data['recall_instruction_condition'] == 'Free')), 'condition_num'] = 4
-    data.ix[((data['task_condition'] == 'Relational') & (data['instruction_condition'] == 'Incidental') & (data['recall_instruction_condition'] == 'Free')), 'condition_num'] = 5
-    data.ix[((data['task_condition'] == 'Scenario') & (data['instruction_condition'] == 'Incidental') & (data['recall_instruction_condition'] == 'Free')), 'condition_num'] = 6
-    data.ix[((data['task_condition'] == 'Animacy') & (data['instruction_condition'] == 'Incidental') & (data['recall_instruction_condition'] == 'Free')), 'condition_num'] = 7
-    data.ix[((data['task_condition'] == 'Weight') & (data['instruction_condition'] == 'Incidental') & (data['recall_instruction_condition'] == 'Free')), 'condition_num'] = 8
-    data.ix[((data['task_condition'] == 'Constant Size') & (data['instruction_condition'] == 'Incidental') & (data['recall_instruction_condition'] == 'Free')), 'condition_num'] = 9
-    data.ix[((data['task_condition'] == 'Constant Size') & (data['instruction_condition'] == 'Incidental') & (data['recall_instruction_condition'] == 'Serial')), 'condition_num'] = 10
-    data.ix[((data['task_condition'] == 'Varying Size') & (data['instruction_condition'] == 'Incidental') & (data['recall_instruction_condition'] == 'Free')), 'condition_num'] = 11
+    data.ix[((data['task_condition'] == 'Shoebox') & (data['instruction_condition'] == 'Explicit') & (
+                data['recall_instruction_condition'] == 'Free')), 'condition_num'] = 0
+    data.ix[((data['task_condition'] == 'Shoebox') & (data['instruction_condition'] == 'Incidental') & (
+                data['recall_instruction_condition'] == 'Free')), 'condition_num'] = 1
+
+    data.ix[((data['task_condition'] == 'Front Door') & (data['instruction_condition'] == 'Explicit') & (
+                data['recall_instruction_condition'] == 'Free')), 'condition_num'] = 2
+    data.ix[((data['task_condition'] == 'Front Door') & (data['instruction_condition'] == 'Incidental') & (
+                data['recall_instruction_condition'] == 'Free')), 'condition_num'] = 3
+
+    data.ix[((data['task_condition'] == 'Weight') & (data['instruction_condition'] == 'Incidental') & (
+                data['recall_instruction_condition'] == 'Free')), 'condition_num'] = 4
+    data.ix[((data['task_condition'] == 'Animacy') & (data['instruction_condition'] == 'Incidental') & (
+                data['recall_instruction_condition'] == 'Free')), 'condition_num'] = 5
+    data.ix[((data['task_condition'] == 'Scenario') & (data['instruction_condition'] == 'Incidental') & (
+                data['recall_instruction_condition'] == 'Free')), 'condition_num'] = 6
+    data.ix[((data['task_condition'] == 'Movie') & (data['instruction_condition'] == 'Incidental') & (
+                data['recall_instruction_condition'] == 'Free')), 'condition_num'] = 7
+    data.ix[((data['task_condition'] == 'Relational') & (data['instruction_condition'] == 'Incidental') & (
+                data['recall_instruction_condition'] == 'Free')), 'condition_num'] = 8
+    data.ix[((data['task_condition'] == 'Varying Size') & (data['instruction_condition'] == 'Incidental') & (
+                data['recall_instruction_condition'] == 'Free')), 'condition_num'] = 9
+
+    data.ix[((data['task_condition'] == 'Constant Size') & (data['instruction_condition'] == 'Incidental') & (
+                data['recall_instruction_condition'] == 'Free')), 'condition_num'] = 10
+    data.ix[((data['task_condition'] == 'Constant Size') & (data['instruction_condition'] == 'Incidental') & (
+                data['recall_instruction_condition'] == 'Serial')), 'condition_num'] = 11
+
     data.ix[((data['task_condition'] == 'Varying Size') & (data['instruction_condition'] == 'Incidental') & (data['recall_instruction_condition'] == 'Serial')), 'condition_num'] = 12
     data['condition_num'] = data['condition_num'].astype(int) # Make sure they are saved as ints
+
+    # drop the varying size serial data
+    data = data[data.condition_num != 12]
 
     # Get the means of each condition
     means = data.groupby('condition_num').mean()
@@ -921,3 +926,82 @@ def corr_fig(all_crps, save_name):
 
     # Save the figure
     plt.savefig(save_name)
+
+
+
+def model_it(list0):
+    parameters = [.1, .1, .1, .1, .1, .1, .1, .1]
+
+    conditions = (
+        ('Explicit', 'Shoebox', 'Free'),
+        ('Incidental', 'Shoebox', 'Free'),
+        ('Explicit', 'Front Door', 'Free'),
+        ('Incidental', 'Front Door', 'Free'),
+        ('Incidental', 'Movie', 'Free'),
+        ('Incidental', 'Relational', 'Free'),
+        ('Incidental', 'Scenario', 'Free'),
+        ('Incidental', 'Animacy', 'Free'),
+        ('Incidental', 'Weight', 'Free'),
+        ('Incidental', 'Constant Size', 'Free'),
+        ('Incidental', 'Constant Size', 'Serial'),
+        ('Incidental', 'Varying Size', 'Free'),
+        ('Incidental', 'Varying Size', 'Serial'),
+    )
+
+    runs_per_param_set = 1000
+    n_lists = 1
+    n_items = 16
+    pop_size = 300
+    gens_per_ss = 30
+    polish = True
+    n_final_runs = 1000
+    bounds = [
+        (1.0, 5.0),  # 0: phi_s
+        (0.1, 3.0),  # 1: phi_d
+        (0.0, .99),  # 2: gamma_fc
+        (0.0, .99),  # 2: gamma_cf
+        (0.0, .3),  # 3: beta_enc
+        (0.0, 0.8),  # 4: theta_s
+        (0.0, 0.8),  # 5: theta_r
+        (1.0, 3.0),  # 6: tau
+        (0.00, .5),  # 7: beta_rec
+        (0.00, .99)  # 7: beta_drift
+    ]
+
+    output = []
+    for cond in conditions:
+        filter = np.logical_and(list0.instruction_condition == cond[0],
+                                np.logical_and(list0.task_condition == cond[1],
+                                               np.logical_and(list0.recall_instruction_condition == cond[2],
+                                                              list0.list == 0)))
+        data_vector = np.append(np.nanmean(cbcc.prec(list0.recalls[filter].values, n_items)),
+                                np.nanmean(cbcc.temporal_factor(list0.recalls[filter].values, n_items)))
+
+        args = (runs_per_param_set, n_lists, n_items, data_vector)
+        result = differential_evolution(tcm.evaluate, bounds, args,
+                                        polish=polish, maxiter=gens_per_ss, popsize=pop_size, disp=False)
+        recalled_items = tcm.tcm(result.x, n_final_runs, n_lists, n_items)
+        model_vector = np.append(np.nanmean(cbcc.prec(recalled_items.astype('int64'), n_items)),
+                                 np.nanmean(cbcc.temporal_factor(recalled_items.astype('int64'), n_items)))
+        output.append((cond, result, data_vector, model_vector))
+        print(cond, result.x)
+
+    with open('parrot.pkl', 'wb') as f:
+        pickle.dump(output, f)
+
+    with open('parrot.pkl', 'rb') as f:
+        loaded = pickle.load(f)
+
+    out = 1
+    plt.style.use('~/code/py_modules/cbcc_tools/plotting/stylesheets/cbcc_bw.mplstyle')
+    fig = plt.figure(figsize=(7, 7))
+    for cond in loaded:
+        plt.plot(cond[-2][0], cond[-2][1], marker="$%d$" % out, markersize=20, color='#000000')
+        plt.plot(cond[-1][0], cond[-1][1], marker="$%d$" % out, markersize=20, color='#808080')
+        # plt.xlim(0, 1)
+        # plt.ylim(0, 1)
+
+        out += 1
+    plt.ylabel('Temporal Factor Score')
+    plt.xlabel('Probability of Recall')
+    plt.savefig('fits.pdf')
