@@ -790,6 +790,65 @@ def e4_crp_fig(all_crps, save_file):
     plt.close(fig2)
 
 
+# def corr_fig(all_crps, save_name):
+#     def extended(ax, x, y, **args):
+#         xlim = ax.get_xlim()
+#         ylim = ax.get_ylim()
+#
+#         x_ext = np.linspace(xlim[0], xlim[1], 100)
+#         p = np.polyfit(x, y , deg=1)
+#         y_ext = np.poly1d(p)(x_ext)
+#         ax.plot(x_ext, y_ext, **args)
+#         ax.set_xlim(xlim)
+#         ax.set_ylim(ylim)
+#         return ax
+#
+#         plt.style.use('~/code/py_modules/cbcc_tools/plotting/stylesheets/cbcc_bw.mplstyle')
+#
+#     # Load in the data
+#     all_crps.to_csv('new_data.csv')
+#     data = pd.read_csv('new_data.csv')
+#     data['condition'] = data['task_condition'] + '_' + data['instruction_condition'] + '_' + data['recall_instruction_condition']
+#
+#     # Filter out unnecessary data
+#     data = data[data['lag'] == 0]
+#     data = data[data['list'] == 0]
+#
+#     # Get the means of each condition
+#     means = data.groupby('condition').mean()
+#
+#     # Calculate the regression
+#     x = means.prec
+#     y = means.all_tf_z
+#     slope, intercept, r_value, p_value, std_err = stats.linregress(x,y)
+#     print 'PREC x Z_TCE:', r_value, p_value
+#
+#     # Make the figure
+#     fig1 = plt.figure(figsize=(one_col, one_col))
+#     ax1 = plt.subplot2grid((1, 1), (0, 0), rowspan=1, colspan=1)
+#     ax1.scatter(x, y, c='k', s=50)
+#     ax1.set(xlabel="Recall Prob.", ylabel="Z(TCE)")
+#
+#     # ax1.set(xlim=[0.35, 0.5], xticks=[0.35, 0.4, 0.45, 0.5])
+#     # ax1.set(ylim=[0, 0.14])
+#
+#     # ax1.plot(np.unique(x), np.poly1d(np.polyfit(x, y, 1))(np.unique(x)), 'k--', lw = 2)
+#
+#     # Using this function makes sure that the dotted line runs across the entire figure and is not just a segment
+#     ax1 = extended(ax1, np.unique(x), np.poly1d(np.polyfit(x, y, 1))(np.unique(x)), color='black',
+#                    linestyle='dashed', markersize=0)
+#
+#     ax1.text(.25, .02, '$\mathit{r}(%d) = %.2f, \mathit{p} = %.2f$' % (len(x)-2, r_value, p_value), fontsize=14)
+#     # "%s is %d years old." % (name, age)
+#
+#     # Save the figure
+#     plt.savefig(save_name)
+
+
+
+#     plt.plot(cond[-2][0], cond[-2][1], marker="$%d$" % out, markersize=20, color='#000000')
+
+
 def corr_fig(all_crps, save_name):
     def extended(ax, x, y, **args):
         xlim = ax.get_xlim()
@@ -803,30 +862,49 @@ def corr_fig(all_crps, save_name):
         ax.set_ylim(ylim)
         return ax
 
-        plt.style.use('~/code/py_modules/cbcc_tools/plotting/stylesheets/cbcc_bw.mplstyle')
-
     # Load in the data
     all_crps.to_csv('new_data.csv')
     data = pd.read_csv('new_data.csv')
-    data['condition'] = data['task_condition'] + '_' + data['instruction_condition'] + '_' + data['recall_instruction_condition']
 
     # Filter out unnecessary data
     data = data[data['lag'] == 0]
     data = data[data['list'] == 0]
 
+    # Number all the conditions to numbers one by one
+    data.ix[((data['task_condition'] == 'Shoebox') & (data['instruction_condition'] == 'Explicit') & (data['recall_instruction_condition'] == 'Free')), 'condition_num'] = 0
+    data.ix[((data['task_condition'] == 'Shoebox') & (data['instruction_condition'] == 'Incidental') & (data['recall_instruction_condition'] == 'Free')), 'condition_num'] = 1
+    data.ix[((data['task_condition'] == 'Front Door') & (data['instruction_condition'] == 'Explicit') & (data['recall_instruction_condition'] == 'Free')), 'condition_num'] = 2
+    data.ix[((data['task_condition'] == 'Front Door') & (data['instruction_condition'] == 'Incidental') & (data['recall_instruction_condition'] == 'Free')), 'condition_num'] = 3
+    data.ix[((data['task_condition'] == 'Movie') & (data['instruction_condition'] == 'Incidental') & (data['recall_instruction_condition'] == 'Free')), 'condition_num'] = 4
+    data.ix[((data['task_condition'] == 'Relational') & (data['instruction_condition'] == 'Incidental') & (data['recall_instruction_condition'] == 'Free')), 'condition_num'] = 5
+    data.ix[((data['task_condition'] == 'Scenario') & (data['instruction_condition'] == 'Incidental') & (data['recall_instruction_condition'] == 'Free')), 'condition_num'] = 6
+    data.ix[((data['task_condition'] == 'Animacy') & (data['instruction_condition'] == 'Incidental') & (data['recall_instruction_condition'] == 'Free')), 'condition_num'] = 7
+    data.ix[((data['task_condition'] == 'Weight') & (data['instruction_condition'] == 'Incidental') & (data['recall_instruction_condition'] == 'Free')), 'condition_num'] = 8
+    data.ix[((data['task_condition'] == 'Constant Size') & (data['instruction_condition'] == 'Incidental') & (data['recall_instruction_condition'] == 'Free')), 'condition_num'] = 9
+    data.ix[((data['task_condition'] == 'Constant Size') & (data['instruction_condition'] == 'Incidental') & (data['recall_instruction_condition'] == 'Serial')), 'condition_num'] = 10
+    data.ix[((data['task_condition'] == 'Varying Size') & (data['instruction_condition'] == 'Incidental') & (data['recall_instruction_condition'] == 'Free')), 'condition_num'] = 11
+    data.ix[((data['task_condition'] == 'Varying Size') & (data['instruction_condition'] == 'Incidental') & (data['recall_instruction_condition'] == 'Serial')), 'condition_num'] = 12
+    data['condition_num'] = data['condition_num'].astype(int) # Make sure they are saved as ints
+
     # Get the means of each condition
-    means = data.groupby('condition').mean()
+    means = data.groupby('condition_num').mean()
 
     # Calculate the regression
     x = means.prec
     y = means.all_tf_z
-    slope, intercept, r_value, p_value, std_err = stats.linregress(x,y)
-    print 'PREC x Z_TCE:', r_value, p_value
+    slope, intercept, r_value, p_value, std_err = stats.linregress(x ,y)
+    print 'r(%d) = %.2f, p = %.2f' % (len(x) - 2, r_value, p_value)
 
     # Make the figure
     fig1 = plt.figure(figsize=(one_col, one_col))
     ax1 = plt.subplot2grid((1, 1), (0, 0), rowspan=1, colspan=1)
-    ax1.scatter(x, y, c='k', s=50)
+
+    # here is the new part
+    for cond in means.index.values:
+        plt.plot(x[cond], y[cond], marker="$" + str(cond + 1) + "$", markersize=8, color='#000000')
+
+    # ax1.scatter(x, y, c='k', s=50)
+    ax1.grid(True)
     ax1.set(xlabel="Recall Prob.", ylabel="Z(TCE)")
 
     # ax1.set(xlim=[0.35, 0.5], xticks=[0.35, 0.4, 0.45, 0.5])
@@ -836,9 +914,9 @@ def corr_fig(all_crps, save_name):
 
     # Using this function makes sure that the dotted line runs across the entire figure and is not just a segment
     ax1 = extended(ax1, np.unique(x), np.poly1d(np.polyfit(x, y, 1))(np.unique(x)), color='black',
-                   linestyle='dashed', markersize=0)
+                   linestyle='dashed', markersize=0, linewidth=1)
 
-    ax1.text(.25, .02, '$\mathit{r}(%d) = %.2f, \mathit{p} = %.2f$' % (len(x)-2, r_value, p_value), fontsize=14)
+    ax1.text(.26, .15, '$\mathit{r}(%d) = %.2f, \mathit{p} = %.2f$' % (len(x) - 2, r_value, p_value), fontsize=10)
     # "%s is %d years old." % (name, age)
 
     # Save the figure
