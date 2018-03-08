@@ -49,35 +49,37 @@ conditions = (
     ('Incidental', 'Shoebox', 'Free'),
     ('Explicit', 'Front Door', 'Free'),
     ('Incidental', 'Front Door', 'Free'),
-    ('Incidental', 'Movie', 'Free'),
+    # ('Incidental', 'Movie', 'Free'),
     ('Incidental', 'Relational', 'Free'),
-    ('Incidental', 'Scenario', 'Free'),
-    ('Incidental', 'Animacy', 'Free'),
-    ('Incidental', 'Weight', 'Free'),
+    # ('Incidental', 'Scenario', 'Free'),
+    # ('Incidental', 'Animacy', 'Free'),
+    # ('Incidental', 'Weight', 'Free'),
     ('Incidental', 'Constant Size', 'Free'),
-    ('Incidental', 'Constant Size', 'Serial'),
+    # # ('Incidental', 'Constant Size', 'Serial'),
     ('Incidental', 'Varying Size', 'Free'),
-    ('Incidental', 'Varying Size', 'Serial'),
+    # # ('Incidental', 'Varying Size', 'Serial'),
 )
 
 
-runs_per_param_set = 10
+runs_per_param_set = 1000
 n_lists = 1
 n_items = 16
-pop_size = 5
-gens_per_ss = 5
+pop_size = 300
+gens_per_ss = 30
 polish = True
-n_final_runs = 10
+n_final_runs = 1000
 bounds = [
-        (1.0, 10.0),  # 0: phi_s
-        (0.4, 2.0),  # 1: phi_d
-        (0.0, .99),  # 2: gamma_fc
-        (0.0, .99),  # 3: beta_enc
-        (0.0, 0.3),  # 4: theta_s
-        (0.0, 0.4),  # 5: theta_r
-        (10.0, 25.0),  # 6: tau
-        (0.00, .99)  # 7: beta_rec
-    ]
+    (1.0, 5.0),  # 0: phi_s
+    (0.1, 3.0),  # 1: phi_d
+    (0.0, .99),  # 2: gamma_fc
+    (0.0, .99),  # 2: gamma_cf
+    (0.0, .3),  # 3: beta_enc
+    (0.0, 0.8),  # 4: theta_s
+    (0.0, 0.8),  # 5: theta_r
+    (1.0, 3.0),  # 6: tau
+    (0.00, .5),  # 7: beta_rec
+    (0.00, .99)  # 7: beta_drift
+]
 
 
 output = []
@@ -92,10 +94,11 @@ for cond in conditions:
     args = (runs_per_param_set, n_lists, n_items, data_vector)
     result = differential_evolution(tcm.evaluate, bounds, args,
                                     polish=polish, maxiter=gens_per_ss, popsize=pop_size, disp=False)
-    temp_fact, prec = tcm.tcm(result.x, n_final_runs, n_lists, n_items)
-    model_vector = np.append(temp_fact, prec)
+    recalled_items = tcm.tcm(result.x, n_final_runs, n_lists, n_items)
+    model_vector = np.append(np.nanmean(cbcc.prec(recalled_items.astype('int64'), n_items)),
+                             np.nanmean(cbcc.temporal_factor(recalled_items.astype('int64'), n_items)))
     output.append((cond, result, data_vector, model_vector))
-    print(cond)
+    print(cond, result.x)
 
 with open('parrot.pkl', 'wb') as f:
    pickle.dump(output, f)
@@ -104,12 +107,18 @@ with open('parrot.pkl', 'rb') as f:
     loaded = pickle.load(f)
 
 out = 1
+plt.style.use('~/code/py_modules/cbcc_tools/plotting/stylesheets/cbcc_bw.mplstyle')
+fig = plt.figure(figsize=(7, 7))
 for cond in loaded:
     plt.plot(cond[-2][0], cond[-2][1], marker="$%d$" % out, markersize=20, color='#000000')
     plt.plot(cond[-1][0], cond[-1][1], marker="$%d$" % out, markersize=20, color='#808080')
+    # plt.xlim(0, 1)
+    # plt.ylim(0, 1)
+
 
     out += 1
-plt.show()
+plt.ylabel('Temporal Factor Score')
+plt.xlabel('Probability of Recall')
 plt.savefig('fits.pdf')
 
 

@@ -2,17 +2,18 @@ import numpy as np
 from numba import jit
 from cbcc_tools.beh_anal import recall_dynamics as cbcc
 
+
 def evaluate(parameters, n_subjects, n_lists, n_items, data_vector):
     # run the model
-    prec, temp_fact = tcm(parameters, n_subjects, n_lists, n_items)
+    recalled_items = tcm(parameters, n_subjects, n_lists, n_items)
 
     # compute rmsd
-    model_vector = np.append(prec, temp_fact)
+    model_vector = np.append(np.nanmean(cbcc.prec(recalled_items.astype('int64'), n_items)),
+                             np.nanmean(cbcc.temporal_factor(recalled_items.astype('int64'), n_items)))
+
     return np.sqrt(np.nansum((data_vector - model_vector) ** 2) / data_vector.size)
 
-
-
-# @jit(nopython=False, nogil=True, cache=True)
+@jit(nopython=True, nogil=True, cache=True)
 def tcm(parameters, n_subjects, n_lists, n_items):
     """
     TCM using a luce choice rule with a stopping graident
@@ -32,12 +33,12 @@ def tcm(parameters, n_subjects, n_lists, n_items):
     item_iter = range(n_items)
 
     # the network has one more element than the number of list items --- for the pre-list context element
-    n_elements = n_items + 1
+    n_elements = n_items + 2
 
     # initial context representation orthogonal to item representations
     # todo: decide if we should really be associating the first item with this pre-list element
     c_i = np.zeros(n_elements)
-    c_i[-1] = 1
+    c_i[-2] = 1
     c_i = c_i
 
     # item_representations
@@ -54,16 +55,18 @@ def tcm(parameters, n_subjects, n_lists, n_items):
     phi_s = parameters[0]
     phi_d = parameters[1]
     gamma_fc = parameters[2]
-    gamma_cf = 0.8  # parameters[3]
+    gamma_cf = parameters[3]
     beta_enc = parameters[3]
     theta_s = parameters[4]
     theta_r = parameters[5]
     tau = parameters[6]
     beta_rec = parameters[7]
+    beta_drift = parameters[8]
 
     # setup matricies to hold the recall dynamics results
     # todo: these could potentially be in network
-    recalled_items = -np.ones((n_subjects, n_lists, n_items), dtype='int64')
+    recalled_items = -np.ones((n_subjects, n_lists, n_items))
+    # recalled_items = int(recalled_items)
 
     ##################  study the items
     for item_i in item_iter:
@@ -89,11 +92,14 @@ def tcm(parameters, n_subjects, n_lists, n_items):
         m_cf_exp += delta_cf
 
         ##### update conntext
-        c_i = evolve_context(c_i, f_i, m_fc_pre, beta_enc)
+        c_i = evolve_context(c_i, f_i, m_fc_pre, beta_drift)
         # assert math.isclose(np.linalg.norm(c_i), 1.0, rel_tol=1e-5)
 
     # save the end-of-list state of context so we can reuse it for each subject and list during recall below
-    c_i_end_list = c_i
+    # c_i_end_list = c_i
+    f_i = np.zeros(n_elements)
+    f_i[-1] = 1
+    c_i_end_list = evolve_context(c_i, f_i, m_fc_pre, beta_enc)
 
     # combine pre-experimental and experimental matrices
     m_fc = (1 - gamma_fc) * m_fc_pre + gamma_fc * m_fc_exp
@@ -142,7 +148,8 @@ def tcm(parameters, n_subjects, n_lists, n_items):
                 # activate recall item on feature layer and update context
                 f_i = item_representations[j, :]
                 c_i = evolve_context(c_i, f_i, m_fc, beta_rec)
-    return np.nanmean(cbcc.prec(recalled_items, n_items)), np.nanmean(cbcc.temporal_factor(recalled_items, n_items))
+    return recalled_items
+    # return np.nanmean(cbcc.prec(recalled_items, n_items)), np.nanmean(cbcc.temporal_factor(recalled_items, n_items))
 
 
 @jit(nopython=True, nogil=True, cache=True)
