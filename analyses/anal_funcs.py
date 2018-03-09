@@ -365,7 +365,7 @@ def make_xarray(data, list_number):
     return ds, sample_sizes_aware_counts, sample_sizes_included_counts
 
 
-def sample_size_table(all_crps, results_dir):
+def sample_size_table(all_crps, results_dir, recalls):
 
     # take mean within subject, list, and lag to give each row an unique index (currently the inxexing resets for each
     # subject, which makes it impossible to do crosstabs
@@ -510,6 +510,92 @@ def sample_size_table(all_crps, results_dir):
             '\\newcommand\\VaryingSerialPrec{{{:.2f} ({:.2f})}}\n'.format(prec_table["mean"]["Incidental"]["Varying Size"]['Serial'],
                                                                    prec_table["std"]["Incidental"]["Varying Size"]['Serial']))
 
+        # demographics for E4
+        constant = all_crps.task_condition == "Constant Size"
+        varying = all_crps.task_condition == "Varying Size"
+        these_data = all_crps[varying | constant]
+        task_cond_filter = these_data.task_condition == "Varying Size"
+        recall_cond_filter = these_data.recall_instruction_condition == "Serial"
+        varying_serial = task_cond_filter & recall_cond_filter
+        these_data = these_data[~varying_serial]
+        age = []
+        males = 0
+        females = 0
+        others = 0
+        notans = 0
+        eng_yes = 0
+        eng_no = 0
+        eng_skip = 0
+        none = 0
+        hig = 0
+        ass = 0
+        bac = 0
+        mas = 0
+        high = 0
+        notsay = 0
+        for s in these_data.subject.unique():
+            age.append(recalls[recalls.subject == s].age[0].astype(float)[0])
+            if recalls[recalls.subject == s].gender[0][0] == "male":
+                males += 1
+            elif recalls[recalls.subject == s].gender[0][0] == "female":
+                females += 1
+            elif recalls[recalls.subject == s].gender[0][0] == "other":
+                others += 1
+            else:
+                notans += 1
+            if recalls[recalls.subject == s].english[0][0] == 'Yes':
+                eng_yes += 1
+            elif recalls[recalls.subject == s].english[0][0] == 'No':
+                eng_no += 1
+            else:
+                eng_skip += 1
+            if recalls[recalls.subject == s].edu[0][0] == "none":
+                none += 1
+            elif recalls[recalls.subject == s].edu[0][0] == "hig":
+                hig += 1
+            elif recalls[recalls.subject == s].edu[0][0] == "ass":
+                ass += 1
+            elif recalls[recalls.subject == s].edu[0][0] == "bac":
+                bac += 1
+            elif recalls[recalls.subject == s].edu[0][0] == "mas":
+                mas += 1
+            elif recalls[recalls.subject == s].edu[0][0] == "high":
+                high += 1
+            elif recalls[recalls.subject == s].edu[0][0] == "notsay":
+                notsay += 1
+        total_expected = 1591
+        assert males + females + others + notans == total_expected
+        assert eng_yes + eng_no + eng_skip == total_expected
+        assert none + hig + ass + bac + mas + high + notsay == total_expected
+
+        # age
+        text_file.write('\\newcommand\\age{{{:.2f} ($SD = {:.2f}$)}}\n'.format(np.mean(age), np.std(age)))
+
+        # gender
+        text_file.write('\\newcommand\\males{{{:d}}}\n'.format(males))
+        text_file.write('\\newcommand\\females{{{:d}}}\n'.format(females))
+        text_file.write('\\newcommand\\others{{{:d}}}\n'.format(others))
+        text_file.write('\\newcommand\\notans{{{:d}}}\n'.format(notans))
+
+        # english
+        text_file.write('\\newcommand\\engY{{{:d}}}\n'.format(eng_yes))
+        text_file.write('\\newcommand\\engN{{{:d}}}\n'.format(eng_no))
+        text_file.write('\\newcommand\\engS{{{:d}}}\n'.format(eng_skip))
+
+        # edu
+        text_file.write('\\newcommand\\noed{{{:d}}}\n'.format(none))
+        text_file.write('\\newcommand\\hschool{{{:d}}}\n'.format(hig))
+        text_file.write('\\newcommand\\ass{{{:d}}}\n'.format(ass))
+        text_file.write('\\newcommand\\bac{{{:d}}}\n'.format(bac))
+        text_file.write('\\newcommand\\mas{{{:d}}}\n'.format(mas))
+        text_file.write('\\newcommand\\phd{{{:d}}}\n'.format(high))
+        text_file.write('\\newcommand\\notansed{{{:d}}}\n'.format(notsay))
+
+
+
+
+
+
     return all_crps
 
 
@@ -539,7 +625,7 @@ def encoding_instruct_fig(data_to_use, which_list, save_name):
     # plot temp factors
     data_filter = np.logical_and(data_to_use.list == which_list, data_to_use.lag == 0)
     g = sns.barplot(x="instruction_condition", y=tf_col, data=data_to_use.loc[data_filter, :], order=["Explicit", "Incidental"], ax=tf_axis) #
-    tf_axis.set(xlabel="Encoding Instructions", ylabel="Z(TCE)", ylim=tf_lims)
+    tf_axis.set(xlabel="Encoding Instructions", ylabel="z(TCE)", ylim=tf_lims)
     tf_axis.lines[0].set_color('grey')
     tf_axis.lines[1].set_color('black')
     plt.axhline(linewidth=1, linestyle='--', color='k')
@@ -576,13 +662,13 @@ def spc_encoding_instructions_fig(to_plot, task, save_file):
 def e3fig(data, save_file):
     # setup the grid
     fig1 = plt.figure(figsize=(two_col, base_height*1.5))
-    ax1 = plt.subplot2grid((2, 6), (0, 0), rowspan=1, colspan=1)
-    ax2 = plt.subplot2grid((2, 6), (0, 1), rowspan=1, colspan=1)
-    ax3 = plt.subplot2grid((2, 6), (0, 2), rowspan=1, colspan=1)
-    ax4 = plt.subplot2grid((2, 6), (0, 3), rowspan=1, colspan=1)
-    ax5 = plt.subplot2grid((2, 6), (0, 4), rowspan=1, colspan=1)
-    ax6 = plt.subplot2grid((2, 6), (0, 5), rowspan=1, colspan=1)
-    ax7 = plt.subplot2grid((2, 6), (1, 0), rowspan=1, colspan=6)
+    ax1 = plt.subplot2grid((2, 5), (0, 0), rowspan=1, colspan=1)
+    ax2 = plt.subplot2grid((2, 5), (0, 1), rowspan=1, colspan=1)
+    ax3 = plt.subplot2grid((2, 5), (0, 2), rowspan=1, colspan=1)
+    ax4 = plt.subplot2grid((2, 5), (0, 3), rowspan=1, colspan=1)
+    ax5 = plt.subplot2grid((2, 5), (0, 4), rowspan=1, colspan=1)
+    # ax6 = plt.subplot2grid((2, 6), (0, 5), rowspan=1, colspan=1)
+    ax7 = plt.subplot2grid((2, 5), (1, 0), rowspan=1, colspan=5)
 
     rcParams['lines.linewidth'] = 0.6
     rcParams['lines.markersize'] = 0
@@ -644,30 +730,30 @@ def e3fig(data, save_file):
     #ax2.yaxis.set_visible(False)
     plt.close()
 
-    # AX6
-
-    cond6_data = data[data['task_condition'] == "Varying Size"]  # just the varying condition
-    try:  # because varying size has no list 2
-        sns.factorplot(x="lag", y="crp", data=cond6_data, units='subject', ax=ax6, color='#000000')
-    except:
-        print('no list!')
-    ax6.set(ylim=[0., 0.15], xticks=[0, 5, 10], xticklabels=[-5, 0, 5])
-    ax6.get_yaxis().set_ticklabels([])
-    ax6.yaxis.label.set_visible(False)
-    ax6.xaxis.label.set_visible(False)
-    #ax2.yaxis.set_visible(False)
-    # plt.close()
+    # # AX6
+    #
+    # cond6_data = data[data['task_condition'] == "Varying Size"]  # just the varying condition
+    # try:  # because varying size has no list 2
+    #     sns.factorplot(x="lag", y="crp", data=cond6_data, units='subject', ax=ax6, color='#000000')
+    # except:
+    #     print('no list!')
+    # ax6.set(ylim=[0., 0.15], xticks=[0, 5, 10], xticklabels=[-5, 0, 5])
+    # ax6.get_yaxis().set_ticklabels([])
+    # ax6.yaxis.label.set_visible(False)
+    # ax6.xaxis.label.set_visible(False)
+    # #ax2.yaxis.set_visible(False)
+    # # plt.close()
 
     # AX7
     barplot_data = data  # already filtered no need of: [(data['task_condition'] >= 1) & (data['task_condition'] <= 5)]  # just the 5 conditions
     barplot_data = barplot_data[(barplot_data['lag'] == 0)]  # only need one lag
 
     g = sns.barplot(x="task_condition", y="all_tf_z", data=barplot_data, ax=ax7,
-                    order=["Weight", "Animacy", "Scenario", "Movie", "Relational", "Varying Size"])
-    g.set_xticklabels(["Weight", "Animacy", "Moving Scenario", "Movie", "Relational", "Varying Size"])
+                    order=["Weight", "Animacy", "Scenario", "Movie", "Relational"])
+    g.set_xticklabels(["Weight", "Animacy", "Moving Scenario", "Movie", "Relational"])
     for line, l in enumerate(ax7.lines):
         ax7.lines[line].set_color('grey')
-    ax7.set(xlabel="Judgment Task", ylabel="Z(TCE)", ylim=[-.025, 0.2])
+    ax7.set(xlabel="Judgment Task", ylabel="z(TCE)", ylim=[-.025, 0.2])
     ax7.axhline(y=0, linewidth=1, linestyle='--', color='k')
 
 
@@ -680,14 +766,14 @@ def e3fig(data, save_file):
 def e3_spc_fig(to_plot, save_file):
     # spc/pfr for list 0
     fig = plt.figure(figsize=(two_col, base_height*1.5))
-    gs = gridspec.GridSpec(2, 6)
+    gs = gridspec.GridSpec(2, 5)
     rcParams['lines.linewidth'] = 1
     rcParams['lines.markersize'] = 1
 
     recall_instruction_cond_filter = to_plot.recall_instruction_condition == "Free"
     instruction_cond_filter = to_plot.instruction_condition == "Incidental"
     cond_filter = np.logical_and(recall_instruction_cond_filter, instruction_cond_filter)
-    task_list = ["Weight", "Animacy", "Scenario", "Movie", "Relational", 'Varying Size']
+    task_list = ["Weight", "Animacy", "Scenario", "Movie", "Relational"]
     task_col = 0
     for task in task_list:
         spc_axis = fig.add_subplot(gs[0, task_col])
@@ -727,24 +813,26 @@ def e4_spc_fig(to_plot, save_file):
     varying_serial_filter = np.logical_and(to_plot.recall_instruction_condition == "Serial",
                                            np.logical_and(to_plot.instruction_condition == 'Incidental',
                                                           to_plot.task_condition == "Varying Size"))
-    cbcc.spc_plot(to_plot.spc[constant_free_filter], ax=spc_axis, color='#000000')
+    cbcc.spc_plot(to_plot.spc[varying_free_filter], ax=spc_axis)
+    cbcc.spc_plot(to_plot.spc[constant_free_filter], ax=spc_axis)
     # cbcc.spc_plot(to_plot.spc[varying_free_filter], ax=spc_axis, color='#000000')
     # spc_axis.lines[-1].set_marker('s')
-    cbcc.spc_plot(to_plot.spc[constant_serial_filter], ax=spc_axis, color='#808080')
+    cbcc.spc_plot(to_plot.spc[constant_serial_filter], ax=spc_axis)
     # spc_axis.lines[-1].set_color('#808080')
     # cbcc.spc_plot(to_plot.spc[varying_serial_filter], ax=spc_axis, color='#808080')
     # spc_axis.lines[-1].set_marker('s')
     # spc_axis.lines[-1].set_color('#808080')
-    plt.legend(['Free', "Serial"])
+    plt.legend(["Varying-Free", "Constant-Free", "Constant-Serial"])
     spc_axis.set_xlabel('')
     spc_axis.get_xaxis().set_ticklabels([])
     spc_axis.annotate('A.', xy=(-.155, 1), xycoords='axes fraction', weight='bold')
     pfr_axis = fig.add_subplot(gs[1, 0])
-    cbcc.pfr_plot(to_plot.pfr[constant_free_filter], ax=pfr_axis, color='#000000')
+    cbcc.pfr_plot(to_plot.pfr[varying_free_filter], ax=pfr_axis)
+    cbcc.pfr_plot(to_plot.pfr[constant_free_filter], ax=pfr_axis)
     # cbcc.pfr_plot(to_plot.pfr[varying_free_filter], ax=pfr_axis, color='#000000')
     # pfr_axis.lines[-1].set_marker('s')
     # pfr_axis.lines[-1].set_color('#000000')
-    cbcc.pfr_plot(to_plot.pfr[constant_serial_filter], ax=pfr_axis, color='#808080')
+    cbcc.pfr_plot(to_plot.pfr[constant_serial_filter], ax=pfr_axis)
     # pfr_axis.lines[-1].set_color('#808080')
     # cbcc.pfr_plot(to_plot.pfr[varying_serial_filter], ax=pfr_axis, color='#808080')
     # pfr_axis.lines[-1].set_marker('s')
@@ -759,6 +847,20 @@ def e4_crp_fig(data_to_use, which_list, save_name):
     # colors = ["#000000", "#808080"]
     # sns.set_palette(colors)
 
+    # make a dummy code for the conditions we want
+    data_to_use['dummy_cond'] = data_to_use.task_condition + data_to_use.recall_instruction_condition
+
+    # # give them nice names
+    # data_to_use.dummy_cond[data_to_use.dummy_cond == "Varying SizeFree"] = "Varying--Free"
+    # data_to_use.dummy_cond[data_to_use.dummy_cond == "Constant SizeFree"] = "Constant--Free"
+    # data_to_use.dummy_cond[data_to_use.dummy_cond == "Constant SizeSerial"] = "Constant--Serial"
+
+    # get rid of varying serial
+    data_to_use = data_to_use[data_to_use.dummy_cond != "Varying SizeSerial"]
+
+
+
+
     # setup the grid
     fig2 = plt.figure(figsize=(two_col, two_col/2))
     gs = gridspec.GridSpec(1, 2)
@@ -769,22 +871,25 @@ def e4_crp_fig(data_to_use, which_list, save_name):
     data_filter = data_to_use.list == which_list
     rcParams['lines.linewidth'] = 1
     rcParams['lines.markersize'] = 0
-    g = sns.factorplot(x="lag", y="crp", hue="recall_instruction_condition", data=data_to_use.loc[data_filter, :],
-                   hue_order=["Free", "Serial"], dodge=.25, units='subject', ax=crp_axis)
+    g = sns.factorplot(x="lag", y="crp", hue="dummy_cond", data=data_to_use.loc[data_filter, :],  dodge=.25,
+                       units='subject', ax=crp_axis,
+                       hue_order=["Varying SizeFree", "Constant SizeFree", "Constant SizeSerial"], legend_out=True, handlelength=.01)
     crp_axis.set(xlabel="Lag", ylabel="Cond. Resp. Prob.", ylim=[0., .2], xticks=range(0, 11, 2),
                  xticklabels=range(-5, 6, 2))
-    crp_axis.legend(title='Recall Instructions', ncol=2, labelspacing=.2, handlelength=.01, loc=2)
+
+    crp_axis.legend(title='Condition', ncol=1, labelspacing=.2,  loc=2)
     plt.figure(fig2.number)
     sns.despine()
     crp_axis.annotate('A.', xy=(-.21, 1), xycoords='axes fraction', weight='bold')
 
     # plot temp factors
     data_filter = np.logical_and(data_to_use.list == which_list, data_to_use.lag == 0)
-    g = sns.barplot(x="recall_instruction_condition", y=tf_col, data=data_to_use.loc[data_filter, :],
-                    order=["Free", "Serial"], ax=tf_axis)
-    tf_axis.set(xlabel="Recall Instructions", ylabel="Z(TCE)", ylim=tf_lims)
+    g = sns.barplot(x="dummy_cond", y=tf_col, data=data_to_use.loc[data_filter, :],
+                    order=["Varying SizeFree", "Constant SizeFree", "Constant SizeSerial"], ax=tf_axis)
+    tf_axis.set(xlabel="Condition", ylabel="z(TCE)", ylim=tf_lims, xticklabels=["Varying-Free", "Constant-Free", "Constant-Serial"]) # set_xticklabels
     tf_axis.lines[0].set_color('grey')
     tf_axis.lines[1].set_color('black')
+    tf_axis.lines[2].set_color('black')
     plt.axhline(linewidth=1, linestyle='--', color='k')
     plt.figure(fig2.number)
     sns.despine()
@@ -869,7 +974,7 @@ def corr_fig(all_crps, save_name):
 
     # ax1.scatter(x, y, c='k', s=50)
     ax1.grid(True)
-    ax1.set(xlabel="Recall Prob.", ylabel="Z(TCE)")
+    ax1.set(xlabel="Recall Prob.", ylabel="z(TCE)")
 
     # ax1.set(xlim=[0.35, 0.5], xticks=[0.35, 0.4, 0.45, 0.5])
     # ax1.set(ylim=[0, 0.14])
@@ -880,7 +985,7 @@ def corr_fig(all_crps, save_name):
     ax1 = extended(ax1, np.unique(x), np.poly1d(np.polyfit(x, y, 1))(np.unique(x)), color='black',
                    linestyle='dashed', markersize=0, linewidth=1)
 
-    ax1.text(.26, .15, '$\mathit{r}(%d) = %.2f, \mathit{p} = %.2f$' % (len(x) - 2, r_value, p_value), fontsize=10)
+    ax1.text(.26, .135, '$\mathit{r}(%d) = %.2f, \mathit{p} = %.2f$' % (len(x) - 2, r_value, p_value), fontsize=10)
     # "%s is %d years old." % (name, age)
 
     # Save the figure

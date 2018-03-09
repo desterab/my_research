@@ -74,7 +74,7 @@ def e3fig(data, save_file):
 
     g = sns.barplot(x="task_condition", y="all_tf_z", data=barplot_data, ax=ax6, order=[5, 4, 3, 1, 2])
     g.set_xticklabels(["Weight", "Animacy", "Moving Scenario", "Movie", "Relational"])
-    ax6.set(xlabel="Judgment Task", ylabel="Z(TCE)", ylim=[-.025, 0.2])
+    ax6.set(xlabel="Judgment Task", ylabel="z(TCE)", ylim=[-.025, 0.2])
     ax6.axhline(y=0, linewidth=1, linestyle='--', color='k')
 
     # save the figure

@@ -187,16 +187,16 @@ When evaluating the size of the TCE, it is important to take into account the fa
 
 The size of this artificial TCE can be estimated by taking the items which a subject actually recalled for a given list, randomly shuffling (i.e., permuting) the order of recalls, and recomputing the temporal factor score. Repeating this permutation procedure many times provides a distribution of the temporal factor score expected if recall transitions are completely random with respect to lag. This logic was used to provide a corrected measure of the TCE for each participant. For each list, the temporal factor score was computed for the actual recall sequence and for 10,000 random permutations of the sequence.
 %(or the maximum number of unique permutations, whichever was smaller). 
-The actual temporal factor score was then converted into a z-score, Z(TCE), by subtracting the permutation distribution's mean and dividing by its standard deviation. In the absence of a true TCE, the expected value of Z(TCE) is zero, so we can test for a TCE by determining if the across-subject average of Z(TCE) is significantly above zero.
+The actual temporal factor score was then converted into a z-score, z(TCE), by subtracting the permutation distribution's mean and dividing by its standard deviation. In the absence of a true TCE, the expected value of z(TCE) is zero, so we can test for a TCE by determining if the across-subject average of z(TCE) is significantly above zero.
 
 \section{Results}
 
 
 
-Figure~\ref{shoebox} shows the lag-CRP and corrected temporal factor scores for the Explicit and Incidental conditions. The Explicit condition shows a clear TCE: the lag-CRP is highest for short lags (i.e., $|lag|=1$) and decreases for larger lags. Moreover, the 95\% confidence interval on the Z(TCE) lies well above zero. By contrast, the Incidental condition shows no evidence of a TCE: the lag-CRP is nearly flat and the 95\% confidence interval on the Z(TCE) includes zero. Overall recall probability (Table~\ref{sampsize_table}) was also lower in the Incidental condition.
+Figure~\ref{shoebox} shows the lag-CRP and corrected temporal factor scores for the Explicit and Incidental conditions. The Explicit condition shows a clear TCE: the lag-CRP is highest for short lags (i.e., $|lag|=1$) and decreases for larger lags. Moreover, the 95\% confidence interval on the z(TCE) lies well above zero. By contrast, the Incidental condition shows no evidence of a TCE: the lag-CRP is nearly flat and the 95\% confidence interval on the z(TCE) includes zero. Overall recall probability (Table~\ref{sampsize_table}) was also lower in the Incidental condition.
 
 
-\newcommand\paneltext{(A) Lag-conditional response probability functions. Error bars are bootstrapped within-subject 95\% confidence intervals. (B) The average Z(TCE).  Error bars are bootstrapped between-subject 95\% confidence intervals. Z(TCE) for a given subject is computed as follows: An observed temporal factor score was computed as the average percentile ranking the temporal lag of each actual transition in the recall sequence with respect to the lags of all transitions that were possible at that time. To determine the temporal factor score expected by chance, a permutation distribution was created by randomly shuffling the order of recalls within the sequence 10,000 times and computing a temporal factor score for each shuffling. The reported value, Z(TCE), is z-score of the observed temporal factor score within the permutation distribution.}
+\newcommand\paneltext{(A) Lag-conditional response probability functions. Error bars are bootstrapped within-subject 95\% confidence intervals. (B) The average z(TCE).  Error bars are bootstrapped between-subject 95\% confidence intervals. z(TCE) for a given subject is computed as follows: An observed temporal factor score was computed as the average percentile ranking the temporal lag of each actual transition in the recall sequence with respect to the lags of all transitions that were possible at that time. To determine the temporal factor score expected by chance, a permutation distribution was created by randomly shuffling the order of recalls within the sequence 10,000 times and computing a temporal factor score for each shuffling. The reported value, z(TCE), is z-score of the observed temporal factor score within the permutation distribution.}
 \begin{figure}
 \fitfigure{figures/shoebox.pdf}
 \caption{The temporal contiguity effect (TCE) with the Shoebox size judgment task under explicit versus incidental encoding. \paneltext}
@@ -215,7 +215,7 @@ The processing required by the Shoebox Task from Experiment 1 is quite simple. S
 See the supplemental materials for the exact task instructions.
 
 \section{Results}
-As predicted, the Front Door Task substantially improved memory accuracy in the Incidental condition to approximately the level seen in the Explicit condition of Experiment 1 (Table 1). The Front Door task did not, however, produce a significant TCE. Figure~\ref{door} shows that whereas the Explicit condition showed a distinctly peaked lag-CRP and a Z(TCE) significantly above zero, the Incidental condition showed a flattened lag-CRP and a Z(TCE) for which the confidence interval included zero.
+As predicted, the Front Door Task substantially improved memory accuracy in the Incidental condition to approximately the level seen in the Explicit condition of Experiment 1 (Table 1). The Front Door task did not, however, produce a significant TCE. Figure~\ref{door} shows that whereas the Explicit condition showed a distinctly peaked lag-CRP and a z(TCE) significantly above zero, the Incidental condition showed a flattened lag-CRP and a z(TCE) for which the confidence interval included zero.
 
 \begin{figure}%[hp]
 \fitfigure{figures/FrontDoor.pdf}
@@ -249,7 +249,7 @@ In all conditions, subjects were asked to make a judgment about each word as it 
 
 \section{Results}
 
-As seen in Figure~\ref{E3}, all of the processing tasks produced a TCE under incidental encoding conditions. For each task, the lag-CRP tends to decrease with increasing $|lag|$ and the Z(TCE) is significantly above zero. These results show that while the TCE can be attenuated under incidental conditions (as in Experiments 1 and 2), the lack of intent to encode, per se, does not eliminate contiguity. 
+As seen in Figure~\ref{E3}, all of the processing tasks produced a TCE under incidental encoding conditions. For each task, the lag-CRP tends to decrease with increasing $|lag|$ and the z(TCE) is significantly above zero. These results show that while the TCE can be attenuated under incidental conditions (as in Experiments 1 and 2), the lack of intent to encode, per se, does not eliminate contiguity.
 
 Indeed, perhaps the most remarkable feature of the data is how little the size of the TCE differs among the tasks, consistent with the suggestion that the TCE is due to automatic encoding processes that are independent of the judgment task. %The only condition for which the z(TCE) differed significantly from any other condition was the Relational Task condition, which asked subjects to integrate each item in to an ongoing movie.
 In other words, robust contiguity of approximately the same magnitude was observed regardless of the processing task unless subjects were explicitly encouraged to integrate the current item with past items.
