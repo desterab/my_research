@@ -41,7 +41,69 @@ all_crps = af.sample_size_table(all_crps, results_dir, recalls)
 
 
 
+from scipy.stats import ttest_ind
 
+
+# list 1 vs list 2 for explicit
+c1 = all_crps[np.logical_and(
+    np.logical_and(
+        np.logical_and(all_crps.task_condition=="Shoebox",
+                       all_crps.instruction_condition == "Explicit"),
+        all_crps.list==0),
+    all_crps.lag==0)].all_tf_z.values
+c2 = all_crps[np.logical_and(
+    np.logical_and(
+        np.logical_and(all_crps.task_condition=="Shoebox",
+                       all_crps.instruction_condition == "Explicit"),
+        all_crps.list==1),
+    all_crps.lag==0)].all_tf_z.values
+ttest_ind(c1[~np.isnan(c1)], c2[~np.isnan(c2)])
+
+# list 1 vs list 2 for explicit
+c1 = all_crps[np.logical_and(
+    np.logical_and(
+        np.logical_and(all_crps.task_condition=="Shoebox",
+                       all_crps.instruction_condition == "Incidental"),
+        all_crps.list==0),
+    all_crps.lag==0)].all_tf_z.values
+c2 = all_crps[np.logical_and(
+    np.logical_and(
+        np.logical_and(all_crps.task_condition=="Shoebox",
+                       all_crps.instruction_condition == "Incidental"),
+        all_crps.list==1),
+    all_crps.lag==0)].all_tf_z.values
+ttest_ind(c1[~np.isnan(c1)], c2[~np.isnan(c2)])
+
+
+these_conds = ["Movie", "Scenario", "Animacy", "Weight"]
+ds = []
+for cond in these_conds:
+    c = all_crps[np.logical_and(
+        np.logical_and(
+            np.logical_and(all_crps.task_condition == cond,
+                           all_crps.instruction_condition == "Incidental"),
+            all_crps.list == 0),
+        all_crps.lag == 0)].all_tf_z
+    ds.append(c.mean() / c.std())
+mean_ds = np.mean(ds)
+std_ds = np.std(ds, ddof=1)
+CI_ds = std_ds / np.sqrt(len(ds)) * 1.96
+pm = [mean_ds-CI_ds, mean_ds+CI_ds]
+
+
+
+these_conds = ["Shoebox", "Front Door"]
+ds = []
+for cond in these_conds:
+    c = all_crps[np.logical_and(
+        np.logical_and(
+            np.logical_and(all_crps.task_condition == cond,
+                           all_crps.instruction_condition == "Incidental"),
+            all_crps.list == 0),
+        all_crps.lag == 0)].all_tf_z
+    ds.append(c.mean() / c.std())
+mean_ds = np.mean(ds)
+std_ds = np.std(ds)
 
 
 
