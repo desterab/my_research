@@ -19,7 +19,7 @@ recalls = af.make_psiturk_recall_matrix(remake_data_file=False, dict_path=dict_p
                                         save_file='HealEtal16implicit.recalls')
 
 # load or compute the recall dynamics
-all_crps = af.load_the_data(n_perms=n_perms, remake_data_file=True,
+all_crps = af.load_the_data(n_perms=n_perms, remake_data_file=False,
                             recalls_file='HealEtal16implicit.recalls.pkl', save_name=results_dir)
 
 # convert to xarray to make compatible with cbcc_tools --- then run RDF analyses
@@ -30,7 +30,7 @@ cbcc.run_these_analyses(list0, ['pfr', 'spc', 'lag_crp'])
 cbcc.run_these_analyses(list1, ['pfr', 'spc', 'lag_crp'])
 
 # make figures etc
-which_figures = [4]
+which_figures = [1, 2, 3, 4]
 
 plt.style.use('~/code/py_modules/cbcc_tools/plotting/stylesheets/cbcc_bw.mplstyle')
 
