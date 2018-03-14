@@ -16,6 +16,7 @@ from cycler import cycler
 from scipy import stats
 import tcm_Heal16implicit as tcm
 from scipy.optimize import differential_evolution
+from scipy.stats import ttest_ind
 
 
 # figure style params
@@ -991,6 +992,126 @@ def corr_fig(all_crps, save_name):
     # Save the figure
     plt.savefig(save_name)
     plt.close()
+
+def meta_fig(all_crps, save_file):
+    # list 1 vs list 2 for explicit
+    c1 = all_crps[np.logical_and(
+        np.logical_and(
+            np.logical_and(all_crps.task_condition == "Shoebox",
+                           all_crps.instruction_condition == "Explicit"),
+            all_crps.list == 0),
+        all_crps.lag == 0)].all_tf_z.values
+    c2 = all_crps[np.logical_and(
+        np.logical_and(
+            np.logical_and(all_crps.task_condition == "Shoebox",
+                           all_crps.instruction_condition == "Explicit"),
+            all_crps.list == 1),
+        all_crps.lag == 0)].all_tf_z.values
+    ttest_ind(c1[~np.isnan(c1)], c2[~np.isnan(c2)])
+
+    # list 1 vs list 2 for explicit
+    c1 = all_crps[np.logical_and(
+        np.logical_and(
+            np.logical_and(all_crps.task_condition == "Shoebox",
+                           all_crps.instruction_condition == "Incidental"),
+            all_crps.list == 0),
+        all_crps.lag == 0)].all_tf_z.values
+    c2 = all_crps[np.logical_and(
+        np.logical_and(
+            np.logical_and(all_crps.task_condition == "Shoebox",
+                           all_crps.instruction_condition == "Incidental"),
+            all_crps.list == 1),
+        all_crps.lag == 0)].all_tf_z.values
+    ttest_ind(c1[~np.isnan(c1)], c2[~np.isnan(c2)])
+
+    these_conds = ["Movie", "Scenario", "Animacy", "Weight"]
+    ds = []
+    for cond in these_conds:
+        c = all_crps[np.logical_and(
+            np.logical_and(
+                np.logical_and(all_crps.task_condition == cond,
+                               all_crps.instruction_condition == "Incidental"),
+                all_crps.list == 0),
+            all_crps.lag == 0)].all_tf_z
+        ds.append(c.mean() / c.std())
+    mean_ds = np.mean(ds)
+    std_ds = np.std(ds, ddof=1)
+    CI_ds = std_ds / np.sqrt(len(ds)) * 1.96
+    pm = [mean_ds - CI_ds, mean_ds + CI_ds]
+
+    these_conds = ["Shoebox", "Front Door"]
+    ds = []
+    for cond in these_conds:
+        c = all_crps[np.logical_and(
+            np.logical_and(
+                np.logical_and(all_crps.task_condition == cond,
+                               all_crps.instruction_condition == "Incidental"),
+                all_crps.list == 0),
+            all_crps.lag == 0)].all_tf_z
+        ds.append(c.mean() / c.std())
+    mean_ds = np.mean(ds)
+    std_ds = np.std(ds)
+
+    these_conds = ["Movie", "Scenario", "Animacy", "Weight", "Shoebox", "Front Door", "Constant Size", "Varying Size"]
+    ds = []
+    for cond in these_conds:
+        c = all_crps[np.logical_and(np.logical_and(
+            np.logical_and(
+                np.logical_and(all_crps.task_condition == cond,
+                               all_crps.instruction_condition == "Incidental"),
+                all_crps.list == 0),
+            all_crps.lag == 0), all_crps.recall_instruction_condition == "Free")].all_tf_z
+        ds.append(c.mean() / c.std())
+    mean_ds = np.mean(ds)
+    std_ds = np.std(ds, ddof=1)
+    CI_ds = std_ds / np.sqrt(len(ds)) * 1.96
+    pm = [mean_ds - CI_ds, mean_ds + CI_ds]
+
+    these_conds = ["Shoebox", "Front Door", "Weight", "Animacy", "Scenario", "Movie", "Constant Size", "Varying Size"]
+    these_conds = list(reversed(these_conds))
+    ds_m = np.zeros((1, len(these_conds) + 1)) * np.nan
+    ds_e = np.zeros((2, len(these_conds) + 1)) * np.nan
+    for cond_n, cond in enumerate(these_conds):
+        c = all_crps[np.logical_and(np.logical_and(
+            np.logical_and(
+                np.logical_and(all_crps.task_condition == cond,
+                               all_crps.instruction_condition == "Incidental"),
+                all_crps.list == 0),
+            all_crps.lag == 0), all_crps.recall_instruction_condition == "Free")].all_tf_z
+        ss = np.arange(c.shape[0])
+        permutation_distribution = np.zeros((10000, 1)) * np.nan
+        for perm_i in np.arange(10000):
+            these = c.values[np.random.choice(ss, ss.shape[0])]
+            permutation_distribution[perm_i, :] = np.nanmean(these) / np.nanstd(these)
+        bot = np.percentile(permutation_distribution, 2.5, axis=0)
+        top = np.percentile(permutation_distribution, 97.5, axis=0)
+        m = c.mean() / c.std()
+        e = np.stack((top - m, m - bot))
+        ds_m[:, cond_n + 1] = m
+        ds_e[[0, 1], cond_n + 1] = np.squeeze(e)
+
+    mean_ds = np.nanmean(ds_m)
+    std_ds = np.nanstd(ds_m, ddof=1)
+    CI_ds = std_ds / np.sqrt(len(these_conds)) * 1.96
+    ds_e[:, 0] = [CI_ds, CI_ds]
+    ds_m[:, 0] = mean_ds
+
+    one_col = 3.5
+    two_col = one_col * 2
+    base_height = 2.5
+    plt.style.use('~/code/py_modules/cbcc_tools/plotting/stylesheets/cbcc_bw.mplstyle')
+    fig = plt.figure(figsize=(one_col, base_height * 2))
+    lines = {'linestyle': 'None'}
+    plt.rc('lines', **lines)
+    plt.errorbar(y=np.arange(len(these_conds)) + 1, x=ds_m[:, 1:].T, xerr=ds_e[:, 1:], marker='o')
+    plt.errorbar(y=0, x=ds_m[:, 0], xerr=np.expand_dims(ds_e[:, 0], axis=1), marker='D', markersize=7, color='k')
+    these_conds.insert(0, 'Average')
+    plt.gca().set(yticks=np.arange(len(these_conds)), yticklabels=these_conds, ylim=[-1, len(these_conds)])
+    plt.axvline(linewidth=1, linestyle='--', color='k', markersize=0)
+    plt.xlabel("Cohen's $d$")
+    plt.ylabel('Condition')
+    plt.savefig(save_file)
+    plt.show()
 
 
 def model_it(list0):
