@@ -12,14 +12,14 @@ results_dir = "../dissemination/manuscript/jml/second_submission/figures/"
 dict_path = "/Users/khealey/code/py_modules/cbcc_tools/wordpool_files/websters_dict.txt"
 
 # number of permutations for permutations tests
-n_perms = 100
+n_perms = 10000
 
 # load or make the recall matrix
-recalls = af.make_psiturk_recall_matrix(remake_data_file=True, dict_path=dict_path,
+recalls = af.make_psiturk_recall_matrix(remake_data_file=False, dict_path=dict_path,
                                         save_file='HealEtal16implicit.recalls')
 
 # load or compute the recall dynamics
-all_crps = af.load_the_data(n_perms=n_perms, remake_data_file=True,
+all_crps = af.load_the_data(n_perms=n_perms, remake_data_file=False,
                             recalls_file='HealEtal16implicit.recalls.pkl', save_name=results_dir)
 
 # convert to xarray to make compatible with cbcc_tools --- then run RDF analyses
@@ -34,8 +34,13 @@ which_figures = [1, 2, 3, 4]
 
 plt.style.use('~/code/py_modules/cbcc_tools/plotting/stylesheets/cbcc_bw.mplstyle')
 
+
 # make table 1
 all_crps = af.sample_size_table(all_crps, results_dir, recalls)
+
+####### general discussion figures
+af.corr_fig(all_crps, results_dir + "correlation.pdf")
+af.meta_fig(all_crps, results_dir + "meta.pdf")
 
 # Make a few plots of the CRPs generate by the cbcc_tools code just as a check to ensure it is doing exactly
 # the same thing as the legacy code used for the main CRP figures in the paper
@@ -165,9 +170,7 @@ if 3 in which_figures:
     af.e3fig(data_to_use, results_dir + "E3_crp_list2")
 
 
-####### general discussion figures
-af.corr_fig(all_crps, results_dir + "correlation.pdf")
-af.meta_fig(all_crps, results_dir + "meta.pdf")
+
 
 
 

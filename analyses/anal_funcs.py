@@ -255,7 +255,8 @@ def load_the_data(n_perms, remake_data_file, recalls_file, save_name):
                         aware_check = 0
 
                     # compute overall recall
-                    rec_mat = cur_recalls.as_matrix(range(recalls.shape[1] - 2))  # format recalls matrix for use with rdf functions
+                    output_cols = range(recalls.columns.get_loc('age'))
+                    rec_mat = cur_recalls.as_matrix(output_cols)  # format recalls matrix for use with rdf functions
                     prec = rdf.prec(listlen=16, recalls=rec_mat)
                     if prec <= 0.:
                         continue
@@ -1092,7 +1093,7 @@ def meta_fig(all_crps, save_file):
 
     mean_ds = np.nanmean(ds_m)
     std_ds = np.nanstd(ds_m, ddof=1)
-    CI_ds = std_ds / np.sqrt(len(these_conds)) * 1.96
+    CI_ds = std_ds / np.sqrt(len(these_conds)) * 2.365  # (t_critical with df = 7)
     ds_e[:, 0] = [CI_ds, CI_ds]
     ds_m[:, 0] = mean_ds
 
