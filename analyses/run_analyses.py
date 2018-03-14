@@ -12,14 +12,14 @@ results_dir = "../dissemination/manuscript/jml/second_submission/figures/"
 dict_path = "/Users/khealey/code/py_modules/cbcc_tools/wordpool_files/websters_dict.txt"
 
 # number of permutations for permutations tests
-n_perms = 20000
+n_perms = 100
 
 # load or make the recall matrix
-recalls = af.make_psiturk_recall_matrix(remake_data_file=False, dict_path=dict_path,
+recalls = af.make_psiturk_recall_matrix(remake_data_file=True, dict_path=dict_path,
                                         save_file='HealEtal16implicit.recalls')
 
 # load or compute the recall dynamics
-all_crps = af.load_the_data(n_perms=n_perms, remake_data_file=False,
+all_crps = af.load_the_data(n_perms=n_perms, remake_data_file=True,
                             recalls_file='HealEtal16implicit.recalls.pkl', save_name=results_dir)
 
 # convert to xarray to make compatible with cbcc_tools --- then run RDF analyses
@@ -39,20 +39,20 @@ all_crps = af.sample_size_table(all_crps, results_dir, recalls)
 
 # Make a few plots of the CRPs generate by the cbcc_tools code just as a check to ensure it is doing exactly
 # the same thing as the legacy code used for the main CRP figures in the paper
-e1_explicit_filter = np.logical_and(list0.instruction_condition == 'Explicit', list0.task_condition == 'Shoebox')
-e1_implicit_filter = np.logical_and(list0.instruction_condition == 'Incidental', list0.task_condition == 'Shoebox')
-cbcc.lag_crp_plot(list0.lag_crp[e1_explicit_filter])
-cbcc.lag_crp_plot(list0.lag_crp[e1_implicit_filter])
-plt.ylim(0, .2)
-plt.savefig('e1.pdf')
-plt.close()
-e2_explicit_filter = np.logical_and(list0.instruction_condition == 'Explicit', list0.task_condition == 'Front Door')
-e2_implicit_filter = np.logical_and(list0.instruction_condition == 'Incidental', list0.task_condition == 'Front Door')
-cbcc.lag_crp_plot(list0.lag_crp[e2_explicit_filter])
-cbcc.lag_crp_plot(list0.lag_crp[e2_implicit_filter])
-plt.ylim(0, .2)
-plt.savefig('e2.pdf')
-plt.close()
+# e1_explicit_filter = np.logical_and(list0.instruction_condition == 'Explicit', list0.task_condition == 'Shoebox')
+# e1_implicit_filter = np.logical_and(list0.instruction_condition == 'Incidental', list0.task_condition == 'Shoebox')
+# cbcc.lag_crp_plot(list0.lag_crp[e1_explicit_filter])
+# cbcc.lag_crp_plot(list0.lag_crp[e1_implicit_filter])
+# plt.ylim(0, .2)
+# plt.savefig('e1.pdf')
+# plt.close()
+# e2_explicit_filter = np.logical_and(list0.instruction_condition == 'Explicit', list0.task_condition == 'Front Door')
+# e2_implicit_filter = np.logical_and(list0.instruction_condition == 'Incidental', list0.task_condition == 'Front Door')
+# cbcc.lag_crp_plot(list0.lag_crp[e2_explicit_filter])
+# cbcc.lag_crp_plot(list0.lag_crp[e2_implicit_filter])
+# plt.ylim(0, .2)
+# plt.savefig('e2.pdf')
+# plt.close()
 
 ####### make E1 Figures
 if 1 in which_figures:
