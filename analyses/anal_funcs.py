@@ -25,17 +25,11 @@ sns.set_context("talk", font_scale=2.5, rc={"lines.linewidth": 4})
 colors = ["#000000", "#808080", "#D3D3D3"]  # black and white
 sns.set_palette(colors)
 
-# color palette for figures
-palette =["#be5104",
-"#0163c2",
-"#ccdd73",
-"#b15fd3",
-"#b3003c"]
-
 # params for temporal factor plots
 tf_lims = [-.025, .2]
 tf_col ='all_tf_z'
 
+# figure size
 one_col = 3.5
 two_col = one_col*2
 base_height = 2.5

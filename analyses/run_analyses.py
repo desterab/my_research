@@ -2,10 +2,8 @@ import anal_funcs as af
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-from matplotlib import gridspec
 from matplotlib import rcParams
 from cbcc_tools.beh_anal import recall_dynamics as cbcc
-import pickle
 
 # params for data prep and saving results
 results_dir = "../dissemination/manuscript/jml/second_submission/figures/"
