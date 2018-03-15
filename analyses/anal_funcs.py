@@ -95,9 +95,6 @@ def make_psiturk_recall_matrix(remake_data_file, dict_path, save_file):
         age_filter = data.strategy == 'age'
         age = data.loc[s_filter & age_filter, 'strategy_description'].values
 
-
-
-
         # we are only interested in people who were included in sub1 or are in the new E4
         in_e4 = ~cur_recalls.recall_instruction_condition.isnull().all()
         in_sub1 = s in sub1_ss_list
@@ -214,7 +211,6 @@ def load_the_data(n_perms, remake_data_file, recalls_file, save_name):
     else:
         num_cores = multiprocessing.cpu_count() / 2
         with Parallel(n_jobs=num_cores, verbose=0) as POOL:
-            # os.system('scp cbcc.psy.msu.edu:~/code/experiments/Heal16implicit/HealEtal16implicit.data.pkl \'/Users/khealey/Library/Mobile Documents/com~apple~CloudDocs/lab/code/experiments/Heal16implicit\'')
             recalls = pickle.load(open(
                 recalls_file,
                 "rb"))
@@ -224,7 +220,7 @@ def load_the_data(n_perms, remake_data_file, recalls_file, save_name):
             included_subjects = []
             n_subs = subjects.shape[0]
             si = 0.  # for a progress counter
-            lists = recalls.list.unique()  # [0]  #  doing only the first list. to do all lists change to: recalls.list.unique()
+            lists = recalls.list.unique()
             all_crps = pd.DataFrame()
             for s in subjects:
                 si += 1
@@ -255,7 +251,6 @@ def load_the_data(n_perms, remake_data_file, recalls_file, save_name):
                     if prec <= 0.:
                         continue
                     included_subjects.append(s)
-                    # continue
 
                     # compute random temporal factor
                     tempf_z = rdf.relative_to_random(listlen=16, recalls=rec_mat, filter_ind=None, statistic_func=rdf.tem_fact,
@@ -324,7 +319,6 @@ def make_xarray(data, list_number):
     data = data.loc[data.list == list_number]
     sample_sizes_included_counts = pd.crosstab(data.aware, [data.instruction_condition, data.task_condition])
 
-
     # condition vector
     coords = {
         'subject': data.subject,
@@ -332,8 +326,6 @@ def make_xarray(data, list_number):
     instruction_condition = xr.DataArray(data.instruction_condition, dims=('subject'), coords=coords)
     task_condition = xr.DataArray(data.task_condition, dims=('subject'), coords=coords)
     recall_instruction_condition = xr.DataArray(data.recall_instruction_condition, dims=('subject'), coords=coords)
-
-
     n_outputs = 24
     coords.update({'output_position': range(n_outputs+1)})
     coords.update({'list': [list_number]})
@@ -346,7 +338,6 @@ def make_xarray(data, list_number):
     rec_mat[rec_mat == -1999.0-1] = -4  # nans in middle of sequence
     rec_mat[rec_mat == -2999.0-1] = -4  # non alpha string
     rec_mat[np.isnan(rec_mat)] = -1  # post last recall
-
 
     rec_mat = rec_mat.astype('int')
     recalls = xr.DataArray(rec_mat,
@@ -1001,6 +992,31 @@ def corr_fig(all_crps, save_name):
     plt.close()
 
 def meta_fig(all_crps, save_file):
+    # serial vs free
+    c1 = all_crps[np.logical_and(
+        np.logical_and(
+            np.logical_and(all_crps.task_condition == "Constant Size",
+                           all_crps.recall_instruction_condition == "Free"),
+            all_crps.list == 0),
+        all_crps.lag == 0)].all_tf_z.values
+    c2 = all_crps[np.logical_and(
+        np.logical_and(
+            np.logical_and(all_crps.task_condition == "Varying Size",
+                           all_crps.recall_instruction_condition == "Free"),
+            all_crps.list == 0),
+        all_crps.lag == 0)].all_tf_z.values
+    c3 = all_crps[np.logical_and(
+        np.logical_and(
+            np.logical_and(all_crps.task_condition == "Constant Size",
+                           all_crps.recall_instruction_condition == "Serial"),
+            all_crps.list == 0),
+        all_crps.lag == 0)].all_tf_z.values
+    print((c1.shape, c2.shape))
+    print((c1[~np.isnan(c1)].shape, c2[~np.isnan(c2)].shape))
+    print(ttest_ind(c1[~np.isnan(c1)], c2[~np.isnan(c2)]))
+    print(ttest_ind(c1[~np.isnan(c1)], c3[~np.isnan(c3)]))
+    print(ttest_ind(c2[~np.isnan(c2)], c3[~np.isnan(c3)]))
+
     # list 1 vs list 2 for explicit
     c1 = all_crps[np.logical_and(
         np.logical_and(
