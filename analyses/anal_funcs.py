@@ -602,9 +602,6 @@ def sample_size_table(all_crps, results_dir, recalls):
 
 
 def encoding_instruct_fig(data_to_use, which_list, save_name):
-    # colors = ["#000000", "#808080"]
-    # sns.set_palette(colors)
-
     if which_list == 0:
         ylims_tf = [-.025, .2]
         ylims_crp = [0., .2]
@@ -627,7 +624,8 @@ def encoding_instruct_fig(data_to_use, which_list, save_name):
     rcParams['lines.markersize'] = 0
     g = sns.factorplot(x="lag", y="crp", hue="instruction_condition", data=data_to_use.loc[data_filter, :],
                    hue_order=["Explicit", "Incidental"], dodge=.25, units='subject', ax=crp_axis)
-    crp_axis.set(xlabel="Lag", ylabel="Cond. Resp. Prob.", ylim=ylims_crp, xticks=range(0, 11, 2), yticks=np.arange(0, ylims_crp[1], 0.05),
+    crp_axis.set(xlabel="Lag", ylabel="Cond. Resp. Prob.", ylim=ylims_crp, xticks=range(0, 11, 2),
+                 yticks=np.arange(0, ylims_crp[1]+0.05, 0.05),
                  xticklabels=range(-5, 6, 2))
     crp_axis.legend(title='Encoding Instructions', ncol=2, labelspacing=.2, handlelength=.01, loc=2)
     plt.figure(fig2.number)
@@ -636,8 +634,10 @@ def encoding_instruct_fig(data_to_use, which_list, save_name):
 
     # plot temp factors
     data_filter = np.logical_and(data_to_use.list == which_list, data_to_use.lag == 0)
-    g = sns.barplot(x="instruction_condition", y=tf_col, data=data_to_use.loc[data_filter, :], order=["Explicit", "Incidental"], ax=tf_axis) #
-    tf_axis.set(xlabel="Encoding Instructions", ylabel="z(TCE)", ylim=ylims_tf, yticks=np.arange(0, ylims_tf[1], 0.05))
+    g = sns.barplot(x="instruction_condition", y=tf_col, data=data_to_use.loc[data_filter, :],
+                    order=["Explicit", "Incidental"], ax=tf_axis) #
+    tf_axis.set(xlabel="Encoding Instructions", ylabel="z(TCE)", ylim=ylims_tf,
+                yticks=np.arange(0, ylims_tf[1]+0.05, 0.05))
     tf_axis.lines[0].set_color('grey')
     tf_axis.lines[1].set_color('black')
     plt.axhline(linewidth=1, linestyle='--', color='k')
@@ -672,8 +672,6 @@ def spc_encoding_instructions_fig(to_plot, task, save_file):
 
 
 def e3fig(data, save_file, which_list):
-
-
     if which_list == 0:
         ylims_tf = [-.025, .2]
         ylims_crp = [0., .2]
@@ -683,8 +681,6 @@ def e3fig(data, save_file, which_list):
     else:
         print("WTF?")
         return
-
-
 
     # setup the grid
     fig1 = plt.figure(figsize=(two_col, base_height*1.5))
@@ -706,7 +702,7 @@ def e3fig(data, save_file, which_list):
     cond1_data = data[(data['task_condition'] == 'Weight')]  # just the weight condition
 
     g = sns.factorplot(x="lag", y="crp", data=cond1_data, units='subject', ax=ax1)
-    ax1.set(ylim=ylims_crp, xticks=[0, 5, 10], xticklabels=[-5, 0, 5])
+    ax1.set(ylim=ylims_crp, xticks=[0, 5, 10], xticklabels=[-5, 0, 5], yticks=np.arange(0, ylims_crp[1]+0.05, 0.05))
     ax1.xaxis.label.set_visible(False)
     ax1.set(ylabel="Cond. Resp. Prob.")
     plt.close()
@@ -715,7 +711,7 @@ def e3fig(data, save_file, which_list):
     cond2_data = data[(data['task_condition'] == "Animacy")]  # just the animacy condition
 
     sns.factorplot(x="lag", y="crp", data=cond2_data, units='subject', ax=ax2, color='#000000')
-    ax2.set(ylim=ylims_crp, xticks=[0, 5, 10], xticklabels=[-5, 0, 5])
+    ax2.set(ylim=ylims_crp, xticks=[0, 5, 10], xticklabels=[-5, 0, 5], yticks=np.arange(0, ylims_crp[1]+0.05, 0.05))
     ax2.get_yaxis().set_ticklabels([])
     ax2.yaxis.label.set_visible(False)
     ax2.xaxis.label.set_visible(False)
@@ -726,7 +722,7 @@ def e3fig(data, save_file, which_list):
     cond3_data = data[(data['task_condition'] == "Scenario")]  # just the scenario condition
 
     sns.factorplot(x="lag", y="crp", data=cond3_data, units='subject', ax=ax3, color='#000000')
-    ax3.set(ylim=ylims_crp, xticks=[0, 5, 10], xticklabels=[-5, 0, 5])
+    ax3.set(ylim=ylims_crp, xticks=[0, 5, 10], xticklabels=[-5, 0, 5], yticks=np.arange(0, ylims_crp[1]+0.05, 0.05))
     ax3.get_yaxis().set_ticklabels([])
     ax3.yaxis.label.set_visible(False)
     # ax3.xaxis.label.set_visible(False)
@@ -738,7 +734,7 @@ def e3fig(data, save_file, which_list):
     cond4_data = data[(data['task_condition'] == "Movie")]  # just the movie condition
 
     sns.factorplot(x="lag", y="crp", data=cond4_data, units='subject', ax=ax4, color='#000000')
-    ax4.set(ylim=ylims_crp, xticks=[0, 5, 10], xticklabels=[-5, 0, 5])
+    ax4.set(ylim=ylims_crp, xticks=[0, 5, 10], xticklabels=[-5, 0, 5], yticks=np.arange(0, ylims_crp[1]+0.05, 0.05))
     ax4.get_yaxis().set_ticklabels([])
     ax4.yaxis.label.set_visible(False)
     ax4.xaxis.label.set_visible(False)
@@ -749,7 +745,7 @@ def e3fig(data, save_file, which_list):
     cond5_data = data[(data['task_condition'] == "Relational")]  # just the relational condition
 
     sns.factorplot(x="lag", y="crp", data=cond5_data, units='subject', ax=ax5, color='#000000')
-    ax5.set(ylim=ylims_crp, xticks=[0, 5, 10], xticklabels=[-5, 0, 5])
+    ax5.set(ylim=ylims_crp, xticks=[0, 5, 10], xticklabels=[-5, 0, 5], yticks=np.arange(0, ylims_crp[1]+0.05, 0.05))
     ax5.get_yaxis().set_ticklabels([])
     ax5.yaxis.label.set_visible(False)
     ax5.xaxis.label.set_visible(False)
@@ -757,7 +753,7 @@ def e3fig(data, save_file, which_list):
     plt.close()
 
     # AX7
-    barplot_data = data  # already filtered no need of: [(data['task_condition'] >= 1) & (data['task_condition'] <= 5)]  # just the 5 conditions
+    barplot_data = data
     barplot_data = barplot_data[(barplot_data['lag'] == 0)]  # only need one lag
 
     g = sns.barplot(x="task_condition", y="all_tf_z", data=barplot_data, ax=ax7,
@@ -765,7 +761,7 @@ def e3fig(data, save_file, which_list):
     g.set_xticklabels(["Weight", "Animacy", "Moving Scenario", "Movie", "Relational"])
     for line, l in enumerate(ax7.lines):
         ax7.lines[line].set_color('grey')
-    ax7.set(xlabel="Judgment Task", ylabel="z(TCE)", ylim=ylims_tf)
+    ax7.set(xlabel="Judgment Task", ylabel="z(TCE)", ylim=ylims_tf, yticks=np.arange(0, ylims_tf[1]+0.05, 0.05))
     ax7.axhline(y=0, linewidth=1, linestyle='--', color='k')
 
     # save the figure
@@ -854,8 +850,15 @@ def e4_spc_fig(to_plot, save_file):
 
 
 def e4_crp_fig(data_to_use, which_list, save_name):
-    # colors = ["#000000", "#808080"]
-    # sns.set_palette(colors)
+    if which_list == 0:
+        ylims_tf = [-.025, .2]
+        ylims_crp = [0., .2]
+    elif which_list == 1:
+        ylims_tf = [-.025, .3]
+        ylims_crp = [0., .3]
+    else:
+        print("WTF?")
+        return
 
     # make a dummy code for the conditions we want
     data_to_use['dummy_cond'] = data_to_use.task_condition + data_to_use.recall_instruction_condition
@@ -880,8 +883,10 @@ def e4_crp_fig(data_to_use, which_list, save_name):
     rcParams['lines.markersize'] = 0
     g = sns.factorplot(x="lag", y="crp", hue="dummy_cond", data=data_to_use.loc[data_filter, :],  dodge=.25,
                        units='subject', ax=crp_axis,
-                       hue_order=["Varying SizeFree", "Constant SizeFree", "Constant SizeSerial"], legend_out=True, handlelength=.01)
-    crp_axis.set(xlabel="Lag", ylabel="Cond. Resp. Prob.", ylim=[0., .2], xticks=range(0, 11, 2),
+                       hue_order=["Varying SizeFree", "Constant SizeFree", "Constant SizeSerial"],
+                       legend_out=True, handlelength=.01)
+    crp_axis.set(xlabel="Lag", ylabel="Cond. Resp. Prob.", ylim=ylims_crp, xticks=range(0, 11, 2),
+                 yticks=np.arange(0, ylims_crp[1]+0.05, 0.05),
                  xticklabels=range(-5, 6, 2))
 
     crp_axis.legend(title='Condition', ncol=1, labelspacing=.2,  loc=2)
@@ -893,7 +898,9 @@ def e4_crp_fig(data_to_use, which_list, save_name):
     data_filter = np.logical_and(data_to_use.list == which_list, data_to_use.lag == 0)
     g = sns.barplot(x="dummy_cond", y=tf_col, data=data_to_use.loc[data_filter, :],
                     order=["Varying SizeFree", "Constant SizeFree", "Constant SizeSerial"], ax=tf_axis)
-    tf_axis.set(xlabel="Condition", ylabel="z(TCE)", ylim=tf_lims, xticklabels=["Varying-Free", "Constant-Free", "Constant-Serial"]) # set_xticklabels
+    tf_axis.set(xlabel="Condition", ylabel="z(TCE)", ylim=ylims_tf,
+                xticklabels=["Varying-Free", "Constant-Free", "Constant-Serial"],
+                yticks=np.arange(0, ylims_tf[1]+0.05, 0.05)) # set_xticklabels
     tf_axis.lines[0].set_color('grey')
     tf_axis.lines[1].set_color('black')
     tf_axis.lines[2].set_color('black')
