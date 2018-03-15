@@ -605,6 +605,16 @@ def encoding_instruct_fig(data_to_use, which_list, save_name):
     # colors = ["#000000", "#808080"]
     # sns.set_palette(colors)
 
+    if which_list == 0:
+        ylims_tf = [-.025, .2]
+        ylims_crp = [0., .2]
+    elif which_list == 1:
+        ylims_tf = [-.025, .3]
+        ylims_crp = [0., .3]
+    else:
+        print("WTF?")
+        return
+
     # setup the grid
     fig2 = plt.figure(figsize=(two_col, two_col/2))
     gs = gridspec.GridSpec(1, 2)
@@ -617,7 +627,7 @@ def encoding_instruct_fig(data_to_use, which_list, save_name):
     rcParams['lines.markersize'] = 0
     g = sns.factorplot(x="lag", y="crp", hue="instruction_condition", data=data_to_use.loc[data_filter, :],
                    hue_order=["Explicit", "Incidental"], dodge=.25, units='subject', ax=crp_axis)
-    crp_axis.set(xlabel="Lag", ylabel="Cond. Resp. Prob.", ylim=[0., .2], xticks=range(0, 11, 2),
+    crp_axis.set(xlabel="Lag", ylabel="Cond. Resp. Prob.", ylim=ylims_crp, xticks=range(0, 11, 2), yticks=np.arange(0, ylims_crp[1], 0.05),
                  xticklabels=range(-5, 6, 2))
     crp_axis.legend(title='Encoding Instructions', ncol=2, labelspacing=.2, handlelength=.01, loc=2)
     plt.figure(fig2.number)
@@ -627,7 +637,7 @@ def encoding_instruct_fig(data_to_use, which_list, save_name):
     # plot temp factors
     data_filter = np.logical_and(data_to_use.list == which_list, data_to_use.lag == 0)
     g = sns.barplot(x="instruction_condition", y=tf_col, data=data_to_use.loc[data_filter, :], order=["Explicit", "Incidental"], ax=tf_axis) #
-    tf_axis.set(xlabel="Encoding Instructions", ylabel="z(TCE)", ylim=tf_lims)
+    tf_axis.set(xlabel="Encoding Instructions", ylabel="z(TCE)", ylim=ylims_tf, yticks=np.arange(0, ylims_tf[1], 0.05))
     tf_axis.lines[0].set_color('grey')
     tf_axis.lines[1].set_color('black')
     plt.axhline(linewidth=1, linestyle='--', color='k')
@@ -661,7 +671,21 @@ def spc_encoding_instructions_fig(to_plot, task, save_file):
     plt.close()
 
 
-def e3fig(data, save_file):
+def e3fig(data, save_file, which_list):
+
+
+    if which_list == 0:
+        ylims_tf = [-.025, .2]
+        ylims_crp = [0., .2]
+    elif which_list == 1:
+        ylims_tf = [-.025, .3]
+        ylims_crp = [0., .3]
+    else:
+        print("WTF?")
+        return
+
+
+
     # setup the grid
     fig1 = plt.figure(figsize=(two_col, base_height*1.5))
     ax1 = plt.subplot2grid((2, 5), (0, 0), rowspan=1, colspan=1)
@@ -682,7 +706,7 @@ def e3fig(data, save_file):
     cond1_data = data[(data['task_condition'] == 'Weight')]  # just the weight condition
 
     g = sns.factorplot(x="lag", y="crp", data=cond1_data, units='subject', ax=ax1)
-    ax1.set(ylim=[0., 0.15], xticks=[0, 5, 10], xticklabels=[-5, 0, 5])
+    ax1.set(ylim=ylims_crp, xticks=[0, 5, 10], xticklabels=[-5, 0, 5])
     ax1.xaxis.label.set_visible(False)
     ax1.set(ylabel="Cond. Resp. Prob.")
     plt.close()
@@ -691,7 +715,7 @@ def e3fig(data, save_file):
     cond2_data = data[(data['task_condition'] == "Animacy")]  # just the animacy condition
 
     sns.factorplot(x="lag", y="crp", data=cond2_data, units='subject', ax=ax2, color='#000000')
-    ax2.set(ylim=[0., 0.15], xticks=[0, 5, 10], xticklabels=[-5, 0, 5])
+    ax2.set(ylim=ylims_crp, xticks=[0, 5, 10], xticklabels=[-5, 0, 5])
     ax2.get_yaxis().set_ticklabels([])
     ax2.yaxis.label.set_visible(False)
     ax2.xaxis.label.set_visible(False)
@@ -702,7 +726,7 @@ def e3fig(data, save_file):
     cond3_data = data[(data['task_condition'] == "Scenario")]  # just the scenario condition
 
     sns.factorplot(x="lag", y="crp", data=cond3_data, units='subject', ax=ax3, color='#000000')
-    ax3.set(ylim=[0., 0.15], xticks=[0, 5, 10], xticklabels=[-5, 0, 5])
+    ax3.set(ylim=ylims_crp, xticks=[0, 5, 10], xticklabels=[-5, 0, 5])
     ax3.get_yaxis().set_ticklabels([])
     ax3.yaxis.label.set_visible(False)
     # ax3.xaxis.label.set_visible(False)
@@ -714,7 +738,7 @@ def e3fig(data, save_file):
     cond4_data = data[(data['task_condition'] == "Movie")]  # just the movie condition
 
     sns.factorplot(x="lag", y="crp", data=cond4_data, units='subject', ax=ax4, color='#000000')
-    ax4.set(ylim=[0., 0.15], xticks=[0, 5, 10], xticklabels=[-5, 0, 5])
+    ax4.set(ylim=ylims_crp, xticks=[0, 5, 10], xticklabels=[-5, 0, 5])
     ax4.get_yaxis().set_ticklabels([])
     ax4.yaxis.label.set_visible(False)
     ax4.xaxis.label.set_visible(False)
@@ -725,26 +749,12 @@ def e3fig(data, save_file):
     cond5_data = data[(data['task_condition'] == "Relational")]  # just the relational condition
 
     sns.factorplot(x="lag", y="crp", data=cond5_data, units='subject', ax=ax5, color='#000000')
-    ax5.set(ylim=[0., 0.15], xticks=[0, 5, 10], xticklabels=[-5, 0, 5])
+    ax5.set(ylim=ylims_crp, xticks=[0, 5, 10], xticklabels=[-5, 0, 5])
     ax5.get_yaxis().set_ticklabels([])
     ax5.yaxis.label.set_visible(False)
     ax5.xaxis.label.set_visible(False)
     #ax2.yaxis.set_visible(False)
     plt.close()
-
-    # # AX6
-    #
-    # cond6_data = data[data['task_condition'] == "Varying Size"]  # just the varying condition
-    # try:  # because varying size has no list 2
-    #     sns.factorplot(x="lag", y="crp", data=cond6_data, units='subject', ax=ax6, color='#000000')
-    # except:
-    #     print('no list!')
-    # ax6.set(ylim=[0., 0.15], xticks=[0, 5, 10], xticklabels=[-5, 0, 5])
-    # ax6.get_yaxis().set_ticklabels([])
-    # ax6.yaxis.label.set_visible(False)
-    # ax6.xaxis.label.set_visible(False)
-    # #ax2.yaxis.set_visible(False)
-    # # plt.close()
 
     # AX7
     barplot_data = data  # already filtered no need of: [(data['task_condition'] >= 1) & (data['task_condition'] <= 5)]  # just the 5 conditions
@@ -755,10 +765,8 @@ def e3fig(data, save_file):
     g.set_xticklabels(["Weight", "Animacy", "Moving Scenario", "Movie", "Relational"])
     for line, l in enumerate(ax7.lines):
         ax7.lines[line].set_color('grey')
-    ax7.set(xlabel="Judgment Task", ylabel="z(TCE)", ylim=[-.025, 0.2])
+    ax7.set(xlabel="Judgment Task", ylabel="z(TCE)", ylim=ylims_tf)
     ax7.axhline(y=0, linewidth=1, linestyle='--', color='k')
-
-
 
     # save the figure
     plt.savefig(save_file + '.pdf')
@@ -859,9 +867,6 @@ def e4_crp_fig(data_to_use, which_list, save_name):
 
     # get rid of varying serial
     data_to_use = data_to_use[data_to_use.dummy_cond != "Varying SizeSerial"]
-
-
-
 
     # setup the grid
     fig2 = plt.figure(figsize=(two_col, two_col/2))
@@ -1112,7 +1117,6 @@ def meta_fig(all_crps, save_file):
     plt.xlabel("Cohen's $d$")
     plt.ylabel('Condition')
     plt.savefig(save_file)
-    plt.show()
 
 
 def model_it(list0):

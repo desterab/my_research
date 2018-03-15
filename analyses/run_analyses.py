@@ -23,7 +23,8 @@ all_crps = af.load_the_data(n_perms=n_perms, remake_data_file=False,
                             recalls_file='HealEtal16implicit.recalls.pkl', save_name=results_dir)
 
 # convert to xarray to make compatible with cbcc_tools --- then run RDF analyses
-all_data = pd.DataFrame.from_csv('/Users/khealey/code/experiments/Heal16implicit/dissemination/manuscript/jml/second_submission/figures/Heal16implicit_data.csv')
+all_data = pd.DataFrame.from_csv('/Users/khealey/code/experiments/Heal16implicit/dissemination/manuscript/jml/'
+                                 'second_submission/figures/Heal16implicit_data.csv')
 list0, sample_sizes_aware_counts, sample_sizes_included_counts = af.make_xarray(all_data.copy(deep=True), 0)
 list1, sample_sizes_aware_counts, sample_sizes_included_counts = af.make_xarray(all_data.copy(deep=True), 1)
 cbcc.run_these_analyses(list0, ['pfr', 'spc', 'lag_crp'])
@@ -32,32 +33,13 @@ cbcc.run_these_analyses(list1, ['pfr', 'spc', 'lag_crp'])
 # make figures etc
 which_figures = [1, 2, 3, 4]
 
-plt.style.use('~/code/py_modules/cbcc_tools/plotting/stylesheets/cbcc_bw.mplstyle')
-
-
 # make table 1
 all_crps = af.sample_size_table(all_crps, results_dir, recalls)
 
 ####### general discussion figures
+plt.style.use('~/code/py_modules/cbcc_tools/plotting/stylesheets/cbcc_bw.mplstyle')
 af.corr_fig(all_crps, results_dir + "correlation.pdf")
 af.meta_fig(all_crps, results_dir + "meta.pdf")
-
-# Make a few plots of the CRPs generate by the cbcc_tools code just as a check to ensure it is doing exactly
-# the same thing as the legacy code used for the main CRP figures in the paper
-# e1_explicit_filter = np.logical_and(list0.instruction_condition == 'Explicit', list0.task_condition == 'Shoebox')
-# e1_implicit_filter = np.logical_and(list0.instruction_condition == 'Incidental', list0.task_condition == 'Shoebox')
-# cbcc.lag_crp_plot(list0.lag_crp[e1_explicit_filter])
-# cbcc.lag_crp_plot(list0.lag_crp[e1_implicit_filter])
-# plt.ylim(0, .2)
-# plt.savefig('e1.pdf')
-# plt.close()
-# e2_explicit_filter = np.logical_and(list0.instruction_condition == 'Explicit', list0.task_condition == 'Front Door')
-# e2_implicit_filter = np.logical_and(list0.instruction_condition == 'Incidental', list0.task_condition == 'Front Door')
-# cbcc.lag_crp_plot(list0.lag_crp[e2_explicit_filter])
-# cbcc.lag_crp_plot(list0.lag_crp[e2_implicit_filter])
-# plt.ylim(0, .2)
-# plt.savefig('e2.pdf')
-# plt.close()
 
 ####### make E1 Figures
 if 1 in which_figures:
@@ -146,7 +128,8 @@ if 3 in which_figures:
     # list 0 crp
     which_list = 0
     instruction_cond_filter = all_crps.instruction_condition == "Incidental"
-    task_cond_filter = all_crps.task_condition.isin(["Movie", "Relational", "Scenario", "Animacy", "Weight", "Varying Size"])
+    task_cond_filter = all_crps.task_condition.isin(
+        ["Movie", "Relational", "Scenario", "Animacy", "Weight", "Varying Size"])
     recall_cond_filter = all_crps.recall_instruction_condition == "Free"
     lag_filter = all_crps.lag.abs() <= 5
     list_filter = all_crps.list == which_list
@@ -154,7 +137,7 @@ if 3 in which_figures:
                                  np.logical_and(task_cond_filter,
                                                 np.logical_and(lag_filter, list_filter)))
     data_to_use = all_crps.loc[data_filter, :]
-    af.e3fig(data_to_use, results_dir + "E3_crp_list1")
+    af.e3fig(data_to_use, results_dir + "E3_crp_list1", which_list)
 
     # list 1 crp
     which_list = 1
@@ -167,54 +150,4 @@ if 3 in which_figures:
                                  np.logical_and(task_cond_filter,
                                                 np.logical_and(lag_filter, list_filter)))
     data_to_use = all_crps.loc[data_filter, :]
-    af.e3fig(data_to_use, results_dir + "E3_crp_list2")
-
-
-
-
-
-
-
-
-# # load all the data for all experiments from the file made from the master database on cbcc
-# data = pickle.load(open("HealEtal16implicit.data.raw.pkl", "rb"))
-#
-# # get only the data we want
-# these_data = data.loc[np.logical_or(data.task_condition == 7,
-#                         np.logical_and(data.task_condition == 8, data.recall_instruction_condition == 0))]
-#
-# gender_q = these_data.loc[these_data.aware_question == 'gender']
-#
-#
-# these_data.loc[these_data.aware_question == 'gender']['uniqueid', 'task_condition', 'recall_instruction_condition', 'aware_ans']
-#
-# these_data.loc[these_data.aware_question == 'gender'][['uniqueid', 'task_condition', 'recall_instruction_condition', 'aware_ans']]
-#
-# n_males_vf = these_data.loc[these_data.aware_question == 'gender'][['uniqueid', 'task_condition', 'recall_instruction_condition', 'aware_ans']]
-#
-#
-# # loop over subjects, for each isolate their data
-# subjects = data.uniqueid.unique()
-# n_ss = len(subjects)
-# pd.DataFrame(columns=['subject', 'age', 'gender', 'english', 'edu'])
-# for s in subjects:
-#     s_filter = data.uniqueid == s
-#     if ~np.any(data.loc[s_filter].task_condition.isin([7, 8])):
-#         print ('nope')
-#         continue
-#     data
-
-
-
-
-
-
-
-    # recalls_filter = data.phase == 'recall'
-    # study_filter = data.phase == 'study'
-    # awareness_filter = data.aware_question == 'awarenesscheck'
-    # aware = data.loc[s_filter & awareness_filter, 'aware_ans']
-    # cur_recalls = data.loc[s_filter & recalls_filter, ['list', 'response', 'instruction_condition','task_condition', 'recall_instruction_condition']]
-    # cur_items = data.loc[s_filter & study_filter, ['list', 'word']]
-
-
+    af.e3fig(data_to_use, results_dir + "E3_crp_list2", which_list)
