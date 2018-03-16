@@ -12,6 +12,7 @@ from pyxdameraulevenshtein import damerau_levenshtein_distance_ndarray
 import xarray as xr
 from matplotlib import rcParams
 from cbcc_tools.beh_anal import recall_dynamics as cbcc
+from cbcc_tools.stats_tools import cis
 from cycler import cycler
 from scipy import stats
 import tcm_Heal16implicit as tcm
@@ -993,59 +994,67 @@ def corr_fig(all_crps, save_name):
 
 def meta_fig(all_crps, save_file):
     # serial vs free
-    c1 = all_crps[np.logical_and(
+    CF = all_crps[np.logical_and(
         np.logical_and(
             np.logical_and(all_crps.task_condition == "Constant Size",
                            all_crps.recall_instruction_condition == "Free"),
             all_crps.list == 0),
         all_crps.lag == 0)].all_tf_z.values
-    c2 = all_crps[np.logical_and(
+    VF = all_crps[np.logical_and(
         np.logical_and(
             np.logical_and(all_crps.task_condition == "Varying Size",
                            all_crps.recall_instruction_condition == "Free"),
             all_crps.list == 0),
         all_crps.lag == 0)].all_tf_z.values
-    c3 = all_crps[np.logical_and(
+    CS = all_crps[np.logical_and(
         np.logical_and(
             np.logical_and(all_crps.task_condition == "Constant Size",
                            all_crps.recall_instruction_condition == "Serial"),
             all_crps.list == 0),
         all_crps.lag == 0)].all_tf_z.values
-    print((c1.shape, c2.shape))
-    print((c1[~np.isnan(c1)].shape, c2[~np.isnan(c2)].shape))
-    print(ttest_ind(c1[~np.isnan(c1)], c2[~np.isnan(c2)]))
-    print(ttest_ind(c1[~np.isnan(c1)], c3[~np.isnan(c3)]))
-    print(ttest_ind(c2[~np.isnan(c2)], c3[~np.isnan(c3)]))
 
-    # list 1 vs list 2 for explicit
-    c1 = all_crps[np.logical_and(
+    actual_diff, top, bot = cis.boot_ci_on_diff(VF, CF)
+    print (actual_diff, top, bot)
+    actual_diff, top, bot = cis.boot_ci_on_diff(VF, CS)
+    print (actual_diff, top, bot)
+    actual_diff, top, bot = cis.boot_ci_on_diff(CF, CS)
+    print (actual_diff, top, bot)
+
+
+
+    l1e = all_crps[np.logical_and(
         np.logical_and(
             np.logical_and(all_crps.task_condition == "Shoebox",
                            all_crps.instruction_condition == "Explicit"),
             all_crps.list == 0),
         all_crps.lag == 0)].all_tf_z.values
-    c2 = all_crps[np.logical_and(
+    l2e = all_crps[np.logical_and(
         np.logical_and(
             np.logical_and(all_crps.task_condition == "Shoebox",
                            all_crps.instruction_condition == "Explicit"),
-            all_crps.list == 1),
-        all_crps.lag == 0)].all_tf_z.values
-    ttest_ind(c1[~np.isnan(c1)], c2[~np.isnan(c2)])
+            all_crps.list == 0),
+        all_crps.lag == 1)].all_tf_z.values
 
-    # list 1 vs list 2 for explicit
-    c1 = all_crps[np.logical_and(
+    l1i = all_crps[np.logical_and(
         np.logical_and(
             np.logical_and(all_crps.task_condition == "Shoebox",
                            all_crps.instruction_condition == "Incidental"),
             all_crps.list == 0),
         all_crps.lag == 0)].all_tf_z.values
-    c2 = all_crps[np.logical_and(
+    l2i = all_crps[np.logical_and(
         np.logical_and(
             np.logical_and(all_crps.task_condition == "Shoebox",
                            all_crps.instruction_condition == "Incidental"),
-            all_crps.list == 1),
-        all_crps.lag == 0)].all_tf_z.values
-    ttest_ind(c1[~np.isnan(c1)], c2[~np.isnan(c2)])
+            all_crps.list == 0),
+        all_crps.lag == 1)].all_tf_z.values
+
+    actual_diff, top, bot = cis.boot_ci_on_diff(l1e, l2e)
+    print (actual_diff, top, bot)
+    actual_diff, top, bot = cis.boot_ci_on_diff(l1i, l2i)
+    print (actual_diff, top, bot)
+
+
+
 
     these_conds = ["Movie", "Scenario", "Animacy", "Weight"]
     ds = []
@@ -1059,21 +1068,8 @@ def meta_fig(all_crps, save_file):
         ds.append(c.mean() / c.std())
     mean_ds = np.mean(ds)
     std_ds = np.std(ds, ddof=1)
-    CI_ds = std_ds / np.sqrt(len(ds)) * 1.96
-    pm = [mean_ds - CI_ds, mean_ds + CI_ds]
 
-    these_conds = ["Shoebox", "Front Door"]
-    ds = []
-    for cond in these_conds:
-        c = all_crps[np.logical_and(
-            np.logical_and(
-                np.logical_and(all_crps.task_condition == cond,
-                               all_crps.instruction_condition == "Incidental"),
-                all_crps.list == 0),
-            all_crps.lag == 0)].all_tf_z
-        ds.append(c.mean() / c.std())
-    mean_ds = np.mean(ds)
-    std_ds = np.std(ds)
+
 
     these_conds = ["Movie", "Scenario", "Animacy", "Weight", "Shoebox", "Front Door", "Constant Size", "Varying Size"]
     ds = []
