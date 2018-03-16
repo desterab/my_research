@@ -30,10 +30,6 @@
 % counter for panels of crp matrix figure
 \newcounter{crppanel}
 
-% commands for making margin notes marked with authors initials
-\setlength{\marginparwidth}{30pt}
-\newcommand{\mkh}[1]{\marginpar{\scriptsize \textcolor{red}{MKH: #1}}}
-
 \title{Temporal Contiguity in Incidentally Encoded Memories} 
 
 \author{M.\ Karl Healey}
@@ -117,10 +113,6 @@ The goal of the first experiment was to assess whether incidental encoding reduc
 \newcommand\isi{1 second} %
 \newcommand\DFRDelay{16 second} % length of distractor at end of study
 \newcommand\recalltime{75 seconds} % time to recall
-\newcommand\totalss{XX}
-\newcommand\totalexcluded{XX}
-
-
 
 \subsection{Data Sharing}All data analyzed in this report are freely available on the author's website (https://cbcc.psy.msu.edu/data/Heal16implicit.csv).
 
@@ -140,8 +132,6 @@ There was an inter-stimulus interval of \isi~between word presentations during w
 
 Following the math distractor task, subjects in both conditions were asked to recall as many items as possible from the preceding list, in any order. Subjects typed each recalled word in a text box and pressed enter to submit the word. Upon pressing enter, the word disappeared and a new blank text box appeared such that subjects could not see their prior responses. Subjects were given \recalltime~to recall as many words as they could. To ensure subjects noticed that the recall period had begun (e.g., were not looking at the keyboard and typing their answer from the final math problem), a red screen was flashed for 500 ms before the recall instructions were displayed and the recall text box did not begin accepting input for a further 500 ms. Therefore, including the math distractor, there was a total delay of $16+0.5+0.5=17$ seconds between the end of the study period and the beginning of the recall period. A spell-checking algorithm (described in the Supplemental Materials) checked subjects' typed responses for typos and scored their recall accuracy.
 
-
-% TODO: check these aginst the values in the pandas tables in alan_funct E4_sample_size_table by stopping in debugger
 % sample size table
 \begin{table}
 \caption{Sample sizes, exclusions, and recall probability by condition.}
@@ -181,9 +171,7 @@ The lag-CRP provides a visual representation of the TCE, but for several reasons
 To address these confounds between recall accuracy and the TCE, I combined the \emph{temporal factor score} \citep{SedeEtal10,PolyEtal09} with a shuffling procedure\color{black}. The temporal factor score is computed by ranking the absolute value of the lag of each actual transition with respect to the absolute values of the lags of all transitions that were possible at that time, which provides a percentile score for each transition. Averaging these percentile scores across all of a subject's transitions provides the temporal factor score.
 \st{The size of this artificial TCE can be measured} \color{red}Temporal factor scores can be influenced by confounds with recall accuracy, but this influence can be estimated and removed \color{black} by taking the items which a subject actually recalled for a given list, randomly shuffling (i.e., permuting) the order of recalls, and recomputing the temporal factor score. Repeating this permutation procedure many times provides a distribution of the temporal factor score expected if recall transitions are completely random with respect to lag \citep{HealKaha17}. 
 
-This logic was used to provide a corrected measure of the TCE for each participant. For each list, the temporal factor score was computed for the actual recall sequence and for 10,000 random permutations of the sequence. The actual temporal factor score was then converted into a z-score, z(TCE), by subtracting the permutation distribution's mean and dividing by its standard deviation.  \color{red}\label{TCEex} For example, imagine that a participant recalled three words: those from serial positions 6, 5, and 8, in that order. The actual temporal factor score for that recall sequence is 0.84. We would build a distribution of the temporal factor score expected by chance by taking this recall sequence and randomly shuffling it. For example, rearranging the sequence to 5, 6, 8 gives a temporal factor score of 0.92. Rearranging the sequence to 6, 8, 5 gives a temporal factor score of 0.77. Doing this for all six possible permutations of the sequence, we find that the distribution of possible temporal factor scores has a mean of 0.83 and a standard deviation of 0.06, which gives our observed temporal factor score a $z(TCE)=\frac{0.84-.83}{.06}=0.17$. \color{black}~In the absence of a true TCE, the expected value of z(TCE) is zero, so we can test for a TCE by determining if the across-subject average of z(TCE) is significantly above zero. %\color{red} Note that this procedure is conservative in that it reduces the chance of a false positive in detecting a TCE at the cost that it may underestimate the true size of the TCE. This is because the shuffling procedure assumes that the TCE influences only the order in which successfully recalled items are output, and does not influence which items successfully recalled.\color{black}
-
-
+This logic was used to provide a corrected measure of the TCE for each participant. For each list, the temporal factor score was computed for the actual recall sequence and for 10,000 random permutations of the sequence. The actual temporal factor score was then converted into a z-score, z(TCE), by subtracting the permutation distribution's mean and dividing by its standard deviation.  \color{red}\label{TCEex} For example, imagine that a participant recalled three words: those from serial positions 6, 5, and 8, in that order. The actual temporal factor score for that recall sequence is 0.848. We would build a distribution of the temporal factor score expected by chance by taking this recall sequence and randomly shuffling it. For example, rearranging the sequence to 5, 6, 8 gives a temporal factor score of 0.924. Rearranging the sequence to 6, 8, 5 gives a temporal factor score of 0.776. Doing this for all six possible permutations of the sequence, we find that the distribution of possible temporal factor scores has a mean of 0.834 and a standard deviation of 0.069, which gives our observed temporal factor score a $z(TCE)=\frac{0.848-.834}{.069}=0.203$. \color{black}~In the absence of a true TCE, the expected value of z(TCE) is zero, so we can test for a TCE by determining if the across-subject average of z(TCE) is significantly above zero. 
 
 \section{Results and Discussion}
 
@@ -200,8 +188,6 @@ Figure~\ref{e1_l1_crp} shows the lag-CRP and corrected temporal factor scores fo
 \caption{The Temporal Contiguity Effect (TCE) on the first list under Explicit versus Incidental encoding using the Shoebox Task (Experiment 1).\paneltext}
 \label{e1_l1_crp}
 \end{figure}
-
-
 
 
 
@@ -251,8 +237,6 @@ These differences in recall dynamics between incidental and explicit encoding ma
 In summary, Experiment 1 directly compared Explicit and Incidental encoding conditions and found that removing the intent to encode dramatically reduced the TCE. \color{black} But because the TCE has proven to be so robust in previous studies \citep{HealKaha17}, I attempt to replicate the finding in Experiment 2 using a slightly different processing task.
 
 
-
-
 \section{Experiment 2}
 \section{Method}
 
@@ -285,8 +269,6 @@ These results confirm that incidental encoding can \st{eliminate} \color{red} dr
 \caption{The temporal contiguity effect (TCE) on the first list under explicit versus incidental encoding using the Front Door Task (Experiment 2).\paneltext}
 \label{e2_l1_crp}
 \end{figure}
-
-
 
 
 \st{\section{Interim Discussion}}
@@ -371,10 +353,6 @@ Thus, there are (at least) two mutually exclusive interpretations of the finding
 \label{newexp}
 
 
-
-
-% But there are (at least) three possible interpetations of the findings of E1-3. First, it could be that encoding tasks that use a common referent tend to suppress the TCE. Second, it could be the case that a small TCE of approximatel equal magnitude is present across all experiments but the experiments were underpowered. Third, it could be the case that temporal information is encoded in all cases but is simply not sponteniously used by participants during free recall memory search. Experiment 4 attempts to distinguish among these possibilities and to clarify the theoritical implications of this cavet by answering two questions.
-
 Experiment 4 includes three conditions. The first condition is a conceptual replication of the incidental encoding task of Experiment 1 (judge each item's size against the common referent of a shoebox), but with a larger sample size to determine if a residual TCE remains. 
 
 The remaining two conditions were designed to test two different hypotheses.
@@ -411,8 +389,7 @@ First, participants in the Constant Size--Free Recall condition, which was almos
 
 Second, changing the size referent of the judgment task from item to item had no effect on the size of the TCE. This suggests that the reduced TCE under incidental encoding is not the result increasing the effective similarity among list items by linking each item to a common context. This conclusion should be tempered, however, by the observation that changing the referent for each item introduces the need for source monitoring (distinguishing list items from size referents during recall), which could potentially impact the TCE.  
 
-Third, explicitly asking subjects to recall the words in serial order, rather than any order they want, did not significantly increase the TCE. This suggests that the reduced TCE after incidental encoding is not entirely due to a failure to adopt a strategy of using temporal information to guide memory search. These data are consistent with the claim that incidental encoding reduces the amount of temporal information available to subjects. Although it possible future work using a different test of order memory might reveal additional latent knowledge of temporal associations. For example, one could encourage subjects to use the order of items to aid recall without asking them to exactly reproduce the serial order. %Or one could reduce the influence of output interference and item memory by presenting a shuffled list of the items during recall and asking subjects to order them \citep[e.g.,][]{NairEtal17}.
-
+Third, explicitly asking subjects to recall the words in serial order, rather than any order they want, did not significantly increase the TCE. This suggests that the reduced TCE after incidental encoding is not entirely due to a failure to adopt a strategy of using temporal information to guide memory search. These data are consistent with the claim that incidental encoding reduces the amount of temporal information available to subjects. Although it possible future work using a different test of order memory might reveal additional latent knowledge of temporal associations. For example, one could encourage subjects to use the order of items to aid recall without asking them to exactly reproduce the serial order. 
 
 \begin{figure}%[hp]
 \fitfigure{figures/E4_crp_list1.pdf}
@@ -421,9 +398,6 @@ Third, explicitly asking subjects to recall the words in serial order, rather th
 \end{figure}
 
 \color{black}
-
-
-
 
 
 \section{General Discussion}
