@@ -279,6 +279,7 @@ def load_the_data(n_perms, remake_data_file, recalls_file, save_name):
                     crp["aware_check"] = pd.Series([aware_check for x in range(len(crp.index))],
                                               index=crp.index)
                     all_crps = pd.concat([all_crps, crp])
+                    all_crps.to_pickle(save_name + "all_crps.pkl")
 
             # change conditions from numerical to verbal labelsls
             recalls.loc[recalls.task_condition == 0, 'task_condition'] = "Shoebox"
@@ -305,7 +306,6 @@ def load_the_data(n_perms, remake_data_file, recalls_file, save_name):
                                     recalls.instruction_condition == "Incidental")
             used_data = np.logical_or(e1, np.logical_or(e2, e3and4)) # in a used condition and the first list
             recalls.loc[np.logical_and(np.in1d(recalls.subject, included_subjects), used_data)].to_csv(save_name + 'Heal16implicit_data.csv')
-            all_crps.to_pickle(save_name + "all_crps.pkl")
 
             print ("Data Loaded!")
             return all_crps
