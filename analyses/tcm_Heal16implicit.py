@@ -152,7 +152,7 @@ def tcm(parameters, n_subjects, n_lists, n_items):
     # return np.nanmean(cbcc.prec(recalled_items, n_items)), np.nanmean(cbcc.temporal_factor(recalled_items, n_items))
 
 
-@jit(nopython=True, nogil=True, cache=True)
+# @jit(nopython=True, nogil=True, cache=True)
 def evolve_context(c_i, f_i, matrix, beta):
     c_in = np.dot(matrix, f_i)
     c_in = c_in / np.sqrt(np.power(c_in, 2).sum(axis=0))  # normalize to ||c_i|| = 1
