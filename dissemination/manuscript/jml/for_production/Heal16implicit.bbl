@@ -164,7 +164,7 @@ Burns, D\BPBI J.%
   distinction and the generation effect: The importance of order information in
   long-term memory}.{\BBCQ}
 \newblock
-\APACjournalVolNumPages{The American journal of psychology}{109}{4}{567}.
+\APACjournalVolNumPages{The American Journal of Psychology}{109}{4}{567}.
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
@@ -401,7 +401,7 @@ Healey%
 Healey%
 \ \BBA {} Kahana%
 }{%
-{\protect \APACyear {2017}}%
+{\protect \APACyear {2018}}%
 }]{%
 HealKaha17}
 \APACinsertmetastar {%
@@ -412,7 +412,7 @@ Healey, M\BPBI K.%
 \end{APACrefauthors}%
 \unskip\
 \newblock
-\APACrefYearMonthDay{2017}{}{}.
+\APACrefYearMonthDay{2018}{}{}.
 \newblock
 {\BBOQ}\APACrefatitle {Contiguity in Episodic Memory} {Contiguity in episodic
   memory}.{\BBCQ}
@@ -1039,6 +1039,35 @@ Neath, I.%
   position function}.{\BBCQ}
 \newblock
 \APACjournalVolNumPages{Journal of Memory and Language}{32}{}{820-840}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Polyn%
+, Erlikhman%
+\BCBL {}\ \BBA {} Kahana%
+}{%
+Polyn%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2011}}%
+}]{%
+PolyEtal11}
+\APACinsertmetastar {%
+PolyEtal11}%
+\begin{APACrefauthors}%
+Polyn, S\BPBI M.%
+, Erlikhman, G.%
+\BCBL {}\ \BBA {} Kahana, M\BPBI J.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2011}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {{Semantic cuing and the scale-insensitivity of recency
+  and contiguity}} {{Semantic cuing and the scale-insensitivity of recency and
+  contiguity}}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Journal Experimental Psychology: Learning, Memory and
+  Cognition}{37}{3}{766-775}.
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
