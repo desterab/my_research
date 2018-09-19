@@ -27,15 +27,16 @@ var psiTurk = new PsiTurk(uniqueId, adServerLoc, mode);
 // user determined task params
 var num_of_lists = 1;
 var list_length = 16;
-var pres_rate = 5000; // number of mileseconds each word presented for
+var word_pres_rate = 5000; // number of milliseconds each word presented for
+var distractor_pres_rate = 15000; // number of milliseconds each distractor between words is presented for
 var isi = 500; // number of ms of blank screen between word presentations
 var recall_time = 75000; // number of milleseconds given to recall
 var delay_between_lists = 5000; // number of mileseconds to pause between lists (display get ready message)
-var end_distractor_delay = 16000; // number of mileseconds of distraction task before recall
+var distractor_delay = 16000; // number of mileseconds of distraction task before recall
 var recall_box_lag = 1000; // number of ms to ignore input into the text box after recall period starts --- so people don't accidentally enter responses to the math task here
 var word_pool = make_pool(); // function in utils.js
 
-// set of objects to compare aginst
+// set of objects to compare against
 var size_referents = [
     ['<center><p>Is it easy to judge if it is larger than a <strong>golf ball</strong>?</p></center>'],
     ['<center><p>Is it easy to judge if it is larger than a <strong>tennis ball</strong>?</p></center>'],
@@ -82,7 +83,7 @@ var instruction_condition = 1; // temp divert everyone into implicit cond
 
 
 // counterbalance is passed by psiturk based on num_counters variable in config.txt runs from 0 to num_counters-1. for this experiment, 0 = size, 1 = deep item, 2 = deep relational
-var task_condition = counterbalance + 7;  // divert everyone into one of the Exp4 task conditions (shoebox or varying referent) if setup to have two counterblances 0 and 1: 0+7 = 7 and 1+7 = 8
+var task_condition = 7;  // divert everyone into one of the Exp4 task conditions (shoebox or varying referent) if setup to have two counterblances 0 and 1: 0+7 = 7 and 1+7 = 8
 
 // instructions for the recall period --- either free recall or serial recall
 var recall_instruction_condition = condition;  // co-opting the condition variable to use for the Exp4 recall instructions (whther the susprise mem test gives free or serial instructions
@@ -95,6 +96,8 @@ var one_to_nine = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
 // preallocate and initialize variables
 var cur_list_num = 0; //counter to keep track of current list --- uses zero indexing
+// trying starting out as cur_phase = 'STUDY' for the next next statement
+
 
 
 /********************
@@ -115,6 +118,8 @@ else if (instruction_condition==1) {
     greeting = ["instructions/instructions-incidental-greeting.html"]
 }
 
+
+/****** Will probably edit this task condition block too ******/
 // pick task page (second instruction page) based on task_condition
 if (task_condition==0) {
     task = "instructions/instructions-size-task.html"
@@ -154,7 +159,6 @@ else if (task_condition==8) {
 }
 
 
-
 // task_condition is constant or change
 // recall_instruction_condition is free or serial
 // do instruction first... need to pass
@@ -171,6 +175,7 @@ var instructionPages = [greeting, task, emph];
 
 
 
+
 // List of Task html pages
 var pages = [
     "stage.html",
@@ -182,56 +187,69 @@ psiTurk.preloadPages(instructionPages);
 psiTurk.preloadPages(pages);
 
 
-/********************
- * Free recall task       *
- ********************/
+/*
+********************************
+*******  FREE RECALL TASK ******
+*/
+
+
 var RunFR = function() {
 
     /******
      * Setup variables for this list
      *
      ****/
-    var cur_phase,
+    var cur_phase, // trying tpo being with study, and then it will be changed later
         wordon, // time word is presented
         listening = false,
         first_recall = true, // keep tack of whether this is the first recall for a list
-        end_distractor_done = false, // has the end of list distractor been finished yet
+        distractor_done = false, // has the end of list distractor been finished yet
         stims = word_pool.splice(0,list_length); // get the items for this list: the next list_length elements of word pool
         size_tasks = size_referents.splice(0,list_length); // get the size referents for this list: the next list_length elements of word pool
 
-
-    /******
+  /******
      * Function to advance to the next item or recall depending on the phase of the list
      *
      ****/
-    var next = function() {
+
+
+
+        var next = function() {
 
         //figure out which phase of the task we are in
 
         // what to do if end of list distractor phase
-        if (stims.length===0 && !end_distractor_done) { // if there are no stims left, we have entered the recall phase
-            if (cur_phase != "DISTRACTOR"){
-                remove_word()
-                cur_phase = "DISTRACTOR";
-                setTimeout(function(){wrapup_end_distractor(); }, end_distractor_delay); // start a timer that will end the distraction period
-            }
-            end_distractor_task()
-        }
+        
 
         // what to do if recall phase
-        else if (stims.length===0 && end_distractor_done) { // if there are no stims left, we have entered the recall phase
+        if (stims.length === 0 && distractor_done) { // if there are no stims left and distractor is done, we have entered the recall phase
             if (first_recall) {
-                remove_word()
+                //remove_word()
+                //d3.select("#recall_input").remove(); this was a bad idea because it gets rid of it forever instead of just reassigning it, which will happen in recall_period()
+                document.body.style.backgroundColor = "white";
+
                 cur_phase = "RECALL"
                 start_time = new Date().getTime();
             }
             recall_period()
         }
 
+        else if (cur_phase === 'STUDY') { //if we just did a study phase, next is the distractor phase
+            remove_word()
+            cur_phase = "DISTRACTOR";
+            distractor_start_time = new Date().getTime(); 
+            setTimeout(function(){wrapup_distractor(); }, distractor_delay); //start the distractor phase after a study phase
+            distractor_task();
+        }
+
         // what to do if study phase
         else { // otherwise we still have items to present
             cur_phase = "STUDY"
             stim = stims.shift();
+
+            document.body.style.backgroundColor = "white";
+
+
             if (stims.length===list_length-1) {
                 if (cur_list_num==0) {
                     ready_message = "The list will begin shortly. Position your fingers over the 'y' and 'n' keys so you are ready to respond!"
@@ -259,8 +277,116 @@ var RunFR = function() {
 
     };
 
+    /*var next = function() {
 
-    /******
+     //figure out which phase of the task we are in
+
+     // what to do if recall phase
+     // else if (stims.length===0 && distractor_done) { // if there are no stims left, we have entered the recall phase
+     if (stims.length !== 0) {
+
+         if (cur_phase === 'STUDY') {
+             if (stims.length === list_length - 1) {
+                 if (cur_list_num === 0) {
+                     ready_message = "The list will begin shortly. Position your fingers over the 'y' and 'n' keys so you are ready to respond!"
+                 }
+                 else if (cur_lis_num === 1) {
+                     ready_message = "A new list will begin shortly. Position your fingers over the 'y' and 'n' keys so you are ready to respond!"
+                 }
+                 // Set HTML stuff
+                 d3.select("#stim")
+                     .append("div")
+                     .attr("id", "word")
+                     .style("color", "black")
+                     .style("text-align", "center")
+                     .style("font-size", "40px")
+                     .style("font-weight", "400")
+                     .style("margin", "20px")
+                     .text(ready_message);
+                 setTimeout(function () {
+                     present_item;
+                 }, delay_between_lists);
+             }
+             else {
+                 remove_word()
+                 distractor_task();
+             }
+         }
+         else if (cur_phase === 'DISTRACTOR') {
+             remove_word()
+             present_item(stim[0]);
+         }
+     }
+     else if (stims.length === 0) { // if there are no stims left, we have entered the recall phase {
+         if (first_recall) {
+             remove_word()
+             cur_phase = "RECALL"
+             start_time = new Date().getTime();
+         }
+         recall_period()
+     }
+
+ } */ 
+  /****var next = function() {
+
+        //figure out which phase of the task we are in
+        // what to do if end of final distractor phase
+        if (stims.length===0 && !distractor_done) { // if there are no stims left, we have entered the recall phase
+            if (cur_phase = "DISTRACTOR"){
+                remove_word()
+                cur_phase = "STUDY";
+                setTimeout(function(){wrapup_distractor(); }, distractor_delay); // start a timer that will end the distraction period
+                distractor_task()
+            }
+
+        }
+
+        // what to do if recall phase
+        // else if (stims.length===0 && distractor_done) { // if there are no stims left, we have entered the recall phase
+        if (stims.length===0) { // if there are no stims left, we have entered the recall phase
+            if (first_recall) {
+                remove_word()
+                cur_phase = "RECALL"
+                start_time = new Date().getTime();
+            }
+            recall_period()
+        }
+
+       // what to do if study phase
+        else { // otherwise we still have items to present
+            cur_phase = "STUDY"
+            stim = stims.shift();
+            if (stims.length===list_length-1) {
+                if (cur_list_num==0) {
+                    ready_message = "The list will begin shortly. Position your fingers over the 'y' and 'n' keys so you are ready to respond!"
+                }
+                else {
+                    ready_message = "A new list will begin shortly. Position your fingers over the 'y' and 'n' keys so you are ready to respond!"
+                }
+                // Set HTML stuff
+                d3.select("#stim")
+                    .append("div")
+                    .attr("id","word")
+                    .style("color","black")
+                    .style("text-align","center")
+                    .style("font-size","40px")
+                    .style("font-weight","400")
+                    .style("margin","20px")
+                    .text(ready_message);
+                setTimeout(function(){present_item( stim[0] ); }, delay_between_lists);
+            }
+            else{
+                remove_word()
+                distractor_task();
+                }
+
+        }
+
+    };
+****/
+
+
+/******
      * Function to record responses as appropriate for the phase (study vs recall)
      *
      * This control the flow of the experiment. It keeps track of how many words have been presented and starts the
@@ -284,7 +410,8 @@ var RunFR = function() {
             response;
 
 
-        // handler for the study phase
+         /***** Will need something like the study handler in the distractor function *****/
+        //!!!!!!!!!!!!!!!!!! HANDLER for the study phase
         if (cur_phase === "STUDY") {
 
             switch (keyCode) {
@@ -303,12 +430,13 @@ var RunFR = function() {
             }
 
 
+
             if (response.length > 0) {
                 listening = false;
                 var rt = new Date().getTime() - wordon;
                 // remove the task prompts (turn them white) to give participant a subtle cue that the response was detected
-                d3.select("#query").html('<p id="prompt"> <span style="color: white; ">Thanks for responding!</span></p>');
-                d3.select("#task").html('<p id="prompt"> <span style="color: white; ">Thanks for responding!</span></p>');
+                d3.select("#query").html('<p id="prompt"> <center> <span style="color: black; ">Thanks for responding!</span></p>');
+                d3.select("#task").html('<p id="prompt"> <center> <span style="color: black; ">Thanks for responding!</span></p>');
 
                 psiTurk.recordTrialData({
                         'instruction_condition': instruction_condition,
@@ -368,7 +496,7 @@ var RunFR = function() {
         }
 
 
-        // handler for the distractor task
+         // handler for the distractor task
         if (cur_phase === "DISTRACTOR") {
 
             // only accept input if the input text box is in focus
@@ -390,20 +518,21 @@ var RunFR = function() {
             if (subjects_answer.length > 0) {
                 listening = false;
 
-                var elapsed = new Date().getTime() - end_distractor_start_time;
+                var elapsed = new Date().getTime() - distractor_start_time;
                 psiTurk.recordTrialData({
                         'instruction_condition': instruction_condition,
                         'recall_instruction_condition': recall_instruction_condition,
                         'task_condition': task_condition,
                         'list': cur_list_num,
-                        'phase': "end_distractor",
+                        'phase': "DISTRACTOR",
                         'correct_answer': correct_answer,
                         'subjects_answer': subjects_answer,
                         'rt': elapsed
                     }
                 );
-                next()
-
+                if (elapsed < distractor_delay) {
+                    distractor_task();
+                }
             }
 
         }
@@ -420,8 +549,7 @@ var RunFR = function() {
     var finish = function() {
         $("body").unbind("keydown", response_handler); // Unbind keys
         currentview = new Questionnaire();
-    };
-
+    };        
 
     /******
      * Function to present an item
@@ -432,7 +560,7 @@ var RunFR = function() {
         // remove any words already on screen
         remove_word()
 
-        // show the word for pres_rate ms
+        // show the word for word_pres_rate ms
         if (task_condition==7) {
             d3.select("#task").html(task_string);
         }
@@ -454,19 +582,20 @@ var RunFR = function() {
         // start listening and record start time
         listening = true;
         wordon = new Date().getTime();
+        cur_phase = 'STUDY'
 
-        setTimeout(function(){wrapup_word(); }, pres_rate);
+        setTimeout(function(){wrapup_word(); }, word_pres_rate);
 
     };
 
-        /******
+       /******
      * Function to present text box for recalling words
      *
      ****/
     var recall_period = function() {
         //remove text from encoding task
         d3.select("#query").remove();
-//        d3.select("#task").remove();
+ //     d3.select("#recall_input").remove();
 
         // display input box
         if (recall_instruction_condition==0) {
@@ -502,6 +631,7 @@ var RunFR = function() {
         d3.select("#task").html(disp_this);
         d3.select("#recall_input").html('<span>Type a word and press ENTER to submit:</span> ' +
             '<input type="text" id="recall_field" name="recall_field"/>');
+        d3.select("#stim").html('<span>  <span>')
 
         // want to ensure people don't accidently try to enter their last response from the math distractor here
         // so defocus the textbox if this is the first recall to avoid too rapid a response
@@ -522,10 +652,11 @@ var RunFR = function() {
 
     };
 
-    var end_distractor_task = function() {
+    //runs math distractor
+   var distractor_task = function() {
         //remove text from encoding task
-//        d3.select("#query").remove();
-//        d3.select("#task").remove();
+        //d3.select("#query").remove();
+      //  d3.select("#task").remove();
 
         // setup math problem
         shuffled_digits = _.shuffle(one_to_nine);
@@ -536,29 +667,92 @@ var RunFR = function() {
         subjects_answer = [];
 
         // display task text
-        disp_this = '<p>You will now solve math problems for ' + end_distractor_delay/1000 +
+        disp_this = '<p>You will now solve math problems for ' + distractor_delay/1000 +
             ' seconds. Try to solve as many problems as you can without sacrificing accuracy. The task will automatically advance when the time is up.</p>'
+        //disp_this = '<p><center>Judge whether or not the following problem is correct:</center></p>'
         d3.select("#task").html(disp_this);
-        disp_this = '<p><span style="color: black; font-size: 50px">' + A + '+' + B + '+' + C + '=?</span></p>'
-        d3.select("#query").html(disp_this);
+        //d3.select("#task").html(disp_this);
+        problem = '<p><span style="color: black; font-size: 50px">' + A + '+' + B + '+' + C + '=?</span></p>'
+       //problem = '<p><center><span style="color: black; font-size: 50px">' + A + '+' + B + '+' + C + '=' + correct_answer + '</center></span></p>'
+        d3.select("#query").html(problem);
+        //d3.select("#word").html(problem)
         d3.select("#recall_input").html('<span>Add the three numbers, type your answer, and press ENTER to submit:</span> ' +
             '<input type="text" id="recall_field" name="recall_field"/>');
+        //d3.select("#query").html('<p id="prompt"><center>press "Y" for yes, "N" for no.</center></p>');
+
+       //setTimeout(function(){wrapup_distractor(); }, word_pres_rate);
 
         // display input box
         d3.select("#recall_field").node().focus()
         cur_phase = "DISTRACTOR";
-        listening = true;
-        end_distractor_start_time = new Date().getTime();
+        listening = true;           
+
+
+        //d3.select("#stim").remove()
+
+                //return problem;
+
+        //cur_phase = "DISTRACTOR";
+        //listening = true;
+        //distractor_start_time = new Date().getTime();
+
+
+        // display task text    
+        //disp_this = '<p><center>Judge whether or not the following problem is correct:</center></p>'
+        //d3.select("#task").html(disp_this);
+        //problem = '<p><center><span style="color: black; font-size: 50px">' + A + '+' + B + '+' + C + '=' + correct_answer + '</center></span></p>'
+        //d3.select("#word").html(problem)
+        //d3.select("#query").html('<p id="prompt"><center>press "Y" for yes, "N" for no.</center></p>');
+        //setTimeout(function(){wrapup_distractor(); }, distractor_pres_rate);
+
+        //return problem;
+
+        //cur_phase = "DISTRACTOR";
+        //listening = true;
+        //distractor_start_time = new Date().getTime();
 
     }
 
-    var wrapup_end_distractor = function() {
-        end_distractor_done = true;
+    var wrapup_distractor = function() {
+       cur_phase = "DISTRACTOR";
+       if (stims.length === 0) {
+            distractor_done = true;
+        }
         document.body.style.backgroundColor = "red";
-        d3.select("#recall_input").html('');
-        d3.select("#query").html('');
-        d3.select("#task").html('');
-        setTimeout(function(){next(); }, recall_box_lag/2);
+        //trying to reassign #recall_input
+        d3.select("#recall_input").html('<span>    </span> ');
+        if (listening) {
+            var rt = new Date().getTime() - distractor_start_time;
+            psiTurk.recordTrialData({
+                    'instruction_condition': instruction_condition,
+                    'recall_instruction_condition': recall_instruction_condition,
+                    'task_condition': task_condition,
+                    'list': cur_list_num,
+                    'phase': "DISTRACTOR",
+                    'response': "Timed_Out",
+                    'rt': rt
+                }
+            );
+        }
+
+        // show a fixation for isi ms
+        // remove text from encoding task
+        // stop listening
+        listening = false;
+        //d3.select("#word").remove();
+        d3.select("#query").html('<p id="prompt"> <center> <span style="color: black; ">Thanks for responding!</span></p>');
+        d3.select("#task").html('<p id="prompt"> <center> <span style="color: black; ">Thanks for responding!</span></p>');
+
+        d3.select("#stim")
+            .append("div")
+            .attr("id","word")
+            .style("color","black")
+            .style("text-align","center")
+            .style("font-size","50px")
+            .style("font-weight","400")
+            .style("margin","20px")
+            .text("+");        
+        setTimeout(function(){next(); }, isi);
 
     }
 
@@ -591,8 +785,8 @@ var RunFR = function() {
         // stop listening
         listening = false;
         d3.select("#word").remove();
-d3.select("#query").html('<p id="prompt"> <span style="color: white; ">Thanks for responding!</span></p>');
-                d3.select("#task").html('<p id="prompt"> <span style="color: white; ">Thanks for responding!</span></p>');
+        d3.select("#query").html('<p id="prompt"> <center> <span style="color: black; ">Thanks for responding!</span></p>');
+        d3.select("#task").html('<p id="prompt"> <center> <span style="color: black; ">Thanks for responding!</span></p>');
 
         d3.select("#stim")
             .append("div")
@@ -648,11 +842,6 @@ d3.select("#query").html('<p id="prompt"> <span style="color: white; ">Thanks fo
 
 
 
-
-
-
-
-
     /******
      * Function to remove an item from the screen
      *
@@ -660,7 +849,6 @@ d3.select("#query").html('<p id="prompt"> <span style="color: white; ">Thanks fo
     var remove_word = function() {
         d3.select("#word").remove();
     };
-
 
 
 
@@ -688,13 +876,13 @@ d3.select("#query").html('<p id="prompt"> <span style="color: white; ">Thanks fo
 
 var Questionnaire = function() {
 
-	var error_message = "<h1>Oops!</h1><p>Something went wrong submitting your HIT. This might happen if you lose your internet connection. Press the button to resubmit.</p><button id='resubmit'>Resubmit</button>";
+    var error_message = "<h1>Oops!</h1><p>Something went wrong submitting your HIT. This might happen if you lose your internet connection. Press the button to resubmit.</p><button id='resubmit'>Resubmit</button>";
 
-	record_responses = function() {
+    record_responses = function() {
 
         // record strategy questions:
-		$('input').each( function(i, val) {
-		    psiTurk.recordTrialData({
+        $('input').each( function(i, val) {
+            psiTurk.recordTrialData({
                         'instruction_condition': instruction_condition,
                         'task_condition': task_condition,
                         'recall_instruction_condition': recall_instruction_condition,
@@ -704,11 +892,11 @@ var Questionnaire = function() {
                         'used': this.checked,
                         });
 
-		});
+        });
 
         // record awarness question
         $('select').each( function(i, val) {
-		    psiTurk.recordTrialData({
+            psiTurk.recordTrialData({
                         'instruction_condition': instruction_condition,
                         'task_condition': task_condition,
                         'recall_instruction_condition': recall_instruction_condition,
@@ -717,70 +905,47 @@ var Questionnaire = function() {
                         'aware_ans': this.value,
                         });
 
-		});
+        });
 
 
 
-	};
+    };
 
-	prompt_resubmit = function() {
-		document.body.innerHTML = error_message;
-		$("#resubmit").click(resubmit);
-	};
+    prompt_resubmit = function() {
+        document.body.innerHTML = error_message;
+        $("#resubmit").click(resubmit);
+    };
 
-	resubmit = function() {
-		document.body.innerHTML = "<h1>Trying to resubmit...</h1>";
-		reprompt = setTimeout(prompt_resubmit, 10000);
+    resubmit = function() {
+        document.body.innerHTML = "<h1>Trying to resubmit...</h1>";
+        reprompt = setTimeout(prompt_resubmit, 10000);
 
-		psiTurk.saveData({
-			success: function() {
-			    clearInterval(reprompt);
+        psiTurk.saveData({
+            success: function() {
+                clearInterval(reprompt);
                 psiTurk.computeBonus('compute_bonus', function(){finish()});
-			},
-			error: prompt_resubmit
-		});
-	};
+            },
+            error: prompt_resubmit
+        });
+    };
 
-	// Load the questionnaire snippet
-	psiTurk.showPage('postquestionnaire.html');
-	psiTurk.recordTrialData({'phase':'postquestionnaire', 'status':'begin'});
+    // Load the questionnaire snippet
+    psiTurk.showPage('postquestionnaire.html');
+    psiTurk.recordTrialData({'phase':'postquestionnaire', 'status':'begin'});
 
-	$("#next").click(function () {
-	    record_responses();
-	    psiTurk.saveData({
+    $("#next").click(function () {
+        record_responses();
+        psiTurk.saveData({
             success: function(){
                 psiTurk.computeBonus('compute_bonus', function() {
-                	psiTurk.completeHIT(); // when finished saving compute bonus, the quit
+                    psiTurk.completeHIT(); // when finished saving compute bonus, the quit
                 });
             },
             error: prompt_resubmit});
-	});
+    });
 
     psiTurk.showPage('debriefing.html');
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 // Task object to keep track of the current phase
@@ -791,7 +956,17 @@ var currentview;
  ******************/
 $(window).load( function(){
     psiTurk.doInstructions(
-    	instructionPages, // a list of pages you want to display in sequence
-    	function() { currentview = new RunFR(); } // what you want to do when you are done with instructions
+        instructionPages, // a list of pages you want to display in sequence
+        function() { currentview = new RunFR(); } // what you want to do when you are done with instructions
     );
 });
+
+
+
+
+
+
+
+
+
+
