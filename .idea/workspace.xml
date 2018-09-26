@@ -1,0 +1,529 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="45901f77-4943-4ae4-97bf-eba3524aa5f1" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/Heal16implicit_copy/static/js/scratch_for-Dest18incidentalcdfr.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/analyses/E1_spc_list1.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/analyses/Heal16implicit_analysis.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/analyses/HealEtal16implicit.data.raw.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/analyses/HealEtal16implicit.recalls.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/analyses/anal_funcs.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/analyses/e1.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/analyses/e2.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/analyses/e3.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/analyses/e4.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/analyses/fits.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/analyses/implicit_figure_3.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/analyses/jml_second_sub_anal.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/analyses/new_data.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/analyses/parrot.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/analyses/process_psiturk_data.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/analyses/run_analyses.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/analyses/tcm_Heal16implicit.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/analyses/temp.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/analyses/test.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/analyses/used_recall_dynamics.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/config.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/custom.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dissemination/manuscript/jml/first_submission/Heal16implicit.tex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dissemination/manuscript/jml/first_submission/Heal16implicit_letter.tex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dissemination/manuscript/jml/first_submission/JML_CoverLetter.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dissemination/manuscript/jml/first_submission/cover_letter_on_letterhead.docx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dissemination/manuscript/jml/first_submission/figures/E3.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dissemination/manuscript/jml/first_submission/figures/FrontDoor.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dissemination/manuscript/jml/first_submission/figures/Heal16implicit_data.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dissemination/manuscript/jml/first_submission/figures/Shoebox.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dissemination/manuscript/jml/first_submission/figures/all_crps.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dissemination/manuscript/jml/first_submission/figures/corr.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dissemination/manuscript/jml/first_submission/figures/table_values.tex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dissemination/manuscript/jml/first_submission/makefile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dissemination/manuscript/jml/first_submission/sup_mat.tex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dissemination/manuscript/jml/for_production/Heal16implicit.bbl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dissemination/manuscript/jml/for_production/Heal16implicit.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dissemination/manuscript/jml/for_production/Heal16implicit.tex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dissemination/manuscript/jml/for_production/data_for_web/Heal18.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dissemination/manuscript/jml/for_production/data_for_web/Heal18_data.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dissemination/manuscript/jml/for_production/data_for_web/README.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dissemination/manuscript/jml/for_production/figures/E1_crp_list1.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dissemination/manuscript/jml/for_production/figures/E1_crp_list2.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dissemination/manuscript/jml/for_production/figures/E1_spc_list1.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dissemination/manuscript/jml/for_production/figures/E1_spc_list2.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dissemination/manuscript/jml/for_production/figures/E2_crp_list1.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dissemination/manuscript/jml/for_production/figures/E2_crp_list2.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dissemination/manuscript/jml/for_production/figures/E2_spc_list1.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dissemination/manuscript/jml/for_production/figures/E2_spc_list2.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dissemination/manuscript/jml/for_production/figures/E3_crp_list1.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dissemination/manuscript/jml/for_production/figures/E3_crp_list2.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dissemination/manuscript/jml/for_production/figures/E3_spc_list1.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dissemination/manuscript/jml/for_production/figures/E3_spc_list2.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dissemination/manuscript/jml/for_production/figures/E4_crp_list1.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dissemination/manuscript/jml/for_production/figures/E4_spc_list1.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dissemination/manuscript/jml/for_production/figures/correlation.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dissemination/manuscript/jml/for_production/figures/meta.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dissemination/manuscript/jml/for_production/figures/table_values.tex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dissemination/manuscript/jml/for_production/sup_mat.bbl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dissemination/manuscript/jml/for_production/sup_mat.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dissemination/manuscript/jml/for_production/sup_mat.tex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dissemination/manuscript/jml/second_submission/Heal16implicit.tex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dissemination/manuscript/jml/second_submission/Heal16implicit_letter.tex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dissemination/manuscript/jml/second_submission/JML_CoverLetter.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dissemination/manuscript/jml/second_submission/cover_letter_on_letterhead.docx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dissemination/manuscript/jml/second_submission/figures/E1_crp_list1.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dissemination/manuscript/jml/second_submission/figures/E1_crp_list2.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dissemination/manuscript/jml/second_submission/figures/E1_spc_list1.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dissemination/manuscript/jml/second_submission/figures/E1_spc_list2.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dissemination/manuscript/jml/second_submission/figures/E2_crp_list1.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dissemination/manuscript/jml/second_submission/figures/E2_crp_list2.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dissemination/manuscript/jml/second_submission/figures/E2_spc_list1.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dissemination/manuscript/jml/second_submission/figures/E2_spc_list2.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dissemination/manuscript/jml/second_submission/figures/E3_crp_list1.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dissemination/manuscript/jml/second_submission/figures/E3_crp_list2.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dissemination/manuscript/jml/second_submission/figures/E3_spc_list1.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dissemination/manuscript/jml/second_submission/figures/E3_spc_list2.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dissemination/manuscript/jml/second_submission/figures/E4_crp_list1.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dissemination/manuscript/jml/second_submission/figures/E4_spc_list1.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dissemination/manuscript/jml/second_submission/figures/Heal16implicit_data.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dissemination/manuscript/jml/second_submission/figures/Heal16implicit_data_E1-3.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dissemination/manuscript/jml/second_submission/figures/all_crps.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dissemination/manuscript/jml/second_submission/figures/correlation.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dissemination/manuscript/jml/second_submission/figures/meta.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dissemination/manuscript/jml/second_submission/figures/table_values.tex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dissemination/manuscript/jml/second_submission/first_reviews.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dissemination/manuscript/jml/second_submission/highlights.docx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dissemination/manuscript/jml/second_submission/makefile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dissemination/manuscript/jml/second_submission/submitted_pdf.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dissemination/manuscript/jml/second_submission/sup_mat.tex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dissemination/manuscript/psych_sci/first_submission/Heal16implicit.aux" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dissemination/manuscript/psych_sci/first_submission/Heal16implicit.bbl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dissemination/manuscript/psych_sci/first_submission/Heal16implicit.blg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dissemination/manuscript/psych_sci/first_submission/Heal16implicit.fdb_latexmk" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dissemination/manuscript/psych_sci/first_submission/Heal16implicit.fls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dissemination/manuscript/psych_sci/first_submission/Heal16implicit.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dissemination/manuscript/psych_sci/first_submission/Heal16implicit.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dissemination/manuscript/psych_sci/first_submission/Heal16implicit.tex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dissemination/manuscript/psych_sci/first_submission/Heal16implicit_MGU.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dissemination/manuscript/psych_sci/first_submission/Heal16implicit_letter.aux" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dissemination/manuscript/psych_sci/first_submission/Heal16implicit_letter.fdb_latexmk" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dissemination/manuscript/psych_sci/first_submission/Heal16implicit_letter.fls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dissemination/manuscript/psych_sci/first_submission/Heal16implicit_letter.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dissemination/manuscript/psych_sci/first_submission/Heal16implicit_letter.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dissemination/manuscript/psych_sci/first_submission/Heal16implicit_letter.tex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dissemination/manuscript/psych_sci/first_submission/MKHealey.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dissemination/manuscript/psych_sci/first_submission/Reviews.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dissemination/manuscript/psych_sci/first_submission/all.sum" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dissemination/manuscript/psych_sci/first_submission/bits_for_inlab_LOP.tex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dissemination/manuscript/psych_sci/first_submission/bone_yard.tex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dissemination/manuscript/psych_sci/first_submission/figures/E3.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dissemination/manuscript/psych_sci/first_submission/figures/FrontDoor.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dissemination/manuscript/psych_sci/first_submission/figures/Heal16implicit_data.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dissemination/manuscript/psych_sci/first_submission/figures/Shoebox.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dissemination/manuscript/psych_sci/first_submission/figures/all_crps.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dissemination/manuscript/psych_sci/first_submission/figures/table_values.tex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dissemination/manuscript/psych_sci/first_submission/makefile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dissemination/manuscript/psych_sci/first_submission/si.tex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dissemination/manuscript/psych_sci/first_submission/temp.sum" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dissemination/manuscript/psych_sci/first_submission/wordcount.sum" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/favicon.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/participants.db" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/shelve.out.db" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/favicon.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/fonts/glyphicons-halflings-regular.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/images/MSU-Wordmark-PMS-567.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/images/helmet_green_PMS_567.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/images/university.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/js/task.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/js/utils.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/js/word_pool/excluded_words.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/js/word_pool/make_word_lists.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/js/word_pool/nonegative_word_pool.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/js/word_pool/wasnorm_wordpool.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/lib/backbone-min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/lib/bootstrap.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/lib/d3.v3.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/lib/jquery-min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/lib/underscore-min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/ad.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/closepopup.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/complete.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/consent.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/custom.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/debriefing.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/default.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/error.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/exp.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/instructions/instruct-2.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/instructions/instruct-3.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/instructions/instruct-ready.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/instructions/instructions-E4constant-size-task.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/instructions/instructions-E4varying-size-task.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/instructions/instructions-FR-final.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/instructions/instructions-FR-greeting.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/instructions/instructions-animacy-task.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/instructions/instructions-deepitem-task.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/instructions/instructions-deeprelational-task.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/instructions/instructions-explicit-emphasis.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/instructions/instructions-explicit-greeting.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/instructions/instructions-home-task.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/instructions/instructions-incidental-emphasis.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/instructions/instructions-incidental-greeting.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/instructions/instructions-judgment.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/instructions/instructions-scenario-task.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/instructions/instructions-size-task.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/instructions/instructions-weight-task.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/list.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/postquestionnaire.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/stage.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/thanks-mturksubmit.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/thanks.html" beforeDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FUSProjectUsageTrigger">
+    <session id="1985123277">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.closed" value="4" />
+          <entry key="project.open.time.0" value="1" />
+          <entry key="project.open.time.4" value="2" />
+          <entry key="project.open.time.89" value="1" />
+          <entry key="project.opened" value="4" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="js" value="42" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="JavaScript" value="42" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="js" value="1681" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="JavaScript" value="1681" />
+        </counts>
+      </usages-collector>
+    </session>
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Other_task_version/modifiedtask_827.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="210">
+              <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+                <element signature="n#style#0;n#span#0;n#p#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#span#0;n#p#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#span#0;n#p#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#span#0;n#p#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#span#0;n#p#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#span#0;n#p#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#span#0;n#p#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#span#0;n#p#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>end_distractor</find>
+      <find>+</find>
+      <find>invalid</find>
+      <find>pres_rate</find>
+      <find>remove_word</find>
+      <find>var next</find>
+      <find>var distra</find>
+      <find>distractor_done</find>
+      <find>distractor</find>
+      <find>cur_phase</find>
+      <find>&quot;DISTRACTOR&quot;</find>
+      <find>word</find>
+      <find>var cur_phase</find>
+      <find>INITIATE</find>
+      <find>CUR_LIST</find>
+      <find>listening</find>
+      <find>present_item</find>
+      <find>response_handler</find>
+      <find>distractor_pres</find>
+      <find>finish</find>
+      <find>e</find>
+      <find>e</find>
+      <find>response</find>
+      <find>response_</find>
+      <find>distractor_task</find>
+      <find>end_distract</find>
+      <find>handler</find>
+      <find>initial</find>
+      <find>next</find>
+    </findStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/Editing_Heal16implicitcopy/static/js/modified_task.js" />
+        <option value="$PROJECT_DIR$/Heal16implicit_copy/static/js/scratch_for-Dest18incidentalcdfr.js" />
+        <option value="$PROJECT_DIR$/Editing_Heal16implicitcopy/static/js/task.js" />
+        <option value="$PROJECT_DIR$/Editing_Heal16implicitcopy/static/js/modifiedtask_827.js" />
+        <option value="$PROJECT_DIR$/Editing_Heal16implicitcopy/static/js/cooperation_task.js" />
+        <option value="$PROJECT_DIR$/Editing_Heal16implicitcopy/static/js/cooperation_task_edit827.js" />
+        <option value="$PROJECT_DIR$/Editing_Heal16implicitcopy/static/js/should_work_task.js" />
+        <option value="$PROJECT_DIR$/Other_task_version/modifiedtask_824.js" />
+        <option value="$PROJECT_DIR$/Editing_Heal16implicitcopy/static/js/modifiedtask_824.js" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="x" value="86" />
+    <option name="y" value="132" />
+    <option name="width" value="1233" />
+    <option name="height" value="1099" />
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="Dest18incidentalcdfr" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Dest18incidentalcdfr" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Dest18incidentalcdfr" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Dest18incidentalcdfr" type="462c0819:PsiDirectoryNode" />
+              <item name="Editing_Heal16implicitcopy" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Dest18incidentalcdfr" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Dest18incidentalcdfr" type="462c0819:PsiDirectoryNode" />
+              <item name="Editing_Heal16implicitcopy" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Dest18incidentalcdfr" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Dest18incidentalcdfr" type="462c0819:PsiDirectoryNode" />
+              <item name="Editing_Heal16implicitcopy" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Dest18incidentalcdfr" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Dest18incidentalcdfr" type="462c0819:PsiDirectoryNode" />
+              <item name="Heal16implicit_copy" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Dest18incidentalcdfr" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Dest18incidentalcdfr" type="462c0819:PsiDirectoryNode" />
+              <item name="Heal16implicit_copy" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Dest18incidentalcdfr" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Dest18incidentalcdfr" type="462c0819:PsiDirectoryNode" />
+              <item name="Heal16implicit_copy" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Dest18incidentalcdfr" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Dest18incidentalcdfr" type="462c0819:PsiDirectoryNode" />
+              <item name="Other_task_version" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Editing_Heal16implicitcopy/static/js" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration>$USER_HOME$/.subversion</configuration>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="45901f77-4943-4ae4-97bf-eba3524aa5f1" name="Default Changelist" comment="" />
+      <created>1535134417948</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1535134417948</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="86" y="132" width="1233" height="1099" extended-state="0" />
+    <editor active="true" />
+    <layout>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18303946" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="8" />
+      <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
+      <window_info anchor="bottom" id="Terminal" order="11" weight="0.31087664" />
+      <window_info anchor="bottom" id="Python Console" order="12" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="SciView" order="3" />
+      <window_info anchor="right" x="0" y="0" width="272" height="1124" id="Documentation" order="4" side_tool="true" visible="true" weight="0.09403862" />
+      <window_info anchor="right" id="Database" order="5" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/Editing_Heal16implicitcopy/static/js/utils.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Heal16implicit_copy/static/js/task.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="197">
+          <caret line="210" column="16" selection-start-line="210" selection-start-column="8" selection-end-line="218" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Editing_Heal16implicitcopy/static/js/modifiedtask_827.js" />
+    <entry file="file://$USER_HOME$/Downloads/modified_task.js" />
+    <entry file="file://$PROJECT_DIR$/Editing_Heal16implicitcopy/static/js/modified_task.js" />
+    <entry file="file://$PROJECT_DIR$/Editing_Heal16implicitcopy/static/js/scratch_for-Dest18incidentalcdfr.js" />
+    <entry file="file://$PROJECT_DIR$/Editing_Heal16implicitcopy/static/js/cooperation_task.js" />
+    <entry file="file://$PROJECT_DIR$/../Heal16implicit/static/js/task.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="709">
+          <caret line="562" column="5" selection-start-line="529" selection-start-column="8" selection-end-line="562" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Editing_Heal16implicitcopy/static/js/cooperation_task_edit827.js" />
+    <entry file="file://$PROJECT_DIR$/Heal16implicit_copy/static/js/scratch_for-Dest18incidentalcdfr.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="965">
+          <caret line="127" selection-start-line="127" selection-end-line="127" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Editing_Heal16implicitcopy/static/js/should_work_task.js" />
+    <entry file="file://$PROJECT_DIR$/Editing_Heal16implicitcopy/psiturk-example/static/js/task.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="322">
+          <caret line="79" column="24" selection-start-line="79" selection-start-column="17" selection-end-line="79" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Other_task_version/cooperation_task.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="499">
+          <caret line="533" column="9" selection-start-line="533" selection-start-column="9" selection-end-line="533" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Other_task_version/modifiedtask_824.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="610">
+          <caret line="116" column="36" lean-forward="true" selection-start-line="116" selection-start-column="36" selection-end-line="116" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Editing_Heal16implicitcopy/static/js/modifiedtask_824.js" />
+    <entry file="file://$PROJECT_DIR$/Other_task_version/task.js" />
+    <entry file="file://$PROJECT_DIR$/Editing_Heal16implicitcopy/static/js/task.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="201" column="27" selection-start-line="201" selection-start-column="27" selection-end-line="201" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Other_task_version/modifiedtask_827.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#p#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#p#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#p#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#p#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#p#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#p#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#p#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#p#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>
