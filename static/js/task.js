@@ -82,9 +82,9 @@ var instruction_condition = condition;
 //var instruction_condition = 1; // temp divert everyone into implicit cond
 
 
-// counterbalance is passed by psiturk based on num_counters variable in config.txt runs from 0 to num_counters-1. for this experiment, 0 = size, 1 = deep item, 2 = deep relational
-var task_condition = counterbalance;  // divert everyone into one of the Exp4 task conditions (shoebox or varying referent) if setup to have two counterblances 0 and 1: 0+7 = 7 and 1+7 = 8
-
+// counterbalance is passed by psiturk based on num_counters variable in config.txt runs from 0 to num_counters-1.
+var task_condition = 0;
+//var task_condition = counterbalance;  // this indicated if people are in the CDFR or the DFR condition. For this experiment, 0 = DFR and 1 = CDFR. This only determined in the next function what happens after present_item runs.
 // instructions for the recall period --- either free recall or serial recall
 //var recall_instruction_condition = condition;  // co-opting the condition variable to use for the Exp4 recall instructions (whther the susprise mem test gives free or serial instructions
 
@@ -236,11 +236,14 @@ var RunFR = function() {
 
         else if (cur_phase === 'STUDY') { //if we just did a study phase, next is the distractor phase
             remove_word()
-            // start if statement about here
-            cur_phase = "DISTRACTOR";
-            distractor_start_time = new Date().getTime(); 
-            setTimeout(function(){wrapup_distractor(); }, distractor_delay); //start the distractor phase after a study phase
-            distractor_task();
+            // start if statement about here for if task_condition = CDFR or DFR
+            if (task_condition == 1 || stims.length == 0) { //If CDFR condition or the final word was just presented for either CDFR or the DFR conditions, start distractor_task()
+            	cur_phase = "DISTRACTOR";
+            	distractor_start_time = new Date().getTime(); 
+            	setTimeout(function(){wrapup_distractor(); }, distractor_delay); //start the distractor phase after a study phase
+            	distractor_task();
+            }
+
         }
 
         // what to do if study phase
