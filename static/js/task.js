@@ -32,7 +32,7 @@ var distractor_pres_rate = 10000; // number of milliseconds each distractor betw
 var isi = 500; // number of ms of blank screen between word presentations
 var recall_time = 75000; // number of milleseconds given to recall
 var delay_between_lists = 5000; // number of mileseconds to pause between lists (display get ready message)
-var distractor_delay = 16000; // number of mileseconds of distraction task before recall
+var distractor_delay = distractor_pres_rate; // number of milliseconds of distraction task before recall
 var recall_box_lag = 1000; // number of ms to ignore input into the text box after recall period starts --- so people don't accidentally enter responses to the math task here
 var word_pool = make_pool(); // function in utils.js
 
@@ -243,6 +243,38 @@ var RunFR = function() {
             	setTimeout(function(){wrapup_distractor(); }, distractor_delay); //start the distractor phase after a study phase
             	distractor_task();
             }
+            else {
+				cur_phase = "STUDY"
+            	stim = stims.shift();
+
+            	document.body.style.backgroundColor = "white";
+
+
+            	if (stims.length===list_length-1) {
+                	if (cur_list_num==0) {
+                    	ready_message = "The list will begin shortly. Position your fingers over the 'y' and 'n' keys so you are ready to respond!"
+                	}
+                	else {
+                    	ready_message = "A new list will begin shortly. Position your fingers over the 'y' and 'n' keys so you are ready to respond!"
+                	}
+                	d3.select("#stim")
+                    	.append("div")
+                    	.attr("id","word")
+                    	.style("color","black")
+                    	.style("text-align","center")
+                    	.style("font-size","40px")
+                    	.style("font-weight","400")
+                    	.style("margin","20px")
+                    	.text(ready_message);
+                	setTimeout(function(){present_item( stim[0] ); }, delay_between_lists);
+            	}
+            	else{
+                	remove_word()
+               		present_item( stim[0] );
+                }
+
+        }
+
 
         }
 
