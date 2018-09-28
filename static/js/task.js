@@ -78,17 +78,17 @@ size_referents = _.shuffle(size_referents);
 // fixed task params
 
 //condition is passed by psiturk based on num_conds variable in config.txt runs from 0 to num_conds-1. for this experiment, 0 = explicit, 1 = implicit
-//var instruction_condition = condition;
-var instruction_condition = 1; // temp divert everyone into implicit cond
+var instruction_condition = condition;
+//var instruction_condition = 1; // temp divert everyone into implicit cond
 
 
 // counterbalance is passed by psiturk based on num_counters variable in config.txt runs from 0 to num_counters-1. for this experiment, 0 = size, 1 = deep item, 2 = deep relational
-var task_condition = 7;  // divert everyone into one of the Exp4 task conditions (shoebox or varying referent) if setup to have two counterblances 0 and 1: 0+7 = 7 and 1+7 = 8
+var task_condition = counterbalance;  // divert everyone into one of the Exp4 task conditions (shoebox or varying referent) if setup to have two counterblances 0 and 1: 0+7 = 7 and 1+7 = 8
 
 // instructions for the recall period --- either free recall or serial recall
-var recall_instruction_condition = condition;  // co-opting the condition variable to use for the Exp4 recall instructions (whther the susprise mem test gives free or serial instructions
+//var recall_instruction_condition = condition;  // co-opting the condition variable to use for the Exp4 recall instructions (whther the susprise mem test gives free or serial instructions
 
-
+encoding_condition = 4
 
  // digits to use in constructing math distractor problems
 var one_to_nine = [1, 2, 3, 4, 5, 6, 7, 8, 9];
@@ -121,39 +121,39 @@ else if (instruction_condition==1) {
 
 /****** Will probably edit this task condition block too ******/
 // pick task page (second instruction page) based on task_condition
-if (task_condition==0) {
+if (encoding_condition==0) {
     task = "instructions/instructions-size-task.html"
     task_string = '<p>Is it easy to judge if it would it fit in a shoebox?</p>'
 }
-else if (task_condition==1) {
+else if (encoding_condition==1) {
     task = "instructions/instructions-deepitem-task.html"
     task_string = '<p>Is it easy to generate a mental movie about this word?</p>'
 }
-else if (task_condition==2) {
+else if (encoding_condition==2) {
     task = "instructions/instructions-deeprelational-task.html"
     task_string = '<p>Is it easy to incorporate this word in to your mental movie?</p>'
 }
-else if (task_condition==3) {
+else if (encoding_condition==3) {
     task = "instructions/instructions-scenario-task.html"
     task_string = '<p>Is it easy to judge the relevance of this word to moving to a foreign land?</p>'
 }
-else if (task_condition==4) {
+else if (encoding_condition==4) {
     task = "instructions/instructions-animacy-task.html"
     task_string = '<p>Is it easy to judge if this word refers to something that is alive?</p>'
 }
-else if (task_condition==5) {
+else if (encoding_condition==5) {
     task = "instructions/instructions-weight-task.html"
     task_string = '<p>Is it easy to judge if it is heavier than a bottle of water?</p>'
 }
-else if (task_condition==6) {
+else if (encoding_condition==6) {
     task = "instructions/instructions-home-task.html"
     task_string = '<p>Is it easy to judge if it would fit through your front door?</p>'
 }
-else if (task_condition==7) {
+else if (encoding_condition==7) {
     task = "/instructions/instructions-E4constant-size-task.html"
     task_string = '<center><p>Is it easy to judge if it is larger than a <strong>shoebox</strong>?</p></center>'
 }
-else if (task_condition==8) {
+else if (encoding_condition==8) {
     task = "/instructions/instructions-E4varying-size-task.html"
     // for each item, picks task string from the shuffled size_referents list we made above
 }
@@ -441,7 +441,7 @@ var RunFR = function() {
 
                 psiTurk.recordTrialData({
                         'instruction_condition': instruction_condition,
-                        'recall_instruction_condition': recall_instruction_condition,
+                        //'recall_instruction_condition': recall_instruction_condition,
                         'task_condition': task_condition,
                         'list': cur_list_num,
                         'phase': "study",
@@ -482,7 +482,7 @@ var RunFR = function() {
                 var elapsed = new Date().getTime() - start_time;
                 psiTurk.recordTrialData({
                         'instruction_condition': instruction_condition,
-                        'recall_instruction_condition': recall_instruction_condition,
+                        //'recall_instruction_condition': recall_instruction_condition,
                         'task_condition': task_condition,
                         'list': cur_list_num,
                         'phase': "recall",
@@ -522,7 +522,7 @@ var RunFR = function() {
                 var elapsed = new Date().getTime() - distractor_start_time;
                 psiTurk.recordTrialData({
                         'instruction_condition': instruction_condition,
-                        'recall_instruction_condition': recall_instruction_condition,
+                        //'recall_instruction_condition': recall_instruction_condition,
                         'task_condition': task_condition,
                         'list': cur_list_num,
                         'phase': "DISTRACTOR",
@@ -562,7 +562,7 @@ var RunFR = function() {
         remove_word()
 
         // show the word for word_pres_rate ms
-        if (task_condition==7) {
+        if (encoding_condition==4) {
             d3.select("#task").html(task_string);
         }
         else if (task_condition==8) {
@@ -599,30 +599,30 @@ var RunFR = function() {
  //     d3.select("#recall_input").remove();
 
         // display input box
-        if (recall_instruction_condition==0) {
-            if (task_condition==7) {
+        if (instruction_condition==0) {
+            if (encoding_condition==4) {
                 disp_this = '<p>You now have ' + recall_time/1000 +
                 ' seconds to to try and recall the words from the list you just saw. ' +
                 'You can recall the words in any order. Try to recall as many words as you can. If you cannot remember any more words, that is okay; the task will automatically advance when the time is up.</p>'
             }
-            else if (task_condition==8) {
+            /*else if (task_condition==8) {
                 disp_this = '<p>You now have ' + recall_time/1000 +
                 ' seconds to to try and recall the words from the list you just saw. Recall the words that were presented in large font in the center of the screen, <strong>NOT</strong> the size referents that appared in smaller font above the words. ' +
                 'You can recall the words in any order. Try to recall as many words as you can. If you cannot remember any more words, that is okay; the task will automatically advance when the time is up.</p>'
-            }
+            }*/
 
         }
-        else if (recall_instruction_condition==1) {
-            if (task_condition==7) {
+        else if (instruction_condition==1) {
+            if (encoidng_condition==4) {
                 disp_this = '<p>You now have ' + recall_time / 1000 +
                 ' seconds to to try and recall the words from the list you just saw. Try to recall the words in the <strong>same order you saw them</strong>' +
                 '. Try to recall as many words as you can. If you cannot remember any more words, that is okay; the task will automatically advance when the time is up.</p>'
             }
-            else if (task_condition==8) {
+            /*else if (task_condition==8) {
                 disp_this = '<p>You now have ' + recall_time / 1000 +
                 ' seconds to to try and recall the words from the list you just saw. Recall the words that were presented in large font in the center of the screen, <strong>NOT</strong> the size referents that appared in smaller font above the words. Try to recall the words in the <strong>same order you saw them</strong>' +
                 '. Try to recall as many words as you can. If you cannot remember any more words, that is okay; the task will automatically advance when the time is up.</p>'
-            }
+            }*/
         }
 
 
@@ -726,7 +726,7 @@ var RunFR = function() {
             var rt = new Date().getTime() - distractor_start_time;
             psiTurk.recordTrialData({
                     'instruction_condition': instruction_condition,
-                    'recall_instruction_condition': recall_instruction_condition,
+                    //'recall_instruction_condition': recall_instruction_condition,
                     'task_condition': task_condition,
                     'list': cur_list_num,
                     'phase': "DISTRACTOR",
@@ -770,7 +770,7 @@ var RunFR = function() {
             var rt = new Date().getTime() - wordon;
             psiTurk.recordTrialData({
                     'instruction_condition': instruction_condition,
-                    'recall_instruction_condition': recall_instruction_condition,
+                    //'recall_instruction_condition': recall_instruction_condition,
                     'task_condition': task_condition,
                     'list': cur_list_num,
                     'phase': "study",
@@ -886,7 +886,7 @@ var Questionnaire = function() {
             psiTurk.recordTrialData({
                         'instruction_condition': instruction_condition,
                         'task_condition': task_condition,
-                        'recall_instruction_condition': recall_instruction_condition,
+                        //'recall_instruction_condition': recall_instruction_condition,
                         'phase': "postquestionnaire",
                         'strategy': this.name,
                         'strategy_description': this.value,
@@ -900,7 +900,7 @@ var Questionnaire = function() {
             psiTurk.recordTrialData({
                         'instruction_condition': instruction_condition,
                         'task_condition': task_condition,
-                        'recall_instruction_condition': recall_instruction_condition,
+                        //'recall_instruction_condition': recall_instruction_condition,
                         'phase': "postquestionnaire",
                         'aware_question': this.name,
                         'aware_ans': this.value,
