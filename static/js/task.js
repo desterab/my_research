@@ -27,8 +27,8 @@ var psiTurk = new PsiTurk(uniqueId, adServerLoc, mode);
 // user determined task params
 var num_of_lists = 1;
 var list_length = 16;
-var word_pres_rate = 5000; // number of milliseconds each word presented for
-var distractor_pres_rate = 15000; // number of milliseconds each distractor between words is presented for
+var word_pres_rate = 1000; // number of milliseconds each word presented for
+var distractor_pres_rate = 10000; // number of milliseconds each distractor between words is presented for
 var isi = 500; // number of ms of blank screen between word presentations
 var recall_time = 75000; // number of milleseconds given to recall
 var delay_between_lists = 5000; // number of mileseconds to pause between lists (display get ready message)
@@ -236,6 +236,7 @@ var RunFR = function() {
 
         else if (cur_phase === 'STUDY') { //if we just did a study phase, next is the distractor phase
             remove_word()
+            // start if statement about here
             cur_phase = "DISTRACTOR";
             distractor_start_time = new Date().getTime(); 
             setTimeout(function(){wrapup_distractor(); }, distractor_delay); //start the distractor phase after a study phase
@@ -740,8 +741,8 @@ var RunFR = function() {
         // stop listening
         listening = false;
         //d3.select("#word").remove();
-        d3.select("#query").html('<p id="prompt"> <center> <span style="color: black; ">Thanks for responding!</span></p>');
-        d3.select("#task").html('<p id="prompt"> <center> <span style="color: black; ">Thanks for responding!</span></p>');
+        d3.select("#query").html('<p id="prompt"> <center> <span style="color: red; ">Thanks for responding!</span></p>');
+        d3.select("#task").html('<p id="prompt"> <center> <span style="color: red; ">Thanks for responding!</span></p>');
 
         d3.select("#stim")
             .append("div")
